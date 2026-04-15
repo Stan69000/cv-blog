@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const timeline = [
+  {
+    period: '2000 → 2005',
+    title: 'Sapeur-pompier volontaire',
+    text: 'Première expérience forte d’engagement. Intervenir, aider, gérer l’urgence et travailler en équipe.'
+  },
+  {
+    period: '2007 → 2009',
+    title: 'Équipier secouriste – Croix-Rouge',
+    text: 'Interventions grand public, formation aux premiers secours, pédagogie et transmission.'
+  },
+  {
+    period: '2010 → 2014',
+    title: 'Président – Espace Animation Pause Jeux',
+    text: 'Gestion d’une structure associative, animation et encadrement d’équipe.'
+  },
+  {
+    period: '2014',
+    title: 'Animateur / conception – Biennale',
+    text: 'Création de contenu pédagogique pour enfants dans un contexte culturel.'
+  },
+  {
+    period: '2020 → 2021',
+    title: 'Président fondateur – association Au Chouette Bar',
+    text: 'Création d’un projet associatif autour d’un lieu de vie et de rencontres.'
+  },
+  {
+    period: '2021 → 2022',
+    title: 'Conseiller municipal',
+    text: 'Engagement local avec travail en commission (sécurité, communication, médiathèque).'
+  },
+  {
+    period: '2022 → 2023',
+    title: 'Trésorier adjoint – Sou des écoles',
+    text: 'Gestion financière et participation à la vie associative locale.'
+  },
+  {
+    period: '2023 → aujourd’hui',
+    title: 'Trésorier adjoint – Radio / Web TV',
+    text: 'Évolution d’une radio vers une Web TV, structuration et participation active.'
+  },
+  {
+    period: '2025 → aujourd’hui',
+    title: 'Parrain – EDEN School',
+    text: 'Accompagnement d’un jeune développeur, transmission et mentorat.'
+  }
+];
+---
+
+<BaseLayout
+  title="Engagement associatif | Stan Bouchet"
+  description="Un parcours d’engagement associatif sur le long terme, entre aide, transmission et collectif."
+>
+  <SiteHeader />
+
+  <main id="main-content" class="container section universe universe--association">
+
+    <!-- HERO -->
+    <section class="hero section">
+      <p class="eyebrow">Engagement associatif</p>
+      <h1>Un fil rouge : être utile, transmettre et construire avec les autres.</h1>
+      <p class="lead muted">
+        Mon engagement associatif ne s’est pas construit d’un coup. Il s’inscrit dans le temps,
+        à travers différentes expériences, contextes et rôles.
+        Ce qui ne change pas, c’est l’envie d’aider, de partager et de participer à des projets collectifs.
+      </p>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="section">
+      <h2>Un parcours dans le temps</h2>
+
+      <ol class="timeline">
+        {timeline.map((item) => (
+          <li>
+            <p class="meta">{item.period}</p>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- FOCUS ACTUEL -->
+    <section class="section highlight">
+      <h2>Aujourd’hui : Le Singe du Numérique</h2>
+
+      <p class="highlight-intro">
+        Une association qui s’inscrit naturellement dans la continuité de mon parcours.
+      </p>
+
+      <div class="grid-two">
+        <p>
+          Avec Le Singe du Numérique, l’idée est de rendre les sujets numériques plus accessibles :
+          cybersécurité, outils, usages… avec une approche simple et concrète.
+        </p>
+        <p>
+          C’est une manière de faire le lien entre mon métier et mon engagement :
+          expliquer, transmettre et rendre les choses utiles pour les autres.
+        </p>
+      </div>
+    </section>
+
+    <!-- CE QUE CA M'A APPRIS -->
+    <section class="section">
+      <h2>Ce que ces expériences m’ont appris</h2>
+
+      <ul class="learning-list">
+        <li>Travailler en équipe dans des contextes variés</li>
+        <li>Gérer des responsabilités concrètes</li>
+        <li>Expliquer simplement des sujets parfois complexes</li>
+        <li>S’adapter à des publics très différents</li>
+        <li>Construire des projets sur la durée</li>
+      </ul>
+    </section>
+
+    <!-- LIEN AVEC TON METIER -->
+    <section class="section">
+      <h2>Le lien avec mon travail</h2>
+
+      <div class="grid-two">
+        <p>
+          Cet engagement influence directement ma manière de travailler.
+          La pédagogie, l’écoute, la clarté et le sens du collectif sont au cœur de mon quotidien IT.
+        </p>
+        <p>
+          Que ce soit dans le support, la cybersécurité ou la documentation,
+          je retrouve les mêmes logiques : rendre les choses compréhensibles et utiles.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONCLUSION -->
+    <section class="section outro">
+      <p class="lead">
+        Ces expériences ne sont pas à côté de mon parcours professionnel.
+        Elles en font partie.
+      </p>
+    </section>
+
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .hero {
+    display: block;
+    min-height: auto;
+    grid-template-columns: 1fr;
+    padding-top: 1rem;
+  }
+
+  .hero h1 {
+    width: 100%;
+  }
+
+  .timeline {
+    display: grid;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .timeline li {
+    border-left: 3px solid var(--accent);
+    padding: 1rem;
+    background: var(--surface);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: 0.8125rem;
+  }
+
+  .learning-list {
+    padding-left: 1.2rem;
+  }
+
+  @media (max-width: 900px) {
+    .grid-two {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .timeline li {
+      padding: 0.9rem;
+    }
+
+    .learning-list {
+      padding-left: 1rem;
+    }
+  }
+</style>

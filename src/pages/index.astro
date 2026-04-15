@@ -1,0 +1,344 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import siteConfig from '../data/site.json';
+import homeConfig from '../data/home.json';
+import seoConfig from '../data/seo.json';
+
+const universes = [
+  {
+    title: 'Parcours pro',
+    href: '/parcours',
+    text: 'Mon évolution, ma manière de travailler, et ce que le terrain m\'a appris.',
+    show: homeConfig.showParcours ?? true
+  },
+  {
+    title: 'Projets',
+    href: '/projets',
+    text: 'Une sélection de projets personnels, internes, web ou open source.',
+    show: homeConfig.showProjets ?? true
+  },
+  {
+    title: 'Engagement associatif',
+    href: '/engagement-associatif',
+    text: 'Des expériences de transmission, de collectif et d\'engagement sur le long terme.',
+    show: homeConfig.showEngagement ?? true
+  },
+  {
+    title: 'Blog',
+    href: '/blog',
+    text: 'Un espace pour partager des idées, des retours d\'expérience et quelques réflexions.',
+    show: homeConfig.showBlog ?? true
+  }
+].filter(item => item.show);
+
+const pageTitle = seoConfig?.defaultTitle || `${siteConfig.title} | Parcours, projets, engagement et blog`;
+const pageDescription = seoConfig?.defaultDescription || siteConfig.description;
+
+const headline = homeConfig.headline || 'Curieux par nature, touche-à-tout par passion.';
+const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parcours : mon travail, les projets que je construis, mes engagements associatifs et ce que j\'aime partager par écrit.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+>
+  <SiteHeader />
+
+  <main id="main-content" class="home container">
+    <section class="home-intro">
+      <p class="eyebrow">Parcours · projets · engagement · blog</p>
+      <h1 class="home-intro__title">{headline}</h1>
+      <p class="lead muted home-intro__lead">
+        {bio}
+      </p>
+    </section>
+
+    {homeConfig.showMap !== false && (
+      <section class="home-map-shell">
+        <section class="home-map" aria-label="Navigation visuelle principale">
+          <img
+            src="/images/homepage-cv.png"
+            alt="Navigation visuelle avec quatre blocs : Parcours pro, Projets, Engagement associatif et Blog."
+            width="1415"
+            height="848"
+          />
+
+          <a class="image-hitbox hitbox-top" href="/parcours" aria-label="Aller à la page Parcours pro">
+            <span class="sr-only">Parcours pro</span>
+          </a>
+          <a class="image-hitbox hitbox-left" href="/projets" aria-label="Aller à la page Projets">
+            <span class="sr-only">Projets</span>
+          </a>
+          <a class="image-hitbox hitbox-right" href="/engagement-associatif" aria-label="Aller à la page Engagement associatif">
+            <span class="sr-only">Engagement associatif</span>
+          </a>
+          <a class="image-hitbox hitbox-bottom" href="/blog" aria-label="Aller à la page Blog">
+            <span class="sr-only">Blog</span>
+          </a>
+        </section>
+      </section>
+    )}
+
+    <section class="home-reading section" aria-labelledby="reading-title">
+      <div class="section-heading">
+        <p class="eyebrow">Explorer le site</p>
+        <h2 id="reading-title">Quatre univers, un même fil conducteur</h2>
+      </div>
+
+      <div class="universe-grid">
+        {universes.map((item) => (
+          <a class="universe-card" href={item.href}>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+            <span class="universe-card__link">Entrer dans cet univers</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="home-note section" aria-labelledby="note-title">
+      <div class="home-note__box">
+        <p class="eyebrow">En quelques mots</p>
+        <h2 id="note-title">Ce site n'est ni un simple CV, ni un portfolio figé.</h2>
+        <p>
+          Je l'ai imaginé comme un espace personnel pour relier plusieurs dimensions de mon parcours :
+          ce que je fais au quotidien, ce que je construis, ce dans quoi je m'implique et ce que j'ai envie de transmettre.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .home {
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+  }
+
+  .home-intro {
+    margin: 0 auto 2.25rem;
+    text-align: center;
+  }
+
+  .home-intro__title {
+    margin-bottom: 1rem;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  .home-intro__lead {
+    margin: 0 auto;
+    text-wrap: pretty;
+  }
+
+  .home-map-shell {
+    margin-bottom: 2.75rem;
+  }
+
+  .home-map {
+    position: relative;
+    margin: 0 auto;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+
+  .home-map:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+
+  .home-map img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .image-hitbox {
+    position: absolute;
+    display: block;
+    border-radius: 20px;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .image-hitbox:hover {
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .image-hitbox:focus-visible {
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  /* À ajuster si besoin selon l’image exacte */
+  .hitbox-top {
+    top: 8%;
+    left: 39%;
+    width: 22%;
+    height: 24%;
+  }
+
+  .hitbox-left {
+    top: 33%;
+    left: 12%;
+    width: 24%;
+    height: 24%;
+  }
+
+  .hitbox-right {
+    top: 33%;
+    right: 12%;
+    width: 24%;
+    height: 24%;
+  }
+
+  .hitbox-bottom {
+    bottom: 8%;
+    left: 39%;
+    width: 22%;
+    height: 24%;
+  }
+
+  .section {
+    margin-top: 2.5rem;
+  }
+
+  .section-heading {
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+
+  .section-heading h2 {
+    text-wrap: balance;
+  }
+
+  .universe-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .universe-card {
+    display: block;
+    padding: 1.25rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .universe-card:hover,
+  .universe-card:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+    outline: none;
+  }
+
+  .universe-card h3 {
+    margin: 0 0 0.55rem;
+  }
+
+  .universe-card p {
+    margin: 0 0 1rem;
+    color: var(--muted);
+  }
+
+  .universe-card__link {
+    font-size: 0.95rem;
+    opacity: 0.9;
+  }
+
+  .home-note__box {
+    margin: 0 auto;
+    padding: 1.4rem 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+
+  .home-note__box h2 {
+    margin-bottom: 0.75rem;
+    text-wrap: balance;
+  }
+
+  .home-note__box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 900px) {
+    .universe-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hitbox-top {
+      top: 8%;
+      left: 37%;
+      width: 26%;
+      height: 24%;
+    }
+
+    .hitbox-left {
+      top: 33%;
+      left: 9%;
+      width: 28%;
+      height: 24%;
+    }
+
+    .hitbox-right {
+      top: 33%;
+      right: 9%;
+      width: 28%;
+      height: 24%;
+    }
+
+    .hitbox-bottom {
+      bottom: 8%;
+      left: 37%;
+      width: 26%;
+      height: 24%;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .home {
+      padding-top: 1rem;
+    }
+
+    .home-intro {
+      margin-bottom: 1.5rem;
+    }
+
+    .home-note__box,
+    .universe-card {
+      padding: 1.1rem;
+    }
+  }
+</style>

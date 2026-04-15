@@ -1,0 +1,27 @@
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Basculer le thème">
+  <span aria-hidden="true">☼</span>
+  <span class="theme-toggle__text">Mode</span>
+</button>
+
+<script is:inline>
+  const root = document.documentElement;
+  const storageKey = 'theme-preference';
+
+  const getPreferredTheme = () => {
+    const saved = localStorage.getItem(storageKey);
+    if (saved === 'light' || saved === 'dark') return saved;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
+
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    localStorage.setItem(storageKey, theme);
+  };
+
+  applyTheme(getPreferredTheme());
+
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+  });
+</script>

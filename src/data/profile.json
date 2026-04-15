@@ -1,0 +1,21 @@
+{
+  "name": "Stan Bouchet",
+  "title": "IT Officer",
+  "bio": "Professionnel de l'IT avec une approche terrain, orienté service et amélioration continue.",
+  "photo": "/images/profile.jpg",
+  "location": "France",
+  "experienceYears": 5,
+  "experienceLabel": "d'années d'expérience",
+  "skills": [
+    { "name": "Support IT", "level": 95 },
+    { "name": "Documentation", "level": 90 },
+    { "name": "Automatisation", "level": 75 },
+    { "name": "Notion", "level": 85 },
+    { "name": "Cybersécurité", "level": 70 }
+  ],
+  "stats": [
+    { "value": "300+", "label": "Utilisateurs supportés" },
+    { "value": "50+", "label": "Automatisations" },
+    { "value": "100+", "label": "Docs créées" }
+  ]
+}

@@ -1,0 +1,987 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+
+const toBlogUrl = (id: string) => `/blog/${id.replace(/\.md$/, '')}/`;
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(date);
+
+const sanitizeSpine = (input: string) =>
+  input
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9\s]/g, ' ')
+    .trim();
+
+const pickSpineLabel = (title: string, tags: string[] = []) => {
+  const fromTag = tags[0]?.trim();
+  if (fromTag) {
+    return sanitizeSpine(fromTag).split(/\s+/).slice(0, 2).join(' ').slice(0, 12).toUpperCase() || 'NOTE';
+  }
+
+  const words = sanitizeSpine(title).split(/\s+/).filter(Boolean);
+  if (!words.length) return 'NOTE';
+  return words.slice(0, 2).join(' ').slice(0, 12).toUpperCase();
+};
+
+const bookColors = ['brown', 'blue', 'green', 'burgundy', 'slate'] as const;
+const floppyColors = ['navy', 'steel', 'plum', 'forest', 'graphite'] as const;
+
+const bookPosts = posts.filter((post) => post.data.type === 'book').slice(0, 5).map((post, index) => ({
+  href: toBlogUrl(post.id),
+  title: post.data.title,
+  description: post.data.description,
+  meta: formatDate(post.data.pubDate),
+  spine: pickSpineLabel(post.data.title, post.data.tags),
+  color: bookColors[index % bookColors.length],
+  placeholder: false,
+  placeholderId: undefined
+}));
+
+const floppyPosts = posts.filter((post) => post.data.type === 'floppy').slice(0, 5).map((post, index) => ({
+  href: toBlogUrl(post.id),
+  title: post.data.title,
+  description: post.data.description,
+  meta: formatDate(post.data.pubDate),
+  color: floppyColors[index % floppyColors.length],
+  placeholder: false,
+  placeholderId: undefined
+}));
+
+const bookPlaceholders = [
+  {
+    title: 'Décrypter un outil avant de le déployer',
+    description: 'Une méthode simple pour mieux comprendre un outil, le tester dans le réel et éviter les effets vitrine.',
+    meta: 'À venir',
+    spine: 'OUTILS'
+  },
+  {
+    title: 'Carnet de bord : faire simple sans faire pauvre',
+    description: 'Réflexion sur l’équilibre entre clarté, élégance et simplicité dans les outils et dans les interfaces.',
+    meta: 'À venir',
+    spine: 'CARNET'
+  },
+  {
+    title: 'Placeholder · Note méthode',
+    description: 'Emplacement en attente de publication',
+    meta: 'À venir',
+    spine: 'NOTE'
+  },
+  {
+    title: 'Placeholder · Clarté',
+    description: 'Emplacement en attente de publication',
+    meta: 'À venir',
+    spine: 'CLARTE'
+  },
+  {
+    title: 'Placeholder · Transmission',
+    description: 'Emplacement en attente de publication',
+    meta: 'À venir',
+    spine: 'PARTAGE'
+  }
+];
+
+const floppyPlaceholders = [
+  {
+    title: 'Retour de terrain #1',
+    description: 'Une note plus courte sur un cas concret rencontré au support.',
+    meta: 'À venir'
+  },
+  {
+    title: 'Usage numérique #3',
+    description: 'Observation rapide sur un usage quotidien et ce qu’il révèle.',
+    meta: 'À venir'
+  },
+  {
+    title: 'Observation support #5',
+    description: 'Une note courte sur un détail terrain qui change beaucoup de choses.',
+    meta: 'À venir'
+  },
+  {
+    title: 'Expérience utilisateur #7',
+    description: 'Emplacement en attente de publication.',
+    meta: 'À venir'
+  },
+  {
+    title: 'Placeholder · Process #9',
+    description: 'Emplacement en attente de publication.',
+    meta: 'À venir'
+  }
+];
+
+const books = [
+  ...bookPosts,
+  ...bookPlaceholders.slice(0, Math.max(0, 5 - bookPosts.length)).map((item, index) => ({
+    href: `/blog/#placeholder-book-${index + 1}`,
+    title: item.title,
+    description: item.description,
+    meta: item.meta,
+    spine: item.spine,
+    color: bookColors[(bookPosts.length + index) % bookColors.length],
+    placeholder: true,
+    placeholderId: `placeholder-book-${index + 1}`
+  }))
+];
+
+const floppies = [
+  ...floppyPosts,
+  ...floppyPlaceholders.slice(0, Math.max(0, 5 - floppyPosts.length)).map((item, index) => ({
+    href: `/blog/#placeholder-floppy-${index + 1}`,
+    title: item.title,
+    description: item.description,
+    meta: item.meta,
+    color: floppyColors[(floppyPosts.length + index) % floppyColors.length],
+    placeholder: true,
+    placeholderId: `placeholder-floppy-${index + 1}`
+  }))
+];
+---
+
+<BaseLayout
+  title="Blog | Stan Bouchet"
+  description="Bibliothèque des billets : livres et disquettes pour parcourir les articles."
+>
+  <SiteHeader />
+
+  <main id="main-content" class="container section page-blog">
+    <p class="eyebrow">Articles publiés</p>
+    <h1>Bibliothèque des billets</h1>
+    <p class="lead">
+      Deux bibliothèques, deux ambiances : les livres d’un côté, les disquettes de l’autre. J’ai choisi de représenter les billets sous forme de livres pour les articles plus généralistes, et sous forme de disquettes en clin d’œil à mes débuts en informatique - à l’époque où j’installais Windows 1.0 sur disquettes, vers 1990. J’avais 10 ans. Les disquettes accueillent ici des notes plus techniques ou plus geek, tandis que les livres gardent une approche plus posée et structurée.
+    </p>
+
+    <section class="library" aria-label="Bibliothèque des livres" data-reveal>
+      <div class="library__header">
+        <p class="eyebrow">Livres</p>
+      </div>
+
+      <div class="shelf">
+        <div class="shelf__items">
+          {books.map((item) => (
+            <a
+              class="piece"
+              href={item.href}
+              data-piece="true"
+              id={item.placeholder ? item.placeholderId : undefined}
+              aria-label={item.placeholder ? `${item.title} (placeholder)` : item.title}
+            >
+              <article class={`book ${item.color}`}>
+                <span class="book__spineTitle">{item.spine}</span>
+                <span class="book__spineShade"></span>
+                <span class="book__pages"></span>
+                <div>
+                  <p class="book__kicker">Livre</p>
+                  <h2 class="book__title">{item.title}</h2>
+                  <p class="book__desc">{item.description}</p>
+                </div>
+                <p class="book__meta">{item.meta}</p>
+              </article>
+            </a>
+          ))}
+        </div>
+        <div class="shelf__wood"></div>
+      </div>
+    </section>
+
+    <section class="library" aria-label="Bibliothèque des disquettes" data-reveal>
+      <div class="library__header">
+        <p class="eyebrow">Disquettes</p>
+      </div>
+
+      <div class="shelf">
+        <div class="shelf__items">
+          {floppies.map((item) => (
+            <a
+              class="piece"
+              href={item.href}
+              data-piece="true"
+              data-floppy="true"
+              aria-expanded="false"
+              id={item.placeholder ? item.placeholderId : undefined}
+              aria-label={item.placeholder ? `${item.title} (placeholder)` : item.title}
+            >
+              <div class="floppy-wrap">
+                <article class={`floppy ${item.color}`} aria-label={item.title}>
+                  <div class="floppy__body">
+                    <span class="floppy__notch left"></span>
+                    <span class="floppy__notch right"></span>
+                    <div class="floppy__top">
+                      <div class="floppy__metalContent">
+                        <div class="floppy__topText">
+                          <small>Formatted</small>
+                          <span class="capacity">1.44MB</span>
+                          <strong>High Density</strong>
+                          <span class="model">MFD-2HD</span>
+                        </div>
+                        <div class="floppy__blackSlot"></div>
+                      </div>
+                    </div>
+                    <span class="floppy__hdMark">HD</span>
+                    <span class="floppy__writeProtect"></span>
+                    <div class="floppy__label">
+                      <div class="floppy__lines"></div>
+                      <div class="floppy__content">
+                        <div class="floppy__titleWrap">
+                          <h2 class="floppy__title">{item.title}</h2>
+                        </div>
+                      </div>
+                      <div class="floppy__tooltip" role="tooltip">
+                        <p class="floppy__tooltipKicker">Disquette</p>
+                        <h3 class="floppy__tooltipTitle">{item.title}</h3>
+                        <p class="floppy__tooltipDesc">{item.description}</p>
+                        <p class="floppy__tooltipMeta">{item.meta}</p>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div class="shelf__wood"></div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+
+  <script is:inline>
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!reduceMotion) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+    } else {
+      document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-visible'));
+    }
+
+    document.querySelectorAll('[data-piece="true"]').forEach((piece) => {
+      piece.addEventListener('click', (event) => {
+        piece.classList.add('is-pressed');
+        window.setTimeout(() => piece.classList.remove('is-pressed'), 140);
+
+        const isFloppy = piece.dataset.floppy === 'true';
+        const coarsePointer = window.matchMedia('(hover: none)').matches;
+
+        if (isFloppy && coarsePointer) {
+          event.preventDefault();
+          const expanded = piece.classList.toggle('is-peeked');
+          piece.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+
+          document.querySelectorAll('[data-floppy="true"]').forEach((other) => {
+            if (other !== piece) {
+              other.classList.remove('is-peeked');
+              other.setAttribute('aria-expanded', 'false');
+            }
+          });
+        }
+      });
+
+      piece.addEventListener('keydown', (event) => {
+        if (
+          piece.dataset.floppy === 'true' &&
+          (event.key === ' ' || event.key === 'Enter') &&
+          window.matchMedia('(hover: none)').matches
+        ) {
+          event.preventDefault();
+          const expanded = piece.classList.toggle('is-peeked');
+          piece.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        }
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('[data-floppy="true"]')) {
+        document.querySelectorAll('[data-floppy="true"]').forEach((piece) => {
+          piece.classList.remove('is-peeked');
+          piece.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .page-blog {
+    color: var(--text);
+  }
+
+  .eyebrow {
+    margin: 0 0 10px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.98rem;
+    font-weight: 700;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2.6rem, 5vw, 4.3rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .lead {
+    margin: 16px 0 0;
+    color: var(--muted);
+    font-size: 1.12rem;
+    line-height: 1.6;
+  }
+
+  .library {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 500ms ease, transform 500ms ease;
+    margin-top: 34px;
+    padding: 22px;
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(16px);
+  }
+
+  .library.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .library__header {
+    margin-bottom: 22px;
+  }
+
+  .shelf {
+    position: relative;
+    padding: 10px 6px 20px;
+    margin-top: 10px;
+  }
+
+  .shelf__items {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 18px;
+    align-items: end;
+    position: relative;
+    z-index: 2;
+  }
+
+  .shelf__wood {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 12px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #a8a29e, #78716c);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+  }
+
+  .piece {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    will-change: transform, opacity;
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 360ms ease,
+      transform 220ms ease,
+      filter 180ms ease;
+  }
+
+  .library.is-visible .piece {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .piece:hover {
+    transform: translateY(-4px) rotate(-0.4deg);
+    filter: brightness(1.04);
+  }
+
+  .piece:active,
+  .piece.is-pressed {
+    transform: translateY(-1px) scale(0.992);
+  }
+
+  .piece.is-peeked .floppy__tooltip,
+  .piece[data-floppy='true']:focus-visible .floppy__tooltip,
+  .piece:hover .floppy__tooltip,
+  .piece:focus-visible .floppy__tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .shelf__items .piece:nth-child(2n):hover {
+    transform: translateY(-4px) rotate(0.4deg);
+  }
+
+  .shelf__items .piece:nth-child(3n):hover {
+    transform: translateY(-4px) rotate(-0.2deg);
+  }
+
+  .piece:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
+    border-radius: 20px;
+  }
+
+  .piece:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  .book {
+    min-height: 340px;
+    border-radius: 6px 10px 12px 6px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    position: relative;
+    padding: 22px 18px 18px 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--book-color, #44403c);
+    transform-origin: bottom center;
+  }
+
+  .book::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.03) 0,
+      rgba(255, 255, 255, 0.03) 2px,
+      transparent 2px,
+      transparent 6px
+    );
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .book::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 20px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+    pointer-events: none;
+  }
+
+  .book .book__pages {
+    position: absolute;
+    top: 10px;
+    right: 2px;
+    bottom: 10px;
+    width: 6px;
+    border-radius: 0 4px 4px 0;
+    background: linear-gradient(180deg, #fafaf9, #e7e5e4);
+    box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.2);
+    opacity: 0.9;
+  }
+
+  .book .book__spineShade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 22px;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.06), transparent 40%);
+    opacity: 0.95;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .book__spineTitle {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    transform-origin: center;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
+    pointer-events: none;
+    max-width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 2;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  }
+
+  .book.brown {
+    --book-color: #78716c;
+  }
+
+  .book.blue {
+    --book-color: #57534e;
+  }
+
+  .book.green {
+    --book-color: #57534e;
+  }
+
+  .book.burgundy {
+    --book-color: #78716c;
+  }
+
+  .book.slate {
+    --book-color: #44403c;
+  }
+
+  .book__kicker {
+    margin: 0 0 14px;
+    color: #d6d3d1;
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .book__title,
+  .floppy__title {
+    font-size: 1.02rem;
+    line-height: 1.18;
+    font-weight: 700;
+    margin: 0 0 14px;
+    max-width: 92%;
+    text-wrap: pretty;
+  }
+
+  .book__title {
+    color: #fafaf9;
+  }
+
+  .book__desc {
+    margin: 0;
+    color: rgba(250, 250, 249, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .floppy__tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 14px);
+    transform: translateX(-50%) translateY(6px);
+    width: min(280px, 92vw);
+    padding: 14px;
+    border-radius: var(--radius);
+    background: var(--surface-strong);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms ease, transform 160ms ease;
+    z-index: 10;
+  }
+
+  .floppy__tooltip::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    width: 14px;
+    height: 14px;
+    background: var(--surface-strong);
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .floppy__tooltipKicker {
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+
+  .floppy__tooltipTitle {
+    margin: 0 0 8px;
+    font-size: 0.98rem;
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .floppy__tooltipDesc {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+
+  .floppy__tooltipMeta {
+    margin: 10px 0 0;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  .book__meta,
+  .floppy__meta {
+    margin-top: 18px;
+    color: rgba(250, 250, 249, 0.8);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .floppy-wrap {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2px;
+    height: 100%;
+  }
+
+  .floppy {
+    width: 100%;
+    max-width: 220px;
+    aspect-ratio: 1 / 1.06;
+    position: relative;
+    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.15));
+  }
+
+  .floppy__body {
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01) 12%, transparent 16%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 18%),
+      var(--floppy-color, #1c1917);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    clip-path: polygon(0 0, 84% 0, 100% 16%, 100% 100%, 0 100%);
+  }
+
+  .floppy.navy {
+    --floppy-color: #292524;
+  }
+
+  .floppy.steel {
+    --floppy-color: #1c1917;
+  }
+
+  .floppy.plum {
+    --floppy-color: #292524;
+  }
+
+  .floppy.forest {
+    --floppy-color: #1c1917;
+  }
+
+  .floppy.graphite {
+    --floppy-color: #1c1917;
+  }
+
+  .floppy__top {
+    position: absolute;
+    top: 2.5%;
+    left: 24%;
+    width: 50%;
+    height: 22%;
+    border-radius: 0 0 8px 8px;
+    background: linear-gradient(180deg, #d8dfda 0%, #c4cbc6 46%, #a4aca7 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.14);
+    overflow: hidden;
+    z-index: 2;
+  }
+
+  .floppy__top::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 32%),
+      repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.03) 0, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 3px);
+    opacity: 0.42;
+    pointer-events: none;
+  }
+
+  .floppy__metalContent {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 10px 6px 12px;
+    z-index: 3;
+  }
+
+  .floppy__topText {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: #111519;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    overflow: hidden;
+  }
+
+  .floppy__topText small {
+    display: block;
+    font-size: 0.38rem;
+    font-weight: 700;
+    margin-bottom: 0.13rem;
+  }
+
+  .floppy__topText .capacity {
+    display: block;
+    font-size: 0.36rem;
+    font-weight: 500;
+    margin-bottom: 0.14rem;
+    text-transform: none;
+  }
+
+  .floppy__topText strong {
+    display: block;
+    font-size: 0.42rem;
+    font-weight: 800;
+    margin-bottom: 0.08rem;
+  }
+
+  .floppy__topText .model {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .floppy__blackSlot {
+    width: 26%;
+    height: 100%;
+    border-radius: 2px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 16%),
+      #0b0d11;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .floppy__blackSlot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: 0.22;
+  }
+
+  .floppy__hdMark {
+    position: absolute;
+    top: 7.5%;
+    right: 10.5%;
+    font-size: 0.72rem;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.62);
+    letter-spacing: 0.01em;
+    z-index: 2;
+  }
+
+  .floppy__writeProtect {
+    position: absolute;
+    right: 2.5%;
+    bottom: 6.8%;
+    width: 6.5%;
+    aspect-ratio: 1;
+    background: #f1f1ec;
+    border-radius: 1px;
+    box-shadow:
+      inset 0 0 0 1px rgba(0, 0, 0, 0.22),
+      0 0 0 1px rgba(255, 255, 255, 0.06);
+    z-index: 2;
+  }
+
+  .floppy__notch {
+    position: absolute;
+    top: 0;
+    width: 12%;
+    height: 11%;
+    background: #0d1017;
+  }
+
+  .floppy__notch.left {
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 70% 100%, 0 100%);
+  }
+
+  .floppy__notch.right {
+    right: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+  }
+
+  .floppy__label {
+    position: absolute;
+    left: 13%;
+    right: 13%;
+    bottom: 10%;
+    height: 48%;
+    border-radius: 4px 4px 8px 8px;
+    background: linear-gradient(180deg, var(--floppy-red) 0 18%, #f4f0ea 18% 100%);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+    padding: 10px 12px 8px;
+    color: #172030;
+    overflow: hidden;
+  }
+
+  .floppy__label::before {
+    content: 'INDEX';
+    position: absolute;
+    top: 4.5%;
+    right: 8%;
+    font-size: 0.64rem;
+    letter-spacing: 0.34em;
+    color: rgba(255, 255, 255, 0.9);
+    opacity: 0.9;
+  }
+
+  .floppy__lines {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 10px;
+    top: 30%;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 16px,
+      rgba(200, 77, 69, 0.55) 16px,
+      rgba(200, 77, 69, 0.55) 17px
+    );
+    opacity: 0.9;
+  }
+
+  .floppy__content {
+    position: relative;
+    z-index: 2;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .floppy__titleWrap {
+    margin-top: 8px;
+    padding-top: 2px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 16px;
+    max-height: 48px;
+  }
+
+  .floppy__title {
+    color: #1c2740;
+    font-size: 0.94rem;
+    margin: 0;
+    max-width: 92%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+
+    .library,
+    .piece {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+  @media (hover: none) {
+    .piece:hover {
+      transform: none;
+      filter: none;
+    }
+  }
+
+  @media (max-width: 1180px) {
+    .shelf__items {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 960px) {
+    .shelf__items {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .book {
+      min-height: 300px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .library {
+      padding: 16px;
+      border-radius: 1rem;
+    }
+
+    .shelf__items {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .book {
+      min-height: 290px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .shelf__items {
+      grid-template-columns: 1fr;
+    }
+
+    .floppy {
+      max-width: 240px;
+      margin-inline: auto;
+    }
+  }
+</style>

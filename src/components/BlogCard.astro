@@ -1,0 +1,25 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  date: Date;
+  tags?: string[];
+}
+
+const { href, title, description, date, tags = [] } = Astro.props;
+const fmt = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long' });
+---
+
+<article class="card blog-card">
+  <p class="meta">{fmt.format(date)}</p>
+  <h3><a href={href}>{title}</a></h3>
+  <p>{description}</p>
+  {tags.length > 0 && (
+    <ul class="tags" aria-label="Étiquettes">
+      {tags.map((tag) => (
+        <li>{tag}</li>
+      ))}
+    </ul>
+  )}
+</article>

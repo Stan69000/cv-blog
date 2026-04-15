@@ -1,0 +1,6 @@
+{
+  "featuredLimit": 3,
+  "showLibraryBooks": true,
+  "showLibraryFloppies": true,
+  "defaultType": "book"
+}

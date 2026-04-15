@@ -1,0 +1,375 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const pillars = [
+  {
+    title: 'Support & proximité',
+    text: 'Comprendre les besoins réels, aider concrètement et garder un lien direct avec le quotidien des équipes.'
+  },
+  {
+    title: 'Structuration & clarté',
+    text: 'Mettre de l’ordre dans les outils, les process et la documentation pour rendre les choses plus lisibles et plus simples.'
+  },
+  {
+    title: 'Automatisation utile',
+    text: 'Repérer les frictions, simplifier ce qui peut l’être, et automatiser quand cela enlève une vraie charge.'
+  },
+  {
+    title: 'Transmission & pédagogie',
+    text: 'Expliquer, former, documenter et rendre les sujets techniques compréhensibles sans les rendre froids.'
+  }
+];
+
+const tasks = [
+  'Support utilisateurs au quotidien pour plus de 300 collègues',
+  'Onboarding / offboarding, gestion des accès et du matériel',
+  'Documentation claire pour le support et les équipes internes',
+  'Structuration Notion et amélioration continue des process',
+  'Mise en place de SLA et suivi de la qualité de service',
+  'Sensibilisation cybersécurité et campagnes de phishing interne',
+  'Automatisations pragmatiques pour réduire les frictions',
+  'Contribution à la roadmap IT et aux sujets transverses'
+];
+
+const tools = [
+  '1Password',
+  'Slack',
+  'Notion',
+  'Google Workspace',
+  'IA générative',
+  'macOS / Windows / Linux',
+  'Documentation',
+  'Automatisation'
+];
+
+const timeline = [
+  {
+    period: 'Les débuts',
+    title: 'Un parcours construit en avançant',
+    text: 'Je n’ai pas suivi un parcours très théorique. J’ai appris en grande partie sur le terrain, avec une logique de progression concrète, d’essais, d’ajustements et de curiosité.'
+  },
+  {
+    period: '2022',
+    title: 'Arrivée dans l’IT chez Indy',
+    text: 'Je rejoins Indy dans un rôle orienté support, au contact direct des besoins des équipes. C’est un point d’entrée très terrain, au plus proche du réel.'
+  },
+  {
+    period: 'Évolution progressive',
+    title: 'Du support à un rôle plus transverse',
+    text: 'Le rôle s’élargit naturellement : au-delà de la résolution de problèmes, il faut structurer, documenter, accompagner, sensibiliser et améliorer l’existant.'
+  },
+  {
+    period: 'Aujourd’hui',
+    title: 'Un rôle hybride entre service, outils et organisation',
+    text: 'Mon quotidien mélange support, qualité de service, documentation, automatisation, accompagnement des usages et sujets plus transverses autour du collectif.'
+  }
+];
+
+const learnings = [
+  'Le support m’a appris qu’un problème technique est souvent aussi un problème de contexte, de stress ou de compréhension.',
+  'L’autonomie ne se décrète pas : elle se construit avec des outils clairs, une bonne documentation et des explications simples.',
+  'Automatiser n’a d’intérêt que si cela enlève une vraie friction.',
+  'La technique fonctionne mieux quand elle reste lisible, humaine et utile.'
+];
+---
+
+<BaseLayout
+  title="Parcours pro | Stan Bouchet"
+  description="Une page sur mon parcours professionnel, ma progression et ma manière de travailler."
+>
+  <SiteHeader />
+
+  <main id="main-content" class="container section universe universe--pro">
+    <section class="hero section">
+      <p class="eyebrow">Parcours pro</p>
+      <h1>Un parcours construit sur le terrain, élargi avec le temps.</h1>
+      <p class="lead muted">
+        Mon parcours professionnel ne se résume pas à un poste. Il s’est construit progressivement,
+        entre support, apprentissage en continu, structuration, documentation, automatisation et envie
+        de rendre les choses plus simples pour les autres.
+      </p>
+    </section>
+
+    <section class="section terminal-shell" aria-labelledby="terminal-title">
+      <div class="terminal">
+        <div class="terminal-header" aria-hidden="true">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">stan@portfolio — zsh</span>
+        </div>
+        <div class="terminal-body">
+<pre><code>$ whoami
+Stan Bouchet
+
+$ current_role
+IT Officer
+
+$ started_as
+Support terrain
+
+$ style
+pragmatique · curieux · autodidacte
+
+$ also_into
+documentation · transmission · collectif · associatif
+
+$ goal
+faire simple, utile, clair et durable
+
+$ status
+still learning...
+</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="intro-title">
+      <h2 id="intro-title">Ce que raconte vraiment ce parcours</h2>
+      <div class="grid-two">
+        <p>
+          Je viens d’un rôle très concret, au contact direct des besoins des utilisateurs.
+          C’est là que j’ai appris à écouter, diagnostiquer, résoudre et garder le sens du réel.
+        </p>
+        <p>
+          Avec le temps, mon périmètre s’est élargi. Aujourd’hui, j’aime autant aider au quotidien que structurer,
+          documenter, sensibiliser, améliorer et faire avancer les choses de manière durable.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="pillars-title">
+      <h2 id="pillars-title">Ma manière de travailler</h2>
+      <div class="pillars-grid">
+        {pillars.map((item) => (
+          <article class="soft-card">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="quotidien-title">
+      <h2 id="quotidien-title">Concrètement aujourd’hui</h2>
+      <ul class="card-list">
+        {tasks.map((task) => (
+          <li class="card">{task}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="timeline-title">
+      <h2 id="timeline-title">Les grandes étapes</h2>
+      <ol class="timeline">
+        {timeline.map((item) => (
+          <li>
+            <p class="meta">{item.period}</p>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="section" aria-labelledby="learning-title">
+      <h2 id="learning-title">Ce que le terrain m’a appris</h2>
+      <ul class="learning-list">
+        {learnings.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="tools-title">
+      <h2 id="tools-title">Outils & environnement</h2>
+      <ul class="tags tags--large" aria-label="Outils et environnements">
+        {tools.map((tool) => (
+          <li>{tool}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="outside-title">
+      <h2 id="outside-title">Au-delà du poste</h2>
+      <div class="grid-two">
+        <p>
+          J’aime les rôles où il faut faire le lien entre les outils, les personnes et l’organisation.
+          C’est aussi pour cela que les sujets de transmission, de vie collective et d’engagement m’intéressent.
+        </p>
+        <p>
+          Cette page parle donc autant d’un métier que d’une manière d’avancer :
+          apprendre, construire, partager, et faire les choses sérieusement sans se prendre trop au sérieux.
+        </p>
+      </div>
+    </section>
+
+    <section class="section outro">
+      <p class="lead">
+        Je n’ai pas le profil du spécialiste enfermé dans une case.
+        Mon parcours ressemble davantage à une progression construite par l’expérience, les projets,
+        les échanges et l’envie de faire mieux, un peu plus clairement à chaque fois.
+      </p>
+    </section>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .hero {
+    display: block;
+    min-height: auto;
+    grid-template-columns: 1fr;
+    padding-top: 1rem;
+  }
+
+  .hero h1 {
+    width: 100%;
+  }
+
+  .grid-two {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .soft-card,
+  .timeline li,
+  .card {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .soft-card {
+    padding: 1.25rem;
+    border-radius: var(--radius);
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .soft-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+  }
+
+  .soft-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .terminal-shell {
+    padding-top: 0.5rem;
+  }
+
+  .terminal {
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .terminal-title {
+    margin-left: 0.4rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .red { background: #ef4444; }
+  .yellow { background: #f59e0b; }
+  .green { background: #22c55e; }
+
+  .terminal-body {
+    padding: 1.25rem 1.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  .terminal-body pre {
+    margin: 0;
+    white-space: pre-wrap;
+  }
+
+  .timeline {
+    display: grid;
+    gap: 1rem;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .timeline li {
+    padding: 1.1rem 1.2rem;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+
+  .timeline .meta {
+    margin: 0 0 0.35rem;
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+
+  .learning-list {
+    display: grid;
+    gap: 0.75rem;
+    padding-left: 1.2rem;
+  }
+
+  .learning-list li::marker {
+    color: var(--accent);
+  }
+
+  .outro {
+    padding-bottom: 2rem;
+  }
+
+  @media (max-width: 820px) {
+    .grid-two,
+    .pillars-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .terminal-body {
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .soft-card,
+    .timeline li,
+    .card {
+      padding: 1rem;
+    }
+
+    .terminal-body {
+      padding: 1rem;
+      line-height: 1.6;
+    }
+  }
+</style>

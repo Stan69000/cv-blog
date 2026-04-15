@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages', ({ data }) => {
+    return !data.draft;
+  });
+  return pages.map((page) => {
+    const slug = page.id.replace(/\.md$/, '');
+    return {
+      params: { slug },
+      props: { page },
+    };
+  });
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+
+<BaseLayout
+  title={`${page.data.title} | Stan Bouchet`}
+  description={page.data.description}
+>
+  <SiteHeader />
+
+  <main id="main-content" class="container section page-content">
+    <section class="hero section">
+      <p class="eyebrow">{page.data.title}</p>
+      <h1>{page.data.title}</h1>
+      {page.data.description && (
+        <p class="lead muted">{page.data.description}</p>
+      )}
+    </section>
+
+    <article class="prose">
+      <Content />
+    </article>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .page-content {
+    color: var(--text);
+  }
+
+  .prose {
+    margin-top: 2rem;
+  }
+
+  .prose :global(h2) {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose :global(h3) {
+    font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .prose :global(li) {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .prose :global(strong) {
+    font-weight: 600;
+  }
+
+  @media (max-width: 760px) {
+    .prose :global(h2) {
+      margin-top: 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,42 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const fmt = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long' });
+---
+
+<BaseLayout title={`${post.data.title} | Blog`} description={post.data.description}>
+  <SiteHeader />
+  <main id="main-content" class="container section article-page">
+    <p class="meta">Publié le {fmt.format(post.data.pubDate)}</p>
+    <h1>{post.data.title}</h1>
+    <p class="lead">{post.data.description}</p>
+
+    {post.data.tags.length > 0 && (
+      <ul class="tags" aria-label="Étiquettes">
+        {post.data.tags.map((tag: string) => (
+          <li>{tag}</li>
+        ))}
+      </ul>
+    )}
+
+    <article class="prose">
+      <Content />
+    </article>
+
+    <p><a class="text-link" href="/blog">← Retour au blog</a></p>
+  </main>
+  <SiteFooter />
+</BaseLayout>

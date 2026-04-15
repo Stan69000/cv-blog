@@ -1,0 +1,397 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const projectAreas = [
+  {
+    title: 'Automatisation',
+    text: 'Réduire les tâches répétitives, fiabiliser les actions sensibles et faire gagner du temps là où cela a du sens.'
+  },
+  {
+    title: 'Outils utiles',
+    text: 'Concevoir des solutions simples à prendre en main, pensées pour un usage réel plutôt que pour la démonstration.'
+  },
+  {
+    title: 'Documentation & clarté',
+    text: 'Créer des supports lisibles, structurés et réellement utiles, pour faire gagner en autonomie.'
+  },
+  {
+    title: 'Approche pragmatique',
+    text: 'Partir d’un besoin concret, simplifier, tester, ajuster et construire quelque chose de durable.'
+  }
+];
+
+const featuredProjects = [
+  {
+    type: 'Open source',
+    name: 'Outil open source d’audit accessibilité RGAA',
+    text: 'Création d’un outil d’audit pour l’accessibilité numérique avec une double approche : CLI pour les usages techniques et interface web pour une prise en main plus large.',
+    tags: ['CLI + web', 'Approche pragmatique', 'Diffusion de bonnes pratiques']
+  },
+  {
+    type: 'Produit en cours',
+    name: 'Extension Chrome (en validation)',
+    text: 'Déclinaison de l’outil d’audit en extension navigateur pour faciliter les vérifications rapides directement dans les pages visitées.',
+    tags: ['Usage terrain', 'Gain de temps', 'Accessibilité opérationnelle']
+  },
+  {
+    type: 'Réalisation web',
+    name: 'naturaufeminin.fr',
+    text: 'Conception et réalisation d’un site avec une approche simple, claire et maintenable, orientée usage réel plutôt que démonstration technique.',
+    tags: ['Clarté', 'Maintenabilité', 'Utilité concrète']
+  },
+  {
+    type: 'Projet personnel',
+    name: 'stan-bouchet.eu',
+    text: 'Site personnel pensé comme un espace visuel et éditorial, avec un travail sur l’expérience de navigation, la cohérence graphique et la sélection de contenu.',
+    tags: ['Direction visuelle', 'Curation', 'Expérience utilisateur']
+  },
+  {
+    type: 'Projet interne',
+    name: 'Automatisations support / organisation',
+    text: 'Mise en place d’automatisations utiles pour réduire les tâches répétitives, fiabiliser certaines actions support et améliorer la continuité de service.',
+    tags: ['Support', 'Automatisation', 'Organisation']
+  },
+  {
+    type: 'Projet interne',
+    name: 'Structuration outils & process',
+    text: 'Travail de fond sur l’organisation des outils, la documentation et les méthodes afin de rendre le quotidien plus lisible et plus fluide.',
+    tags: ['Documentation', 'Structuration', 'Amélioration continue']
+  }
+];
+
+const waysOfWorking = [
+  'Je pars souvent d’un irritant concret, pas d’une idée abstraite.',
+  'J’aime rendre un système plus lisible avant de vouloir le complexifier.',
+  'Je préfère une solution simple et robuste à une usine à gaz impressionnante.',
+  'Je travaille mieux quand un projet améliore vraiment le quotidien de quelqu’un.'
+];
+
+const tools = [
+  'Notion',
+  'Google Workspace',
+  'Slack',
+  'Apps Script',
+  'IA générative',
+  'Documentation',
+  'Automatisation',
+  'Conception web'
+];
+---
+
+<BaseLayout
+  title="Projets | Stan Bouchet"
+  description="Une sélection de projets personnels, internes, open source et web autour de l’automatisation, de la clarté et de l’utilité."
+>
+  <SiteHeader />
+
+  <main id="main-content" class="container section universe universe--projects">
+    <section class="hero section">
+      <p class="eyebrow">Projets</p>
+      <h1>Construire des choses utiles, dans différents contextes.</h1>
+      <p class="lead muted">
+        Cette page rassemble des projets de natures différentes : open source, projets personnels, réalisations web,
+        sujets internes ou produits en cours. Leur point commun n’est pas leur cadre, mais leur intention :
+        clarifier, simplifier, structurer ou améliorer quelque chose de concret.
+      </p>
+    </section>
+
+    <section class="section lab-shell" aria-labelledby="lab-title">
+      <div class="lab-panel">
+        <div class="lab-header">
+          <span class="lab-pill">atelier</span>
+          <span class="lab-pill">itérations</span>
+          <span class="lab-pill">usage réel</span>
+        </div>
+
+        <div class="lab-grid">
+          <div class="lab-block">
+            <p class="lab-label">point de départ</p>
+            <p class="lab-value">une friction, un besoin flou, une idée à rendre concrète</p>
+          </div>
+
+          <div class="lab-block">
+            <p class="lab-label">méthode</p>
+            <p class="lab-value">observer → simplifier → tester → ajuster → documenter</p>
+          </div>
+
+          <div class="lab-block">
+            <p class="lab-label">résultat recherché</p>
+            <p class="lab-value">quelque chose de clair, utile, maintenable et agréable à utiliser</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="approach-title">
+      <h2 id="approach-title">Ce que j’aime construire</h2>
+      <div class="pillars-grid">
+        {projectAreas.map((item) => (
+          <article class="soft-card">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="featured-title">
+      <h2 id="featured-title">Sélection de projets</h2>
+      <div class="project-grid">
+        {featuredProjects.map((project) => (
+          <article class="project-card">
+            <p class="project-type">{project.type}</p>
+            <h3>{project.name}</h3>
+            <p>{project.text}</p>
+
+            <ul class="project-tags" aria-label={`Mots-clés du projet ${project.name}`}>
+              {project.tags.map((tag) => (
+                <li>{tag}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="method-title">
+      <h2 id="method-title">Ma manière d’aborder un projet</h2>
+      <div class="grid-two">
+        <div>
+          <p>
+            Je ne vois pas un projet comme une démonstration technique. Je le vois plutôt comme un chemin
+            pour améliorer quelque chose d’existant : enlever une friction, clarifier un usage, faire gagner du temps
+            ou rendre un système plus compréhensible.
+          </p>
+          <p>
+            Ce que j’aime, c’est le moment où un sujet encore flou commence à prendre forme. Quand une idée devient
+            plus lisible, qu’un outil devient plus utile, ou qu’une structure permet enfin d’avancer plus sereinement.
+          </p>
+        </div>
+
+        <ul class="working-list">
+          {waysOfWorking.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="tools-title">
+      <h2 id="tools-title">Mes briques de travail</h2>
+      <ul class="tags tags--large" aria-label="Outils et briques de travail">
+        {tools.map((tool) => (
+          <li>{tool}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="mindset-title">
+      <h2 id="mindset-title">Ce que je cherche dans un bon projet</h2>
+      <div class="grid-two">
+        <p>
+          Un bon projet ne doit pas seulement fonctionner. Il doit être compréhensible, tenable dans le temps,
+          et suffisamment simple pour pouvoir être repris, transmis ou utilisé sans dépendre d’une usine à gaz.
+        </p>
+        <p>
+          J’aime les projets qui ont un impact concret, même discret. Ceux qui ne font pas forcément beaucoup de bruit,
+          mais qui rendent le quotidien plus fluide pour les personnes concernées.
+        </p>
+      </div>
+    </section>
+
+    <section class="section outro">
+      <p class="lead">
+        En fond, mes projets racontent souvent la même chose :
+        partir du réel, faire plus clair, enlever du bruit, et construire quelque chose d’utile.
+      </p>
+    </section>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .hero {
+    display: block;
+    min-height: auto;
+    grid-template-columns: 1fr;
+    padding-top: 1rem;
+  }
+
+  .hero h1 {
+    width: 100%;
+  }
+
+  .grid-two {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .pillars-grid,
+  .project-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .pillars-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .soft-card,
+  .project-card {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .soft-card:hover,
+  .project-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+  }
+
+  .soft-card h3,
+  .project-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-type {
+    margin: 0 0 0.65rem;
+    color: var(--muted);
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+  }
+
+  .project-tags li {
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+
+  .lab-shell {
+    padding-top: 0.5rem;
+  }
+
+  .lab-panel {
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .lab-header {
+    display: flex;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+    padding: 1rem 1rem 0;
+  }
+
+  .lab-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .lab-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .lab-block {
+    padding: 1rem;
+    border-radius: calc(var(--radius) - 4px);
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  .lab-label {
+    margin: 0 0 0.45rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .lab-value {
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .working-list {
+    margin: 0;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .working-list li::marker {
+    color: var(--accent);
+  }
+
+  .outro {
+    padding-bottom: 2rem;
+  }
+
+  @media (max-width: 900px) {
+    .lab-grid,
+    .grid-two,
+    .pillars-grid,
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .soft-card,
+    .project-card,
+    .lab-block {
+      padding: 1rem;
+    }
+
+    .project-tags {
+      gap: 0.4rem;
+    }
+
+    .project-tags li {
+      font-size: 0.8125rem;
+      padding: 0.3rem 0.6rem;
+    }
+  }
+</style>

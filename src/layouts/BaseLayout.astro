@@ -1,0 +1,54 @@
+---
+import '../styles/global.css';
+import siteConfig from '../data/site.json';
+import seoConfig from '../data/seo.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title: propTitle,
+  description: propDescription,
+  ogImage: propOgImage
+} = Astro.props;
+
+const pageTitle = propTitle || seoConfig.defaultTitle || siteConfig.title;
+const pageDescription = propDescription || seoConfig.defaultDescription || siteConfig.description;
+const pageOgImage = propOgImage || seoConfig.ogImage || '/images/og-default.jpg';
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString();
+const robots = seoConfig.noIndex ? 'noindex,nofollow' : 'index,follow';
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={pageDescription} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={pageOgImage} />
+    <meta property="og:site_name" content={siteConfig.title} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={pageOgImage} />
+    {seoConfig.twitter && <meta name="twitter:site" content={seoConfig.twitter} />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
+    <slot />
+  </body>
+</html>
