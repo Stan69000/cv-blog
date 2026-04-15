@@ -61,23 +61,6 @@ const featuredProjects = [
   }
 ];
 
-const waysOfWorking = [
-  'Je pars souvent d’un irritant concret, pas d’une idée abstraite.',
-  'J’aime rendre un système plus lisible avant de vouloir le complexifier.',
-  'Je préfère une solution simple et robuste à une usine à gaz impressionnante.',
-  'Je travaille mieux quand un projet améliore vraiment le quotidien de quelqu’un.'
-];
-
-const tools = [
-  'Notion',
-  'Google Workspace',
-  'Slack',
-  'Apps Script',
-  'IA générative',
-  'Documentation',
-  'Automatisation',
-  'Conception web'
-];
 ---
 
 <BaseLayout
@@ -97,33 +80,6 @@ const tools = [
       </p>
     </section>
 
-    <section class="section lab-shell" aria-labelledby="lab-title">
-      <div class="lab-panel">
-        <div class="lab-header">
-          <span class="lab-pill">atelier</span>
-          <span class="lab-pill">itérations</span>
-          <span class="lab-pill">usage réel</span>
-        </div>
-
-        <div class="lab-grid">
-          <div class="lab-block">
-            <p class="lab-label">point de départ</p>
-            <p class="lab-value">une friction, un besoin flou, une idée à rendre concrète</p>
-          </div>
-
-          <div class="lab-block">
-            <p class="lab-label">méthode</p>
-            <p class="lab-value">observer → simplifier → tester → ajuster → documenter</p>
-          </div>
-
-          <div class="lab-block">
-            <p class="lab-label">résultat recherché</p>
-            <p class="lab-value">quelque chose de clair, utile, maintenable et agréable à utiliser</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="section" aria-labelledby="approach-title">
       <h2 id="approach-title">Ce que j’aime construire</h2>
       <div class="pillars-grid">
@@ -137,7 +93,7 @@ const tools = [
     </section>
 
     <section class="section" aria-labelledby="featured-title">
-      <h2 id="featured-title">Sélection de projets</h2>
+      <h2 id="featured-title">Mes projets</h2>
       <div class="project-grid">
         {featuredProjects.map((project) => (
           <article class="project-card">
@@ -155,58 +111,6 @@ const tools = [
       </div>
     </section>
 
-    <section class="section" aria-labelledby="method-title">
-      <h2 id="method-title">Ma manière d’aborder un projet</h2>
-      <div class="grid-two">
-        <div>
-          <p>
-            Je ne vois pas un projet comme une démonstration technique. Je le vois plutôt comme un chemin
-            pour améliorer quelque chose d’existant : enlever une friction, clarifier un usage, faire gagner du temps
-            ou rendre un système plus compréhensible.
-          </p>
-          <p>
-            Ce que j’aime, c’est le moment où un sujet encore flou commence à prendre forme. Quand une idée devient
-            plus lisible, qu’un outil devient plus utile, ou qu’une structure permet enfin d’avancer plus sereinement.
-          </p>
-        </div>
-
-        <ul class="working-list">
-          {waysOfWorking.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="tools-title">
-      <h2 id="tools-title">Mes briques de travail</h2>
-      <ul class="tags tags--large" aria-label="Outils et briques de travail">
-        {tools.map((tool) => (
-          <li>{tool}</li>
-        ))}
-      </ul>
-    </section>
-
-    <section class="section" aria-labelledby="mindset-title">
-      <h2 id="mindset-title">Ce que je cherche dans un bon projet</h2>
-      <div class="grid-two">
-        <p>
-          Un bon projet ne doit pas seulement fonctionner. Il doit être compréhensible, tenable dans le temps,
-          et suffisamment simple pour pouvoir être repris, transmis ou utilisé sans dépendre d’une usine à gaz.
-        </p>
-        <p>
-          J’aime les projets qui ont un impact concret, même discret. Ceux qui ne font pas forcément beaucoup de bruit,
-          mais qui rendent le quotidien plus fluide pour les personnes concernées.
-        </p>
-      </div>
-    </section>
-
-    <section class="section outro">
-      <p class="lead">
-        En fond, mes projets racontent souvent la même chose :
-        partir du réel, faire plus clair, enlever du bruit, et construire quelque chose d’utile.
-      </p>
-    </section>
   </main>
 
   <SiteFooter />
@@ -222,12 +126,6 @@ const tools = [
 
   .hero h1 {
     width: 100%;
-  }
-
-  .grid-two {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem;
   }
 
   .pillars-grid,
@@ -294,84 +192,7 @@ const tools = [
     font-weight: 500;
   }
 
-  .lab-shell {
-    padding-top: 0.5rem;
-  }
-
-  .lab-panel {
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-  }
-
-  .lab-header {
-    display: flex;
-    gap: 0.65rem;
-    flex-wrap: wrap;
-    padding: 1rem 1rem 0;
-  }
-
-  .lab-pill {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.35rem 0.7rem;
-    border-radius: 999px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    color: var(--muted);
-    font-size: 0.8125rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .lab-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-  }
-
-  .lab-block {
-    padding: 1rem;
-    border-radius: calc(var(--radius) - 4px);
-    border: 1px solid var(--line);
-    background: var(--surface);
-  }
-
-  .lab-label {
-    margin: 0 0 0.45rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
-
-  .lab-value {
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  .working-list {
-    margin: 0;
-    padding-left: 1.2rem;
-    display: grid;
-    gap: 0.75rem;
-  }
-
-  .working-list li::marker {
-    color: var(--accent);
-  }
-
-  .outro {
-    padding-bottom: 2rem;
-  }
-
   @media (max-width: 900px) {
-    .lab-grid,
-    .grid-two,
     .pillars-grid,
     .project-grid {
       grid-template-columns: 1fr;
@@ -380,8 +201,7 @@ const tools = [
 
   @media (max-width: 640px) {
     .soft-card,
-    .project-card,
-    .lab-block {
+    .project-card {
       padding: 1rem;
     }
 
