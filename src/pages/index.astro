@@ -36,6 +36,7 @@ const universes = [
 const pageTitle = seoConfig?.defaultTitle || `${siteConfig.title} | Parcours, projets, engagement et blog`;
 const pageDescription = seoConfig?.defaultDescription || siteConfig.description;
 
+const eyebrow = homeConfig.eyebrow || 'Parcours · projets · engagement · blog';
 const headline = homeConfig.headline || 'Curieux par nature, touche-à-tout par passion.';
 const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parcours : mon travail, les projets que je construis, mes engagements associatifs et ce que j\'aime partager par écrit.';
 ---
@@ -48,7 +49,7 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
 
   <main id="main-content" class="home container">
     <section class="home-intro">
-      <p class="eyebrow">Parcours · projets · engagement · blog</p>
+      <p class="eyebrow">{eyebrow}</p>
       <h1 class="home-intro__title">{headline}</h1>
       <p class="lead muted home-intro__lead">
         {bio}

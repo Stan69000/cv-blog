@@ -1,7 +1,8 @@
 {
-  "headline": "IT Officer",
+  "eyebrow": "Parcours · projets · engagement · blog",
+  "headline": "Curieux par nature, touche-à-tout par passion.",
   "subheadline": "Support terrain · Documentation · Automatisation · Collectif",
-  "bio": "Je construis ma carrière sur le terrain, entre support, apprentissage en continu, structuration, documentation, automatisation et envie de rendre les choses plus simples pour les autres.",
+  "bio": "Je m’appelle Stan Bouchet. Ce site rassemble ce que je fais, ce que je construis, ce qui m’anime, et ce que j’ai envie de partager en chemin.",
   "showMap": true,
   "showParcours": true,
   "showProjets": true,

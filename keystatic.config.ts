@@ -1,10 +1,14 @@
 import { config, collection, singleton, fields } from '@keystatic/core';
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 export default config({
-  storage: {
-    kind: 'github',
-    repo: 'Stan69000/cv-blog',
-  },
+  storage: isDev
+    ? { kind: 'local' }
+    : {
+        kind: 'github',
+        repo: 'Stan69000/cv-blog',
+      },
   collections: {
     blog: collection({
       label: 'Blog',
@@ -14,7 +18,7 @@ export default config({
       schema: {
         title: fields.text({ label: 'Titre', validation: { length: { min: 1 } } }),
         description: fields.text({ label: 'Description' }),
-        pubDate: fields.date({ label: 'Date de publication', defaultTo: 'now' }),
+        pubDate: fields.date({ label: 'Date de publication', defaultValue: { kind: 'today' } }),
         type: fields.select({
           label: 'Type',
           options: [
@@ -27,32 +31,24 @@ export default config({
           label: 'Tags',
           itemLabel: (props) => props.value,
         }),
-        featured: fields.boolean({ label: 'En vedette', defaultValue: false }),
-        draft: fields.boolean({ label: 'Brouillon', defaultValue: false }),
+        featured: fields.checkbox({ label: 'En vedette', defaultValue: false }),
+        draft: fields.checkbox({ label: 'Brouillon', defaultValue: false }),
         heroImage: fields.image({ label: 'Image à la une', directory: 'public/uploads', publicPath: '/uploads/' }),
-        body: fields.markdown({
-          label: 'Contenu',
-          formatting: true,
-          image: true,
-          links: true,
-        }),
+        body: fields.mdx({ label: 'Contenu', extension: 'md' }),
       },
     }),
 
-    pages: collection.folder({
+    pages: collection({
       label: 'Pages',
+      slugField: 'title',
       path: 'src/content/pages/*',
+      format: { contentField: 'body' },
       schema: {
         title: fields.text({ label: 'Titre', validation: { length: { min: 1 } } }),
         description: fields.text({ label: 'Description SEO' }),
         order: fields.number({ label: 'Ordre dans le menu', defaultValue: 0 }),
-        draft: fields.boolean({ label: 'Brouillon', defaultValue: false }),
-        body: fields.markdown({
-          label: 'Contenu',
-          formatting: true,
-          image: true,
-          links: true,
-        }),
+        draft: fields.checkbox({ label: 'Brouillon', defaultValue: false }),
+        body: fields.mdx({ label: 'Contenu', extension: 'md' }),
       },
     }),
   },
@@ -60,6 +56,8 @@ export default config({
   singletons: {
     site: singleton({
       label: 'Général',
+      path: 'src/data/site',
+      format: 'json',
       schema: {
         title: fields.text({ label: 'Titre du site' }),
         tagline: fields.text({ label: 'Slogan' }),
@@ -72,36 +70,43 @@ export default config({
     
     social: singleton({
       label: 'Réseaux sociaux',
+      path: 'src/data/social',
+      format: 'json',
       schema: {
-        linkedin: fields.text({ label: 'LinkedIn', required: false }),
-        twitter: fields.text({ label: 'Twitter/X', required: false }),
-        github: fields.text({ label: 'GitHub', required: false }),
-        email: fields.text({ label: 'Email', required: false }),
+        linkedin: fields.text({ label: 'LinkedIn' }),
+        twitter: fields.text({ label: 'Twitter/X' }),
+        github: fields.text({ label: 'GitHub' }),
+        email: fields.text({ label: 'Email' }),
       },
     }),
     
     home: singleton({
       label: 'Accueil',
+      path: 'src/data/home',
+      format: 'json',
       schema: {
-        headline: fields.text({ label: 'Titre principal' }),
+        eyebrow: fields.text({ label: "Texte d'accroche (ex: Parcours · projets · engagement · blog)" }),
+        headline: fields.text({ label: 'Titre principal (ex: IT Officer)' }),
         subheadline: fields.text({ label: 'Sous-titre' }),
         bio: fields.text({ label: 'Bio', multiline: true }),
-        showMap: fields.boolean({ label: 'Afficher la carte', defaultValue: true }),
-        showParcours: fields.boolean({ label: 'Afficher Parcours', defaultValue: true }),
-        showProjets: fields.boolean({ label: 'Afficher Projets', defaultValue: true }),
-        showEngagement: fields.boolean({ label: 'Afficher Engagement', defaultValue: true }),
-        showBlog: fields.boolean({ label: 'Afficher Blog', defaultValue: true }),
+        showMap: fields.checkbox({ label: 'Afficher la carte', defaultValue: true }),
+        showParcours: fields.checkbox({ label: 'Afficher Parcours', defaultValue: true }),
+        showProjets: fields.checkbox({ label: 'Afficher Projets', defaultValue: true }),
+        showEngagement: fields.checkbox({ label: 'Afficher Engagement', defaultValue: true }),
+        showBlog: fields.checkbox({ label: 'Afficher Blog', defaultValue: true }),
       },
     }),
     
     profile: singleton({
       label: 'Profil',
+      path: 'src/data/profile',
+      format: 'json',
       schema: {
         name: fields.text({ label: 'Nom' }),
         title: fields.text({ label: 'Titre/Poste' }),
         bio: fields.text({ label: 'Bio', multiline: true }),
         photo: fields.image({ label: 'Photo', directory: 'public/uploads', publicPath: '/uploads/' }),
-        location: fields.text({ label: 'Localisation', required: false }),
+        location: fields.text({ label: 'Localisation' }),
         experienceYears: fields.number({ label: "Années d'expérience" }),
         experienceLabel: fields.text({ label: "Texte expérience" }),
         skills: fields.array(
@@ -129,10 +134,12 @@ export default config({
     
     blogSettings: singleton({
       label: 'Paramètres Blog',
+      path: 'src/data/blog',
+      format: 'json',
       schema: {
         featuredLimit: fields.number({ label: 'Articles vedettes max', defaultValue: 3 }),
-        showLibraryBooks: fields.boolean({ label: 'Bibliothèque Livres', defaultValue: true }),
-        showLibraryFloppies: fields.boolean({ label: 'Bibliothèque Disquettes', defaultValue: true }),
+        showLibraryBooks: fields.checkbox({ label: 'Bibliothèque Livres', defaultValue: true }),
+        showLibraryFloppies: fields.checkbox({ label: 'Bibliothèque Disquettes', defaultValue: true }),
         defaultType: fields.select({
           label: 'Type par défaut',
           options: [
@@ -146,17 +153,21 @@ export default config({
     
     seo: singleton({
       label: 'SEO',
+      path: 'src/data/seo',
+      format: 'json',
       schema: {
         defaultTitle: fields.text({ label: 'Titre par défaut' }),
         defaultDescription: fields.text({ label: 'Description par défaut' }),
         ogImage: fields.image({ label: 'Image OG', directory: 'public/uploads', publicPath: '/uploads/' }),
-        twitter: fields.text({ label: 'Twitter (@username)', required: false }),
-        noIndex: fields.boolean({ label: 'Ne pas indexer', defaultValue: false }),
+        twitter: fields.text({ label: 'Twitter (@username)' }),
+        noIndex: fields.checkbox({ label: 'Ne pas indexer', defaultValue: false }),
       },
     }),
     
     footer: singleton({
       label: 'Footer',
+      path: 'src/data/footer',
+      format: 'json',
       schema: {
         copyright: fields.text({ label: 'Copyright ({year} pour année)' }),
         built_with: fields.text({ label: "Texte 'Construit avec'" }),

@@ -7,9 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check",
-    "admin": "npx decap-server & node admin/server.mjs",
-    "cms": "npx decap-server"
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/netlify": "^6.6.5",
@@ -17,7 +15,6 @@
     "@keystatic/astro": "^5.0.6",
     "@keystatic/core": "^0.5.50",
     "astro": "^5.18.1",
-    "decap-cms": "^3.11.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"
   },
