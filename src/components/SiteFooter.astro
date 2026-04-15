@@ -5,76 +5,59 @@ import footerConfig from '../data/footer.json';
 
 const currentYear = new Date().getFullYear();
 const footerText = (footerConfig.copyright || '{year}').replace('{year}', currentYear.toString());
-const adminUrl = import.meta.env.PUBLIC_ADMIN_URL || '/keystatic';
-const isExternalAdmin = adminUrl.startsWith('http://') || adminUrl.startsWith('https://');
+
+const navLinks = [
+  { href: '/', label: 'Accueil' },
+  { href: '/parcours', label: 'Parcours' },
+  { href: '/projets', label: 'Projets' },
+  { href: '/engagement-associatif', label: 'Engagement' },
+  { href: '/blog', label: 'Blog' },
+];
 ---
 
 <footer class="site-footer">
   <div class="container site-footer__inner">
-    <div class="site-footer__brand">
-      <a href="/" class="footer-brand">
-        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="32" height="32" rx="8" fill="currentColor" fill-opacity="0.1"/>
-          <path d="M8 12h16M8 16h12M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <span>{siteConfig.title}</span>
-      </a>
-      <p class="footer-tagline">{siteConfig.tagline}</p>
-    </div>
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <a href="/" class="footer-brand">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="32" height="32" rx="8" fill="currentColor" fill-opacity="0.1"/>
+            <path d="M8 12h16M8 16h12M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>{siteConfig.title}</span>
+        </a>
+        <p class="footer-description">{siteConfig.description}</p>
+      </div>
 
-    <nav class="site-footer__nav" aria-label="Navigation footer">
-      <div class="footer-nav__group">
-        <h3 class="footer-nav__title">Navigation</h3>
-        <ul class="footer-nav__list">
-          <li><a href="/parcours">Parcours</a></li>
-          <li><a href="/projets">Projets</a></li>
-          <li><a href="/engagement-associatif">Engagement</a></li>
-          <li><a href="/blog">Blog</a></li>
-        </ul>
+      <nav class="site-footer__nav" aria-label="Navigation footer">
+        {navLinks.map((link) => (
+          <a href={link.href}>{link.label}</a>
+        ))}
+      </nav>
+
+      <div class="site-footer__social" aria-label="Réseaux sociaux">
+        {socialConfig.linkedin && (
+          <a href={socialConfig.linkedin} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect width="4" height="12" x="2" y="9"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+        )}
+        <a href="https://github.com/Stan69000" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+          <span>GitHub</span>
+        </a>
       </div>
-      <div class="footer-nav__group">
-        <h3 class="footer-nav__title">Contact</h3>
-        <ul class="footer-nav__list">
-          {socialConfig.email && (
-            <li>
-              <a href={`mailto:${socialConfig.email}`}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                </svg>
-                Email
-              </a>
-            </li>
-          )}
-          {socialConfig.linkedin && (
-            <li>
-              <a href={socialConfig.linkedin} target="_blank" rel="noopener noreferrer">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect width="4" height="12" x="2" y="9"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-                LinkedIn
-              </a>
-            </li>
-          )}
-        </ul>
-      </div>
-    </nav>
+    </div>
 
     <div class="site-footer__bottom">
       <p class="footer-copyright">{footerText}</p>
-      <p class="footer-built">
-        {footerConfig.built_with || 'Construit avec Astro'}
-        <span class="footer-divider">·</span>
-        <a
-          href={adminUrl}
-          target={isExternalAdmin ? '_blank' : undefined}
-          rel={isExternalAdmin ? 'noopener noreferrer' : undefined}
-        >
-          Administration
-        </a>
-      </p>
+      <p class="footer-built">{footerConfig.built_with || 'Site réalisé par Stan Bouchet'}</p>
     </div>
   </div>
 </footer>
@@ -82,9 +65,9 @@ const isExternalAdmin = adminUrl.startsWith('http://') || adminUrl.startsWith('h
 <style>
   .site-footer {
     margin-top: auto;
-    padding: 3rem 0 2rem;
+    padding: 3.5rem 0 2rem;
     border-top: 1px solid var(--line);
-    background: var(--surface);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 88%, transparent), var(--surface));
   }
 
   .site-footer__inner {
@@ -92,15 +75,16 @@ const isExternalAdmin = adminUrl.startsWith('http://') || adminUrl.startsWith('h
     gap: 2rem;
   }
 
-  @media (min-width: 768px) {
-    .site-footer__inner {
-      grid-template-columns: 1fr auto;
-      gap: 3rem;
-    }
-  }
-
-  .site-footer__brand {
-    max-width: 280px;
+  .site-footer__top {
+    display: grid;
+    gap: 1.75rem;
+    grid-template-columns: 1.4fr 1.2fr 1fr;
+    align-items: start;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 1.1rem;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    box-shadow: var(--shadow);
   }
 
   .footer-brand {
@@ -110,110 +94,113 @@ const isExternalAdmin = adminUrl.startsWith('http://') || adminUrl.startsWith('h
     color: var(--text);
     text-decoration: none;
     font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: 700;
+    font-size: 1.05rem;
     transition: opacity var(--transition);
   }
 
   .footer-brand:hover {
-    opacity: 0.7;
+    opacity: 0.78;
   }
 
   .footer-brand svg {
     color: var(--accent);
   }
 
-  .footer-tagline {
-    margin: 0.5rem 0 0;
-    font-size: 0.8125rem;
+  .footer-description {
+    margin: 0.7rem 0 0;
+    max-width: 50ch;
     color: var(--muted);
-    line-height: 1.5;
+    line-height: 1.55;
+    font-size: 0.9rem;
   }
 
   .site-footer__nav {
-    display: flex;
-    gap: 2.5rem;
-  }
-
-  @media (max-width: 767px) {
-    .site-footer__nav {
-      gap: 2rem;
-    }
-  }
-
-  .footer-nav__title {
-    margin: 0 0 0.75rem;
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-  }
-
-  .footer-nav__list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
     display: grid;
-    gap: 0.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem 0.85rem;
   }
 
-  .footer-nav__list a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.875rem;
+  .site-footer__nav a {
     color: var(--text);
     text-decoration: none;
-    transition: color var(--transition);
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: fit-content;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition), color var(--transition);
   }
 
-  .footer-nav__list a:hover {
+  .site-footer__nav a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .site-footer__social {
+    display: grid;
+    gap: 0.6rem;
+    align-content: start;
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color var(--transition);
+    width: fit-content;
+  }
+
+  .social-link:hover {
     color: var(--accent);
   }
 
   .site-footer__bottom {
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--line);
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1rem;
     justify-content: space-between;
     align-items: center;
-  }
-
-  @media (min-width: 768px) {
-    .site-footer__bottom {
-      grid-column: 1 / -1;
-    }
+    gap: 1rem;
+    padding: 0 0.35rem;
+    color: var(--muted);
+    font-size: 0.85rem;
   }
 
   .footer-copyright,
   .footer-built {
     margin: 0;
-    font-size: 0.8125rem;
-    color: var(--muted);
   }
 
-  .footer-built {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+  @media (max-width: 980px) {
+    .site-footer__top {
+      grid-template-columns: 1fr;
+    }
+
+    .site-footer__nav {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 
-  .footer-divider {
-    opacity: 0.5;
-  }
+  @media (max-width: 640px) {
+    .site-footer {
+      padding-top: 2.75rem;
+    }
 
-  .footer-built a {
-    color: var(--accent);
-    text-decoration: none;
-    transition: opacity var(--transition);
-  }
+    .site-footer__top {
+      padding: 1.1rem;
+    }
 
-  .footer-built a:hover {
-    opacity: 0.8;
+    .site-footer__nav {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .site-footer__bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0;
+      gap: 0.4rem;
+    }
   }
 </style>

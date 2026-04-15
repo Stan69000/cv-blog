@@ -3,8 +3,6 @@ import ThemeToggle from './ThemeToggle.astro';
 import siteConfig from '../data/site.json';
 
 const currentPath = Astro.url.pathname;
-const adminUrl = import.meta.env.PUBLIC_ADMIN_URL || '/keystatic';
-const isExternalAdmin = adminUrl.startsWith('http://') || adminUrl.startsWith('https://');
 
 const navItems = [
   { href: '/parcours', label: 'Parcours' },
@@ -50,18 +48,6 @@ const navItems = [
     </nav>
 
     <div class="header-actions">
-      <a
-        href={adminUrl}
-        class="admin-link"
-        aria-label="Accéder à l'administration"
-        target={isExternalAdmin ? '_blank' : undefined}
-        rel={isExternalAdmin ? 'noopener noreferrer' : undefined}
-      >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="8" r="4"></circle>
-          <path d="M20 21a8 8 0 1 0-16 0"></path>
-        </svg>
-      </a>
       <ThemeToggle />
       <button
         id="mobile-menu-toggle"
@@ -107,20 +93,6 @@ const navItems = [
           ))}
         </ul>
       </nav>
-      <div class="mobile-sheet__footer">
-        <a
-          href={adminUrl}
-          class="admin-link-mobile"
-          target={isExternalAdmin ? '_blank' : undefined}
-          rel={isExternalAdmin ? 'noopener noreferrer' : undefined}
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="8" r="4"></circle>
-            <path d="M20 21a8 8 0 1 0-16 0"></path>
-          </svg>
-          Administration
-        </a>
-      </div>
     </div>
   </div>
 </header>
@@ -264,47 +236,6 @@ const navItems = [
     display: flex;
     align-items: center;
     gap: 0.5rem;
-  }
-
-  .admin-link {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    color: var(--muted);
-    border-radius: 999px;
-    transition: color var(--transition), background var(--transition);
-  }
-
-  @media (min-width: 1024px) {
-    .admin-link {
-      display: flex;
-    }
-  }
-
-  .admin-link:hover {
-    color: var(--text);
-    background: var(--surface);
-  }
-
-  .admin-link-mobile {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.65rem 0.9rem;
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--muted);
-    text-decoration: none;
-    border-radius: 999px;
-    transition: color var(--transition), background var(--transition);
-  }
-
-  .admin-link-mobile:hover {
-    color: var(--text);
-    background: var(--surface);
   }
 
   .mobile-menu-toggle {
