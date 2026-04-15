@@ -99,20 +99,9 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
           <a class="universe-card" href={item.href}>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
-            <span class="universe-card__link">Découvir ce point cardinal</span>
+            <span class="universe-card__link">Découvrir ce point cardinal</span>
           </a>
         ))}
-      </div>
-    </section>
-
-    <section class="home-note section" aria-labelledby="note-title">
-      <div class="home-note__box">
-        <p class="eyebrow">En quelques mots</p>
-        <h2 id="note-title">Ce site n'est ni un simple CV, ni un portfolio figé.</h2>
-        <p>
-          Je l'ai imaginé comme un espace personnel pour relier plusieurs dimensions de mon parcours :
-          ce que je fais au quotidien, ce que je construis, ce dans quoi je m'implique et ce que j'ai envie de transmettre.
-        </p>
       </div>
     </section>
   </main>
@@ -281,27 +270,13 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
   }
 
   .universe-card__link {
-    font-size: 0.95rem;
-    opacity: 0.9;
-  }
-
-  .home-note__box {
-    margin: 0 auto;
-    padding: 1.4rem 1.5rem;
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-    text-align: center;
-  }
-
-  .home-note__box h2 {
-    margin-bottom: 0.75rem;
-    text-wrap: balance;
-  }
-
-  .home-note__box p:last-child {
-    margin-bottom: 0;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    display: inline-block;
   }
 
   .sr-only {

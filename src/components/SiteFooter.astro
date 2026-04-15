@@ -12,6 +12,7 @@ const navLinks = [
   { href: '/projets', label: 'Projets' },
   { href: '/engagement-associatif', label: 'Engagement' },
   { href: '/blog', label: 'Blog' },
+  { href: '/sitemap.xml', label: 'Plan du site' },
 ];
 ---
 
@@ -26,7 +27,6 @@ const navLinks = [
           </svg>
           <span>{siteConfig.title}</span>
         </a>
-        <p class="footer-description">{siteConfig.description}</p>
       </div>
 
       <nav class="site-footer__nav" aria-label="Navigation footer">
@@ -105,14 +105,6 @@ const navLinks = [
 
   .footer-brand svg {
     color: var(--accent);
-  }
-
-  .footer-description {
-    margin: 0.7rem 0 0;
-    max-width: 50ch;
-    color: var(--muted);
-    line-height: 1.55;
-    font-size: 0.9rem;
   }
 
   .site-footer__nav {
