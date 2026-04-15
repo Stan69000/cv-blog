@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="fr"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Comment j'utilise l'IA pour comprendre plus vite, mieux documenter et automatiser des tâches utiles sans perdre le sens du terrain."><meta name="robots" content="index,follow"><link rel="canonical" href="https://cv-blog.netlify.app/blog/ia-au-service-du-support/"><meta property="og:type" content="website"><meta property="og:title" content="IA au service du support : ce qui m'aide vraiment | Blog"><meta property="og:description" content="Comment j'utilise l'IA pour comprendre plus vite, mieux documenter et automatiser des tâches utiles sans perdre le sens du terrain."><meta property="og:url" content="https://cv-blog.netlify.app/blog/ia-au-service-du-support/"><meta property="og:image" content="/images/og-default.jpg"><meta property="og:site_name" content="Stan Bouchet"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="IA au service du support : ce qui m'aide vraiment | Blog"><meta name="twitter:description" content="Comment j'utilise l'IA pour comprendre plus vite, mieux documenter et automatiser des tâches utiles sans perdre le sens du terrain."><meta name="twitter:image" content="/images/og-default.jpg"><meta name="twitter:site" content="@stanbouchet"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><title>IA au service du support : ce qui m&#39;aide vraiment | Blog</title><link rel="stylesheet" href="/_astro/_slug_.D_Ps_yIu.css"></head> <body> <a class="skip-link" href="#main-content">Aller au contenu</a>  <header class="site-header" data-astro-cid-ctg3m53h> <div class="container site-header__inner" data-astro-cid-ctg3m53h> <a href="/" class="brand" aria-label="Accueil - Stan Bouchet" data-astro-cid-ctg3m53h> <span class="brand__logo" aria-hidden="true" data-astro-cid-ctg3m53h> <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" data-astro-cid-ctg3m53h> <rect width="32" height="32" rx="8" fill="currentColor" fill-opacity="0.1" data-astro-cid-ctg3m53h></rect> <path d="M8 12h16M8 16h12M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-ctg3m53h></path> </svg> </span> <span class="brand__text" data-astro-cid-ctg3m53h> <span class="brand__name" data-astro-cid-ctg3m53h>Stan Bouchet</span> <span class="brand__tagline" data-astro-cid-ctg3m53h>IT Officer, support terrain et blog</span> </span> </a> <nav class="site-nav-desktop" aria-label="Navigation principale" data-astro-cid-ctg3m53h> <ul class="site-nav" data-astro-cid-ctg3m53h> <li data-astro-cid-ctg3m53h> <a href="/parcours" class data-astro-cid-ctg3m53h> Parcours </a> </li><li data-astro-cid-ctg3m53h> <a href="/projets" class data-astro-cid-ctg3m53h> Projets </a> </li><li data-astro-cid-ctg3m53h> <a href="/engagement-associatif" class data-astro-cid-ctg3m53h> Engagement </a> </li><li data-astro-cid-ctg3m53h> <a href="/blog" class="is-active" aria-current="page" data-astro-cid-ctg3m53h> Blog </a> </li> </ul> </nav> <div class="header-actions" data-astro-cid-ctg3m53h> <a href="/admin/" class="admin-link" aria-label="Accéder à l'administration" data-astro-cid-ctg3m53h> <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-ctg3m53h> <circle cx="12" cy="8" r="4" data-astro-cid-ctg3m53h></circle> <path d="M20 21a8 8 0 1 0-16 0" data-astro-cid-ctg3m53h></path> </svg> </a> <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Basculer le thème"> <span aria-hidden="true">☼</span> <span class="theme-toggle__text">Mode</span> </button> <script>
+  const root = document.documentElement;
+  const storageKey = 'theme-preference';
+
+  const getPreferredTheme = () => {
+    const saved = localStorage.getItem(storageKey);
+    if (saved === 'light' || saved === 'dark') return saved;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
+
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    localStorage.setItem(storageKey, theme);
+  };
+
+  applyTheme(getPreferredTheme());
+
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+  });
+</script> <button id="mobile-menu-toggle" class="mobile-menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-sheet" data-astro-cid-ctg3m53h> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-ctg3m53h> <line x1="4" y1="6" x2="20" y2="6" data-astro-cid-ctg3m53h></line> <line x1="4" y1="12" x2="20" y2="12" data-astro-cid-ctg3m53h></line> <line x1="4" y1="18" x2="20" y2="18" data-astro-cid-ctg3m53h></line> </svg> </button> </div> </div> <div id="mobile-sheet" class="mobile-sheet" data-astro-cid-ctg3m53h> <div class="mobile-sheet__backdrop" id="mobile-sheet-backdrop" data-astro-cid-ctg3m53h></div> <div class="mobile-sheet__panel" role="dialog" aria-modal="true" aria-label="Navigation mobile" data-astro-cid-ctg3m53h> <div class="mobile-sheet__head" data-astro-cid-ctg3m53h> <p class="mobile-sheet__title" data-astro-cid-ctg3m53h>Menu</p> <button id="mobile-menu-close" type="button" aria-label="Fermer le menu" data-astro-cid-ctg3m53h> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-ctg3m53h> <line x1="18" y1="6" x2="6" y2="18" data-astro-cid-ctg3m53h></line> <line x1="6" y1="6" x2="18" y2="18" data-astro-cid-ctg3m53h></line> </svg> </button> </div> <nav aria-label="Navigation mobile" data-astro-cid-ctg3m53h> <ul class="mobile-nav" data-astro-cid-ctg3m53h> <li data-astro-cid-ctg3m53h> <a href="/parcours" class data-astro-cid-ctg3m53h> Parcours </a> </li><li data-astro-cid-ctg3m53h> <a href="/projets" class data-astro-cid-ctg3m53h> Projets </a> </li><li data-astro-cid-ctg3m53h> <a href="/engagement-associatif" class data-astro-cid-ctg3m53h> Engagement </a> </li><li data-astro-cid-ctg3m53h> <a href="/blog" class="is-active" aria-current="page" data-astro-cid-ctg3m53h> Blog </a> </li> </ul> </nav> <div class="mobile-sheet__footer" data-astro-cid-ctg3m53h> <a href="/admin/" class="admin-link-mobile" data-astro-cid-ctg3m53h> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-ctg3m53h> <circle cx="12" cy="8" r="4" data-astro-cid-ctg3m53h></circle> <path d="M20 21a8 8 0 1 0-16 0" data-astro-cid-ctg3m53h></path> </svg>
+Administration
+</a> </div> </div> </div> </header> <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sheet = document.getElementById('mobile-sheet');
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const closeButton = document.getElementById('mobile-menu-close');
+    const backdrop = document.getElementById('mobile-sheet-backdrop');
+    const links = sheet?.querySelectorAll('a') ?? [];
+
+    if (!sheet || !toggle) return;
+
+    const openSheet = (e) => {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      sheet.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeSheet = () => {
+      sheet.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
+
+    toggle.addEventListener('click', openSheet);
+    closeButton?.addEventListener('click', closeSheet);
+    backdrop?.addEventListener('click', closeSheet);
+    links.forEach((link) => link.addEventListener('click', closeSheet));
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && sheet.classList.contains('is-open')) closeSheet();
+    });
+  });
+</script>  <main id="main-content" class="container section article-page"> <p class="meta">Publié le 14 mars 2026</p> <h1>IA au service du support : ce qui m&#39;aide vraiment</h1> <p class="lead">Comment j&#39;utilise l&#39;IA pour comprendre plus vite, mieux documenter et automatiser des tâches utiles sans perdre le sens du terrain.</p> <ul class="tags" aria-label="Étiquettes"> <li>IA</li><li>support</li><li>documentation</li> </ul> <article class="prose"> <p>Je me sers de l’IA tous les jours, mais pas pour remplacer le contact humain.</p>
+<p>Je l’utilise surtout comme accélérateur : reformuler une procédure, préparer une base de réponse, tester une logique d’automatisation, vérifier une explication.</p>
+<h2 id="ce-qui-fonctionne">Ce qui fonctionne</h2>
+<ul>
+<li>Rédiger des versions initiales de documentation.</li>
+<li>Vérifier la clarté d’un message utilisateur.</li>
+<li>Explorer des pistes d’automatisation pragmatiques.</li>
+</ul>
+<h2 id="ce-qui-ne-change-pas">Ce qui ne change pas</h2>
+<p>L’écoute, le contexte et le jugement terrain restent humains.</p>
+<p>L’outil aide. La responsabilité, elle, reste la mienne.</p> </article> <p><a class="text-link" href="/blog">← Retour au blog</a></p> </main> <footer class="site-footer" data-astro-cid-gcn2mc3v> <div class="container site-footer__inner" data-astro-cid-gcn2mc3v> <div class="site-footer__brand" data-astro-cid-gcn2mc3v> <a href="/" class="footer-brand" data-astro-cid-gcn2mc3v> <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-astro-cid-gcn2mc3v> <rect width="32" height="32" rx="8" fill="currentColor" fill-opacity="0.1" data-astro-cid-gcn2mc3v></rect> <path d="M8 12h16M8 16h12M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-gcn2mc3v></path> </svg> <span data-astro-cid-gcn2mc3v>Stan Bouchet</span> </a> <p class="footer-tagline" data-astro-cid-gcn2mc3v>IT Officer, support terrain et blog</p> </div> <nav class="site-footer__nav" aria-label="Navigation footer" data-astro-cid-gcn2mc3v> <div class="footer-nav__group" data-astro-cid-gcn2mc3v> <h3 class="footer-nav__title" data-astro-cid-gcn2mc3v>Navigation</h3> <ul class="footer-nav__list" data-astro-cid-gcn2mc3v> <li data-astro-cid-gcn2mc3v><a href="/parcours" data-astro-cid-gcn2mc3v>Parcours</a></li> <li data-astro-cid-gcn2mc3v><a href="/projets" data-astro-cid-gcn2mc3v>Projets</a></li> <li data-astro-cid-gcn2mc3v><a href="/engagement-associatif" data-astro-cid-gcn2mc3v>Engagement</a></li> <li data-astro-cid-gcn2mc3v><a href="/blog" data-astro-cid-gcn2mc3v>Blog</a></li> </ul> </div> <div class="footer-nav__group" data-astro-cid-gcn2mc3v> <h3 class="footer-nav__title" data-astro-cid-gcn2mc3v>Contact</h3> <ul class="footer-nav__list" data-astro-cid-gcn2mc3v> <li data-astro-cid-gcn2mc3v> <a href="mailto:contact@stan-bouchet.eu" data-astro-cid-gcn2mc3v> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-gcn2mc3v> <rect width="20" height="16" x="2" y="4" rx="2" data-astro-cid-gcn2mc3v></rect> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" data-astro-cid-gcn2mc3v></path> </svg>
+Email
+</a> </li> <li data-astro-cid-gcn2mc3v> <a href="https://linkedin.com/in/stanbouchet" target="_blank" rel="noopener noreferrer" data-astro-cid-gcn2mc3v> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-gcn2mc3v> <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" data-astro-cid-gcn2mc3v></path> <rect width="4" height="12" x="2" y="9" data-astro-cid-gcn2mc3v></rect> <circle cx="4" cy="4" r="2" data-astro-cid-gcn2mc3v></circle> </svg>
+LinkedIn
+</a> </li> </ul> </div> </nav> <div class="site-footer__bottom" data-astro-cid-gcn2mc3v> <p class="footer-copyright" data-astro-cid-gcn2mc3v>© 2026 Stan Bouchet. Tous droits réservés.</p> <p class="footer-built" data-astro-cid-gcn2mc3v> Construit ❤️ <span class="footer-divider" data-astro-cid-gcn2mc3v>·</span> <a href="/admin/" data-astro-cid-gcn2mc3v>Administration</a> </p> </div> </div> </footer>   </body></html>
