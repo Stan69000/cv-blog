@@ -8,8 +8,8 @@ media_folder: "public/uploads"
 public_folder: "/uploads"
 
 identity:
-  url: https://your-site.netlify.app
-  site_id: your-site-id
+  url: https://cv-blog.netlify.app
+  site_id: cv-blog
 
 collections:
   - name: "blog"
