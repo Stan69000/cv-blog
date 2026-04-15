@@ -3,31 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
-const projectAreas = [
-  {
-    title: 'Automatisation',
-    text: 'Réduire les tâches répétitives, fiabiliser les actions sensibles et faire gagner du temps là où cela a du sens.'
-  },
-  {
-    title: 'Outils utiles',
-    text: 'Concevoir des solutions simples à prendre en main, pensées pour un usage réel plutôt que pour la démonstration.'
-  },
-  {
-    title: 'Documentation & clarté',
-    text: 'Créer des supports lisibles, structurés et réellement utiles, pour faire gagner en autonomie.'
-  },
-  {
-    title: 'Approche pragmatique',
-    text: 'Partir d’un besoin concret, simplifier, tester, ajuster et construire quelque chose de durable.'
-  }
-];
-
 const featuredProjects = [
   {
     type: 'Open source',
     name: 'Outil open source d’audit accessibilité RGAA',
     text: 'Création d’un outil d’audit pour l’accessibilité numérique avec une double approche : CLI pour les usages techniques et interface web pour une prise en main plus large.',
-    tags: ['CLI + web', 'Approche pragmatique', 'Diffusion de bonnes pratiques']
+    tags: []
   },
   {
     type: 'Produit en cours',
@@ -81,18 +62,6 @@ const featuredProjects = [
       </p>
     </section>
 
-    <section class="section" aria-labelledby="approach-title">
-      <h2 id="approach-title">Ce que j’aime construire</h2>
-      <div class="pillars-grid">
-        {projectAreas.map((item) => (
-          <article class="soft-card">
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
     <section class="section" aria-labelledby="featured-title">
       <h2 id="featured-title">Mes projets</h2>
       <div class="project-grid">
@@ -102,11 +71,13 @@ const featuredProjects = [
             <h3>{project.name}</h3>
             <p>{project.text}</p>
 
-            <ul class="project-tags" aria-label={`Mots-clés du projet ${project.name}`}>
-              {project.tags.map((tag) => (
-                <li>{tag}</li>
-              ))}
-            </ul>
+            {project.tags.length > 0 && (
+              <ul class="project-tags" aria-label={`Mots-clés du projet ${project.name}`}>
+                {project.tags.map((tag) => (
+                  <li>{tag}</li>
+                ))}
+              </ul>
+            )}
           </article>
         ))}
       </div>
@@ -129,21 +100,15 @@ const featuredProjects = [
     width: 100%;
   }
 
-  .pillars-grid,
   .project-grid {
     display: grid;
     gap: 1rem;
   }
 
-  .pillars-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .soft-card,
   .project-card {
     border: 1px solid var(--line);
     background: var(--surface);
@@ -153,14 +118,12 @@ const featuredProjects = [
     transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
   }
 
-  .soft-card:hover,
   .project-card:hover {
     transform: translateY(-2px);
     border-color: var(--accent);
     box-shadow: var(--shadow);
   }
 
-  .soft-card h3,
   .project-card h3 {
     margin-top: 0;
     margin-bottom: 0.5rem;
@@ -194,14 +157,12 @@ const featuredProjects = [
   }
 
   @media (max-width: 900px) {
-    .pillars-grid,
     .project-grid {
       grid-template-columns: 1fr;
     }
   }
 
   @media (max-width: 640px) {
-    .soft-card,
     .project-card {
       padding: 1rem;
     }
