@@ -5,40 +5,76 @@ import SiteFooter from '../components/SiteFooter.astro';
 
 const featuredProjects = [
   {
-    type: 'Open source',
-    name: 'Outil open source d’audit accessibilité RGAA',
-    text: 'Création d’un outil d’audit pour l’accessibilité numérique avec une double approche : CLI pour les usages techniques et interface web pour une prise en main plus large.',
-    tags: []
+    type: 'Site web',
+    name: 'Le Singe du Numérique',
+    date: 'Avril 2026',
+    url: 'https://lesingedunumerique.fr/',
+    lines: [
+      'Conception d’un site orienté lecture et clarté éditoriale.',
+      'Structuration du contenu pour garder une navigation simple.',
+      'Travail sur la cohérence visuelle et le rythme des pages.',
+      'Objectif : rendre le message lisible et immédiatement utile.'
+    ]
   },
   {
-    type: 'Produit en cours',
-    name: 'Extension Chrome (en validation)',
-    text: 'Déclinaison de l’outil d’audit en extension navigateur pour faciliter les vérifications rapides directement dans les pages visitées.',
-    tags: ['Usage terrain', 'Gain de temps', 'Accessibilité opérationnelle']
+    type: 'Refonte web',
+    name: 'Natura au Féminin',
+    date: 'Refonte d’un site existant',
+    url: 'https://naturaufeminin.fr/',
+    lines: [
+      'Refonte complète d’un site déjà en production.',
+      'Reprise de la structure pour améliorer la compréhension.',
+      'Allègement de l’interface pour fluidifier le parcours.',
+      'Objectif : garder l’identité du site, avec plus de clarté.'
+    ]
   },
   {
-    type: 'Réalisation web',
-    name: 'naturaufeminin.fr',
-    text: 'Conception et réalisation d’un site avec une approche simple, claire et maintenable, orientée usage réel plutôt que démonstration technique.',
-    tags: ['Clarté', 'Maintenabilité', 'Utilité concrète']
+    type: 'Site personnel',
+    name: 'stan-bouchet.eu',
+    date: 'Avril 2026',
+    url: 'https://stan-bouchet.eu/',
+    lines: [
+      'Création d’un site personnel orienté présentation claire.',
+      'Mise en avant des sujets techniques et du parcours.',
+      'Travail de hiérarchisation pour limiter le bruit visuel.',
+      'Objectif : un site simple, lisible et facile à maintenir.'
+    ]
   },
   {
     type: 'Projet personnel',
-    name: 'stan-bouchet.eu',
-    text: 'Site personnel pensé comme un espace visuel et éditorial, avec un travail sur l’expérience de navigation, la cohérence graphique et la sélection de contenu.',
-    tags: ['Direction visuelle', 'Curation', 'Expérience utilisateur']
+    name: 'stan-bouchet.com',
+    date: 'Avril 2026',
+    url: 'https://stan-bouchet.com/',
+    lines: [
+      'Site principal construit comme hub de navigation.',
+      'Pages organisées en univers : parcours, projets, engagement, blog.',
+      'Accent mis sur la lisibilité, la structure et la cohérence globale.',
+      'Objectif : un espace vivant pour présenter le travail dans la durée.'
+    ]
   },
   {
-    type: 'Projet interne',
-    name: 'Automatisations support / organisation',
-    text: 'Mise en place d’automatisations utiles pour réduire les tâches répétitives, fiabiliser certaines actions support et améliorer la continuité de service.',
-    tags: ['Support', 'Automatisation', 'Organisation']
+    type: 'Open source',
+    name: 'RGAA Audit',
+    date: 'Avril 2026',
+    url: 'https://stan69000.github.io/rgaa-audit/',
+    lines: [
+      'Publication d’un outil orienté audit d’accessibilité RGAA.',
+      'Approche pragmatique pour faciliter les vérifications.',
+      'Interface pensée pour un usage concret sur le terrain.',
+      'Objectif : aider à améliorer l’accessibilité dès les premières itérations.'
+    ]
   },
   {
-    type: 'Projet interne',
-    name: 'Structuration outils & process',
-    text: 'Travail de fond sur l’organisation des outils, la documentation et les méthodes afin de rendre le quotidien plus lisible et plus fluide.',
-    tags: ['Documentation', 'Structuration', 'Amélioration continue']
+    type: 'Association',
+    name: 'Mise en place Google Workspace (RVAz)',
+    date: '2025',
+    url: null,
+    lines: [
+      'Déploiement de Google Workspace pour l’association RVAz.',
+      'Organisation des comptes, droits et espaces partagés.',
+      'Structuration des usages pour faciliter le travail collectif.',
+      'Objectif : rendre le fonctionnement quotidien plus fluide et fiable.'
+    ]
   }
 ];
 
@@ -69,14 +105,18 @@ const featuredProjects = [
           <article class="project-card">
             <p class="project-type">{project.type}</p>
             <h3>{project.name}</h3>
-            <p>{project.text}</p>
-
-            {project.tags.length > 0 && (
-              <ul class="project-tags" aria-label={`Mots-clés du projet ${project.name}`}>
-                {project.tags.map((tag) => (
-                  <li>{tag}</li>
-                ))}
-              </ul>
+            <p class="project-date">{project.date}</p>
+            <ul class="project-lines" aria-label={`Description du projet ${project.name}`}>
+              {project.lines.map((line) => (
+                <li>{line}</li>
+              ))}
+            </ul>
+            {project.url && (
+              <p class="project-link-wrap">
+                <a href={project.url} target="_blank" rel="noopener noreferrer" class="project-link">
+                  Voir le projet
+                </a>
+              </p>
             )}
           </article>
         ))}
@@ -137,23 +177,39 @@ const featuredProjects = [
     text-transform: uppercase;
   }
 
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0 0;
+  .project-date {
+    margin: 0.2rem 0 0.8rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 600;
   }
 
-  .project-tags li {
-    padding: 0.35rem 0.75rem;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    background: var(--surface);
-    color: var(--muted);
-    font-size: 0.8125rem;
-    font-weight: 500;
+  .project-lines {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .project-lines li {
+    line-height: 1.5;
+  }
+
+  .project-link-wrap {
+    margin-top: 1rem;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition), color var(--transition);
+  }
+
+  .project-link:hover {
+    border-color: currentColor;
   }
 
   @media (max-width: 900px) {
@@ -167,13 +223,8 @@ const featuredProjects = [
       padding: 1rem;
     }
 
-    .project-tags {
-      gap: 0.4rem;
-    }
-
-    .project-tags li {
-      font-size: 0.8125rem;
-      padding: 0.3rem 0.6rem;
+    .project-lines {
+      gap: 0.38rem;
     }
   }
 </style>
