@@ -6,3 +6,6 @@ node_modules
 .astro
 .DS_Store
 .npmrc
+
+# Local Netlify folder
+.netlify
