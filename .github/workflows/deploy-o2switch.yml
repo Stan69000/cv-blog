@@ -23,6 +23,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Clean previous build output
+        run: rm -rf dist
+
       - name: Build static website
         env:
           PUBLIC_ADMIN_URL: ${{ vars.PUBLIC_ADMIN_URL }}
