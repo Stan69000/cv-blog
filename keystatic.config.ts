@@ -1,14 +1,12 @@
-import { defineConfig, collections, fields } from '@keystatic/core';
+import { config, collection, singleton, fields } from '@keystatic/core';
 
-export default defineConfig({
+export default config({
   storage: {
-    kind: 'cloud',
-  },
-  cloud: {
-    project: 'TON_TEAM/TON_PROJECT', // ← Remplace après création Keystatic Cloud
+    kind: 'github',
+    repo: 'Stan69000/cv-blog',
   },
   collections: {
-    blog: collections.blog({
+    blog: collection({
       label: 'Blog',
       slugField: 'title',
       path: 'src/content/blog/*',
@@ -41,7 +39,7 @@ export default defineConfig({
       },
     }),
 
-    pages: collections.folder({
+    pages: collection.folder({
       label: 'Pages',
       path: 'src/content/pages/*',
       schema: {
@@ -60,7 +58,7 @@ export default defineConfig({
   },
   
   singletons: {
-    site: {
+    site: singleton({
       label: 'Général',
       schema: {
         title: fields.text({ label: 'Titre du site' }),
@@ -70,9 +68,9 @@ export default defineConfig({
         email: fields.text({ label: 'Email' }),
         url: fields.text({ label: 'URL du site' }),
       },
-    },
+    }),
     
-    social: {
+    social: singleton({
       label: 'Réseaux sociaux',
       schema: {
         linkedin: fields.text({ label: 'LinkedIn', required: false }),
@@ -80,9 +78,9 @@ export default defineConfig({
         github: fields.text({ label: 'GitHub', required: false }),
         email: fields.text({ label: 'Email', required: false }),
       },
-    },
+    }),
     
-    home: {
+    home: singleton({
       label: 'Accueil',
       schema: {
         headline: fields.text({ label: 'Titre principal' }),
@@ -94,9 +92,9 @@ export default defineConfig({
         showEngagement: fields.boolean({ label: 'Afficher Engagement', defaultValue: true }),
         showBlog: fields.boolean({ label: 'Afficher Blog', defaultValue: true }),
       },
-    },
+    }),
     
-    profile: {
+    profile: singleton({
       label: 'Profil',
       schema: {
         name: fields.text({ label: 'Nom' }),
@@ -127,9 +125,9 @@ export default defineConfig({
           }
         ),
       },
-    },
+    }),
     
-    blogSettings: {
+    blogSettings: singleton({
       label: 'Paramètres Blog',
       schema: {
         featuredLimit: fields.number({ label: 'Articles vedettes max', defaultValue: 3 }),
@@ -144,9 +142,9 @@ export default defineConfig({
           defaultValue: 'book',
         }),
       },
-    },
+    }),
     
-    seo: {
+    seo: singleton({
       label: 'SEO',
       schema: {
         defaultTitle: fields.text({ label: 'Titre par défaut' }),
@@ -155,14 +153,14 @@ export default defineConfig({
         twitter: fields.text({ label: 'Twitter (@username)', required: false }),
         noIndex: fields.boolean({ label: 'Ne pas indexer', defaultValue: false }),
       },
-    },
+    }),
     
-    footer: {
+    footer: singleton({
       label: 'Footer',
       schema: {
         copyright: fields.text({ label: 'Copyright ({year} pour année)' }),
         built_with: fields.text({ label: "Texte 'Construit avec'" }),
       },
-    },
+    }),
   },
 });
