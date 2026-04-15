@@ -48,6 +48,12 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
   <SiteHeader />
 
   <main id="main-content" class="home container">
+    <section class="construction-banner" role="status" aria-live="polite">
+      <p>
+        <strong>Attention :</strong> ce site est actuellement en cours de construction.
+      </p>
+    </section>
+
     <section class="home-intro">
       <p class="eyebrow">{eyebrow}</p>
       <h1 class="home-intro__title">{headline}</h1>
@@ -118,6 +124,22 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
   .home {
     padding-top: 1.5rem;
     padding-bottom: 3rem;
+  }
+
+  .construction-banner {
+    margin: 0 auto 1.25rem;
+    padding: 0.9rem 1.1rem;
+    border-radius: var(--radius);
+    border: 1px solid #b45309;
+    background: #fff7ed;
+    color: #7c2d12;
+    box-shadow: var(--shadow);
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .construction-banner p {
+    margin: 0;
   }
 
   .home-intro {
