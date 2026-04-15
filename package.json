@@ -12,7 +12,6 @@
     "cms": "npx decap-server"
   },
   "dependencies": {
-    "@astrojs/markdoc": "^1.0.3",
     "@astrojs/netlify": "^6.6.5",
     "@astrojs/react": "^5.0.3",
     "@keystatic/astro": "^5.0.6",
