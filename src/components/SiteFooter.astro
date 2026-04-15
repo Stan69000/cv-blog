@@ -5,6 +5,8 @@ import footerConfig from '../data/footer.json';
 
 const currentYear = new Date().getFullYear();
 const footerText = (footerConfig.copyright || '{year}').replace('{year}', currentYear.toString());
+const adminUrl = import.meta.env.PUBLIC_ADMIN_URL || '/keystatic';
+const isExternalAdmin = adminUrl.startsWith('http://') || adminUrl.startsWith('https://');
 ---
 
 <footer class="site-footer">
@@ -65,7 +67,13 @@ const footerText = (footerConfig.copyright || '{year}').replace('{year}', curren
       <p class="footer-built">
         {footerConfig.built_with || 'Construit avec Astro'}
         <span class="footer-divider">·</span>
-        <a href="/keystatic">Administration</a>
+        <a
+          href={adminUrl}
+          target={isExternalAdmin ? '_blank' : undefined}
+          rel={isExternalAdmin ? 'noopener noreferrer' : undefined}
+        >
+          Administration
+        </a>
       </p>
     </div>
   </div>
