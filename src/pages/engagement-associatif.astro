@@ -50,6 +50,14 @@ const timeline = [
     text: 'Accompagnement d’un jeune développeur, transmission et mentorat.'
   }
 ];
+
+const learnings = [
+  'Travailler en équipe dans des contextes variés',
+  'Gérer des responsabilités concrètes',
+  'Expliquer simplement des sujets parfois complexes',
+  'S’adapter à des publics très différents',
+  'Construire des projets sur la durée'
+];
 ---
 
 <BaseLayout
@@ -59,8 +67,6 @@ const timeline = [
   <SiteHeader />
 
   <main id="main-content" class="container section universe universe--association">
-
-    <!-- HERO -->
     <section class="hero section">
       <p class="eyebrow">Engagement associatif</p>
       <h1>Un fil rouge : être utile, transmettre et construire avec les autres.</h1>
@@ -71,13 +77,15 @@ const timeline = [
       </p>
     </section>
 
-    <!-- TIMELINE -->
-    <section class="section">
-      <h2>Un parcours dans le temps</h2>
+    <section class="section" aria-labelledby="timeline-title">
+      <div class="section-head">
+        <p class="eyebrow">Parcours</p>
+        <h2 id="timeline-title">Un parcours dans le temps</h2>
+      </div>
 
       <ol class="timeline">
         {timeline.map((item) => (
-          <li>
+          <li class="timeline__item">
             <p class="meta">{item.period}</p>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
@@ -86,63 +94,68 @@ const timeline = [
       </ol>
     </section>
 
-    <!-- FOCUS ACTUEL -->
-    <section class="section highlight">
-      <h2>Aujourd’hui : Le Singe du Numérique</h2>
+    <section class="section spotlight" aria-labelledby="spotlight-title">
+      <div class="spotlight__top">
+        <p class="eyebrow">Focus actuel</p>
+        <h2 id="spotlight-title">Aujourd’hui : Le Singe du Numérique</h2>
+      </div>
 
-      <p class="highlight-intro">
+      <p class="spotlight__intro">
         Une association qui s’inscrit naturellement dans la continuité de mon parcours.
       </p>
 
-      <div class="grid-two">
-        <p>
-          Avec Le Singe du Numérique, l’idée est de rendre les sujets numériques plus accessibles :
-          cybersécurité, outils, usages… avec une approche simple et concrète.
-        </p>
-        <p>
-          C’est une manière de faire le lien entre mon métier et mon engagement :
-          expliquer, transmettre et rendre les choses utiles pour les autres.
-        </p>
+      <div class="spotlight__grid">
+        <article class="spotlight__card">
+          <h3>Rendre le numérique plus accessible</h3>
+          <p>
+            Avec Le Singe du Numérique, l’idée est de rendre les sujets numériques plus accessibles :
+            cybersécurité, outils, usages… avec une approche simple et concrète.
+          </p>
+        </article>
+
+        <article class="spotlight__card">
+          <h3>Relier métier et engagement</h3>
+          <p>
+            C’est une manière de faire le lien entre mon métier et mon engagement :
+            expliquer, transmettre et rendre les choses utiles pour les autres.
+          </p>
+        </article>
       </div>
     </section>
 
-    <!-- CE QUE CA M'A APPRIS -->
-    <section class="section">
-      <h2>Ce que ces expériences m’ont appris</h2>
+    <section class="section" aria-labelledby="learning-title">
+      <div class="section-head">
+        <p class="eyebrow">Apprentissages</p>
+        <h2 id="learning-title">Ce que ces expériences m’ont appris</h2>
+      </div>
 
-      <ul class="learning-list">
-        <li>Travailler en équipe dans des contextes variés</li>
-        <li>Gérer des responsabilités concrètes</li>
-        <li>Expliquer simplement des sujets parfois complexes</li>
-        <li>S’adapter à des publics très différents</li>
-        <li>Construire des projets sur la durée</li>
+      <ul class="learning-grid">
+        {learnings.map((item) => (
+          <li>{item}</li>
+        ))}
       </ul>
     </section>
 
-    <!-- LIEN AVEC TON METIER -->
-    <section class="section">
-      <h2>Le lien avec mon travail</h2>
+    <section class="section" aria-labelledby="work-link-title">
+      <div class="section-head">
+        <p class="eyebrow">Impact métier</p>
+        <h2 id="work-link-title">Le lien avec mon travail</h2>
+      </div>
 
-      <div class="grid-two">
+      <div class="work-link">
         <p>
-          Cet engagement influence directement ma manière de travailler.
-          La pédagogie, l’écoute, la clarté et le sens du collectif sont au cœur de mon quotidien IT.
+          Cet engagement influence directement ma manière de travailler. La pédagogie, l’écoute,
+          la clarté et le sens du collectif sont au cœur de mon quotidien IT.
         </p>
         <p>
-          Que ce soit dans le support, la cybersécurité ou la documentation,
-          je retrouve les mêmes logiques : rendre les choses compréhensibles et utiles.
+          Que ce soit dans le support, la cybersécurité ou la documentation, je retrouve les mêmes logiques :
+          rendre les choses compréhensibles et utiles.
+        </p>
+        <p class="work-link__conclusion">
+          Ces expériences ne sont pas à côté de mon parcours professionnel. Elles en font partie.
         </p>
       </div>
     </section>
-
-    <!-- CONCLUSION -->
-    <section class="section outro">
-      <p class="lead">
-        Ces expériences ne sont pas à côté de mon parcours professionnel.
-        Elles en font partie.
-      </p>
-    </section>
-
   </main>
 
   <SiteFooter />
@@ -160,42 +173,158 @@ const timeline = [
     width: 100%;
   }
 
-  .timeline {
-    display: grid;
-    gap: 1rem;
-    list-style: none;
-    padding: 0;
+  .section-head {
+    margin-bottom: 1rem;
   }
 
-  .timeline li {
-    border-left: 3px solid var(--accent);
-    padding: 1rem;
+  .timeline {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.38rem;
+    top: 0.35rem;
+    bottom: 0.35rem;
+    width: 2px;
+    background: color-mix(in srgb, var(--accent) 55%, transparent);
+    opacity: 0.7;
+  }
+
+  .timeline__item {
+    position: relative;
+    margin-left: 1.4rem;
+    padding: 1rem 1rem 1rem 1.1rem;
+    border: 1px solid var(--line);
     background: var(--surface);
-    border-radius: 0 var(--radius) var(--radius) 0;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .timeline__item::before {
+    content: '';
+    position: absolute;
+    left: -1.12rem;
+    top: 1.15rem;
+    width: 0.62rem;
+    height: 0.62rem;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+
+  .timeline__item h3 {
+    margin-bottom: 0.35rem;
   }
 
   .meta {
     color: var(--muted);
-    font-size: 0.8125rem;
+    font-size: 0.86rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
   }
 
-  .learning-list {
-    padding-left: 1.2rem;
+  .spotlight {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 90%, transparent), var(--surface));
+    box-shadow: var(--shadow);
+    padding: 1.2rem;
+  }
+
+  .spotlight__top {
+    margin-bottom: 0.5rem;
+  }
+
+  .spotlight__intro {
+    margin: 0 0 1rem;
+    font-family: var(--font-heading);
+    font-size: 1.18rem;
+    line-height: 1.45;
+    color: var(--text);
+  }
+
+  .spotlight__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  .spotlight__card {
+    padding: 1rem;
+    border-radius: calc(var(--radius) - 4px);
+    border: 1px solid var(--line);
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+  }
+
+  .spotlight__card h3 {
+    margin: 0 0 0.45rem;
+  }
+
+  .learning-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .learning-grid li {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    padding: 0.95rem 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .work-link {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .work-link__conclusion {
+    margin-top: 0.2rem;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--text);
   }
 
   @media (max-width: 900px) {
-    .grid-two {
+    .spotlight__grid,
+    .learning-grid {
       grid-template-columns: 1fr;
     }
   }
 
   @media (max-width: 640px) {
-    .timeline li {
-      padding: 0.9rem;
+    .timeline__item,
+    .spotlight,
+    .spotlight__card,
+    .learning-grid li,
+    .work-link {
+      padding: 0.95rem;
     }
 
-    .learning-list {
-      padding-left: 1rem;
+    .timeline__item {
+      margin-left: 1.15rem;
+    }
+
+    .timeline__item::before {
+      left: -0.95rem;
     }
   }
 </style>
