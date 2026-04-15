@@ -5,7 +5,7 @@ import netlify from '@astrojs/netlify';
 
 export default defineConfig({
   site: 'https://cv-blog.netlify.app',
-  output: 'static',
+  output: 'server',
   adapter: netlify(),
   integrations: [
     react(),
