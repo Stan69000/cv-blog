@@ -7,6 +7,10 @@ local_backend: true
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
+identity:
+  url: https://your-site.netlify.app
+  site_id: your-site-id
+
 collections:
   - name: "blog"
     label: "Blog"
