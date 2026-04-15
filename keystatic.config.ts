@@ -2,7 +2,10 @@ import { defineConfig, collections, fields } from '@keystatic/core';
 
 export default defineConfig({
   storage: {
-    kind: 'local',
+    kind: 'cloud',
+  },
+  cloud: {
+    project: 'TON_TEAM/TON_PROJECT', // ← Remplace après création Keystatic Cloud
   },
   collections: {
     blog: collections.blog({
