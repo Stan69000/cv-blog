@@ -3,151 +3,191 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
-const pillars = [
+const quickStats = [
+  { value: '21+', label: "ans d'expérience opérationnelle" },
+  { value: '300+', label: 'collaborateurs gérés chez Indy' },
+  { value: 'Plusieurs centaines', label: 'd’ordinateurs configurés depuis mes débuts chez Indy' },
+  { value: '1/mois', label: 'session outils + sécurité animée' }
+];
+
+const currentScope = [
   {
-    title: 'Support & proximité',
-    text: 'Comprendre les besoins réels, aider concrètement et garder un lien direct avec le quotidien des équipes.'
+    title: 'Pilotage IT autonome',
+    text: 'Gestion complète du parc, des accès, des outils et du support pour plus de 300 collaborateurs.'
   },
   {
-    title: 'Structuration & clarté',
-    text: 'Mettre de l’ordre dans les outils, les process et la documentation pour rendre les choses plus lisibles et plus simples.'
+    title: 'Structuration & qualité',
+    text: 'SLA, documentation, process, gouvernance des usages et amélioration continue des pratiques.'
   },
   {
-    title: 'Automatisation utile',
-    text: 'Repérer les frictions, simplifier ce qui peut l’être, et automatiser quand cela enlève une vraie charge.'
+    title: 'Automatisation pragmatique',
+    text: 'Réduction des frictions quotidiennes avec des automatisations utiles, ciblées et maintenables.'
   },
   {
-    title: 'Transmission & pédagogie',
-    text: 'Expliquer, former, documenter et rendre les sujets techniques compréhensibles sans les rendre froids.'
+    title: 'Accompagnement des équipes',
+    text: 'Onboarding, offboarding, formation et pédagogie pour rendre l’IT lisible et autonome.'
   }
 ];
 
-const tasks = [
-  'Support utilisateurs au quotidien pour plus de 300 collègues',
-  'Onboarding / offboarding, gestion des accès et du matériel',
-  'Documentation claire pour le support et les équipes internes',
-  'Structuration Notion et amélioration continue des process',
-  'Mise en place de SLA et suivi de la qualité de service',
-  'Sensibilisation cybersécurité et campagnes de phishing interne',
-  'Automatisations pragmatiques pour réduire les frictions',
-  'Contribution à la roadmap IT et aux sujets transverses'
-];
-
-const tools = [
-  '1Password',
+const stack = [
   'Slack',
   'Notion',
+  '1Password',
   'Google Workspace',
   'IA générative',
+  'MDM',
   'macOS / Windows / Linux',
   'Documentation',
-  'Automatisation'
+  'Automatisation',
+  'Sensibilisation sécurité'
 ];
 
-const timeline = [
+const experiences = [
   {
-    period: 'Les débuts',
-    title: 'Un parcours construit en avançant',
-    text: 'Je n’ai pas suivi un parcours très théorique. J’ai appris en grande partie sur le terrain, avec une logique de progression concrète, d’essais, d’ajustements et de curiosité.'
+    role: 'Information Technology Officer',
+    company: 'Indy',
+    contract: 'CDI',
+    period: 'janv. 2024 - aujourd’hui',
+    duration: '2 ans 4 mois',
+    location: 'Lyon, Auvergne-Rhône-Alpes, France',
+    mode: 'Hybride',
+    summary:
+      'Fonction créée sur mesure après une évolution interne depuis le helpdesk. Responsable IT autonome, avec un périmètre transverse en forte croissance.',
+    highlights: [
+      'Gestion autonome d’un parc de plus de 300 collaborateurs.',
+      'Développement de la fonction IT au rythme de la croissance de l’entreprise.',
+      'Structuration durable du support, des outils et des standards de service.'
+    ]
   },
   {
-    period: '2022',
-    title: 'Arrivée dans l’IT chez Indy',
-    text: 'Je rejoins Indy dans un rôle orienté support, au contact direct des besoins des équipes. C’est un point d’entrée très terrain, au plus proche du réel.'
+    role: 'Technicien Helpdesk',
+    company: 'Indy',
+    contract: 'CDI',
+    period: 'juil. 2022 - janv. 2024',
+    duration: '1 an 7 mois',
+    location: 'Lyon, Auvergne-Rhône-Alpes, France',
+    mode: 'Sur site / Hybride',
+    summary:
+      'Premier collaborateur IT recruté chez Indy en 2022. Construction des bases opérationnelles du support et de l’environnement de travail.',
+    highlights: [
+      'Support utilisateur, comptes, droits d’accès, onboarding et offboarding.',
+      'Configuration de plus de 400 ordinateurs en 2,5 ans et gestion du parc multi-OS.',
+      'Administration Slack, Notion, 1Password et Google Workspace.',
+      'Déploiement et pilotage de la solution MDM.',
+      'Formation mensuelle des nouveaux collaborateurs sur les outils et la sécurité.',
+      'Mise en place de documentation, automatisations et amélioration des processus.',
+      'Responsable achats IT et SAV matériel.',
+      'Contributions transverses: RSE, office management, CSE, captation évènementielle, SST.'
+    ]
   },
   {
-    period: 'Évolution progressive',
-    title: 'Du support à un rôle plus transverse',
-    text: 'Le rôle s’élargit naturellement : au-delà de la résolution de problèmes, il faut structurer, documenter, accompagner, sensibiliser et améliorer l’existant.'
+    role: 'Manager de proximité',
+    company: 'Carsat Rhône Alpes',
+    contract: 'Mission',
+    period: 'janv. 2022 - mars 2022',
+    duration: '3 mois',
+    location: 'Lyon, Auvergne-Rhône-Alpes, France',
+    mode: 'Sur site',
+    summary:
+      'Management d’équipe dans un environnement de flux opérationnels exigeants.',
+    highlights: [
+      'Management direct de 20 techniciens et gestionnaires traitement de l’information.',
+      'Coordination transverse de l’encadrement pour superviser les flux de 82 collaborateurs.',
+      'Formations suivies: Manager Coach, entretiens individuels, management des télétravailleurs.'
+    ]
   },
   {
-    period: 'Aujourd’hui',
-    title: 'Un rôle hybride entre service, outils et organisation',
-    text: 'Mon quotidien mélange support, qualité de service, documentation, automatisation, accompagnement des usages et sujets plus transverses autour du collectif.'
+    role: "Agent de maîtrise - Chef d'équipe adjoint",
+    company: 'EURO.TVS - TRAITEMENT VALEURS SERVICES',
+    contract: 'CDI',
+    period: 'avr. 2005 - déc. 2021',
+    duration: '16 ans 9 mois',
+    location: 'Tassin, Auvergne-Rhône-Alpes, France',
+    mode: 'Sur site',
+    summary:
+      'Responsabilités opérationnelles et encadrement adjoint dans le traitement de documents et de données associées aux moyens de paiement.',
+    highlights: [
+      'Encadrement adjoint d’une équipe de 15 personnes.',
+      'Pilotage d’activités: numérisation, saisie de masse, enrichissement, archivage et restitution.',
+      'Suivi incidents, supervision technique matérielle et logicielle.',
+      'Gestion des réclamations clients et suivi de tableaux de bord.',
+      'Formation des nouveaux arrivants et documentation qualité (procédures, mémos).' 
+    ]
+  },
+  {
+    role: 'Travailleur indépendant',
+    company: 'Monkey of The Net',
+    contract: 'Indépendant',
+    period: 'janv. 2009 - déc. 2011',
+    duration: '3 ans',
+    location: 'Toussieu, Auvergne-Rhône-Alpes, France',
+    mode: 'Freelance',
+    summary:
+      'Création de sites web et prestations multimédia en autonomie, de la conception à la maintenance.',
+    highlights: [
+      'Création de sites sur base Joomla et WordPress, adaptés aux besoins clients.',
+      'Création de chartes graphiques, maintenance et hébergement.',
+      'Production de diaporamas photo et rendus vidéo/DVD/exécutable.'
+    ]
+  },
+  {
+    role: 'Agent de sécurité',
+    company: 'Sécurifrance',
+    contract: 'Temps plein',
+    period: 'oct. 2004 - avr. 2005',
+    duration: '7 mois',
+    location: 'Lyon et périphérie',
+    mode: 'Terrain',
+    summary:
+      'Expérience de terrain structurante sur la rigueur, l’autonomie et la gestion de situations sensibles.',
+    highlights: [
+      'Gardes de 12 heures en autonomie et rondes intérieures/extérieures.',
+      'Utilisation d’outils d’alarme, vidéosurveillance et logiciels de compte rendu.',
+      'Interventions sur sites industriels et tertiaires exigeants.'
+    ]
   }
-];
-
-const learnings = [
-  'Le support m’a appris qu’un problème technique est souvent aussi un problème de contexte, de stress ou de compréhension.',
-  'L’autonomie ne se décrète pas : elle se construit avec des outils clairs, une bonne documentation et des explications simples.',
-  'Automatiser n’a d’intérêt que si cela enlève une vraie friction.',
-  'La technique fonctionne mieux quand elle reste lisible, humaine et utile.'
 ];
 ---
 
 <BaseLayout
   title="Parcours pro | Stan Bouchet"
-  description="Une page sur mon parcours professionnel, ma progression et ma manière de travailler."
+  description="Parcours professionnel de Stan Bouchet: évolution, responsabilités, impacts et expériences clés."
 >
   <SiteHeader />
 
   <main id="main-content" class="container section universe universe--pro">
-    <section class="hero section">
-      <p class="eyebrow">Parcours pro</p>
-      <h1>Un parcours construit sur le terrain, élargi avec le temps.</h1>
-      <p class="lead muted">
-        Mon parcours professionnel ne se résume pas à un poste. Il s’est construit progressivement,
-        entre support, apprentissage en continu, structuration, documentation, automatisation et envie
-        de rendre les choses plus simples pour les autres.
-      </p>
-    </section>
-
-    <section class="section terminal-shell" aria-labelledby="terminal-title">
-      <div class="terminal">
-        <div class="terminal-header" aria-hidden="true">
-          <span class="dot red"></span>
-          <span class="dot yellow"></span>
-          <span class="dot green"></span>
-          <span class="terminal-title">stan@portfolio — zsh</span>
-        </div>
-        <div class="terminal-body">
-          <div class="terminal-code" role="img" aria-label="Résumé terminal du parcours de Stan Bouchet">
-            <p class="term-line" style="--line-index: 0"><span class="prompt">$</span> whoami</p>
-            <p class="term-line term-output" style="--line-index: 1">Stan Bouchet</p>
-
-            <p class="term-line" style="--line-index: 2"><span class="prompt">$</span> current_role</p>
-            <p class="term-line term-output" style="--line-index: 3">IT Officer</p>
-
-            <p class="term-line" style="--line-index: 4"><span class="prompt">$</span> started_as</p>
-            <p class="term-line term-output" style="--line-index: 5">Support terrain</p>
-
-            <p class="term-line" style="--line-index: 6"><span class="prompt">$</span> style</p>
-            <p class="term-line term-output" style="--line-index: 7">pragmatique · curieux · autodidacte</p>
-
-            <p class="term-line" style="--line-index: 8"><span class="prompt">$</span> also_into</p>
-            <p class="term-line term-output" style="--line-index: 9">documentation · transmission · collectif · associatif</p>
-
-            <p class="term-line" style="--line-index: 10"><span class="prompt">$</span> goal</p>
-            <p class="term-line term-output" style="--line-index: 11">faire simple, utile, clair et durable</p>
-
-            <p class="term-line" style="--line-index: 12"><span class="prompt">$</span> status</p>
-            <p class="term-line term-output" style="--line-index: 13">
-              still learning<span class="cursor" aria-hidden="true">_</span>
-            </p>
-          </div>
+    <section class="hero section" aria-labelledby="hero-title">
+      <div class="hero-panel">
+        <p class="eyebrow">Parcours professionnel</p>
+        <h1 id="hero-title">Une carrière construite sur le terrain, structurée par l’impact.</h1>
+        <p class="lead muted">
+          De l’opérationnel au pilotage IT, avec une constante: rendre les outils, les usages et les process
+          plus simples, plus fiables et plus utiles pour les équipes.
+        </p>
+        <div class="hero-cta">
+          <a href="https://www.linkedin.com/in/stanislas-bouchet/" target="_blank" rel="noopener noreferrer">Voir le profil LinkedIn</a>
+          <p>Indy · CDI · 3 ans 10 mois (depuis juillet 2022)</p>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="intro-title">
-      <h2 id="intro-title">Ce que raconte vraiment ce parcours</h2>
-      <div class="grid-two">
-        <p>
-          Je viens d’un rôle très concret, au contact direct des besoins des utilisateurs.
-          C’est là que j’ai appris à écouter, diagnostiquer, résoudre et garder le sens du réel.
-        </p>
-        <p>
-          Avec le temps, mon périmètre s’est élargi. Aujourd’hui, j’aime autant aider au quotidien que structurer,
-          documenter, sensibiliser, améliorer et faire avancer les choses de manière durable.
-        </p>
-      </div>
+    <section class="section" aria-labelledby="impact-title">
+      <h2 id="impact-title">Impact en un coup d’œil</h2>
+      <ul class="stats-grid" aria-label="Indicateurs clés de carrière">
+        {quickStats.map((item) => (
+          <li>
+            <p class="value">{item.value}</p>
+            <p class="label">{item.label}</p>
+          </li>
+        ))}
+      </ul>
     </section>
 
-    <section class="section" aria-labelledby="pillars-title">
-      <h2 id="pillars-title">Ma manière de travailler</h2>
-      <div class="pillars-grid">
-        {pillars.map((item) => (
-          <article class="soft-card">
+    <section class="section" aria-labelledby="scope-title">
+      <h2 id="scope-title">Ce que je pilote aujourd’hui</h2>
+      <div class="scope-grid">
+        {currentScope.map((item) => (
+          <article class="scope-card">
             <h3>{item.title}</h3>
             <p>{item.text}</p>
           </article>
@@ -155,66 +195,46 @@ const learnings = [
       </div>
     </section>
 
-    <section class="section" aria-labelledby="quotidien-title">
-      <h2 id="quotidien-title">Concrètement aujourd’hui</h2>
-      <ul class="card-list">
-        {tasks.map((task) => (
-          <li class="card">{task}</li>
-        ))}
-      </ul>
-    </section>
-
     <section class="section" aria-labelledby="timeline-title">
-      <h2 id="timeline-title">Les grandes étapes</h2>
-      <ol class="timeline">
-        {timeline.map((item) => (
+      <h2 id="timeline-title">Timeline de carrière</h2>
+      <ol class="career-timeline">
+        {experiences.map((xp) => (
           <li>
-            <p class="meta">{item.period}</p>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
+            <article class="xp-card">
+              <header class="xp-header">
+                <div>
+                  <p class="xp-role">{xp.role}</p>
+                  <p class="xp-company">{xp.company} · {xp.contract}</p>
+                </div>
+                <p class="xp-duration">{xp.duration}</p>
+              </header>
+
+              <div class="xp-meta">
+                <span>{xp.period}</span>
+                <span>{xp.location}</span>
+                <span>{xp.mode}</span>
+              </div>
+
+              <p class="xp-summary">{xp.summary}</p>
+
+              <ul class="xp-list">
+                {xp.highlights.map((highlight) => (
+                  <li>{highlight}</li>
+                ))}
+              </ul>
+            </article>
           </li>
         ))}
       </ol>
     </section>
 
-    <section class="section" aria-labelledby="learning-title">
-      <h2 id="learning-title">Ce que le terrain m’a appris</h2>
-      <ul class="learning-list">
-        {learnings.map((item) => (
-          <li>{item}</li>
-        ))}
-      </ul>
-    </section>
-
-    <section class="section" aria-labelledby="tools-title">
-      <h2 id="tools-title">Outils & environnement</h2>
-      <ul class="tags tags--large" aria-label="Outils et environnements">
-        {tools.map((tool) => (
+    <section class="section" aria-labelledby="stack-title">
+      <h2 id="stack-title">Environnement de travail</h2>
+      <ul class="tags tags--large" aria-label="Stack et outils utilisés">
+        {stack.map((tool) => (
           <li>{tool}</li>
         ))}
       </ul>
-    </section>
-
-    <section class="section" aria-labelledby="outside-title">
-      <h2 id="outside-title">Au-delà du poste</h2>
-      <div class="grid-two">
-        <p>
-          J’aime les rôles où il faut faire le lien entre les outils, les personnes et l’organisation.
-          C’est aussi pour cela que les sujets de transmission, de vie collective et d’engagement m’intéressent.
-        </p>
-        <p>
-          Cette page parle donc autant d’un métier que d’une manière d’avancer :
-          apprendre, construire, partager, et faire les choses sérieusement sans se prendre trop au sérieux.
-        </p>
-      </div>
-    </section>
-
-    <section class="section outro">
-      <p class="lead">
-        Je n’ai pas le profil du spécialiste enfermé dans une case.
-        Mon parcours ressemble davantage à une progression construite par l’expérience, les projets,
-        les échanges et l’envie de faire mieux, un peu plus clairement à chaque fois.
-      </p>
     </section>
   </main>
 
@@ -229,246 +249,245 @@ const learnings = [
     padding-top: 1rem;
   }
 
+  .hero-panel {
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(circle at 10% 15%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 42%),
+      radial-gradient(circle at 86% 84%, color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 45%),
+      var(--surface);
+    border-radius: calc(var(--radius) + 0.25rem);
+    box-shadow: var(--shadow);
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+
   .hero h1 {
+    margin-top: 0.55rem;
     width: 100%;
   }
 
-  .grid-two {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem;
+  .hero .lead {
+    margin-top: 1rem;
+    max-width: 100%;
   }
 
-  .pillars-grid {
+  .hero-cta {
+    margin-top: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8rem 1rem;
+  }
+
+  .hero-cta a {
+    text-decoration: none;
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+    background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+    color: var(--text);
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    transition: transform var(--transition), border-color var(--transition);
+  }
+
+  .hero-cta a:hover {
+    transform: translateY(-1px);
+    border-color: var(--accent);
+  }
+
+  .hero-cta p {
+    color: var(--muted);
+    font-size: var(--text-xs);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.9rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .stats-grid li {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1rem 1.05rem;
+  }
+
+  .stats-grid .value {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+
+  .stats-grid .label {
+    color: var(--muted);
+    font-size: var(--text-xs);
+    line-height: 1.35;
+  }
+
+  .scope-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
   }
 
-  .soft-card,
-  .timeline li,
-  .card {
+  .scope-card {
     border: 1px solid var(--line);
     background: var(--surface);
-    box-shadow: var(--shadow);
-  }
-
-  .soft-card {
-    padding: 1.25rem;
     border-radius: var(--radius);
-    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-  }
-
-  .soft-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--accent);
     box-shadow: var(--shadow);
+    padding: 1.1rem 1.2rem;
   }
 
-  .soft-card h3 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
+  .scope-card h3 {
+    margin-bottom: 0.45rem;
   }
 
-  .terminal-shell {
-    padding-top: 0.5rem;
-  }
-
-  .terminal {
-    overflow: hidden;
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    background: var(--surface);
-    box-shadow: var(--shadow);
+  .career-timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
     position: relative;
   }
 
-  .terminal-header {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.85rem 1rem;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .terminal-title {
-    margin-left: 0.4rem;
-    font-size: 0.875rem;
-    color: var(--muted);
-    animation: titlePulse 2.8s ease-in-out infinite;
-  }
-
-  .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: inline-block;
-  }
-
-  .red { background: #ef4444; }
-  .yellow { background: #f59e0b; }
-  .green { background: #22c55e; }
-
-  .terminal-body {
-    padding: 1.25rem 1.35rem;
-    font-family: var(--font-mono);
-    font-size: 0.9375rem;
-    line-height: 1.7;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .terminal-body::before {
+  .career-timeline::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
+    left: 1.05rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    background: linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0.03) 0px,
-      rgba(255, 255, 255, 0.03) 1px,
-      transparent 1px,
-      transparent 4px
+      color-mix(in srgb, var(--accent) 60%, transparent),
+      color-mix(in srgb, var(--accent-2) 44%, transparent)
     );
-    pointer-events: none;
-    mix-blend-mode: overlay;
-    animation: scanline 6s linear infinite;
   }
 
-  .terminal-code {
-    margin: 0;
-    display: grid;
-    gap: 0.2rem;
+  .career-timeline > li {
+    position: relative;
+    padding-left: 2.2rem;
   }
 
-  .term-line {
-    margin: 0;
-    opacity: 0;
-    transform: translateY(6px);
-    animation: terminalLine 420ms ease forwards;
-    animation-delay: calc(var(--line-index) * 120ms + 120ms);
+  .career-timeline > li::before {
+    content: '';
+    position: absolute;
+    left: 0.73rem;
+    top: 1.15rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 999px;
+    background: var(--surface-strong);
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
   }
 
-  .term-output {
-    color: var(--muted);
-    padding-left: 1.2rem;
-  }
-
-  .prompt {
-    color: var(--accent);
-    font-weight: 700;
-    margin-right: 0.45rem;
-  }
-
-  .cursor {
-    display: inline-block;
-    margin-left: 0.25rem;
-    color: var(--accent);
-    font-weight: 700;
-    animation: cursorBlink 1s steps(1, end) infinite;
-  }
-
-  @keyframes terminalLine {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes cursorBlink {
-    0%, 45% {
-      opacity: 1;
-    }
-    46%, 100% {
-      opacity: 0;
-    }
-  }
-
-  @keyframes scanline {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(6px);
-    }
-  }
-
-  @keyframes titlePulse {
-    0%, 100% {
-      opacity: 0.75;
-    }
-    50% {
-      opacity: 1;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .terminal-title,
-    .terminal-body::before,
-    .term-line,
-    .cursor {
-      animation: none;
-    }
-
-    .term-line {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  .timeline {
-    display: grid;
-    gap: 1rem;
-    padding-left: 0;
-    list-style: none;
-  }
-
-  .timeline li {
+  .xp-card {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
     padding: 1.1rem 1.2rem;
-    border-left: 3px solid var(--accent);
-    border-radius: 0 var(--radius) var(--radius) 0;
   }
 
-  .timeline .meta {
-    margin: 0 0 0.35rem;
+  .xp-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: baseline;
+    margin-bottom: 0.35rem;
+  }
+
+  .xp-role {
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    line-height: 1.1;
+  }
+
+  .xp-company {
+    margin-top: 0.25rem;
+    color: var(--muted);
+    font-size: var(--text-xs);
+  }
+
+  .xp-duration {
     font-size: var(--text-xs);
     color: var(--muted);
+    white-space: nowrap;
+    border: 1px solid color-mix(in srgb, var(--line) 85%, transparent);
+    border-radius: 999px;
+    padding: 0.2rem 0.55rem;
   }
 
-  .learning-list {
+  .xp-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .xp-meta span {
+    font-size: 0.79rem;
+    color: var(--muted);
+    border: 1px dashed color-mix(in srgb, var(--line) 85%, transparent);
+    border-radius: 999px;
+    padding: 0.16rem 0.52rem;
+  }
+
+  .xp-summary {
+    margin-bottom: 0.75rem;
+  }
+
+  .xp-list {
+    margin: 0;
+    padding-left: 1.15rem;
     display: grid;
-    gap: 0.75rem;
-    padding-left: 1.2rem;
+    gap: 0.34rem;
   }
 
-  .learning-list li::marker {
+  .xp-list li::marker {
     color: var(--accent);
   }
 
-  .outro {
-    padding-bottom: 2rem;
+  @media (max-width: 980px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
-  @media (max-width: 820px) {
-    .grid-two,
-    .pillars-grid {
+  @media (max-width: 780px) {
+    .scope-grid {
       grid-template-columns: 1fr;
     }
 
-    .terminal-body {
-      font-size: 0.875rem;
+    .xp-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
     }
   }
 
   @media (max-width: 640px) {
-    .soft-card,
-    .timeline li,
-    .card {
-      padding: 1rem;
+    .stats-grid {
+      grid-template-columns: 1fr;
     }
 
-    .terminal-body {
-      padding: 1rem;
-      line-height: 1.6;
+    .career-timeline::before {
+      left: 0.85rem;
+    }
+
+    .career-timeline > li {
+      padding-left: 1.8rem;
+    }
+
+    .career-timeline > li::before {
+      left: 0.55rem;
     }
   }
 </style>
