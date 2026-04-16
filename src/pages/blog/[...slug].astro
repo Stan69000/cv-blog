@@ -20,17 +20,21 @@ const fmt = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long' });
 <BaseLayout title={`${post.data.title} | Blog`} description={post.data.description}>
   <SiteHeader />
   <main id="main-content" class="container section article-page">
-    <p class="meta">Publié le {fmt.format(post.data.pubDate)}</p>
-    <h1>{post.data.title}</h1>
-    <p class="lead">{post.data.description}</p>
+    <section class="hero section">
+      <div class="hero-panel">
+        <p class="meta">Publié le {fmt.format(post.data.pubDate)}</p>
+        <h1>{post.data.title}</h1>
+        <p class="lead">{post.data.description}</p>
 
-    {post.data.tags.length > 0 && (
-      <ul class="tags" aria-label="Étiquettes">
-        {post.data.tags.map((tag: string) => (
-          <li>{tag}</li>
-        ))}
-      </ul>
-    )}
+        {post.data.tags.length > 0 && (
+          <ul class="tags" aria-label="Étiquettes">
+            {post.data.tags.map((tag: string) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </section>
 
     <article class="prose">
       <Content />

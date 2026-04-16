@@ -29,11 +29,13 @@ const { Content } = await render(page);
 
   <main id="main-content" class="container section page-content">
     <section class="hero section">
-      <p class="eyebrow">{page.data.title}</p>
-      <h1>{page.data.title}</h1>
-      {page.data.description && (
-        <p class="lead muted">{page.data.description}</p>
-      )}
+      <div class="hero-panel">
+        <p class="eyebrow">{page.data.title}</p>
+        <h1>{page.data.title}</h1>
+        {page.data.description && (
+          <p class="lead muted">{page.data.description}</p>
+        )}
+      </div>
     </section>
 
     <article class="prose">
