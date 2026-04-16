@@ -20,6 +20,7 @@ export const GET: APIRoute = async () => {
     { loc: toAbsoluteUrl('/projets/'), lastmod: formatDate(now) },
     { loc: toAbsoluteUrl('/engagement-associatif/'), lastmod: formatDate(now) },
     { loc: toAbsoluteUrl('/blog/'), lastmod: formatDate(now) },
+    { loc: toAbsoluteUrl('/contact/'), lastmod: formatDate(now) },
     ...publishedPosts.map((post) => ({
       loc: toAbsoluteUrl(`/blog/${post.slug}/`),
       lastmod: formatDate(post.data?.pubDate ? new Date(post.data.pubDate) : now),
