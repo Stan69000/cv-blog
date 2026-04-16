@@ -52,7 +52,7 @@ const featuredProjects = [
     status: 'ongoing',
     url: 'https://lesingedunumerique.fr/',
     context:
-      'Site de l’association Le Singe du Numérique, qui accompagne la montée en compétences numériques et partage des ressources concrètes pour progresser.',
+      'Le Singe Du Numérique agit pour la démocratisation et l’inclusion numérique, et accompagne aussi les associations locales dans leurs usages, leurs outils et leur transformation numérique. J’en suis le président fondateur.',
     technique: [
       'Architecture éditoriale pensée pour expliquer clairement la mission, les actions et les ressources.',
       'Navigation simplifiée pour accéder rapidement aux contenus utiles de l’association.',
@@ -67,10 +67,8 @@ const featuredProjects = [
   {
     type: 'Refonte web',
     name: "Natur' Au Féminin",
-    startedAt: '2025-10-01',
-    endedAt: '2026-02-01',
+    startedAt: '2026-02-01',
     startPrecision: 'month',
-    endPrecision: 'month',
     status: 'completed',
     url: 'https://naturaufeminin.fr/',
     context: 'Refonte d’un site existant, avec l’objectif de clarifier le message sans perdre l’identité initiale.',
@@ -138,7 +136,7 @@ const featuredProjects = [
   },
   {
     type: 'Association',
-    name: 'Mise en place Google Workspace (RVAz)',
+    name: 'Mise en place de Google Workspace (RVAz)',
     startedAt: '2025-01-01',
     endedAt: '2025-12-01',
     startPrecision: 'year',
@@ -185,7 +183,15 @@ const featuredProjects = [
               <time class="project-date" datetime={project.startedAt}>{formatProjectDate(project)}</time>
             </header>
 
-            <h3>{project.name}</h3>
+            <h3>
+              {project.url ? (
+                <a href={project.url} target="_blank" rel="noopener noreferrer" class="project-title-link">
+                  {project.name}
+                </a>
+              ) : (
+                project.name
+              )}
+            </h3>
             <p class="project-context">{project.context}</p>
 
             <div class="project-block">
@@ -294,6 +300,18 @@ const featuredProjects = [
   .project-card h3 {
     margin: 0;
     line-height: 1.2;
+  }
+
+  .project-title-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition), color var(--transition);
+  }
+
+  .project-title-link:hover {
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
   }
 
   .project-type {
