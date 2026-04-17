@@ -13,17 +13,28 @@ export const GET: APIRoute = async () => {
   const now = new Date();
   const blogEntries = await getCollection('blog');
   const publishedPosts = blogEntries.filter((entry) => entry.data?.draft !== true);
+  const latestPostDate = publishedPosts
+    .map((post) => post.data?.updatedDate ?? post.data?.pubDate)
+    .filter((date): date is Date => Boolean(date))
+    .sort((a, b) => b.getTime() - a.getTime())[0];
 
   const urls = [
-    { loc: toAbsoluteUrl('/'), lastmod: formatDate(now) },
-    { loc: toAbsoluteUrl('/parcours/'), lastmod: formatDate(now) },
-    { loc: toAbsoluteUrl('/projets/'), lastmod: formatDate(now) },
-    { loc: toAbsoluteUrl('/engagement-associatif/'), lastmod: formatDate(now) },
-    { loc: toAbsoluteUrl('/blog/'), lastmod: formatDate(now) },
-    { loc: toAbsoluteUrl('/contact/'), lastmod: formatDate(now) },
+    { loc: toAbsoluteUrl('/'), lastmod: formatDate(now), changefreq: 'weekly', priority: '1.0' },
+    { loc: toAbsoluteUrl('/parcours/'), lastmod: formatDate(now), changefreq: 'monthly', priority: '0.8' },
+    { loc: toAbsoluteUrl('/projets/'), lastmod: formatDate(now), changefreq: 'weekly', priority: '0.8' },
+    { loc: toAbsoluteUrl('/engagement-associatif/'), lastmod: formatDate(now), changefreq: 'monthly', priority: '0.7' },
+    {
+      loc: toAbsoluteUrl('/blog/'),
+      lastmod: formatDate(latestPostDate ?? now),
+      changefreq: 'weekly',
+      priority: '0.8'
+    },
+    { loc: toAbsoluteUrl('/contact/'), lastmod: formatDate(now), changefreq: 'yearly', priority: '0.5' },
     ...publishedPosts.map((post) => ({
       loc: toAbsoluteUrl(`/blog/${post.slug}/`),
-      lastmod: formatDate(post.data?.pubDate ? new Date(post.data.pubDate) : now),
+      lastmod: formatDate(post.data?.updatedDate ?? post.data?.pubDate ?? now),
+      changefreq: 'monthly',
+      priority: '0.7'
     })),
   ];
 
@@ -34,6 +45,8 @@ ${urls
     (url) => `  <url>
     <loc>${url.loc}</loc>
     <lastmod>${url.lastmod}</lastmod>
+    <changefreq>${url.changefreq}</changefreq>
+    <priority>${url.priority}</priority>
   </url>`
   )
   .join('\n')}

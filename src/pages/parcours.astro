@@ -3,6 +3,69 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
+const indyStartDate = new Date(2022, 6, 1); // juillet = 6 (index 0-based)
+const today = new Date();
+const totalMonthsAtIndy = Math.max(
+  1,
+  (today.getFullYear() - indyStartDate.getFullYear()) * 12 +
+    (today.getMonth() - indyStartDate.getMonth()) +
+    1
+);
+const indyYears = Math.floor(totalMonthsAtIndy / 12);
+const indyMonths = totalMonthsAtIndy % 12;
+const indyDurationParts = [];
+
+if (indyYears > 0) {
+  indyDurationParts.push(`${indyYears} an${indyYears > 1 ? 's' : ''}`);
+}
+
+if (indyMonths > 0) {
+  indyDurationParts.push(`${indyMonths} mois`);
+}
+
+const indyDuration = indyDurationParts.join(' ');
+const indyHeroLabel = `Indy · CDI · ${indyDuration} (depuis juillet 2022)`;
+const monthYearFormatter = new Intl.DateTimeFormat('fr-FR', {
+  month: 'short',
+  year: 'numeric'
+});
+
+function toMonthDate(year: number, month: number) {
+  return new Date(year, month - 1, 1);
+}
+
+function getTotalMonthsInclusive(startDate: Date, endDate: Date) {
+  return Math.max(
+    1,
+    (endDate.getFullYear() - startDate.getFullYear()) * 12 +
+      (endDate.getMonth() - startDate.getMonth()) +
+      1
+  );
+}
+
+function formatDuration(startDate: Date, endDate: Date) {
+  const totalMonths = getTotalMonthsInclusive(startDate, endDate);
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+  const parts = [];
+
+  if (years > 0) {
+    parts.push(`${years} an${years > 1 ? 's' : ''}`);
+  }
+
+  if (months > 0) {
+    parts.push(`${months} mois`);
+  }
+
+  return parts.join(' ');
+}
+
+function formatPeriod(startDate: Date, endDate?: Date) {
+  const start = monthYearFormatter.format(startDate);
+  const end = endDate ? monthYearFormatter.format(endDate) : 'aujourd’hui';
+  return `${start} - ${end}`;
+}
+
 const quickStats = [
   { value: '21+', label: "ans d'expérience opérationnelle" },
   { value: '300+', label: 'collaborateurs gérés chez Indy' },
@@ -47,8 +110,8 @@ const experiences = [
     role: 'Information Technology Officer',
     company: 'Indy',
     contract: 'CDI',
-    period: 'janv. 2024 - aujourd’hui',
-    duration: '2 ans 4 mois',
+    startDate: toMonthDate(2024, 1),
+    endDate: undefined,
     location: 'Lyon, Auvergne-Rhône-Alpes, France',
     mode: 'Hybride',
     summary:
@@ -63,8 +126,8 @@ const experiences = [
     role: 'Technicien Helpdesk',
     company: 'Indy',
     contract: 'CDI',
-    period: 'juil. 2022 - janv. 2024',
-    duration: '1 an 7 mois',
+    startDate: toMonthDate(2022, 7),
+    endDate: toMonthDate(2024, 1),
     location: 'Lyon, Auvergne-Rhône-Alpes, France',
     mode: 'Sur site / Hybride',
     summary:
@@ -84,8 +147,8 @@ const experiences = [
     role: 'Manager de proximité',
     company: 'Carsat Rhône Alpes',
     contract: 'Mission',
-    period: 'janv. 2022 - mars 2022',
-    duration: '3 mois',
+    startDate: toMonthDate(2022, 1),
+    endDate: toMonthDate(2022, 3),
     location: 'Lyon, Auvergne-Rhône-Alpes, France',
     mode: 'Sur site',
     summary:
@@ -100,8 +163,8 @@ const experiences = [
     role: "Agent de maîtrise - Chef d'équipe adjoint",
     company: 'EURO.TVS - TRAITEMENT VALEURS SERVICES',
     contract: 'CDI',
-    period: 'avr. 2005 - déc. 2021',
-    duration: '16 ans 9 mois',
+    startDate: toMonthDate(2005, 4),
+    endDate: toMonthDate(2021, 12),
     location: 'Tassin, Auvergne-Rhône-Alpes, France',
     mode: 'Sur site',
     summary:
@@ -118,8 +181,8 @@ const experiences = [
     role: 'Travailleur indépendant',
     company: 'Monkey of The Net',
     contract: 'Indépendant',
-    period: 'janv. 2009 - déc. 2011',
-    duration: '3 ans',
+    startDate: toMonthDate(2009, 1),
+    endDate: toMonthDate(2011, 12),
     location: 'Toussieu, Auvergne-Rhône-Alpes, France',
     mode: 'Freelance',
     summary:
@@ -134,8 +197,8 @@ const experiences = [
     role: 'Agent de sécurité',
     company: 'Sécurifrance',
     contract: 'Temps plein',
-    period: 'oct. 2004 - avr. 2005',
-    duration: '7 mois',
+    startDate: toMonthDate(2004, 10),
+    endDate: toMonthDate(2005, 4),
     location: 'Lyon et périphérie',
     mode: 'Terrain',
     summary:
@@ -146,7 +209,14 @@ const experiences = [
       'Interventions sur sites industriels et tertiaires exigeants.'
     ]
   }
-];
+].map((xp) => {
+  const effectiveEndDate = xp.endDate ?? today;
+  return {
+    ...xp,
+    period: formatPeriod(xp.startDate, xp.endDate),
+    duration: formatDuration(xp.startDate, effectiveEndDate)
+  };
+});
 ---
 
 <BaseLayout
@@ -166,7 +236,7 @@ const experiences = [
         </p>
         <div class="hero-cta">
           <a href="https://www.linkedin.com/in/stanislas-bouchet/" target="_blank" rel="noopener noreferrer">Voir le profil LinkedIn</a>
-          <p>Indy · CDI · 3 ans 10 mois (depuis juillet 2022)</p>
+          <p>{indyHeroLabel}</p>
         </div>
       </div>
     </section>

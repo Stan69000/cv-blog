@@ -12,9 +12,27 @@ const yearFormatter = new Intl.DateTimeFormat('fr-FR', {
   year: 'numeric'
 });
 
-const capitalize = (value) => value.charAt(0).toUpperCase() + value.slice(1);
+type DatePrecision = 'month' | 'year';
+type ProjectStatus = 'ongoing' | 'completed';
 
-const formatPointInTime = (value, precision = 'month') => {
+type FeaturedProject = {
+  type: string;
+  name: string;
+  startedAt: string;
+  endedAt?: string;
+  startPrecision?: DatePrecision;
+  endPrecision?: DatePrecision;
+  status: ProjectStatus;
+  url: string | null;
+  context: string;
+  technique: string[];
+  impact: string[];
+  tags: string[];
+};
+
+const capitalize = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
+
+const formatPointInTime = (value: string, precision: DatePrecision = 'month') => {
   const date = new Date(value);
   if (precision === 'year') {
     return yearFormatter.format(date);
@@ -23,7 +41,7 @@ const formatPointInTime = (value, precision = 'month') => {
   return capitalize(monthYearFormatter.format(date));
 };
 
-const formatProjectDate = (project) => {
+const formatProjectDate = (project: FeaturedProject) => {
   const start = formatPointInTime(project.startedAt, project.startPrecision);
 
   if (project.endedAt) {
@@ -43,7 +61,7 @@ const formatProjectDate = (project) => {
   return start;
 };
 
-const featuredProjects = [
+const featuredProjects: FeaturedProject[] = [
   {
     type: 'Site associatif',
     name: 'Le Singe du Numérique',

@@ -4,6 +4,8 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { getCollection, render } from 'astro:content';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const pages = await getCollection('pages', ({ data }) => {
     return !data.draft;
