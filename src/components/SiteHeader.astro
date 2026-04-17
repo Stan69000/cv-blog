@@ -22,7 +22,7 @@ const navItems = [
   <div class="container site-header__inner">
     <a href="/" class="brand" aria-label="Accueil - Stan Bouchet">
       <span class="brand__logo" aria-hidden="true">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
           <rect width="32" height="32" rx="8" fill="currentColor" fill-opacity="0.1"/>
           <path d="M8 12h16M8 16h12M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
@@ -68,7 +68,7 @@ const navItems = [
     </div>
   </div>
 
-  <div id="mobile-sheet" class="mobile-sheet">
+  <div id="mobile-sheet" class="mobile-sheet" inert>
     <div class="mobile-sheet__backdrop" id="mobile-sheet-backdrop"></div>
     <div class="mobile-sheet__panel" role="dialog" aria-modal="true" aria-label="Navigation mobile">
       <div class="mobile-sheet__head">
@@ -99,30 +99,43 @@ const navItems = [
   </div>
 </header>
 
-<script is:inline>
+<script>
   document.addEventListener('DOMContentLoaded', () => {
-    const sheet = document.getElementById('mobile-sheet');
-    const toggle = document.getElementById('mobile-menu-toggle');
-    const closeButton = document.getElementById('mobile-menu-close');
-    const backdrop = document.getElementById('mobile-sheet-backdrop');
-    const links = sheet?.querySelectorAll('a') ?? [];
+    const sheet = document.getElementById('mobile-sheet') as HTMLElement | null;
+    const toggle = document.getElementById('mobile-menu-toggle') as HTMLButtonElement | null;
+    const closeButton = document.getElementById('mobile-menu-close') as HTMLButtonElement | null;
+    const backdrop = document.getElementById('mobile-sheet-backdrop') as HTMLElement | null;
+    const panel = sheet?.querySelector('.mobile-sheet__panel') as HTMLElement | null;
+    const links = (sheet?.querySelectorAll('a') ?? []) as NodeListOf<HTMLAnchorElement>;
+    const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    let lastFocused: HTMLElement | null = null;
 
     if (!sheet || !toggle) return;
 
-    const openSheet = (e) => {
+    const getFocusable = () =>
+      Array.from(sheet.querySelectorAll<HTMLElement>(focusableSelector)).filter((el) => el.offsetParent !== null);
+
+    const openSheet = (e?: MouseEvent) => {
       if (e) {
         e.preventDefault();
         e.stopPropagation();
       }
+      lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       sheet.classList.add('is-open');
+      sheet.removeAttribute('inert');
       toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Fermer le menu');
       document.body.style.overflow = 'hidden';
+      (closeButton ?? panel)?.focus();
     };
 
     const closeSheet = () => {
       sheet.classList.remove('is-open');
+      sheet.setAttribute('inert', '');
       toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Ouvrir le menu');
       document.body.style.overflow = '';
+      lastFocused?.focus();
     };
 
     toggle.addEventListener('click', openSheet);
@@ -130,8 +143,30 @@ const navItems = [
     backdrop?.addEventListener('click', closeSheet);
     links.forEach((link) => link.addEventListener('click', closeSheet));
 
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && sheet.classList.contains('is-open')) closeSheet();
+    document.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (!sheet.classList.contains('is-open')) return;
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeSheet();
+        return;
+      }
+
+      if (event.key === 'Tab') {
+        const focusable = getFocusable();
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        const active = document.activeElement as HTMLElement | null;
+
+        if (event.shiftKey && active === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && active === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     });
   });
 </script>
@@ -166,6 +201,10 @@ const navItems = [
 
   .brand:hover {
     opacity: 0.8;
+  }
+
+  .brand:focus-visible {
+    opacity: 1;
   }
 
   .brand__logo {
@@ -232,6 +271,9 @@ const navItems = [
   .site-nav a.is-active {
     color: var(--text);
     background: var(--surface);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.25em;
   }
 
   .header-actions {
@@ -256,6 +298,10 @@ const navItems = [
 
   .mobile-menu-toggle:hover {
     background: var(--surface);
+  }
+
+  .mobile-menu-toggle:focus-visible {
+    border-color: var(--accent);
   }
 
   @media (min-width: 900px) {
@@ -337,6 +383,10 @@ const navItems = [
     cursor: pointer;
   }
 
+  .mobile-sheet__head button:focus-visible {
+    border-color: var(--accent);
+  }
+
   .mobile-nav {
     margin: 0;
     padding: 0;
@@ -361,6 +411,13 @@ const navItems = [
   .mobile-nav a.is-active {
     color: var(--text);
     background: var(--surface);
+  }
+
+  .mobile-nav a.is-active {
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.25em;
   }
 
   .mobile-sheet__footer {

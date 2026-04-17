@@ -61,7 +61,8 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
         <section class="home-map" aria-label="Navigation visuelle principale">
           <img
             src="/images/homepage-cv.png"
-            alt="Navigation visuelle avec quatre blocs : Parcours pro, Projets, Engagement associatif et Blog."
+            alt=""
+            aria-hidden="true"
             width="1415"
             height="848"
           />
@@ -157,7 +158,6 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
     border-radius: 20px;
     background: transparent;
     cursor: pointer;
-    outline: none;
   }
 
   .image-hitbox:hover {
@@ -167,6 +167,8 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
   }
 
   .image-hitbox:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
     box-shadow: 0 0 0 2px var(--accent);
   }
 
@@ -235,7 +237,8 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
     transform: translateY(-2px);
     border-color: var(--accent);
     box-shadow: var(--shadow);
-    outline: none;
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
 
   .universe-card h3 {

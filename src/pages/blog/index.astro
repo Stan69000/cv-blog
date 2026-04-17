@@ -7,6 +7,7 @@ import SiteFooter from '../../components/SiteFooter.astro';
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
+const hasPublishedPosts = posts.length > 0;
 
 const toBlogUrl = (id: string) => `/blog/${id.replace(/\.md$/, '')}/`;
 
@@ -151,6 +152,7 @@ const floppies = [
 <BaseLayout
   title="Blog | Stan Bouchet"
   description="Bibliothèque des billets : livres et disquettes pour parcourir les articles."
+  noIndex={!hasPublishedPosts}
 >
   <SiteHeader />
 
@@ -173,25 +175,44 @@ const floppies = [
       <div class="shelf">
         <div class="shelf__items">
           {books.map((item) => (
-            <a
-              class="piece"
-              href={item.href}
-              data-piece="true"
-              id={item.placeholder ? item.placeholderId : undefined}
-              aria-label={item.placeholder ? `${item.title} (placeholder)` : item.title}
-            >
-              <article class={`book ${item.color}`}>
-                <span class="book__spineTitle">{item.spine}</span>
-                <span class="book__spineShade"></span>
-                <span class="book__pages"></span>
-                <div>
-                  <p class="book__kicker">Livre</p>
-                  <h2 class="book__title">{item.title}</h2>
-                  <p class="book__desc">{item.description}</p>
-                </div>
-                <p class="book__meta">{item.meta}</p>
-              </article>
-            </a>
+            item.placeholder ? (
+              <div
+                class="piece"
+                data-piece="true"
+                id={item.placeholderId}
+              >
+                <article class={`book ${item.color}`} aria-hidden="true">
+                  <span class="book__spineTitle">{item.spine}</span>
+                  <span class="book__spineShade"></span>
+                  <span class="book__pages"></span>
+                  <div>
+                    <p class="book__kicker">Livre</p>
+                    <h2 class="book__title">{item.title}</h2>
+                    <p class="book__desc">{item.description}</p>
+                  </div>
+                  <p class="book__meta">{item.meta}</p>
+                </article>
+              </div>
+            ) : (
+              <a
+                class="piece"
+                href={item.href}
+                data-piece="true"
+                aria-label={item.title}
+              >
+                <article class={`book ${item.color}`}>
+                  <span class="book__spineTitle">{item.spine}</span>
+                  <span class="book__spineShade"></span>
+                  <span class="book__pages"></span>
+                  <div>
+                    <p class="book__kicker">Livre</p>
+                    <h2 class="book__title">{item.title}</h2>
+                    <p class="book__desc">{item.description}</p>
+                  </div>
+                  <p class="book__meta">{item.meta}</p>
+                </article>
+              </a>
+            )
           ))}
         </div>
         <div class="shelf__wood"></div>
@@ -206,51 +227,95 @@ const floppies = [
       <div class="shelf">
         <div class="shelf__items">
           {floppies.map((item) => (
-            <a
-              class="piece"
-              href={item.href}
-              data-piece="true"
-              data-floppy="true"
-              aria-expanded="false"
-              id={item.placeholder ? item.placeholderId : undefined}
-              aria-label={item.placeholder ? `${item.title} (placeholder)` : item.title}
-            >
-              <div class="floppy-wrap">
-                <article class={`floppy ${item.color}`} aria-label={item.title}>
-                  <div class="floppy__body">
-                    <span class="floppy__notch left"></span>
-                    <span class="floppy__notch right"></span>
-                    <div class="floppy__top">
-                      <div class="floppy__metalContent">
-                        <div class="floppy__topText">
-                          <small>Formatted</small>
-                          <span class="capacity">1.44MB</span>
-                          <strong>High Density</strong>
-                          <span class="model">MFD-2HD</span>
-                        </div>
-                        <div class="floppy__blackSlot"></div>
-                      </div>
-                    </div>
-                    <span class="floppy__hdMark">HD</span>
-                    <span class="floppy__writeProtect"></span>
-                    <div class="floppy__label">
-                      <div class="floppy__lines"></div>
-                      <div class="floppy__content">
-                        <div class="floppy__titleWrap">
-                          <h2 class="floppy__title">{item.title}</h2>
+            item.placeholder ? (
+              <div
+                class="piece"
+                data-piece="true"
+                data-floppy="true"
+                id={item.placeholderId}
+              >
+                <div class="floppy-wrap" aria-hidden="true">
+                  <article class={`floppy ${item.color}`} aria-label={item.title}>
+                    <div class="floppy__body">
+                      <span class="floppy__notch left"></span>
+                      <span class="floppy__notch right"></span>
+                      <div class="floppy__top">
+                        <div class="floppy__metalContent">
+                          <div class="floppy__topText">
+                            <small>Formatted</small>
+                            <span class="capacity">1.44MB</span>
+                            <strong>High Density</strong>
+                            <span class="model">MFD-2HD</span>
+                          </div>
+                          <div class="floppy__blackSlot"></div>
                         </div>
                       </div>
-                      <div class="floppy__tooltip" role="tooltip">
-                        <p class="floppy__tooltipKicker">Disquette</p>
-                        <h3 class="floppy__tooltipTitle">{item.title}</h3>
-                        <p class="floppy__tooltipDesc">{item.description}</p>
-                        <p class="floppy__tooltipMeta">{item.meta}</p>
+                      <span class="floppy__hdMark">HD</span>
+                      <span class="floppy__writeProtect"></span>
+                      <div class="floppy__label">
+                        <div class="floppy__lines"></div>
+                        <div class="floppy__content">
+                          <div class="floppy__titleWrap">
+                            <h2 class="floppy__title">{item.title}</h2>
+                          </div>
+                        </div>
+                        <div class="floppy__tooltip" role="tooltip">
+                          <p class="floppy__tooltipKicker">Disquette</p>
+                          <h3 class="floppy__tooltipTitle">{item.title}</h3>
+                          <p class="floppy__tooltipDesc">{item.description}</p>
+                          <p class="floppy__tooltipMeta">{item.meta}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </article>
+                  </article>
+                </div>
               </div>
-            </a>
+            ) : (
+              <a
+                class="piece"
+                href={item.href}
+                data-piece="true"
+                data-floppy="true"
+                aria-expanded="false"
+                aria-label={item.title}
+              >
+                <div class="floppy-wrap">
+                  <article class={`floppy ${item.color}`} aria-label={item.title}>
+                    <div class="floppy__body">
+                      <span class="floppy__notch left"></span>
+                      <span class="floppy__notch right"></span>
+                      <div class="floppy__top">
+                        <div class="floppy__metalContent">
+                          <div class="floppy__topText">
+                            <small>Formatted</small>
+                            <span class="capacity">1.44MB</span>
+                            <strong>High Density</strong>
+                            <span class="model">MFD-2HD</span>
+                          </div>
+                          <div class="floppy__blackSlot"></div>
+                        </div>
+                      </div>
+                      <span class="floppy__hdMark">HD</span>
+                      <span class="floppy__writeProtect"></span>
+                      <div class="floppy__label">
+                        <div class="floppy__lines"></div>
+                        <div class="floppy__content">
+                          <div class="floppy__titleWrap">
+                            <h2 class="floppy__title">{item.title}</h2>
+                          </div>
+                        </div>
+                        <div class="floppy__tooltip" role="tooltip">
+                          <p class="floppy__tooltipKicker">Disquette</p>
+                          <h3 class="floppy__tooltipTitle">{item.title}</h3>
+                          <p class="floppy__tooltipDesc">{item.description}</p>
+                          <p class="floppy__tooltipMeta">{item.meta}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </a>
+            )
           ))}
         </div>
         <div class="shelf__wood"></div>
@@ -260,8 +325,11 @@ const floppies = [
 
   <SiteFooter />
 
-  <script is:inline>
+  <script>
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealNodes = document.querySelectorAll('[data-reveal]') as NodeListOf<HTMLElement>;
+    const pieces = document.querySelectorAll('[data-piece="true"]') as NodeListOf<HTMLElement>;
+    const floppies = document.querySelectorAll('[data-floppy="true"]') as NodeListOf<HTMLElement>;
 
     if (!reduceMotion) {
       const observer = new IntersectionObserver(
@@ -276,13 +344,13 @@ const floppies = [
         { threshold: 0.12 }
       );
 
-      document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+      revealNodes.forEach((el) => observer.observe(el));
     } else {
-      document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-visible'));
+      revealNodes.forEach((el) => el.classList.add('is-visible'));
     }
 
-    document.querySelectorAll('[data-piece="true"]').forEach((piece) => {
-      piece.addEventListener('click', (event) => {
+    pieces.forEach((piece) => {
+      piece.addEventListener('click', (event: MouseEvent) => {
         piece.classList.add('is-pressed');
         window.setTimeout(() => piece.classList.remove('is-pressed'), 140);
 
@@ -294,7 +362,7 @@ const floppies = [
           const expanded = piece.classList.toggle('is-peeked');
           piece.setAttribute('aria-expanded', expanded ? 'true' : 'false');
 
-          document.querySelectorAll('[data-floppy="true"]').forEach((other) => {
+          floppies.forEach((other) => {
             if (other !== piece) {
               other.classList.remove('is-peeked');
               other.setAttribute('aria-expanded', 'false');
@@ -303,7 +371,7 @@ const floppies = [
         }
       });
 
-      piece.addEventListener('keydown', (event) => {
+      piece.addEventListener('keydown', (event: KeyboardEvent) => {
         if (
           piece.dataset.floppy === 'true' &&
           (event.key === ' ' || event.key === 'Enter') &&
@@ -316,9 +384,10 @@ const floppies = [
       });
     });
 
-    document.addEventListener('click', (event) => {
-      if (!event.target.closest('[data-floppy="true"]')) {
-        document.querySelectorAll('[data-floppy="true"]').forEach((piece) => {
+    document.addEventListener('click', (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element) || !target.closest('[data-floppy="true"]')) {
+        floppies.forEach((piece) => {
           piece.classList.remove('is-peeked');
           piece.setAttribute('aria-expanded', 'false');
         });
@@ -465,10 +534,6 @@ const floppies = [
     outline: 2px solid var(--accent);
     outline-offset: 6px;
     border-radius: 20px;
-  }
-
-  .piece:focus:not(:focus-visible) {
-    outline: none;
   }
 
   .book {
