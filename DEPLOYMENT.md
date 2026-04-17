@@ -28,3 +28,22 @@ The workflow file `.github/workflows/deploy-o2switch.yml` deploys automatically:
 Build command used:
 
 - `npm run build:o2switch`
+
+## 4) Protect `/keystatic` with strong access control
+
+In Netlify site environment variables, set:
+
+- `KEYSTATIC_BASIC_AUTH_USER` (required)
+- `KEYSTATIC_BASIC_AUTH_PASS` (required)
+- `KEYSTATIC_ALLOWED_IPS` (optional, comma-separated trusted IPs, example: `203.0.113.10,198.51.100.42`)
+
+Behavior in production:
+
+- `/keystatic` and `/keystatic/*` are allowed if client IP matches `KEYSTATIC_ALLOWED_IPS`
+- otherwise, HTTP Basic Auth is required
+- if auth variables are missing, access is denied (`503`)
+
+Notes:
+
+- This protection is bypassed in local development (`astro dev`)
+- Keep credentials only in Netlify environment variables (never in git)
