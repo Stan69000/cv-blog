@@ -70,16 +70,20 @@ const featuredProjects: FeaturedProject[] = [
     status: 'completed',
     url: null,
     context:
-      'Application macOS native de tri de photos. Ma premiere app macOS fonctionnelle, avec une interface soignee et orientee productivite.',
+      'Application macOS native de tri de photos. Ma première app macOS fonctionnelle, et jolie !',
     technique: [
-      'Interface SwiftUI avec shortcuts clavier (1-5) pour trier rapidement vers des dossiers cibles, revision et rejet.',
-      'Gestion des metadonnees EXIF via mdls (Canon EOS 90D, objectif, ISO, ouverture, vitesse, focale).',
-      'Modes copier/deplacer avec gestion des collisions, architecture MVVM avec security-scoped bookmarks, et theming clair/sombre/auto configurable depuis l’application.',
-      'Code source : github.com/Stan69000/app-triage-photo (repo prive pour le moment).'
+      'Interface SwiftUI avec shortcuts clavier (1-5) pour déplacer/copier vos photos vers 3 dossiers + révision + rejet.',
+      'Gestion des métadonnées EXIF via mdls (Canon EOS 90D, objectif, ISO, ouverture, vitesse, focale).',
+      'Modes copier/déplacer avec gestion des collisions.',
+      'Architecture MVVM avec security-scoped bookmarks.',
+      'Thème clair, sombre, auto.',
+      'Réglage possible des paramètres depuis l’app.',
+      'Code source : github.com/Stan69000/app-triage-photo (repo privé pour le moment).'
     ],
     impact: [
-      'Tri rapide de lots photos directement dans les dossiers, avec possibilite de copier ou deplacer vers 2 dossiers (exemple : galerie photo + association RVAz).',
-      'Gain de temps significatif par rapport au glisser-deposer classique dans le Finder, avec une experience plus visuelle.'
+      'Tri rapide de lots photos directement dans les dossiers. Possibilité de copier ou déplacer les photos dans 2 dossiers (exemple : ma galerie photo + mon asso RVAz).',
+      'Gain de temps significatif.',
+      'Bien plus visuel que de glisser-déposer dans des dossiers depuis le Finder.'
     ],
     tags: ['SwiftUI', 'macOS', 'MVVM', 'EXIF', 'Photo workflow']
   },
@@ -213,6 +217,11 @@ const featuredProjects: FeaturedProject[] = [
     tags: ['Google Workspace', 'Gouvernance', 'Conduite du changement']
   }
 ];
+
+const featuredProjectsOrdered: FeaturedProject[] = [
+  ...featuredProjects.filter((project) => project.status === 'ongoing'),
+  ...featuredProjects.filter((project) => project.status === 'completed')
+];
 ---
 
 <BaseLayout
@@ -238,7 +247,7 @@ const featuredProjects: FeaturedProject[] = [
     <section class="section" aria-labelledby="featured-title">
       <h2 id="featured-title">Mes projets</h2>
       <div class="project-grid">
-        {featuredProjects.map((project) => (
+        {featuredProjectsOrdered.map((project) => (
           <article class="project-card">
             <header class="project-head">
               <p class="project-type">{project.type}</p>
