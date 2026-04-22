@@ -334,32 +334,37 @@ const navItems = [
   .mobile-sheet__backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(2px);
   }
 
   .mobile-sheet__panel {
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--bg);
-    border-top: 1px solid var(--line);
-    border-radius: 1.25rem 1.25rem 0 0;
-    padding: 1rem 1.25rem 1.5rem;
-    transform: translateY(100%);
-    transition: transform 300ms ease;
+    top: 4.65rem;
+    left: 0.9rem;
+    right: 0.9rem;
+    background: color-mix(in srgb, var(--surface-strong) 95%, transparent);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+    padding: 0.9rem 0.95rem 1.05rem;
+    transform: translateY(-14px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 220ms ease, opacity 220ms ease;
   }
 
   .mobile-sheet.is-open .mobile-sheet__panel {
     transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .mobile-sheet__head {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .mobile-sheet__title {
@@ -392,12 +397,12 @@ const navItems = [
     padding: 0;
     list-style: none;
     display: grid;
-    gap: 0.35rem;
+    gap: 0.4rem;
   }
 
   .mobile-nav a {
     display: block;
-    padding: 0.85rem 1rem;
+    padding: 0.8rem 0.95rem;
     font-family: var(--font-sans);
     font-size: 1rem;
     font-weight: 500;
@@ -429,6 +434,14 @@ const navItems = [
   @media (min-width: 900px) {
     .mobile-sheet {
       display: none !important;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .mobile-sheet__panel {
+      top: 4.25rem;
+      left: 0.65rem;
+      right: 0.65rem;
     }
   }
 </style>
