@@ -24,6 +24,7 @@ type FeaturedProject = {
   endPrecision?: DatePrecision;
   status: ProjectStatus;
   url: string | null;
+  extensionUrl?: string;
   context: string;
   technique: string[];
   impact: string[];
@@ -186,6 +187,8 @@ const featuredProjects: FeaturedProject[] = [
     startPrecision: 'month',
     status: 'ongoing',
     url: 'https://stan69000.github.io/rgaa-audit/',
+    extensionUrl:
+      'https://chromewebstore.google.com/detail/rgaa-audit/aiaiblaemmjcfeeobpjagdajbgbcabai?authuser=2&hl=fr',
     context: 'Outil open source pour rendre les audits RGAA plus opérationnels et plus faciles à démarrer.',
     technique: [
       'Interface orientée usage terrain, sans surcharge.',
@@ -194,7 +197,7 @@ const featuredProjects: FeaturedProject[] = [
     ],
     impact: [
       'Démarrage d’audit plus rapide.',
-      'Extension Google Chrome disponible sur le Chrome Web Store : https://chromewebstore.google.com/detail/rgaa-audit/aiaiblaemmjcfeeobpjagdajbgbcabai?authuser=2&hl=fr'
+      'Extension Chrome publiée sur le Chrome Web Store pour lancer les vérifications directement dans le navigateur.'
     ],
     tags: ['Accessibilité', 'RGAA', 'Extension Chrome']
   },
@@ -289,11 +292,18 @@ const featuredProjectsOrdered: FeaturedProject[] = [
               ))}
             </ul>
 
-            {project.url && (
+            {(project.url || project.extensionUrl) && (
               <p class="project-link-wrap">
-                <a href={project.url} target="_blank" rel="noopener noreferrer" class="project-link">
-                  Voir le projet
-                </a>
+                {project.url && (
+                  <a href={project.url} target="_blank" rel="noopener noreferrer" class="project-link">
+                    Voir le projet
+                  </a>
+                )}
+                {project.extensionUrl && (
+                  <a href={project.extensionUrl} target="_blank" rel="noopener noreferrer" class="project-link">
+                    Voir l’extension
+                  </a>
+                )}
               </p>
             )}
           </article>
@@ -453,8 +463,8 @@ const featuredProjectsOrdered: FeaturedProject[] = [
 
   .project-tags li {
     border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 0.27rem 0.65rem;
+    border-radius: 0.85rem;
+    padding: 0.33rem 0.72rem;
     font-size: var(--text-xs);
     color: var(--muted);
     background: color-mix(in srgb, var(--surface) 94%, transparent);
@@ -469,6 +479,9 @@ const featuredProjectsOrdered: FeaturedProject[] = [
 
   .project-link-wrap {
     margin: 0.15rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
 
   .project-link {
