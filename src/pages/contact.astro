@@ -4,11 +4,13 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
 const linkedInUrl = 'https://www.linkedin.com/in/stanislas-bouchet/';
+const githubUrl = 'https://github.com/Stan69000';
 ---
 
 <BaseLayout
   title="Contact | Stan Bouchet"
-  description="Contacte-moi via LinkedIn pour le moment."
+  description="Contactez Stan Bouchet via LinkedIn ou GitHub. Disponible pour des échanges sur les projets web, l'IT terrain, l'accessibilité et les sujets associatifs."
+  ogImage="/images/og/contact.jpg"
 >
   <SiteHeader />
 
@@ -16,44 +18,52 @@ const linkedInUrl = 'https://www.linkedin.com/in/stanislas-bouchet/';
     <section class="contact-hero section">
       <div class="hero-panel">
         <p class="eyebrow">Contact</p>
-        <h1>On se connecte sur LinkedIn.</h1>
+        <h1>Prenons contact.</h1>
         <p class="lead muted">
-          Pour le moment, le meilleur canal pour me contacter est LinkedIn.
-          Je réponds dès que possible aux messages liés aux projets web, à l’IT terrain,
-          à l’accessibilité et aux sujets associatifs.
+          Le meilleur canal reste LinkedIn pour un premier échange.
+          Je réponds généralement sous 2-3 jours aux messages liés aux projets web,
+          à l'IT terrain, à l'accessibilité et aux sujets associatifs.
         </p>
         <p class="contact-hero__cta">
-          <a class="button" href={linkedInUrl} target="_blank" rel="noopener noreferrer">
+          <a class="button button--primary" href={linkedInUrl} target="_blank" rel="noopener noreferrer">
             Écrire sur LinkedIn
+          </a>
+          <a class="button" href={githubUrl} target="_blank" rel="noopener noreferrer">
+            Voir GitHub
           </a>
         </p>
       </div>
     </section>
 
-    <section class="section contact-grid" aria-label="Informations de contact">
-      <article class="contact-card">
-        <h2>Pourquoi LinkedIn ?</h2>
-        <p>
-          C’est aujourd’hui le canal le plus simple pour échanger rapidement et centraliser les demandes.
-          Tu peux m’envoyer un message direct avec ton contexte et ton besoin.
-        </p>
-      </article>
-
-      <article class="contact-card">
-        <h2>Pour aller plus vite</h2>
-        <ul>
-          <li>Présente ton projet en 2-3 lignes.</li>
-          <li>Ajoute ton délai ou ta contrainte principale.</li>
-          <li>Précise si tu veux un échange ponctuel ou un accompagnement.</li>
-        </ul>
-      </article>
+    <section class="section contact-grid" aria-labelledby="contact-info-title">
+      <h2 id="contact-info-title" class="sr-only">Informations de contact</h2>
 
       <article class="contact-card contact-card--highlight">
-        <h2>Profil LinkedIn</h2>
+        <p class="contact-card__icon" aria-hidden="true">💼</p>
+        <h3>LinkedIn</h3>
         <p>
           <a href={linkedInUrl} target="_blank" rel="noopener noreferrer">linkedin.com/in/stanislas-bouchet</a>
         </p>
-        <p class="muted">Tu peux aussi me suivre pour voir mes actus projets et associatives.</p>
+        <p class="muted">Pour les échanges pro, projets et collaborations associatives.</p>
+      </article>
+
+      <article class="contact-card">
+        <p class="contact-card__icon" aria-hidden="true">🛠️</p>
+        <h3>GitHub</h3>
+        <p>
+          <a href={githubUrl} target="_blank" rel="noopener noreferrer">github.com/Stan69000</a>
+        </p>
+        <p class="muted">Pour les projets open source : issues, contributions, retours.</p>
+      </article>
+
+      <article class="contact-card">
+        <p class="contact-card__icon" aria-hidden="true">⚡</p>
+        <h3>Pour aller plus vite</h3>
+        <ul>
+          <li>Présentez votre projet en 2-3 lignes.</li>
+          <li>Précisez votre délai ou votre contrainte principale.</li>
+          <li>Indiquez si vous cherchez un échange ponctuel ou un accompagnement.</li>
+        </ul>
       </article>
     </section>
   </main>
@@ -79,6 +89,20 @@ const linkedInUrl = 'https://www.linkedin.com/in/stanislas-bouchet/';
 
   .contact-hero__cta {
     margin-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+
+  .button--primary {
+    background: var(--accent);
+    color: var(--accent-contrast);
+    border-color: var(--accent);
+  }
+
+  .button--primary:hover {
+    background: color-mix(in srgb, var(--accent) 85%, var(--text));
+    border-color: color-mix(in srgb, var(--accent) 85%, var(--text));
   }
 
   .contact-grid {
@@ -92,13 +116,20 @@ const linkedInUrl = 'https://www.linkedin.com/in/stanislas-bouchet/';
     background: var(--surface);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    padding: 1.15rem;
+    padding: 1.35rem;
+    display: grid;
+    gap: 0.45rem;
   }
 
-  .contact-card h2 {
-    margin-top: 0;
-    margin-bottom: 0.55rem;
-    font-size: 1.15rem;
+  .contact-card__icon {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .contact-card h3 {
+    margin: 0.1rem 0 0;
+    font-size: clamp(1.1rem, 1.4vw, 1.28rem);
   }
 
   .contact-card p,
@@ -110,15 +141,13 @@ const linkedInUrl = 'https://www.linkedin.com/in/stanislas-bouchet/';
     margin: 0;
     padding-left: 1.1rem;
     display: grid;
-    gap: 0.25rem;
+    gap: 0.3rem;
   }
 
   .contact-card--highlight {
-    background: linear-gradient(
-      170deg,
-      color-mix(in srgb, var(--surface-strong) 78%, transparent),
-      color-mix(in srgb, var(--surface) 94%, transparent)
-    );
+    background:
+      radial-gradient(circle at 10% 10%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 50%),
+      var(--surface);
   }
 
   .contact-card a {
@@ -134,9 +163,26 @@ const linkedInUrl = 'https://www.linkedin.com/in/stanislas-bouchet/';
     border-color: color-mix(in srgb, var(--accent) 55%, transparent);
   }
 
-  @media (max-width: 980px) {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 760px) {
     .contact-grid {
       grid-template-columns: 1fr;
+    }
+
+    .contact-hero__cta .button {
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>

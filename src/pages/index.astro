@@ -6,33 +6,6 @@ import siteConfig from '../data/site.json';
 import homeConfig from '../data/home.json';
 import seoConfig from '../data/seo.json';
 
-const universes = [
-  {
-    title: 'Parcours pro',
-    href: '/parcours',
-    text: 'Mon évolution, ma manière de travailler, et ce que le terrain m\'a appris.',
-    show: homeConfig.showParcours ?? true
-  },
-  {
-    title: 'Projets',
-    href: '/projets',
-    text: "Les projets montés à côté de mon travail d'IT Officer",
-    show: homeConfig.showProjets ?? true
-  },
-  {
-    title: 'Engagement associatif',
-    href: '/engagement-associatif',
-    text: 'Des expériences de transmission, de collectif et d\'engagement sur le long terme.',
-    show: homeConfig.showEngagement ?? true
-  },
-  {
-    title: 'Blog',
-    href: '/blog',
-    text: 'Un espace pour partager des idées, des retours d\'expérience et quelques réflexions.',
-    show: homeConfig.showBlog ?? true
-  }
-].filter(item => item.show);
-
 const pageTitle = seoConfig?.defaultTitle || `${siteConfig.title} | Parcours, projets, engagement et blog`;
 const pageDescription = seoConfig?.defaultDescription || siteConfig.description;
 
@@ -44,6 +17,7 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
+  ogImage="/images/og/home.jpg"
 >
   <SiteHeader />
 
@@ -58,7 +32,7 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
 
     {homeConfig.showMap !== false && (
       <section class="home-map-shell">
-        <section class="home-map" aria-label="Navigation visuelle principale">
+        <div class="home-map" aria-label="Navigation visuelle principale">
           <img
             src="/images/homepage-cv.png"
             alt=""
@@ -79,26 +53,9 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
           <a class="image-hitbox hitbox-bottom" href="/blog" aria-label="Aller à la page Blog">
             <span class="sr-only">Blog</span>
           </a>
-        </section>
+        </div>
       </section>
     )}
-
-    <section class="home-reading section" aria-labelledby="reading-title">
-      <div class="section-heading">
-        <p class="eyebrow">Explorer le site</p>
-        <h2 id="reading-title">Quatre directions. Un seul cap</h2>
-      </div>
-
-      <div class="universe-grid">
-        {universes.map((item) => (
-          <a class="universe-card" href={item.href}>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-            <span class="universe-card__link">Découvrir ce point cardinal</span>
-          </a>
-        ))}
-      </div>
-    </section>
   </main>
 
   <SiteFooter />
@@ -133,23 +90,21 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
   .home-map {
     position: relative;
     margin: 0 auto;
-    border-radius: var(--radius);
     overflow: hidden;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow);
-    transition: transform var(--transition), box-shadow var(--transition);
-  }
-
-  .home-map:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    background: var(--bg);
   }
 
   .home-map img {
     display: block;
     width: 100%;
     height: auto;
+    mix-blend-mode: multiply;
+    transform: scale(1.18);
+  }
+
+  :root[data-theme='dark'] .home-map img {
+    mix-blend-mode: normal;
   }
 
   .image-hitbox {
@@ -160,19 +115,24 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
     cursor: pointer;
   }
 
-  .image-hitbox:hover {
-    background: transparent;
-    box-shadow: none;
-    transform: none;
-  }
-
   .image-hitbox:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
     box-shadow: 0 0 0 2px var(--accent);
   }
 
-  /* À ajuster si besoin selon l’image exacte */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .hitbox-top {
     top: 8%;
     left: 39%;
@@ -201,82 +161,7 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
     height: 24%;
   }
 
-  .section {
-    margin-top: 2.5rem;
-  }
-
-  .section-heading {
-    margin-bottom: 1.25rem;
-    text-align: center;
-  }
-
-  .section-heading h2 {
-    text-wrap: balance;
-  }
-
-  .universe-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .universe-card {
-    display: block;
-    padding: 1.25rem;
-    border-radius: var(--radius);
-    text-decoration: none;
-    color: inherit;
-    border: 1px solid var(--line);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-  }
-
-  .universe-card:hover,
-  .universe-card:focus-visible {
-    transform: translateY(-2px);
-    border-color: var(--accent);
-    box-shadow: var(--shadow);
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-
-  .universe-card h3 {
-    margin: 0 0 0.55rem;
-  }
-
-  .universe-card p {
-    margin: 0 0 1rem;
-    color: var(--muted);
-  }
-
-  .universe-card__link {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 600;
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-    color: var(--text);
-    display: inline-block;
-  }
-
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
   @media (max-width: 900px) {
-    .universe-grid {
-      grid-template-columns: 1fr;
-    }
-
     .hitbox-top {
       top: 8%;
       left: 37%;
@@ -313,11 +198,6 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
 
     .home-intro {
       margin-bottom: 1.5rem;
-    }
-
-    .home-note__box,
-    .universe-card {
-      padding: 1.1rem;
     }
   }
 </style>

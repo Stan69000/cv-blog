@@ -2,234 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import { featuredProjectsOrdered, formatProjectDate, getProjectScreenshot } from '../data/projects';
 
-const monthYearFormatter = new Intl.DateTimeFormat('fr-FR', {
-  month: 'long',
-  year: 'numeric'
-});
-
-const yearFormatter = new Intl.DateTimeFormat('fr-FR', {
-  year: 'numeric'
-});
-
-type DatePrecision = 'month' | 'year';
-type ProjectStatus = 'ongoing' | 'completed';
-
-type FeaturedProject = {
-  type: string;
-  name: string;
-  startedAt: string;
-  endedAt?: string;
-  startPrecision?: DatePrecision;
-  endPrecision?: DatePrecision;
-  status: ProjectStatus;
-  url: string | null;
-  extensionUrl?: string;
-  context: string;
-  technique: string[];
-  impact: string[];
-  tags: string[];
+const typeIcons: Record<string, string> = {
+  'App macOS': '🖥',
+  'Création web': '🌐',
+  'Refonte web': '✏️',
+  'Open source': '⚡',
+  'Déploiement IT': '🗂️'
 };
-
-const capitalize = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
-
-const formatPointInTime = (value: string, precision: DatePrecision = 'month') => {
-  const date = new Date(value);
-  if (precision === 'year') {
-    return yearFormatter.format(date);
-  }
-
-  return capitalize(monthYearFormatter.format(date));
-};
-
-const formatProjectDate = (project: FeaturedProject) => {
-  const start = formatPointInTime(project.startedAt, project.startPrecision);
-
-  if (project.endedAt) {
-    const end = formatPointInTime(project.endedAt, project.endPrecision ?? project.startPrecision);
-
-    if ((project.startPrecision ?? 'month') === 'year' && (project.endPrecision ?? 'year') === 'year' && start === end) {
-      return start;
-    }
-
-    return `${start} - ${end}`;
-  }
-
-  if (project.status === 'ongoing') {
-    return `En cours depuis ${start}`;
-  }
-
-  return start;
-};
-
-const featuredProjects: FeaturedProject[] = [
-  {
-    type: 'Application macOS',
-    name: 'Photo Triage',
-    startedAt: '2026-01-01',
-    startPrecision: 'year',
-    status: 'completed',
-    url: null,
-    context:
-      'Application macOS native de tri de photos. Ma première app macOS fonctionnelle, et jolie !',
-    technique: [
-      'Interface SwiftUI avec shortcuts clavier (1-5) pour déplacer/copier vos photos vers 3 dossiers + révision + rejet.',
-      'Gestion des métadonnées EXIF via mdls (Canon EOS 90D, objectif, ISO, ouverture, vitesse, focale).',
-      'Modes copier/déplacer avec gestion des collisions.',
-      'Architecture MVVM avec security-scoped bookmarks.',
-      'Thème clair, sombre, auto.',
-      'Réglage possible des paramètres depuis l’app.',
-      'Code source : github.com/Stan69000/app-triage-photo (repo privé pour le moment).'
-    ],
-    impact: [
-      'Tri rapide de lots photos directement dans les dossiers. Possibilité de copier ou déplacer les photos dans 2 dossiers (exemple : ma galerie photo + mon asso RVAz).',
-      'Gain de temps significatif.',
-      'Bien plus visuel que de glisser-déposer dans des dossiers depuis le Finder.'
-    ],
-    tags: ['SwiftUI', 'macOS', 'MVVM', 'EXIF', 'Photo workflow']
-  },
-  {
-    type: 'Site associatif',
-    name: 'Le Singe du Numérique',
-    startedAt: '2026-04-01',
-    startPrecision: 'month',
-    status: 'ongoing',
-    url: 'https://lesingedunumerique.fr/',
-    context:
-      'Le Singe Du Numérique agit pour la démocratisation et l’inclusion numérique, et accompagne aussi les associations locales dans leurs usages, leurs outils et leur transformation numérique. J’en suis le président fondateur.',
-    technique: [
-      'Architecture éditoriale pensée pour expliquer clairement la mission, les actions et les ressources.',
-      'Navigation simplifiée pour accéder rapidement aux contenus utiles de l’association.',
-      'Mise en page orientée lisibilité, avec une hiérarchie visuelle stable page après page.'
-    ],
-    impact: [
-      'Message associatif plus lisible dès la première visite.',
-      'Accès plus direct aux contenus et initiatives de l’association.'
-    ],
-    tags: ['Astro', 'TypeScript', 'Contenu éditorial']
-  },
-  {
-    type: 'Refonte web',
-    name: "Natur' Au Féminin",
-    startedAt: '2026-02-01',
-    startPrecision: 'month',
-    status: 'completed',
-    url: 'https://naturaufeminin.fr/',
-    context: 'Refonte d’un site existant, avec l’objectif de clarifier le message sans perdre l’identité initiale.',
-    technique: [
-      'Reprise de l’arborescence et du parcours pour réduire les points de friction.',
-      'Allègement de l’interface afin de mieux guider la lecture.',
-      'Travail responsive pour garder une expérience homogène sur mobile et desktop.'
-    ],
-    impact: ['Parcours plus fluide.', 'Contenu plus compréhensible et mieux hiérarchisé.'],
-    tags: ['Refonte', 'UX', 'UI']
-  },
-  {
-    type: 'Galerie photo',
-    name: 'stan-bouchet.eu',
-    startedAt: '2026-04-01',
-    startPrecision: 'month',
-    status: 'ongoing',
-    url: 'https://stan-bouchet.eu/',
-    context:
-      'Galerie photo personnelle construite pour exprimer ma passion pour la photo et trouver une forme visuelle qui me ressemble vraiment.',
-    technique: [
-      'Direction visuelle épurée pour laisser les photos au centre de l’expérience.',
-      'Admin totalement sur mesure, aligné avec mes besoins réels de publication et d’organisation.',
-      'Structure de contenu pensée pour faire évoluer la galerie sans complexité inutile.'
-    ],
-    impact: [
-      'Autonomie complète sur la gestion du contenu.',
-      'Flux de publication cohérent avec ma pratique photo.'
-    ],
-    tags: ['Galerie', 'Admin sur mesure', 'Design minimal']
-  },
-  {
-    type: 'Projet personnel',
-    name: 'stan-bouchet.com',
-    startedAt: '2026-04-01',
-    startPrecision: 'month',
-    status: 'ongoing',
-    url: 'https://stan-bouchet.com/',
-    context: 'Site principal conçu comme un hub éditorial pour centraliser mon parcours, mes projets, mes engagements et le blog.',
-    technique: [
-      'Organisation par univers pour garder une navigation stable malgré l’ajout de nouveaux contenus.',
-      'Composants réutilisables et design system léger pour maintenir la cohérence.',
-      'Structure pensée pour rester simple à maintenir dans le temps.'
-    ],
-    impact: ['Ajout de pages plus rapide.', 'Lecture globale du profil plus claire.'],
-    tags: ['Hub personnel', 'Astro', 'Design system léger']
-  },
-  {
-    type: 'Open source',
-    name: 'astro-a11y',
-    startedAt: '2026-04-01',
-    startPrecision: 'month',
-    status: 'ongoing',
-    url: 'https://stan69000.github.io/astro-a11y',
-    context:
-      'Toolkit Astro-first d’accessibilité pour scanner des pages avec Playwright + axe et produire des rapports actionnables orientés RGAA/WCAG.',
-    technique: [
-      'Exécution en CLI ou en fin de build Astro via une intégration dédiée.',
-      'Analyse automatisée des pages rendues avec enrichissement des résultats pour faciliter la correction.',
-      'Formats de sortie terminal, JSON, HTML et Markdown pour s’adapter aux workflows projet (code source : github.com/Stan69000/astro-a11y).'
-    ],
-    impact: [
-      'Détection plus précoce des problèmes d’accessibilité sur les projets Astro.',
-      'Passage à l’action plus rapide grâce à des recommandations concrètes et lisibles.'
-    ],
-    tags: ['Astro', 'Accessibilité', 'Playwright', 'axe', 'RGAA/WCAG']
-  },
-  {
-    type: 'Open source',
-    name: 'RGAA Audit',
-    startedAt: '2026-04-01',
-    startPrecision: 'month',
-    status: 'ongoing',
-    url: 'https://stan69000.github.io/rgaa-audit/',
-    extensionUrl:
-      'https://chromewebstore.google.com/detail/rgaa-audit/aiaiblaemmjcfeeobpjagdajbgbcabai?authuser=2&hl=fr',
-    context: 'Outil open source pour rendre les audits RGAA plus opérationnels et plus faciles à démarrer.',
-    technique: [
-      'Interface orientée usage terrain, sans surcharge.',
-      'Critères présentés de manière exploitable pour accélérer les vérifications.',
-      'Logique de restitution construite pour faciliter les itérations d’accessibilité.'
-    ],
-    impact: [
-      'Démarrage d’audit plus rapide.',
-      'Extension Chrome publiée sur le Chrome Web Store pour lancer les vérifications directement dans le navigateur.'
-    ],
-    tags: ['Accessibilité', 'RGAA', 'Extension Chrome']
-  },
-  {
-    type: 'Association',
-    name: 'Mise en place de Google Workspace (RVAz)',
-    startedAt: '2025-01-01',
-    endedAt: '2025-12-01',
-    startPrecision: 'year',
-    endPrecision: 'year',
-    status: 'completed',
-    url: null,
-    context: 'Déploiement Google Workspace pour structurer les usages numériques de l’association RVAz.',
-    technique: [
-      'Configuration des comptes, des groupes et des droits d’accès.',
-      'Organisation des espaces partagés pour fluidifier le travail collectif.',
-      'Cadre d’usage et accompagnement pour sécuriser l’adoption.'
-    ],
-    impact: ['Collaboration quotidienne plus fiable.', 'Réduction des frictions dans l’organisation interne.'],
-    tags: ['Google Workspace', 'Gouvernance', 'Conduite du changement']
-  }
-];
-
-const featuredProjectsOrdered: FeaturedProject[] = [
-  ...featuredProjects.filter((project) => project.status === 'ongoing'),
-  ...featuredProjects.filter((project) => project.status === 'completed')
-];
 ---
 
 <BaseLayout
   title="Projets | Stan Bouchet"
   description="Une sélection de projets personnels, internes, open source et web autour de l’automatisation, de la clarté et de l’utilité."
+  ogImage="/images/og/projets.jpg"
 >
   <SiteHeader />
 
@@ -248,10 +35,49 @@ const featuredProjectsOrdered: FeaturedProject[] = [
     </section>
 
     <section class="section" aria-labelledby="featured-title">
-      <h2 id="featured-title">Mes projets</h2>
-      <div class="project-grid">
-        {featuredProjectsOrdered.map((project) => (
-          <article class="project-card">
+      <div class="projects-header">
+        <h2 id="featured-title">Mes projets</h2>
+        <nav class="filter-bar" aria-label="Filtrer les projets">
+          <button class="filter-btn is-active" data-filter="all" type="button">Tous</button>
+          <button class="filter-btn" data-filter="App macOS" type="button">App macOS</button>
+          <button class="filter-btn" data-filter="Création web" type="button">Création web</button>
+          <button class="filter-btn" data-filter="Refonte web" type="button">Refonte web</button>
+          <button class="filter-btn" data-filter="Open source" type="button">Open source</button>
+          <button class="filter-btn" data-filter="Déploiement IT" type="button">Déploiement IT</button>
+        </nav>
+      </div>
+      <p class="filter-count" aria-live="polite" aria-atomic="true"></p>
+      <div class="project-grid" id="project-grid">
+        {featuredProjectsOrdered.map((project) => {
+          const screenshot = getProjectScreenshot(project);
+          return (
+          <article
+            class="project-card"
+            data-type={project.type}
+          >
+            {project.url ? (
+              <a href={project.url} target="_blank" rel="noopener noreferrer" class="project-thumb" tabindex="-1" aria-hidden="true">
+                {screenshot ? (
+                  <img src={screenshot} alt="" loading="lazy" decoding="async" />
+                ) : (
+                  <span class="project-thumb__placeholder">
+                    <span class="placeholder-icon" aria-hidden="true">{typeIcons[project.type] ?? '📁'}</span>
+                    <span class="placeholder-label">{project.type}</span>
+                  </span>
+                )}
+              </a>
+            ) : (
+              <div class="project-thumb" aria-hidden="true">
+                {screenshot ? (
+                  <img src={screenshot} alt="" loading="lazy" decoding="async" />
+                ) : (
+                  <span class="project-thumb__placeholder">
+                    <span class="placeholder-icon" aria-hidden="true">{typeIcons[project.type] ?? '📁'}</span>
+                    <span class="placeholder-label">{project.type}</span>
+                  </span>
+                )}
+              </div>
+            )}
             <header class="project-head">
               <p class="project-type">{project.type}</p>
               <time class="project-date" datetime={project.startedAt}>{formatProjectDate(project)}</time>
@@ -307,13 +133,52 @@ const featuredProjectsOrdered: FeaturedProject[] = [
               </p>
             )}
           </article>
-        ))}
+        );
+        })}
       </div>
     </section>
   </main>
 
   <SiteFooter />
 </BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.project-card');
+  const countEl = document.querySelector<HTMLElement>('.filter-count');
+
+  function updateCount(visible: number, total: number) {
+    if (!countEl) return;
+    countEl.textContent = visible === total ? '' : `${visible} projet${visible > 1 ? 's' : ''} affiché${visible > 1 ? 's' : ''}`;
+  }
+
+  function applyFilter(filter: string) {
+    let visible = 0;
+    cards.forEach((card) => {
+      const match =
+        filter === 'all' ||
+        card.dataset.type === filter;
+
+      card.hidden = !match;
+      if (match) visible++;
+    });
+    updateCount(visible, cards.length);
+  }
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      buttons.forEach((b) => {
+        b.classList.remove('is-active');
+        b.removeAttribute('aria-current');
+      });
+      btn.classList.add('is-active');
+      btn.setAttribute('aria-current', 'true');
+      applyFilter(btn.dataset.filter ?? 'all');
+    });
+  });
+
+  updateCount(cards.length, cards.length);
+</script>
 
 <style>
   .hero {
@@ -325,6 +190,61 @@ const featuredProjectsOrdered: FeaturedProject[] = [
 
   .hero h1 {
     width: 100%;
+  }
+
+  .projects-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .projects-header h2 {
+    margin: 0;
+  }
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .filter-btn {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--muted);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    cursor: pointer;
+    transition: color var(--transition), background var(--transition), border-color var(--transition);
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover {
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+
+  .filter-btn.is-active {
+    color: var(--accent-contrast);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .filter-count {
+    margin: -0.4rem 0 0.85rem;
+    color: var(--muted);
+    font-size: var(--text-xs);
+    min-height: 1.4em;
+  }
+
+  .project-card[hidden] {
+    display: none;
   }
 
   .project-grid {
@@ -350,6 +270,63 @@ const featuredProjectsOrdered: FeaturedProject[] = [
     display: grid;
     gap: 1rem;
     transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background var(--transition);
+  }
+
+  .project-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: calc(var(--radius) - 0.25rem);
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--accent) 22%, var(--surface)), color-mix(in srgb, var(--accent-2) 18%, var(--surface)));
+    margin: -0.25rem -0.25rem 0;
+  }
+
+  .project-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform var(--transition);
+  }
+
+  a.project-thumb {
+    display: block;
+    cursor: pointer;
+  }
+
+  a.project-thumb:hover img {
+    transform: scale(1.04);
+  }
+
+  .project-card:hover .project-thumb img {
+    transform: scale(1.02);
+  }
+
+  .project-thumb__placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+  }
+
+  .placeholder-icon {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    line-height: 1;
+  }
+
+  .placeholder-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: color-mix(in srgb, var(--text) 45%, transparent);
+    font-weight: 600;
   }
 
   .project-card::before {
@@ -506,6 +483,12 @@ const featuredProjectsOrdered: FeaturedProject[] = [
   @media (max-width: 900px) {
     .project-grid {
       grid-template-columns: 1fr;
+    }
+
+    .projects-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.65rem;
     }
   }
 
