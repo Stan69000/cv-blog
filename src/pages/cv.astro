@@ -1,0 +1,608 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { featuredProjectsOrdered } from '../data/projects';
+
+const today = new Date();
+
+function toDate(year: number, month: number) {
+  return new Date(year, month - 1, 1);
+}
+
+function fmt(date: Date) {
+  return new Intl.DateTimeFormat('fr-FR', { month: 'short', year: 'numeric' }).format(date);
+}
+
+function duration(start: Date, end: Date) {
+  const months = Math.max(1,
+    (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth()) + 1
+  );
+  const y = Math.floor(months / 12);
+  const m = months % 12;
+  return [y > 0 ? `${y} an${y > 1 ? 's' : ''}` : '', m > 0 ? `${m} mois` : ''].filter(Boolean).join(' ');
+}
+
+const experiences = [
+  {
+    role: 'Information Technology Officer',
+    company: 'Indy',
+    contract: 'CDI',
+    start: toDate(2024, 1),
+    end: undefined as Date | undefined,
+    location: 'Lyon (hybride)',
+    highlights: [
+      'Pilotage IT autonome pour 300+ collaborateurs : parc multi-OS (macOS, Windows, Linux), MDM, gestion des accès, outils.',
+      'Structuration du support : SLA, documentation, procédures, gouvernance des usages.',
+      'Automatisations ciblées réduisant les frictions quotidiennes (onboarding, offboarding, achats).',
+      'Animation mensuelle de formations outils et cybersécurité.',
+      'Développement de la fonction IT au rythme de la croissance de la scale-up.',
+      'Sauveteur Secouriste du Travail (SST).',
+      'Trésorier du CSE.'
+    ]
+  },
+  {
+    role: 'Technicien Helpdesk',
+    company: 'Indy',
+    contract: 'CDI',
+    start: toDate(2022, 7),
+    end: toDate(2024, 1),
+    location: 'Lyon (hybride)',
+    highlights: [
+      'Premier IT recruté chez Indy : construction des bases opérationnelles du support.',
+      'Configuration de 400+ postes multi-OS en 2,5 ans, gestion du parc et du MDM.',
+      'Administration Google Workspace, Slack, Notion, 1Password.',
+      'Onboarding / offboarding, comptes, droits d\'accès.',
+      'Mise en place de la documentation, des automatisations et de l\'amélioration des processus.',
+      'Responsable achats IT et SAV matériel.'
+    ]
+  },
+  {
+    role: 'Manager de proximité',
+    company: 'Carsat Rhône-Alpes',
+    contract: 'Mission',
+    start: toDate(2022, 1),
+    end: toDate(2022, 3),
+    location: 'Lyon',
+    highlights: [
+      'Management direct de 20 techniciens et gestionnaires.',
+      'Coordination transverse pour superviser les flux de 82 collaborateurs.',
+      'Formations : Manager Coach, entretiens individuels, management des télétravailleurs.'
+    ]
+  },
+  {
+    role: "Agent de maîtrise — Chef d\'équipe adjoint",
+    company: 'EURO.TVS — Traitement Valeurs Services',
+    contract: 'CDI',
+    start: toDate(2005, 4),
+    end: toDate(2021, 12),
+    location: 'Tassin-la-Demi-Lune',
+    highlights: [
+      'Encadrement adjoint d\'une équipe de 15 personnes.',
+      'Pilotage d\'activités : numérisation, saisie de masse, enrichissement, archivage.',
+      'Supervision technique (matériel et logiciel), suivi des incidents.',
+      'Gestion des réclamations clients, suivi de tableaux de bord.',
+      'Formation des nouveaux arrivants et documentation qualité (procédures, mémos).'
+    ]
+  },
+  {
+    role: 'Travailleur indépendant — Création de sites web',
+    company: 'Monkey of The Net',
+    contract: 'Indépendant',
+    start: toDate(2009, 1),
+    end: toDate(2011, 12),
+    location: 'Toussieu',
+    highlights: [
+      'Création de sites Joomla / WordPress, chartes graphiques, maintenance et hébergement.',
+      'Production de diaporamas photo, rendus vidéo/DVD.'
+    ]
+  }
+].map(xp => ({
+  ...xp,
+  period: `${fmt(xp.start)} — ${xp.end ? fmt(xp.end) : 'aujourd\'hui'}`,
+  duration: duration(xp.start, xp.end ?? today)
+}));
+
+const skills = [
+  {
+    category: 'IT & Support',
+    items: ['Support utilisateur', 'Helpdesk', 'Gestion de parc (300+ postes)', 'MDM', 'Onboarding / Offboarding', 'Multi-OS (macOS · Windows · Linux)', 'Achats IT · SAV']
+  },
+  {
+    category: 'Outils & Plateformes',
+    items: ['Google Workspace (Admin)', 'Slack', 'Notion', '1Password', 'Microsoft 365', 'IA générative']
+  },
+  {
+    category: 'Développement web',
+    items: ['Astro', 'TypeScript', 'HTML / CSS', 'SwiftUI (macOS)', 'Git', 'Accessibilité RGAA / WCAG']
+  },
+  {
+    category: 'Organisation & Process',
+    items: ['Documentation technique', 'SLA', 'Automatisation', 'Formation', 'Amélioration continue', 'Management de proximité']
+  }
+];
+
+const selectedProjects = featuredProjectsOrdered
+  .filter(p => p.status === 'ongoing')
+  .slice(0, 4);
+
+const updatedAt = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(today);
+---
+
+<BaseLayout
+  title="CV — Stan Bouchet · IT Officer"
+  description="Curriculum vitae de Stan Bouchet : IT Officer, développeur web, 21 ans d'expérience opérationnelle."
+  ogImage="/images/og/parcours.jpg"
+>
+  <div class="cv-shell">
+    <div class="cv-toolbar no-print">
+      <a href="/" class="toolbar-back">← stan-bouchet.com</a>
+      <button onclick="window.print()" class="toolbar-print" type="button">
+        Imprimer / Télécharger PDF
+      </button>
+    </div>
+
+    <main id="main-content" class="cv">
+
+      <!-- EN-TÊTE -->
+      <header class="cv-header">
+        <div class="cv-header__name">
+          <h1>Stan Bouchet</h1>
+          <p class="cv-header__title">IT Officer</p>
+        </div>
+        <address class="cv-header__contact">
+          <span>Lyon, France</span>
+          <a href="https://www.linkedin.com/in/stanislas-bouchet/" target="_blank" rel="noopener noreferrer">linkedin.com/in/stanislas-bouchet</a>
+          <a href="https://github.com/Stan69000" target="_blank" rel="noopener noreferrer">github.com/Stan69000</a>
+          <a href="https://stan-bouchet.com">stan-bouchet.com</a>
+        </address>
+      </header>
+
+      <!-- ACCROCHE -->
+      <section class="cv-section" aria-labelledby="cv-summary">
+        <h2 id="cv-summary" class="cv-section__title">Profil</h2>
+        <p class="cv-summary">
+          IT Officer autonome et orienté amélioration continue, j'accompagne depuis 4 ans la structuration et l'évolution des environnements IT dans un contexte startup en forte croissance.
+        </p>
+        <p class="cv-summary">
+          Chez Indy, je pilote l'IT interne pour plus de 300 collaborateurs : support, parc multi-OS, Google Workspace, Slack, Notion, cybersécurité, onboarding/offboarding, gestion des achats et automatisations. J'interviens également sur la gouvernance des usages, l'accompagnement des équipes sur les outils IA et l'optimisation des processus afin de rendre l'IT plus fluide, fiable et accessible.
+        </p>
+        <p class="cv-summary">
+          Passionné par la transmission et la culture numérique, j'anime une fois par mois des formations vivantes et pédagogiques autour de la cybersécurité, avec une approche concrète, vulgarisée et orientée usages réels. Cette volonté de rendre le numérique plus accessible a également donné naissance à l'association Le Singe du Numérique, dédiée à la sensibilisation et à l'inclusion numérique.
+        </p>
+        <p class="cv-summary">
+          Je collabore étroitement avec les équipes Finance sur le suivi budgétaire, les licences et les arbitrages liés aux outils et équipements IT.
+        </p>
+        <p class="cv-summary">
+          Autodidacte et pragmatique, j'aime transformer des besoins concrets en solutions utiles, durables et adaptées aux équipes.
+        </p>
+      </section>
+
+      <!-- EXPÉRIENCES -->
+      <section class="cv-section" aria-labelledby="cv-exp">
+        <h2 id="cv-exp" class="cv-section__title">Expériences professionnelles</h2>
+        <div class="cv-experiences">
+          {experiences.map(xp => (
+            <article class="cv-xp">
+              <div class="cv-xp__head">
+                <div>
+                  <h3 class="cv-xp__role">{xp.role}</h3>
+                  <p class="cv-xp__company">{xp.company} · {xp.contract} · {xp.location}</p>
+                </div>
+                <div class="cv-xp__meta">
+                  <time>{xp.period}</time>
+                  <span class="cv-xp__duration">{xp.duration}</span>
+                </div>
+              </div>
+              <ul class="cv-xp__highlights">
+                {xp.highlights.map(h => <li>{h}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- COMPÉTENCES -->
+      <section class="cv-section" aria-labelledby="cv-skills">
+        <h2 id="cv-skills" class="cv-section__title">Compétences</h2>
+        <dl class="cv-skills">
+          {skills.map(group => (
+            <>
+              <dt>{group.category}</dt>
+              <dd>{group.items.join(' · ')}</dd>
+            </>
+          ))}
+        </dl>
+      </section>
+
+      <!-- PROJETS -->
+      <section class="cv-section" aria-labelledby="cv-projects">
+        <h2 id="cv-projects" class="cv-section__title">Projets personnels (sélection)</h2>
+        <div class="cv-projects">
+          {selectedProjects.map(p => (
+            <article class="cv-project">
+              <h3 class="cv-project__name">
+                {p.url
+                  ? <a href={p.url} target="_blank" rel="noopener noreferrer">{p.name}</a>
+                  : p.name
+                }
+                <span class="cv-project__type">{p.type}</span>
+              </h3>
+              <p class="cv-project__context">{p.context}</p>
+              {p.tags.length > 0 && (
+                <p class="cv-project__tags">{p.tags.join(' · ')}</p>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- ENGAGEMENT -->
+      <section class="cv-section" aria-labelledby="cv-asso">
+        <h2 id="cv-asso" class="cv-section__title">Engagement associatif</h2>
+        <ul class="cv-asso">
+          <li><strong>Président fondateur — Le Singe du Numérique</strong> (depuis 2026) · Association pour l'inclusion et la démocratisation numérique.</li>
+          <li><strong>Trésorier adjoint — RVAz (Radio Val d'Azergues)</strong> (depuis 2026) · Déploiement et administration Google Workspace. Photographe et caméraman, montages photos et vidéos avec DaVinci Resolve.</li>
+          <li><strong>Conseiller municipal — Fleurieux-sur-l'Arbresle</strong></li>
+          <li><strong>Président fondateur — Au Chouette Bar</strong> · Création et gestion d'un bar associatif avec une salariée.</li>
+          <li><strong>Président — Ludothèque Pause Jeux</strong> · Espace d'accueil pour les enfants de 0 à 6 ans avec une salariée. Subventionné CAF et Mairie de Saint-Priest.</li>
+          <li><strong>Équipier secouriste — Croix-Rouge Lyon</strong></li>
+          <li><strong>Sapeur-pompier volontaire — SDIS du Rhône</strong></li>
+          <li><strong>Équipier secouriste — Croix-Rouge Lyon</strong></li>
+        </ul>
+      </section>
+
+      <footer class="cv-footer no-print">
+        <p>Dernière mise à jour : {updatedAt} · <a href="https://stan-bouchet.com">stan-bouchet.com</a></p>
+      </footer>
+      <p class="cv-updated print-only">Dernière mise à jour : {updatedAt} · stan-bouchet.com</p>
+
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  /* ── Shell & toolbar ── */
+  .cv-shell {
+    min-height: 100vh;
+    background: var(--bg);
+  }
+
+  .cv-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 2rem;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    gap: 1rem;
+  }
+
+  .toolbar-back {
+    font-size: var(--text-xs);
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: color var(--transition);
+  }
+
+  .toolbar-back:hover { color: var(--accent); }
+
+  .toolbar-print {
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: var(--accent-contrast);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 0.5rem 1.1rem;
+    cursor: pointer;
+    transition: background var(--transition), border-color var(--transition);
+    letter-spacing: 0.02em;
+  }
+
+  .toolbar-print:hover {
+    background: color-mix(in srgb, var(--accent) 85%, var(--text));
+    border-color: color-mix(in srgb, var(--accent) 85%, var(--text));
+  }
+
+  /* ── CV layout ── */
+  .cv {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem 4rem;
+    font-family: var(--font-sans);
+    color: var(--text);
+  }
+
+  /* ── Header ── */
+  .cv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 2rem;
+  }
+
+  .cv-header h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .cv-header__title {
+    margin: 0.3rem 0 0;
+    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .cv-header__contact {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  .cv-header__contact a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .cv-header__contact a:hover { text-decoration: underline; }
+
+  /* ── Sections ── */
+  .cv-section {
+    margin-bottom: 2.25rem;
+  }
+
+  .cv-section__title {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin: 0 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+  }
+
+  /* ── Profil ── */
+  .cv-summary {
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--text);
+    margin: 0;
+  }
+
+  /* ── Expériences ── */
+  .cv-experiences { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .cv-xp { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .cv-xp__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cv-xp__role {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text);
+  }
+
+  .cv-xp__company {
+    margin: 0.15rem 0 0;
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  .cv-xp__meta {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .cv-xp__meta time {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .cv-xp__duration {
+    font-size: 0.78rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .cv-xp__highlights {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .cv-xp__highlights li {
+    font-size: 0.93rem;
+    line-height: 1.55;
+    color: var(--text);
+  }
+
+  /* ── Compétences ── */
+  .cv-skills {
+    display: grid;
+    gap: 0.5rem 1rem;
+    grid-template-columns: max-content 1fr;
+  }
+
+  .cv-skills dt {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding-top: 0.1rem;
+    white-space: nowrap;
+  }
+
+  .cv-skills dd {
+    margin: 0;
+    font-size: 0.93rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  /* ── Projets ── */
+  .cv-projects { display: flex; flex-direction: column; gap: 1rem; }
+
+  .cv-project__name {
+    font-size: 0.97rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .cv-project__name a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .cv-project__name a:hover { text-decoration: underline; }
+
+  .cv-project__type {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .cv-project__context {
+    margin: 0 0 0.25rem;
+    font-size: 0.91rem;
+    line-height: 1.55;
+    color: var(--text);
+  }
+
+  .cv-project__tags {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* ── Engagement ── */
+  .cv-asso {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .cv-asso li {
+    font-size: 0.93rem;
+    line-height: 1.55;
+  }
+
+  /* ── Footer ── */
+  .cv-footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .cv-footer a { color: var(--accent); text-decoration: none; }
+
+  .print-only { display: none; }
+
+  /* ── Print ── */
+  @media print {
+    .no-print { display: none !important; }
+    .print-only { display: block; }
+
+    .cv-shell { background: #fff; }
+
+    .cv {
+      max-width: 100%;
+      padding: 0;
+      color: #111;
+      font-size: 11pt;
+    }
+
+    .cv-header { border-bottom-color: #111; }
+    .cv-header h1 { font-size: 22pt; color: #111; }
+    .cv-header__title { color: #444; }
+    .cv-header__contact { color: #444; }
+    .cv-header__contact a { color: #111; }
+
+    .cv-section__title { color: #333; border-bottom-color: #ccc; }
+    .cv-summary { color: #111; }
+    .cv-xp__role { color: #111; }
+    .cv-xp__company { color: #444; }
+    .cv-xp__meta time { color: #111; }
+    .cv-xp__duration { color: #666; }
+    .cv-xp__highlights li { color: #111; font-size: 10.5pt; }
+    .cv-skills dt { color: #444; }
+    .cv-skills dd { color: #111; }
+    .cv-project__name a { color: #111; }
+    .cv-project__type { color: #666; }
+    .cv-project__context { color: #111; }
+    .cv-project__tags { color: #666; }
+    .cv-asso li { color: #111; }
+
+    .cv-updated {
+      margin-top: 2rem;
+      font-size: 9pt;
+      color: #888;
+      text-align: center;
+    }
+
+    .cv-xp { page-break-inside: avoid; }
+    .cv-section { page-break-inside: auto; }
+    @page { margin: 1.4cm 1.6cm; }
+  }
+
+  @media (max-width: 640px) {
+    .cv { padding: 2rem 1.25rem 3rem; }
+    .cv-toolbar { padding: 0.6rem 1.25rem; }
+    .cv-header { flex-direction: column; gap: 1rem; }
+    .cv-header__contact { align-items: flex-start; text-align: left; }
+    .cv-xp__head { flex-direction: column; }
+    .cv-xp__meta { align-items: flex-start; text-align: left; }
+    .cv-skills { grid-template-columns: 1fr; }
+    .cv-skills dt { padding-bottom: 0; }
+  }
+</style>

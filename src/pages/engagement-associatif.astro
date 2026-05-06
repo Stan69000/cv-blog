@@ -6,79 +6,89 @@ import SiteFooter from '../components/SiteFooter.astro';
 const timeline = [
   {
     period: '2000 → 2005',
-    title: 'Sapeur-pompier volontaire SDIS du Rhône',
-    text: 'Première expérience forte d’engagement. Intervenir, aider, gérer l’urgence et travailler en équipe.'
+    title: 'Sapeur-pompier volontaire – SDIS du Rhône',
+    text: 'Première expérience forte d\'engagement. Intervenir, aider, gérer l\'urgence et travailler en équipe.'
   },
   {
     period: '2007 → 2009',
-    title: 'Équipier secouriste – Croix-Rouge Délégation Locale de Lyon',
-    text: 'Poste de secours, plan d’urgence, initiation aux premiers secours grand public et pédiatrique, chauffeur VL.'
+    title: 'Équipier secouriste – Croix-Rouge, Lyon',
+    text: 'Poste de secours, plan d\'urgence, initiation aux premiers secours grand public et pédiatrique, chauffeur VL.'
   },
   {
     period: '2010 → 2014',
-    title: 'Président – Espace Animation Pause Jeux pour les 0 à 6 ans',
-    text: 'Gestion d’une structure associative, animation et encadrement d’équipe.',
+    title: 'Président – Espace Animation Pause Jeux (0-6 ans)',
+    text: 'Gestion d\'une structure associative, animation et encadrement d\'équipe.',
     details: [
       'Refonte du site web.',
-      'Création de l’image de marque.',
-      'Employeur bénévole d’une salariée.',
+      'Création de l\'image de marque.',
+      'Employeur bénévole d\'une salariée.',
       'Suivi administratif avec la mairie de St Priest et la CAF du Rhône.',
-      'Mise en place du prêt de jeux.',
-      'Mise en place de la prestation de service.'
+      'Mise en place du prêt de jeux et de la prestation de service.'
     ]
   },
   {
     period: '2014',
-    title: 'Animateur / conception – Biennale d’art contemporain de Lyon',
+    title: 'Animateur / conception – Biennale d\'art contemporain de Lyon',
     text: 'Création de contenu pédagogique pour enfants dans un contexte culturel.'
   },
   {
     period: '2020 → 2021',
-    title: 'Président fondateur – association Au Chouette Bar - Fleurieux sur l’Arbresle',
-    text: 'Création d’un bar associatif avec une salariée.',
+    title: 'Président fondateur – Au Chouette Bar, Fleurieux-sur-l\'Arbresle',
+    text: 'Création d\'un bar associatif avec une salariée.',
     details: [
-      'Formation permis d’exploitation Licence IV.',
-      'Service à table.',
-      'Gestion de la caisse.',
-      'Gestion des conflits.',
-      'Création de l’image de marque : site web, logo, polo, menu, flyers.'
+      'Formation permis d\'exploitation Licence IV.',
+      'Gestion opérationnelle : caisse, service, conflits.',
+      'Création de l\'image de marque : site web, logo, polo, menu, flyers.'
     ]
   },
   {
     period: '2021 → 2022',
-    title: 'Conseiller municipal - Fleurieux sur l’Arbresle',
-    text: 'Engagement local avec travail en commission (sécurité, communication, médiathèque).'
+    title: 'Conseiller municipal – Fleurieux-sur-l\'Arbresle',
+    text: 'Engagement local, travail en commission (sécurité, communication, médiathèque).'
   },
   {
     period: '2022 → 2023',
-    title: 'Trésorier adjoint – Sou des écoles - Fleurieux sur l’Arbresle',
+    title: 'Trésorier adjoint – Sou des écoles, Fleurieux-sur-l\'Arbresle',
     text: 'Gestion financière et participation à la vie associative locale.'
   },
   {
-    period: '2023 → aujourd’hui',
-    title: 'Trésorier adjoint – Radio / Web TV - RVAz',
-    text: 'Évolution d’une radio vers une Web TV, structuration et participation active.',
-    details: ['Photographe.', 'Monteur vidéo.', 'Cadreur.', 'Webmaster (projet de refonte du site web).']
+    period: '2023 → aujourd\'hui',
+    title: 'Trésorier adjoint – RVAz (Radio / Web TV)',
+    text: 'Évolution d\'une radio vers une Web TV, structuration et participation active.',
+    active: true,
+    details: ['Photographe.', 'Monteur vidéo (DaVinci Resolve).', 'Cadreur.', 'Webmaster (refonte du site en cours).']
   },
   {
-    period: '2025 → aujourd’hui',
-    title: 'Parrain – EDEN School - Villeurbanne',
-    text: 'Accompagnement d’un jeune développeur, transmission et mentorat.'
+    period: '2025 → aujourd\'hui',
+    title: 'Parrain – EDEN School, Villeurbanne',
+    text: 'Accompagnement d\'un jeune développeur, transmission et mentorat.',
+    active: true
+  },
+  {
+    period: '2026 → aujourd\'hui',
+    title: 'Président fondateur – Le Singe du Numérique',
+    text: 'Association pour la démocratisation et l\'inclusion numérique, co-fondée avec mon fils.',
+    active: true,
+    details: [
+      'Sensibilisation aux usages numériques et à la cybersécurité.',
+      'Accompagnement des associations locales dans leur transformation numérique.',
+      'Formations vivantes et pédagogiques, orientées usages réels.'
+    ]
   }
 ];
 
-const learnings = [
-  'Travailler en équipe dans des contextes variés',
-  'Gérer des responsabilités concrètes',
-  'Expliquer simplement des sujets parfois complexes',
-  'S’adapter à des publics très différents',
-  'Construire des projets sur la durée'
+const stats = [
+  { value: '25 ans', label: 'De bénévolat' },
+  { value: '10', label: 'Structures différentes' },
+  { value: '2', label: 'Associations fondées' }
 ];
+
 ---
 
 <BaseLayout
   title="Engagement associatif | Stan Bouchet"
-  description="Un parcours d’engagement associatif sur le long terme, entre aide, transmission et collectif."
+  description="Un parcours d'engagement associatif sur le long terme, entre aide, transmission et collectif."
+  ogImage="/images/og/engagement.jpg"
 >
   <SiteHeader />
 
@@ -88,12 +98,21 @@ const learnings = [
         <p class="eyebrow">Engagement associatif</p>
         <h1>Un fil rouge : être utile, transmettre et construire avec les autres.</h1>
         <p class="lead muted">
-          Mon engagement associatif ne s’est pas construit d’un coup. Il s’inscrit dans le temps,
+          Mon engagement associatif ne s'est pas construit d'un coup. Il s'inscrit dans le temps,
           à travers différentes expériences, contextes et rôles.
-          Ce qui ne change pas, c’est l’envie d’aider, de partager et de participer à des projets collectifs.
+          Ce qui ne change pas, c'est l'envie d'aider, de partager et de participer à des projets collectifs.
         </p>
       </div>
     </section>
+
+    <div class="stats-bar" aria-label="Chiffres clés">
+      {stats.map((stat) => (
+        <div class="stats-bar__item">
+          <span class="stats-bar__value">{stat.value}</span>
+          <span class="stats-bar__label">{stat.label}</span>
+        </div>
+      ))}
+    </div>
 
     <section class="section" aria-labelledby="timeline-title">
       <div class="section-head">
@@ -103,8 +122,11 @@ const learnings = [
 
       <ol class="timeline">
         {timeline.map((item) => (
-          <li class="timeline__item">
-            <p class="meta">{item.period}</p>
+          <li class="timeline__item" data-active={item.active ? 'true' : undefined}>
+            <div class="timeline__item-head">
+              <p class="meta">{item.period}</p>
+              {item.active && <span class="timeline__badge">Actif</span>}
+            </div>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
             {item.details && (
@@ -122,43 +144,20 @@ const learnings = [
     <section class="section spotlight" aria-labelledby="spotlight-title">
       <div class="spotlight__top">
         <p class="eyebrow">Focus actuel</p>
-        <h2 id="spotlight-title">Aujourd’hui : Le Singe du Numérique</h2>
+        <h2 id="spotlight-title">Aujourd'hui : Le Singe du Numérique</h2>
       </div>
 
-      <p class="spotlight__intro">
-        Une association qui s’inscrit naturellement dans la continuité de mon parcours.
-      </p>
-
-      <div class="spotlight__grid">
-        <article class="spotlight__card">
-          <h3>Rendre le numérique plus accessible</h3>
-          <p>
-            Avec Le Singe du Numérique, l’idée est de rendre les sujets numériques plus accessibles :
-            cybersécurité, outils, usages… avec une approche simple et concrète.
-          </p>
-        </article>
-
-        <article class="spotlight__card">
-          <h3>Relier métier et engagement</h3>
-          <p>
-            C’est une manière de faire le lien entre mon métier et mon engagement :
-            expliquer, transmettre et rendre les choses utiles pour les autres.
-          </p>
-        </article>
+      <div class="spotlight__body">
+        <p class="spotlight__mission">
+          Rendre le numérique compréhensible et accessible à tous — particuliers, bénévoles, petites associations.
+          Co-fondée avec mon fils, l'association agit concrètement sur le terrain : formations, sensibilisation, accompagnement.
+        </p>
+        <p class="spotlight__link-wrap">
+          <a href="https://lesingedunumerique.fr/" target="_blank" rel="noopener noreferrer" class="spotlight__cta">
+            Voir l'association →
+          </a>
+        </p>
       </div>
-    </section>
-
-    <section class="section" aria-labelledby="learning-title">
-      <div class="section-head">
-        <p class="eyebrow">Apprentissages</p>
-        <h2 id="learning-title">Ce que ces expériences m’ont appris</h2>
-      </div>
-
-      <ul class="learning-grid">
-        {learnings.map((item) => (
-          <li>{item}</li>
-        ))}
-      </ul>
     </section>
 
     <section class="section" aria-labelledby="work-link-title">
@@ -169,7 +168,7 @@ const learnings = [
 
       <div class="work-link">
         <p>
-          Cet engagement influence directement ma manière de travailler. La pédagogie, l’écoute,
+          Cet engagement influence directement ma manière de travailler. La pédagogie, l'écoute,
           la clarté et le sens du collectif sont au cœur de mon quotidien IT.
         </p>
         <p>
@@ -196,6 +195,37 @@ const learnings = [
 
   .hero h1 {
     width: 100%;
+  }
+
+  .stats-bar {
+    margin: 2rem 0 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  .stats-bar__item {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1rem 1.2rem;
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .stats-bar__value {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2.2rem);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .stats-bar__label {
+    color: var(--muted);
+    font-size: var(--text-sm);
+    line-height: 1.4;
   }
 
   .section-head {
@@ -241,6 +271,11 @@ const learnings = [
     box-shadow: var(--shadow);
   }
 
+  .timeline__item[data-active] {
+    border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+    background: color-mix(in srgb, var(--accent) 4%, var(--surface));
+  }
+
   .timeline__item::before {
     content: '';
     position: absolute;
@@ -253,8 +288,38 @@ const learnings = [
     box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent);
   }
 
+  .timeline__item[data-active]::before {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 30%, transparent),
+      0 0 8px color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+
+  .timeline__item-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+  }
+
+  .timeline__item-head .meta {
+    margin-bottom: 0;
+  }
+
+  .timeline__badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-contrast);
+    background: var(--accent);
+    border-radius: 999px;
+    padding: 0.18rem 0.52rem;
+    line-height: 1.4;
+  }
+
   .timeline__item h3 {
-    margin-bottom: 0.35rem;
+    margin: 0.35rem 0 0.35rem;
   }
 
   .timeline__details {
@@ -284,7 +349,7 @@ const learnings = [
   }
 
   .spotlight__top {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     display: grid;
     gap: 0.3rem;
     justify-items: start;
@@ -295,49 +360,37 @@ const learnings = [
     text-align: left;
   }
 
-  .spotlight__intro {
-    margin: 0 0 1rem;
-    font-family: var(--font-heading);
-    font-size: 1.18rem;
-    line-height: 1.45;
+  .spotlight__body {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .spotlight__mission {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    line-height: 1.7;
     color: var(--text);
   }
 
-  .spotlight__grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.9rem;
-  }
-
-  .spotlight__card {
-    padding: 1rem;
-    border-radius: calc(var(--radius) - 4px);
-    border: 1px solid var(--line);
-    background: color-mix(in srgb, var(--bg) 86%, transparent);
-  }
-
-  .spotlight__card h3 {
-    margin: 0 0 0.45rem;
-  }
-
-  .learning-grid {
-    list-style: none;
+  .spotlight__link-wrap {
     margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.8rem;
   }
 
-  .learning-grid li {
-    border: 1px solid var(--line);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-    border-radius: var(--radius);
-    padding: 0.95rem 1rem;
-    font-weight: 500;
-    line-height: 1.5;
+  .spotlight__cta {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition);
   }
+
+  .spotlight__cta:hover {
+    border-color: currentColor;
+  }
+
 
   .work-link {
     border: 1px solid var(--line);
@@ -351,22 +404,27 @@ const learnings = [
 
   .work-link__conclusion {
     margin-top: 0.2rem;
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1rem;
     color: var(--text);
   }
 
   @media (max-width: 900px) {
-    .spotlight__grid,
     .learning-grid {
       grid-template-columns: 1fr;
     }
   }
 
   @media (max-width: 640px) {
+    .stats-bar {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+
     .timeline__item,
     .spotlight,
-    .spotlight__card,
     .learning-grid li,
     .work-link {
       padding: 0.95rem;
