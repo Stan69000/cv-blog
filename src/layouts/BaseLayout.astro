@@ -26,11 +26,12 @@ const {
   articleTags = []
 } = Astro.props;
 
-const siteUrl = siteConfig.url || Astro.site?.toString() || Astro.url.origin;
+const siteUrl = Astro.site?.toString() || siteConfig.url || Astro.url.origin;
 const pageTitle = propTitle || seoConfig.defaultTitle || siteConfig.title;
 const pageDescription = propDescription || seoConfig.defaultDescription || siteConfig.description;
 const pageOgImage = propOgImage || seoConfig.ogImage || '/images/og-default.jpg';
 const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+const sitemapUrl = new URL('/sitemap.xml', siteUrl).toString();
 const robots = seoConfig.noIndex || propNoIndex ? 'noindex,nofollow' : 'index,follow';
 const pageOgImageUrl = pageOgImage.startsWith('http')
   ? pageOgImage
@@ -82,7 +83,7 @@ const personLd = {
     <meta name="twitter:image" content={pageOgImageUrl} />
     {seoConfig.twitter && <meta name="twitter:site" content={seoConfig.twitter} />}
     {seoConfig.twitter && <meta name="twitter:creator" content={seoConfig.twitter} />}
-    <link rel="sitemap" type="application/xml" href={`${siteUrl}/sitemap.xml`} />
+    <link rel="sitemap" type="application/xml" href={sitemapUrl} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteLd)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(personLd)} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

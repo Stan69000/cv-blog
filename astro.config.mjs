@@ -4,9 +4,10 @@ import keystatic from '@keystatic/astro';
 import netlify from '@astrojs/netlify';
 
 const isO2SwitchBuild = process.env.DEPLOY_TARGET === 'o2switch';
+const siteUrl = process.env.SITE_URL || 'https://stan-bouchet.eu';
 
 export default defineConfig({
-  site: 'https://stan-bouchet.eu',
+  site: siteUrl,
   output: isO2SwitchBuild ? 'static' : 'server',
   adapter: isO2SwitchBuild ? undefined : netlify(),
   integrations: isO2SwitchBuild ? [react()] : [react(), keystatic()],

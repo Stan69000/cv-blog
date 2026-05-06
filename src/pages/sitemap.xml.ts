@@ -2,8 +2,10 @@ import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import siteConfig from '../data/site.json';
 
+const configuredBaseUrl = import.meta.env.SITE_URL || siteConfig.url || 'https://example.com';
+
 const toAbsoluteUrl = (path: string) => {
-  const base = siteConfig.url || 'https://example.com';
+  const base = configuredBaseUrl;
   return new URL(path, base.endsWith('/') ? base : `${base}/`).toString();
 };
 
