@@ -224,12 +224,28 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
       font-size: 0.95rem;
     }
 
+    /* O (ouest) à gauche, E (est) à droite — séparés aux extrémités */
     .compass-label--o {
-      padding-right: 0.5rem;
+      justify-self: start;
+      text-align: left;
+      align-items: flex-start;
     }
 
     .compass-label--e {
-      padding-left: 0.5rem;
+      justify-self: end;
+      text-align: right;
+      align-items: flex-end;
+    }
+
+    /* Rose : empêche le débordement horizontal sur petits écrans */
+    :global(.compass-rose-wrapper .rose) {
+      width: min(var(--halo), 88vw);
+      height: min(var(--halo), 88vw);
+    }
+
+    :global(.compass-rose-wrapper .rose__svg) {
+      width: min(var(--size), calc(88vw - 40px));
+      height: auto;
     }
   }
 </style>
