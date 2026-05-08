@@ -220,24 +220,45 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
       margin-bottom: 1.5rem;
     }
 
+    /* Mobile : rose pleine largeur + 4 liens en grille 2×2 en dessous */
+    .compass-nav {
+      grid-template-areas:
+        "rose rose"
+        "n    e"
+        "o    s";
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem 1rem;
+    }
+
+    .compass-label--n {
+      text-align: left;
+      align-items: flex-start;
+      justify-self: start;
+    }
+
+    .compass-label--e {
+      text-align: right;
+      align-items: flex-end;
+      justify-self: end;
+    }
+
+    .compass-label--o {
+      text-align: left;
+      align-items: flex-start;
+      justify-self: start;
+    }
+
+    .compass-label--s {
+      text-align: right;
+      align-items: flex-end;
+      justify-self: end;
+    }
+
     .compass-label__main {
       font-size: 0.95rem;
     }
 
-    /* O (ouest) à gauche, E (est) à droite — séparés aux extrémités */
-    .compass-label--o {
-      justify-self: start;
-      text-align: left;
-      align-items: flex-start;
-    }
-
-    .compass-label--e {
-      justify-self: end;
-      text-align: right;
-      align-items: flex-end;
-    }
-
-    /* Rose : empêche le débordement horizontal sur petits écrans */
+    /* Rose : contrainte à 88vw pour éviter le débordement */
     :global(.compass-rose-wrapper .rose) {
       width: min(var(--halo), 88vw);
       height: min(var(--halo), 88vw);
