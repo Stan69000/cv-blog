@@ -1,0 +1,208 @@
+---
+// CompassRose.astro
+// Stan Bouchet — rose des vents (variante C cartographique)
+// Compatible mode clair / sombre via les variables CSS de ton site.
+//
+// Usage :
+//   ---
+//   import CompassRose from '../components/CompassRose.astro';
+//   ---
+//   <div class="rose-wrapper">
+//     <CompassRose />
+//     <a href="/engagement" class="label label--n">Engagement <i>associatif</i></a>
+//     <a href="/parcours"   class="label label--e">Parcours Pro</a>
+//     <a href="/projets"    class="label label--s">Projets</a>
+//     <a href="/blog"       class="label label--o">Blog</a>
+//   </div>
+
+interface Props {
+  size?: number;          // diamètre de la rose en px (défaut 400)
+  ariaLabel?: string;
+}
+
+const { size = 400, ariaLabel = 'Rose des vents' } = Astro.props;
+const r = size / 2;
+const halo = size + 40;
+
+// 5° tick marks
+const ticks = Array.from({ length: 72 }, (_, i) => {
+  const a = ((i * 5 - 90) * Math.PI) / 180;
+  const isMajor = i % 6 === 0;
+  const isMid = i % 2 === 0;
+  const r1 = r - 6;
+  const r2 = r - (isMajor ? 18 : isMid ? 12 : 9);
+  return {
+    x1: r + Math.cos(a) * r1, y1: r + Math.sin(a) * r1,
+    x2: r + Math.cos(a) * r2, y2: r + Math.sin(a) * r2,
+    isMajor,
+  };
+});
+
+// 8-point primary star
+const primary = [0, 45, 90, 135, 180, 225, 270, 315].map((deg, i) => {
+  const len = r - 30, wide = 14;
+  const a = ((deg - 90) * Math.PI) / 180;
+  const ax = r + Math.cos(a) * len, ay = r + Math.sin(a) * len;
+  const pa = (deg * Math.PI) / 180;
+  const lx = r + Math.cos(pa) * wide, ly = r + Math.sin(pa) * wide;
+  const rx = r - Math.cos(pa) * wide, ry = r - Math.sin(pa) * wide;
+  return { ax, ay, lx, ly, rx, ry, isCardinal: i % 2 === 0 };
+});
+
+// 8-point secondary star (intercardinals)
+const secondary = [22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5].map((deg) => {
+  const len = r - 60, wide = 8;
+  const a = ((deg - 90) * Math.PI) / 180;
+  const ax = r + Math.cos(a) * len, ay = r + Math.sin(a) * len;
+  const pa = (deg * Math.PI) / 180;
+  const lx = r + Math.cos(pa) * wide, ly = r + Math.sin(pa) * wide;
+  const rx = r - Math.cos(pa) * wide, ry = r - Math.sin(pa) * wide;
+  return { ax, ay, lx, ly, rx, ry };
+});
+---
+
+<div class="rose" style={`--size:${size}px;--halo:${halo}px;`} role="img" aria-label={ariaLabel}>
+  <div class="rose__halo"></div>
+
+  <svg class="rose__svg" width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+    {/* Concentric circles */}
+    <circle cx={r} cy={r} r={r - 6}  fill="none" class="rose__ring" />
+    <circle cx={r} cy={r} r={r - 22} fill="none" class="rose__ring rose__ring--soft" />
+    <circle cx={r} cy={r} r={r - 70} fill="none" class="rose__ring rose__ring--faint" />
+
+    {/* Tick marks */}
+    {ticks.map((t) => (
+      <line x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2}
+            class={`rose__tick ${t.isMajor ? 'rose__tick--major' : ''}`} />
+    ))}
+
+    {/* Primary 8-point star */}
+    {primary.map((p) => (
+      <g>
+        <polygon points={`${r},${r} ${p.lx},${p.ly} ${p.ax},${p.ay}`}
+                 class={`rose__petal ${p.isCardinal ? 'rose__petal--cardinal' : 'rose__petal--ordinal'}`} />
+        <polygon points={`${r},${r} ${p.rx},${p.ry} ${p.ax},${p.ay}`}
+                 class="rose__petal-edge" />
+      </g>
+    ))}
+
+    {/* Secondary 8-point star */}
+    {secondary.map((p) => (
+      <g class="rose__petal-secondary">
+        <polygon points={`${r},${r} ${p.lx},${p.ly} ${p.ax},${p.ay}`} class="rose__petal--muted" />
+        <polygon points={`${r},${r} ${p.rx},${p.ry} ${p.ax},${p.ay}`} class="rose__petal-edge" />
+      </g>
+    ))}
+
+    {/* Needle (rotates via JS, follows the cursor) */}
+    <g class="rose__needle" style={`transform-origin:${r}px ${r}px;`}>
+      <polygon points={`${r},20 ${r - 7},${r} ${r + 7},${r}`} class="rose__needle-tip" />
+      <polygon points={`${r},${size - 20} ${r - 5},${r} ${r + 5},${r}`} class="rose__needle-tail" />
+    </g>
+
+    {/* Center medallion */}
+    <circle cx={r} cy={r} r="14" class="rose__center" />
+    <circle cx={r} cy={r} r="4"  class="rose__center-dot" />
+
+    {/* Cardinal letters */}
+    <text x={r}        y={32}        text-anchor="middle" class="rose__cardinal">N</text>
+    <text x={size - 22} y={r + 7}    text-anchor="middle" class="rose__cardinal">E</text>
+    <text x={r}        y={size - 16} text-anchor="middle" class="rose__cardinal">S</text>
+    <text x={22}       y={r + 7}     text-anchor="middle" class="rose__cardinal">O</text>
+  </svg>
+</div>
+
+<style>
+  /* ─── Tokens (override these dans ton layout pour s'aligner sur tes thèmes) ─── */
+  .rose {
+    /* Couleurs — pris depuis :root / [data-theme] de ton site */
+    --rose-bg:        var(--color-bg, #F6F2EA);
+    --rose-bg2:       var(--color-bg-2, #EFEAE0);
+    --rose-ink:       var(--color-ink, #1A1815);
+    --rose-line:      var(--color-ink, #1A1815);
+    --rose-line-soft: rgba(26, 24, 21, 0.18);
+    --rose-line-faint: rgba(26, 24, 21, 0.10);
+    --rose-muted:     #807A6E;
+    --rose-accent:    var(--color-accent, #1F7A6B);
+
+    position: relative;
+    width: var(--halo);
+    height: var(--halo);
+    display: grid;
+    place-items: center;
+  }
+
+  /* Dark theme — déclenche en passant data-theme="dark" sur <html> ou parent */
+  :global([data-theme="dark"]) .rose,
+  .rose:where([data-theme="dark"], [data-theme="dark"] *) {
+    --rose-bg:        #10110F;
+    --rose-bg2:       #181915;
+    --rose-ink:       #F1ECE0;
+    --rose-line:      #F1ECE0;
+    --rose-line-soft: rgba(241, 236, 224, 0.22);
+    --rose-line-faint: rgba(241, 236, 224, 0.10);
+    --rose-muted:     #857F73;
+    --rose-accent:    #5FBFAE;
+  }
+
+  .rose__halo {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--rose-bg) 0%, var(--rose-bg2) 70%, transparent 100%);
+  }
+
+  .rose__svg { position: relative; }
+
+  .rose__ring        { stroke: var(--rose-line);       stroke-width: 1.4; }
+  .rose__ring--soft  { stroke: var(--rose-line-soft);  stroke-width: 0.8; }
+  .rose__ring--faint { stroke: var(--rose-line-faint); stroke-width: 0.8; }
+
+  .rose__tick        { stroke: var(--rose-line-soft);  stroke-width: 0.7; }
+  .rose__tick--major { stroke: var(--rose-line);       stroke-width: 1.1; }
+
+  .rose__petal           { fill: var(--rose-ink); opacity: 0.55; }
+  .rose__petal--cardinal { opacity: 0.9; }
+  .rose__petal--ordinal  { opacity: 0.55; }
+  .rose__petal-edge      { fill: none; stroke: var(--rose-line); stroke-width: 0.6; opacity: 0.6; }
+
+  .rose__petal-secondary { opacity: 0.5; }
+  .rose__petal--muted    { fill: var(--rose-muted); }
+
+  .rose__needle      { transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.4, 1); }
+  .rose__needle-tip  { fill: var(--rose-accent); }
+  .rose__needle-tail { fill: var(--rose-ink); opacity: 0.4; }
+
+  .rose__center     { fill: var(--rose-bg); stroke: var(--rose-line); stroke-width: 1.3; }
+  .rose__center-dot { fill: var(--rose-accent); }
+
+  .rose__cardinal {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 1px;
+    fill: var(--rose-accent);
+    paint-order: stroke;
+    stroke: var(--rose-bg);
+    stroke-width: 5;
+    stroke-linejoin: round;
+  }
+</style>
+
+<script>
+  // Needle suit le curseur. Si tu préfères qu'elle pointe sur le lien survolé,
+  // remplace handleMove par un setter écouté sur tes <a class="label">.
+  document.querySelectorAll<HTMLDivElement>('.rose').forEach((rose) => {
+    const needle = rose.querySelector<SVGGElement>('.rose__needle');
+    if (!needle) return;
+
+    rose.addEventListener('mousemove', (e) => {
+      const rect = rose.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const a = (Math.atan2(e.clientY - cy, e.clientX - cx) * 180) / Math.PI + 90;
+      needle.style.transform = `rotate(${a}deg)`;
+    });
+  });
+</script>
