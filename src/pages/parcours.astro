@@ -2,29 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import parcoursData from '../data/parcours.json';
 
-const indyStartDate = new Date(2022, 6, 1); // juillet = 6 (index 0-based)
+const indyStartDate = new Date(parcoursData.indyStart.year, parcoursData.indyStart.month - 1, 1);
 const today = new Date();
-const totalMonthsAtIndy = Math.max(
-  1,
-  (today.getFullYear() - indyStartDate.getFullYear()) * 12 +
-    (today.getMonth() - indyStartDate.getMonth()) +
-    1
-);
+const totalMonthsAtIndy = Math.max(1, (today.getFullYear() - indyStartDate.getFullYear()) * 12 + (today.getMonth() - indyStartDate.getMonth()) + 1);
 const indyYears = Math.floor(totalMonthsAtIndy / 12);
 const indyMonths = totalMonthsAtIndy % 12;
-const indyDurationParts = [];
-
-if (indyYears > 0) {
-  indyDurationParts.push(`${indyYears} an${indyYears > 1 ? 's' : ''}`);
-}
-
-if (indyMonths > 0) {
-  indyDurationParts.push(`${indyMonths} mois`);
-}
-
-const indyDuration = indyDurationParts.join(' ');
-const indyHeroLabel = `Indy · CDI · ${indyDuration} (depuis juillet 2022)`;
+const indyDuration = [indyYears > 0 ? `${indyYears} an${indyYears > 1 ? 's' : ''}` : '', indyMonths > 0 ? `${indyMonths} mois` : ''].filter(Boolean).join(' ');
+const indyHeroLabel = `Indy · CDI · ${indyDuration} (depuis juillet ${parcoursData.indyStart.year})`;
 const monthYearFormatter = new Intl.DateTimeFormat('fr-FR', {
   month: 'short',
   year: 'numeric'
@@ -66,155 +52,18 @@ function formatPeriod(startDate: Date, endDate?: Date) {
   return `${start} - ${end}`;
 }
 
-const quickStats = [
-  { value: '21+', label: "ans d'expérience opérationnelle" },
-  { value: '300+', label: 'collaborateurs gérés chez Indy' },
-  { value: 'Plusieurs centaines', label: 'd’ordinateurs configurés depuis mes débuts chez Indy' },
-  { value: '1/mois', label: 'session outils + sécurité animée' }
-];
-
-const currentScope = [
-  {
-    title: 'Pilotage IT autonome',
-    text: 'Gestion complète du parc, des accès, des outils et du support pour plus de 300 collaborateurs.'
-  },
-  {
-    title: 'Structuration & qualité',
-    text: 'SLA, documentation, process, gouvernance des usages et amélioration continue des pratiques.'
-  },
-  {
-    title: 'Automatisation pragmatique',
-    text: 'Réduction des frictions quotidiennes avec des automatisations utiles, ciblées et maintenables.'
-  },
-  {
-    title: 'Accompagnement des équipes',
-    text: 'Onboarding, offboarding, formation et pédagogie pour rendre l’IT lisible et autonome.'
-  }
-];
-
-const stack = [
-  'Slack',
-  'Notion',
-  '1Password',
-  'Google Workspace',
-  'IA générative',
-  'MDM',
-  'macOS / Windows / Linux',
-  'Documentation',
-  'Automatisation',
-  'Sensibilisation sécurité'
-];
-
-const experiences = [
-  {
-    role: 'Information Technology Officer',
-    company: 'Indy',
-    contract: 'CDI',
-    startDate: toMonthDate(2024, 1),
-    endDate: undefined,
-    location: 'Lyon, Auvergne-Rhône-Alpes, France',
-    mode: 'Hybride',
-    summary:
-      'Fonction créée sur mesure après une évolution interne depuis le helpdesk. Responsable IT autonome, avec un périmètre transverse en forte croissance.',
-    highlights: [
-      'Gestion autonome d’un parc de plus de 300 collaborateurs.',
-      'Développement de la fonction IT au rythme de la croissance de l’entreprise.',
-      'Structuration durable du support, des outils et des standards de service.'
-    ]
-  },
-  {
-    role: 'Technicien Helpdesk',
-    company: 'Indy',
-    contract: 'CDI',
-    startDate: toMonthDate(2022, 7),
-    endDate: toMonthDate(2024, 1),
-    location: 'Lyon, Auvergne-Rhône-Alpes, France',
-    mode: 'Sur site / Hybride',
-    summary:
-      'Premier collaborateur IT recruté chez Indy en 2022. Construction des bases opérationnelles du support et de l’environnement de travail.',
-    highlights: [
-      'Support utilisateur, comptes, droits d’accès, onboarding et offboarding.',
-      'Configuration de plus de 400 ordinateurs en 2,5 ans et gestion du parc multi-OS.',
-      'Administration Slack, Notion, 1Password et Google Workspace.',
-      'Déploiement et pilotage de la solution MDM.',
-      'Formation mensuelle des nouveaux collaborateurs sur les outils et la sécurité.',
-      'Mise en place de documentation, automatisations et amélioration des processus.',
-      'Responsable achats IT et SAV matériel.',
-      'Contributions transverses: RSE, office management, CSE, captation évènementielle, SST.'
-    ]
-  },
-  {
-    role: 'Manager de proximité',
-    company: 'Carsat Rhône Alpes',
-    contract: 'Mission',
-    startDate: toMonthDate(2022, 1),
-    endDate: toMonthDate(2022, 3),
-    location: 'Lyon, Auvergne-Rhône-Alpes, France',
-    mode: 'Sur site',
-    summary:
-      'Management d’équipe dans un environnement de flux opérationnels exigeants.',
-    highlights: [
-      'Management direct de 20 techniciens et gestionnaires traitement de l’information.',
-      'Coordination transverse de l’encadrement pour superviser les flux de 82 collaborateurs.',
-      'Formations suivies: Manager Coach, entretiens individuels, management des télétravailleurs.'
-    ]
-  },
-  {
-    role: "Agent de maîtrise - Chef d'équipe adjoint",
-    company: 'EURO.TVS - TRAITEMENT VALEURS SERVICES',
-    contract: 'CDI',
-    startDate: toMonthDate(2005, 4),
-    endDate: toMonthDate(2021, 12),
-    location: 'Tassin, Auvergne-Rhône-Alpes, France',
-    mode: 'Sur site',
-    summary:
-      'Responsabilités opérationnelles et encadrement adjoint dans le traitement de documents et de données associées aux moyens de paiement.',
-    highlights: [
-      'Encadrement adjoint d’une équipe de 15 personnes.',
-      'Pilotage d’activités: numérisation, saisie de masse, enrichissement, archivage et restitution.',
-      'Suivi incidents, supervision technique matérielle et logicielle.',
-      'Gestion des réclamations clients et suivi de tableaux de bord.',
-      'Formation des nouveaux arrivants et documentation qualité (procédures, mémos).' 
-    ]
-  },
-  {
-    role: 'Travailleur indépendant',
-    company: 'Monkey of The Net',
-    contract: 'Indépendant',
-    startDate: toMonthDate(2009, 1),
-    endDate: toMonthDate(2011, 12),
-    location: 'Toussieu, Auvergne-Rhône-Alpes, France',
-    mode: 'Freelance',
-    summary:
-      'Création de sites web et prestations multimédia en autonomie, de la conception à la maintenance.',
-    highlights: [
-      'Création de sites sur base Joomla et WordPress, adaptés aux besoins clients.',
-      'Création de chartes graphiques, maintenance et hébergement.',
-      'Production de diaporamas photo et rendus vidéo/DVD/exécutable.'
-    ]
-  },
-  {
-    role: 'Agent de sécurité',
-    company: 'Sécurifrance',
-    contract: 'Temps plein',
-    startDate: toMonthDate(2004, 10),
-    endDate: toMonthDate(2005, 4),
-    location: 'Lyon et périphérie',
-    mode: 'Terrain',
-    summary:
-      'Expérience de terrain structurante sur la rigueur, l’autonomie et la gestion de situations sensibles.',
-    highlights: [
-      'Gardes de 12 heures en autonomie et rondes intérieures/extérieures.',
-      'Utilisation d’outils d’alarme, vidéosurveillance et logiciels de compte rendu.',
-      'Interventions sur sites industriels et tertiaires exigeants.'
-    ]
-  }
-].map((xp) => {
-  const effectiveEndDate = xp.endDate ?? today;
+const quickStats = parcoursData.quickStats;
+const currentScope = parcoursData.currentScope;
+const stack = parcoursData.stack;
+const experiences = parcoursData.experiences.map((xp) => {
+  const startDate = toMonthDate(xp.start.year, xp.start.month);
+  const endDate = xp.end ? toMonthDate(xp.end.year, xp.end.month) : undefined;
   return {
     ...xp,
-    period: formatPeriod(xp.startDate, xp.endDate),
-    duration: formatDuration(xp.startDate, effectiveEndDate)
+    startDate,
+    endDate,
+    period: formatPeriod(startDate, endDate),
+    duration: formatDuration(startDate, endDate ?? today)
   };
 });
 ---
@@ -229,21 +78,18 @@ const experiences = [
   <main id="main-content" class="container section universe universe--pro">
     <section class="hero section" aria-labelledby="hero-title">
       <div class="hero-panel">
-        <p class="eyebrow">Parcours professionnel</p>
-        <h1 id="hero-title">Une carrière construite sur le terrain, structurée par l’impact.</h1>
-        <p class="lead muted">
-          De l’opérationnel au pilotage IT, avec une constante: rendre les outils, les usages et les process
-          plus simples, plus fiables et plus utiles pour les équipes.
-        </p>
+        <p class="eyebrow">{parcoursData.heroEyebrow}</p>
+        <h1 id="hero-title">{parcoursData.heroTitle}</h1>
+        <p class="lead muted">{parcoursData.heroLead}</p>
         <div class="hero-cta">
-          <a href="https://www.linkedin.com/in/stanislas-bouchet/" target="_blank" rel="noopener noreferrer">Voir le profil LinkedIn</a>
+          <a href={parcoursData.heroLinkedinUrl} target="_blank" rel="noopener noreferrer">{parcoursData.heroLinkedinLabel}</a>
           <p>{indyHeroLabel}</p>
         </div>
       </div>
     </section>
 
     <section class="section" aria-labelledby="impact-title">
-      <h2 id="impact-title">Impact en un coup d’œil</h2>
+      <h2 id="impact-title">{parcoursData.impactTitle}</h2>
       <ul class="stats-grid" aria-label="Indicateurs clés de carrière">
         {quickStats.map((item) => (
           <li>
@@ -255,7 +101,7 @@ const experiences = [
     </section>
 
     <section class="section" aria-labelledby="scope-title">
-      <h2 id="scope-title">Ce que je pilote aujourd’hui</h2>
+      <h2 id="scope-title">{parcoursData.scopeTitle}</h2>
       <div class="scope-grid">
         {currentScope.map((item) => (
           <article class="scope-card">
@@ -267,7 +113,7 @@ const experiences = [
     </section>
 
     <section class="section" aria-labelledby="timeline-title">
-      <h2 id="timeline-title">Timeline de carrière</h2>
+      <h2 id="timeline-title">{parcoursData.timelineTitle}</h2>
       <ol class="career-timeline">
         {experiences.map((xp) => (
           <li>
@@ -300,7 +146,7 @@ const experiences = [
     </section>
 
     <section class="section" aria-labelledby="stack-title">
-      <h2 id="stack-title">Environnement de travail</h2>
+      <h2 id="stack-title">{parcoursData.stackTitle}</h2>
       <ul class="tags tags--large" aria-label="Stack et outils utilisés">
         {stack.map((tool) => (
           <li>{tool}</li>
