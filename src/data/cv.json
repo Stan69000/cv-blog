@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "title": "CV — Stan Bouchet · IT Officer",
+    "description": "Curriculum vitae de Stan Bouchet : IT Officer, développeur web, 21 ans d'expérience opérationnelle.",
+    "subtitle": "IT Officer",
+    "location": "Lyon, France",
+    "linkedinUrl": "https://www.linkedin.com/in/stanislas-bouchet/",
+    "linkedinHandle": "linkedin.com/in/stanislas-bouchet",
+    "githubUrl": "https://github.com/Stan69000",
+    "githubHandle": "github.com/Stan69000",
+    "website": "stan-bouchet.com"
+  },
+  "summary": [
+    "IT Officer autonome et orienté amélioration continue, j'accompagne depuis 4 ans la structuration et l'évolution des environnements IT dans un contexte startup en forte croissance.",
+    "Chez Indy, je pilote l'IT interne pour plus de 300 collaborateurs : support, parc multi-OS, Google Workspace, Slack, Notion, cybersécurité, onboarding/offboarding, gestion des achats et automatisations. J'interviens également sur la gouvernance des usages, l'accompagnement des équipes sur les outils IA et l'optimisation des processus afin de rendre l'IT plus fluide, fiable et accessible.",
+    "Passionné par la transmission et la culture numérique, j'anime une fois par mois des formations vivantes et pédagogiques autour de la cybersécurité, avec une approche concrète, vulgarisée et orientée usages réels. Cette volonté de rendre le numérique plus accessible a également donné naissance à l'association Le Singe du Numérique, dédiée à la sensibilisation et à l'inclusion numérique.",
+    "Je collabore étroitement avec les équipes Finance sur le suivi budgétaire, les licences et les arbitrages liés aux outils et équipements IT.",
+    "Autodidacte et pragmatique, j'aime transformer des besoins concrets en solutions utiles, durables et adaptées aux équipes."
+  ],
+  "experiences": [
+    {
+      "role": "Information Technology Officer",
+      "company": "Indy",
+      "contract": "CDI",
+      "start": { "year": 2024, "month": 1 },
+      "end": null,
+      "location": "Lyon (hybride)",
+      "highlights": [
+        "Pilotage IT autonome pour 300+ collaborateurs : parc multi-OS (macOS, Windows, Linux), MDM, gestion des accès, outils.",
+        "Structuration du support : SLA, documentation, procédures, gouvernance des usages.",
+        "Automatisations ciblées réduisant les frictions quotidiennes (onboarding, offboarding, achats).",
+        "Animation mensuelle de formations outils et cybersécurité.",
+        "Développement de la fonction IT au rythme de la croissance de la scale-up.",
+        "Sauveteur Secouriste du Travail (SST).",
+        "Trésorier du CSE."
+      ]
+    },
+    {
+      "role": "Technicien Helpdesk",
+      "company": "Indy",
+      "contract": "CDI",
+      "start": { "year": 2022, "month": 7 },
+      "end": { "year": 2024, "month": 1 },
+      "location": "Lyon (hybride)",
+      "highlights": [
+        "Premier IT recruté chez Indy : construction des bases opérationnelles du support.",
+        "Configuration de 400+ postes multi-OS en 2,5 ans, gestion du parc et du MDM.",
+        "Administration Google Workspace, Slack, Notion, 1Password.",
+        "Onboarding / offboarding, comptes, droits d'accès.",
+        "Mise en place de la documentation, des automatisations et de l'amélioration des processus.",
+        "Responsable achats IT et SAV matériel."
+      ]
+    },
+    {
+      "role": "Manager de proximité",
+      "company": "Carsat Rhône-Alpes",
+      "contract": "Mission",
+      "start": { "year": 2022, "month": 1 },
+      "end": { "year": 2022, "month": 3 },
+      "location": "Lyon",
+      "highlights": [
+        "Management direct de 20 techniciens et gestionnaires.",
+        "Coordination transverse pour superviser les flux de 82 collaborateurs.",
+        "Formations : Manager Coach, entretiens individuels, management des télétravailleurs."
+      ]
+    },
+    {
+      "role": "Agent de maîtrise — Chef d'équipe adjoint",
+      "company": "EURO.TVS — Traitement Valeurs Services",
+      "contract": "CDI",
+      "start": { "year": 2005, "month": 4 },
+      "end": { "year": 2021, "month": 12 },
+      "location": "Tassin-la-Demi-Lune",
+      "highlights": [
+        "Encadrement adjoint d'une équipe de 15 personnes.",
+        "Pilotage d'activités : numérisation, saisie de masse, enrichissement, archivage.",
+        "Supervision technique (matériel et logiciel), suivi des incidents.",
+        "Gestion des réclamations clients, suivi de tableaux de bord.",
+        "Formation des nouveaux arrivants et documentation qualité (procédures, mémos)."
+      ]
+    },
+    {
+      "role": "Travailleur indépendant — Création de sites web",
+      "company": "Monkey of The Net",
+      "contract": "Indépendant",
+      "start": { "year": 2009, "month": 1 },
+      "end": { "year": 2011, "month": 12 },
+      "location": "Toussieu",
+      "highlights": [
+        "Création de sites Joomla / WordPress, chartes graphiques, maintenance et hébergement.",
+        "Production de diaporamas photo, rendus vidéo/DVD."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "category": "IT & Support",
+      "items": ["Support utilisateur", "Helpdesk", "Gestion de parc (300+ postes)", "MDM", "Onboarding / Offboarding", "Multi-OS (macOS · Windows · Linux)", "Achats IT · SAV"]
+    },
+    {
+      "category": "Outils & Plateformes",
+      "items": ["Google Workspace (Admin)", "Slack", "Notion", "1Password", "Microsoft 365", "IA générative"]
+    },
+    {
+      "category": "Développement web",
+      "items": ["Astro", "TypeScript", "HTML / CSS", "SwiftUI (macOS)", "Git", "Accessibilité RGAA / WCAG"]
+    },
+    {
+      "category": "Organisation & Process",
+      "items": ["Documentation technique", "SLA", "Automatisation", "Formation", "Amélioration continue", "Management de proximité"]
+    }
+  ],
+  "associations": [
+    {
+      "title": "Président fondateur — Le Singe du Numérique",
+      "period": "depuis 2026",
+      "description": "Association pour l'inclusion et la démocratisation numérique."
+    },
+    {
+      "title": "Trésorier adjoint — RVAz (Radio Val d'Azergues)",
+      "period": "depuis 2023",
+      "description": "Déploiement et administration Google Workspace. Photographe et caméraman, montages photos et vidéos avec DaVinci Resolve."
+    },
+    {
+      "title": "Conseiller municipal — Fleurieux-sur-l'Arbresle",
+      "period": "2021 → 2022",
+      "description": ""
+    },
+    {
+      "title": "Président fondateur — Au Chouette Bar",
+      "period": "2020 → 2021",
+      "description": "Création et gestion d'un bar associatif avec une salariée."
+    },
+    {
+      "title": "Président — Ludothèque Pause Jeux",
+      "period": "2010 → 2014",
+      "description": "Espace d'accueil pour les enfants de 0 à 6 ans avec une salariée. Subventionné CAF et Mairie de Saint-Priest."
+    },
+    {
+      "title": "Équipier secouriste — Croix-Rouge Lyon",
+      "period": "2007 → 2009",
+      "description": ""
+    },
+    {
+      "title": "Sapeur-pompier volontaire — SDIS du Rhône",
+      "period": "2000 → 2005",
+      "description": ""
+    }
+  ]
+}

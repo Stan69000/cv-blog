@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { featuredProjectsOrdered } from '../data/projects';
+import cvData from '../data/cv.json';
 
 const today = new Date();
 
@@ -21,104 +22,15 @@ function duration(start: Date, end: Date) {
   return [y > 0 ? `${y} an${y > 1 ? 's' : ''}` : '', m > 0 ? `${m} mois` : ''].filter(Boolean).join(' ');
 }
 
-const experiences = [
-  {
-    role: 'Information Technology Officer',
-    company: 'Indy',
-    contract: 'CDI',
-    start: toDate(2024, 1),
-    end: undefined as Date | undefined,
-    location: 'Lyon (hybride)',
-    highlights: [
-      'Pilotage IT autonome pour 300+ collaborateurs : parc multi-OS (macOS, Windows, Linux), MDM, gestion des accès, outils.',
-      'Structuration du support : SLA, documentation, procédures, gouvernance des usages.',
-      'Automatisations ciblées réduisant les frictions quotidiennes (onboarding, offboarding, achats).',
-      'Animation mensuelle de formations outils et cybersécurité.',
-      'Développement de la fonction IT au rythme de la croissance de la scale-up.',
-      'Sauveteur Secouriste du Travail (SST).',
-      'Trésorier du CSE.'
-    ]
-  },
-  {
-    role: 'Technicien Helpdesk',
-    company: 'Indy',
-    contract: 'CDI',
-    start: toDate(2022, 7),
-    end: toDate(2024, 1),
-    location: 'Lyon (hybride)',
-    highlights: [
-      'Premier IT recruté chez Indy : construction des bases opérationnelles du support.',
-      'Configuration de 400+ postes multi-OS en 2,5 ans, gestion du parc et du MDM.',
-      'Administration Google Workspace, Slack, Notion, 1Password.',
-      'Onboarding / offboarding, comptes, droits d\'accès.',
-      'Mise en place de la documentation, des automatisations et de l\'amélioration des processus.',
-      'Responsable achats IT et SAV matériel.'
-    ]
-  },
-  {
-    role: 'Manager de proximité',
-    company: 'Carsat Rhône-Alpes',
-    contract: 'Mission',
-    start: toDate(2022, 1),
-    end: toDate(2022, 3),
-    location: 'Lyon',
-    highlights: [
-      'Management direct de 20 techniciens et gestionnaires.',
-      'Coordination transverse pour superviser les flux de 82 collaborateurs.',
-      'Formations : Manager Coach, entretiens individuels, management des télétravailleurs.'
-    ]
-  },
-  {
-    role: "Agent de maîtrise — Chef d\'équipe adjoint",
-    company: 'EURO.TVS — Traitement Valeurs Services',
-    contract: 'CDI',
-    start: toDate(2005, 4),
-    end: toDate(2021, 12),
-    location: 'Tassin-la-Demi-Lune',
-    highlights: [
-      'Encadrement adjoint d\'une équipe de 15 personnes.',
-      'Pilotage d\'activités : numérisation, saisie de masse, enrichissement, archivage.',
-      'Supervision technique (matériel et logiciel), suivi des incidents.',
-      'Gestion des réclamations clients, suivi de tableaux de bord.',
-      'Formation des nouveaux arrivants et documentation qualité (procédures, mémos).'
-    ]
-  },
-  {
-    role: 'Travailleur indépendant — Création de sites web',
-    company: 'Monkey of The Net',
-    contract: 'Indépendant',
-    start: toDate(2009, 1),
-    end: toDate(2011, 12),
-    location: 'Toussieu',
-    highlights: [
-      'Création de sites Joomla / WordPress, chartes graphiques, maintenance et hébergement.',
-      'Production de diaporamas photo, rendus vidéo/DVD.'
-    ]
-  }
-].map(xp => ({
-  ...xp,
-  period: `${fmt(xp.start)} — ${xp.end ? fmt(xp.end) : 'aujourd\'hui'}`,
-  duration: duration(xp.start, xp.end ?? today)
-}));
-
-const skills = [
-  {
-    category: 'IT & Support',
-    items: ['Support utilisateur', 'Helpdesk', 'Gestion de parc (300+ postes)', 'MDM', 'Onboarding / Offboarding', 'Multi-OS (macOS · Windows · Linux)', 'Achats IT · SAV']
-  },
-  {
-    category: 'Outils & Plateformes',
-    items: ['Google Workspace (Admin)', 'Slack', 'Notion', '1Password', 'Microsoft 365', 'IA générative']
-  },
-  {
-    category: 'Développement web',
-    items: ['Astro', 'TypeScript', 'HTML / CSS', 'SwiftUI (macOS)', 'Git', 'Accessibilité RGAA / WCAG']
-  },
-  {
-    category: 'Organisation & Process',
-    items: ['Documentation technique', 'SLA', 'Automatisation', 'Formation', 'Amélioration continue', 'Management de proximité']
-  }
-];
+const experiences = cvData.experiences.map(xp => {
+  const start = toDate(xp.start.year, xp.start.month);
+  const end = xp.end ? toDate(xp.end.year, xp.end.month) : undefined;
+  return {
+    ...xp,
+    period: `${fmt(start)} — ${end ? fmt(end) : "aujourd'hui"}`,
+    duration: duration(start, end ?? today),
+  };
+});
 
 const selectedProjects = featuredProjectsOrdered
   .filter(p => p.status === 'ongoing')
@@ -128,8 +40,8 @@ const updatedAt = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numer
 ---
 
 <BaseLayout
-  title="CV — Stan Bouchet · IT Officer"
-  description="Curriculum vitae de Stan Bouchet : IT Officer, développeur web, 21 ans d'expérience opérationnelle."
+  title={cvData.meta.title}
+  description={cvData.meta.description}
   ogImage="/images/og/parcours.jpg"
 >
   <div class="cv-shell">
@@ -146,34 +58,22 @@ const updatedAt = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numer
       <header class="cv-header">
         <div class="cv-header__name">
           <h1>Stan Bouchet</h1>
-          <p class="cv-header__title">IT Officer</p>
+          <p class="cv-header__title">{cvData.meta.subtitle}</p>
         </div>
         <address class="cv-header__contact">
-          <span>Lyon, France</span>
-          <a href="https://www.linkedin.com/in/stanislas-bouchet/" target="_blank" rel="noopener noreferrer">linkedin.com/in/stanislas-bouchet</a>
-          <a href="https://github.com/Stan69000" target="_blank" rel="noopener noreferrer">github.com/Stan69000</a>
-          <a href="https://stan-bouchet.com">stan-bouchet.com</a>
+          <span>{cvData.meta.location}</span>
+          <a href={cvData.meta.linkedinUrl} target="_blank" rel="noopener noreferrer">{cvData.meta.linkedinHandle}</a>
+          <a href={cvData.meta.githubUrl} target="_blank" rel="noopener noreferrer">{cvData.meta.githubHandle}</a>
+          <a href={`https://${cvData.meta.website}`}>{cvData.meta.website}</a>
         </address>
       </header>
 
       <!-- ACCROCHE -->
       <section class="cv-section" aria-labelledby="cv-summary">
         <h2 id="cv-summary" class="cv-section__title">Profil</h2>
-        <p class="cv-summary">
-          IT Officer autonome et orienté amélioration continue, j'accompagne depuis 4 ans la structuration et l'évolution des environnements IT dans un contexte startup en forte croissance.
-        </p>
-        <p class="cv-summary">
-          Chez Indy, je pilote l'IT interne pour plus de 300 collaborateurs : support, parc multi-OS, Google Workspace, Slack, Notion, cybersécurité, onboarding/offboarding, gestion des achats et automatisations. J'interviens également sur la gouvernance des usages, l'accompagnement des équipes sur les outils IA et l'optimisation des processus afin de rendre l'IT plus fluide, fiable et accessible.
-        </p>
-        <p class="cv-summary">
-          Passionné par la transmission et la culture numérique, j'anime une fois par mois des formations vivantes et pédagogiques autour de la cybersécurité, avec une approche concrète, vulgarisée et orientée usages réels. Cette volonté de rendre le numérique plus accessible a également donné naissance à l'association Le Singe du Numérique, dédiée à la sensibilisation et à l'inclusion numérique.
-        </p>
-        <p class="cv-summary">
-          Je collabore étroitement avec les équipes Finance sur le suivi budgétaire, les licences et les arbitrages liés aux outils et équipements IT.
-        </p>
-        <p class="cv-summary">
-          Autodidacte et pragmatique, j'aime transformer des besoins concrets en solutions utiles, durables et adaptées aux équipes.
-        </p>
+        {cvData.summary.map(para => (
+          <p class="cv-summary">{para}</p>
+        ))}
       </section>
 
       <!-- EXPÉRIENCES -->
@@ -204,7 +104,7 @@ const updatedAt = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numer
       <section class="cv-section" aria-labelledby="cv-skills">
         <h2 id="cv-skills" class="cv-section__title">Compétences</h2>
         <dl class="cv-skills">
-          {skills.map(group => (
+          {cvData.skills.map(group => (
             <>
               <dt>{group.category}</dt>
               <dd>{group.items.join(' · ')}</dd>
@@ -239,21 +139,20 @@ const updatedAt = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numer
       <section class="cv-section" aria-labelledby="cv-asso">
         <h2 id="cv-asso" class="cv-section__title">Engagement associatif</h2>
         <ul class="cv-asso">
-          <li><strong>Président fondateur — Le Singe du Numérique</strong> (depuis 2026) · Association pour l'inclusion et la démocratisation numérique.</li>
-          <li><strong>Trésorier adjoint — RVAz (Radio Val d'Azergues)</strong> (depuis 2026) · Déploiement et administration Google Workspace. Photographe et caméraman, montages photos et vidéos avec DaVinci Resolve.</li>
-          <li><strong>Conseiller municipal — Fleurieux-sur-l'Arbresle</strong></li>
-          <li><strong>Président fondateur — Au Chouette Bar</strong> · Création et gestion d'un bar associatif avec une salariée.</li>
-          <li><strong>Président — Ludothèque Pause Jeux</strong> · Espace d'accueil pour les enfants de 0 à 6 ans avec une salariée. Subventionné CAF et Mairie de Saint-Priest.</li>
-          <li><strong>Équipier secouriste — Croix-Rouge Lyon</strong></li>
-          <li><strong>Sapeur-pompier volontaire — SDIS du Rhône</strong></li>
-          <li><strong>Équipier secouriste — Croix-Rouge Lyon</strong></li>
+          {cvData.associations.map(a => (
+            <li>
+              <strong>{a.title}</strong>
+              {a.period && <span> ({a.period})</span>}
+              {a.description && <span> · {a.description}</span>}
+            </li>
+          ))}
         </ul>
       </section>
 
       <footer class="cv-footer no-print">
-        <p>Dernière mise à jour : {updatedAt} · <a href="https://stan-bouchet.com">stan-bouchet.com</a></p>
+        <p>Dernière mise à jour : {updatedAt} · <a href={`https://${cvData.meta.website}`}>{cvData.meta.website}</a></p>
       </footer>
-      <p class="cv-updated print-only">Dernière mise à jour : {updatedAt} · stan-bouchet.com</p>
+      <p class="cv-updated print-only">Dernière mise à jour : {updatedAt} · {cvData.meta.website}</p>
 
     </main>
   </div>
