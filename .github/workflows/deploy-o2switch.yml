@@ -31,6 +31,18 @@ jobs:
           PUBLIC_ADMIN_URL: ${{ vars.PUBLIC_ADMIN_URL }}
         run: npm run build:o2switch
 
+      - name: Delete legacy sitemap.xml from server
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: |
+          curl -s -u "$FTP_USERNAME:$FTP_PASSWORD" \
+            "ftp://$FTP_SERVER:$FTP_PORT/" \
+            -Q "DELE ${FTP_SERVER_DIR}sitemap.xml" || true
+
       - name: Upload to O2Switch via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
