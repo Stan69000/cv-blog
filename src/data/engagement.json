@@ -1,34 +1,133 @@
 {
   "heroEyebrow": "Engagement associatif",
   "heroTitle": "Un fil rouge : être utile, transmettre et construire avec les autres.",
-  "heroLead": "Mon engagement associatif ne s’est pas construit d’un coup. Il s’inscrit dans le temps, à travers différentes expériences, contextes et rôles. Ce qui ne change pas, c’est l’envie d’aider, de partager et de participer à des projets collectifs.",
+  "heroLead": "Mon engagement associatif ne s'est pas construit d'un coup. Il s'inscrit dans le temps, à travers différentes expériences, contextes et rôles. Ce qui ne change pas, c'est l'envie d'aider, de partager et de participer à des projets collectifs.",
+  "stats": [
+    { "value": "25 ans", "label": "De bénévolat" },
+    { "value": "10", "label": "Structures différentes" },
+    { "value": "2", "label": "Associations fondées" }
+  ],
   "timelineEyebrow": "Parcours",
   "timelineTitle": "Un parcours dans le temps",
   "timeline": [
-    {"period":"2000 → 2005","title":"Sapeur-pompier volontaire SDIS du Rhône","text":"Première expérience forte d’engagement. Intervenir, aider, gérer l’urgence et travailler en équipe."},
-    {"period":"2007 → 2009","title":"Équipier secouriste – Croix-Rouge Délégation Locale de Lyon","text":"Poste de secours, plan d’urgence, initiation aux premiers secours grand public et pédiatrique, chauffeur VL."},
-    {"period":"2010 → 2014","title":"Président – Espace Animation Pause Jeux pour les 0 à 6 ans","text":"Gestion d’une structure associative, animation et encadrement d’équipe.","details":["Refonte du site web.","Création de l’image de marque.","Employeur bénévole d’une salariée.","Suivi administratif avec la mairie de St Priest et la CAF du Rhône.","Mise en place du prêt de jeux.","Mise en place de la prestation de service."]},
-    {"period":"2014","title":"Animateur / conception – Biennale d’art contemporain de Lyon","text":"Création de contenu pédagogique pour enfants dans un contexte culturel."},
-    {"period":"2020 → 2021","title":"Président fondateur – association Au Chouette Bar - Fleurieux sur l’Arbresle","text":"Création d’un bar associatif avec une salariée.","details":["Formation permis d’exploitation Licence IV.","Service à table.","Gestion de la caisse.","Gestion des conflits.","Création de l’image de marque : site web, logo, polo, menu, flyers."]},
-    {"period":"2021 → 2022","title":"Conseiller municipal - Fleurieux sur l’Arbresle","text":"Engagement local avec travail en commission (sécurité, communication, médiathèque)."},
-    {"period":"2022 → 2023","title":"Trésorier adjoint – Sou des écoles - Fleurieux sur l’Arbresle","text":"Gestion financière et participation à la vie associative locale."},
-    {"period":"2023 → aujourd’hui","title":"Trésorier adjoint – Radio / Web TV - RVAz","text":"Évolution d’une radio vers une Web TV, structuration et participation active.","details":["Photographe.","Monteur vidéo.","Cadreur.","Webmaster (projet de refonte du site web)."]},
-    {"period":"2025 → aujourd’hui","title":"Parrain – EDEN School - Villeurbanne","text":"Accompagnement d’un jeune développeur, transmission et mentorat."}
+    {
+      "period": "2000 → 2005",
+      "title": "Sapeur-pompier volontaire – SDIS du Rhône",
+      "text": "Première expérience forte d'engagement. Intervenir, aider, gérer l'urgence et travailler en équipe.",
+      "active": false,
+      "details": []
+    },
+    {
+      "period": "2007 → 2009",
+      "title": "Équipier secouriste – Croix-Rouge, Lyon",
+      "text": "Poste de secours, plan d'urgence, initiation aux premiers secours grand public et pédiatrique, chauffeur VL.",
+      "active": false,
+      "details": []
+    },
+    {
+      "period": "2010 → 2014",
+      "title": "Président – Espace Animation Pause Jeux (0-6 ans)",
+      "text": "Gestion d'une structure associative, animation et encadrement d'équipe.",
+      "active": false,
+      "details": [
+        "Refonte du site web.",
+        "Création de l'image de marque.",
+        "Employeur bénévole d'une salariée.",
+        "Suivi administratif avec la mairie de St Priest et la CAF du Rhône.",
+        "Mise en place du prêt de jeux et de la prestation de service."
+      ]
+    },
+    {
+      "period": "2014",
+      "title": "Animateur / conception – Biennale d'art contemporain de Lyon",
+      "text": "Création de contenu pédagogique pour enfants dans un contexte culturel.",
+      "active": false,
+      "details": []
+    },
+    {
+      "period": "2020 → 2021",
+      "title": "Président fondateur – Au Chouette Bar, Fleurieux-sur-l'Arbresle",
+      "text": "Création d'un bar associatif avec une salariée.",
+      "active": false,
+      "details": [
+        "Formation permis d'exploitation Licence IV.",
+        "Gestion opérationnelle : caisse, service, conflits.",
+        "Création de l'image de marque : site web, logo, polo, menu, flyers."
+      ]
+    },
+    {
+      "period": "2021 → 2022",
+      "title": "Conseiller municipal – Fleurieux-sur-l'Arbresle",
+      "text": "Engagement local, travail en commission (sécurité, communication, médiathèque).",
+      "active": false,
+      "details": []
+    },
+    {
+      "period": "2022 → 2023",
+      "title": "Trésorier adjoint – Sou des écoles, Fleurieux-sur-l'Arbresle",
+      "text": "Gestion financière et participation à la vie associative locale.",
+      "active": false,
+      "details": []
+    },
+    {
+      "period": "2023 → aujourd'hui",
+      "title": "Trésorier adjoint – RVAz (Radio / Web TV)",
+      "text": "Évolution d'une radio vers une Web TV, structuration et participation active.",
+      "active": true,
+      "details": [
+        "Photographe.",
+        "Monteur vidéo (DaVinci Resolve).",
+        "Cadreur.",
+        "Webmaster (refonte du site en cours)."
+      ]
+    },
+    {
+      "period": "2025 → aujourd'hui",
+      "title": "Parrain – EDEN School, Villeurbanne",
+      "text": "Accompagnement d'un jeune développeur, transmission et mentorat.",
+      "active": true,
+      "details": []
+    },
+    {
+      "period": "2026 → aujourd'hui",
+      "title": "Président fondateur – Le Singe du Numérique",
+      "text": "Association pour la démocratisation et l'inclusion numérique, co-fondée avec mon fils.",
+      "active": true,
+      "details": [
+        "Sensibilisation aux usages numériques et à la cybersécurité.",
+        "Accompagnement des associations locales dans leur transformation numérique.",
+        "Formations vivantes et pédagogiques, orientées usages réels."
+      ]
+    }
   ],
   "spotlightEyebrow": "Focus actuel",
-  "spotlightTitle": "Aujourd’hui : Le Singe du Numérique",
-  "spotlightIntro": "Une association qui s’inscrit naturellement dans la continuité de mon parcours.",
+  "spotlightTitle": "Aujourd'hui : Le Singe du Numérique",
+  "spotlightIntro": "Rendre le numérique compréhensible et accessible à tous — particuliers, bénévoles, petites associations. Co-fondée avec mon fils, l'association agit concrètement sur le terrain : formations, sensibilisation, accompagnement.",
+  "spotlightUrl": "https://lesingedunumerique.fr/",
+  "spotlightCta": "Voir l'association →",
   "spotlightCards": [
-    {"title":"Rendre le numérique plus accessible","text":"Avec Le Singe du Numérique, l’idée est de rendre les sujets numériques plus accessibles : cybersécurité, outils, usages… avec une approche simple et concrète."},
-    {"title":"Relier métier et engagement","text":"C’est une manière de faire le lien entre mon métier et mon engagement : expliquer, transmettre et rendre les choses utiles pour les autres."}
+    {
+      "title": "Rendre le numérique plus accessible",
+      "text": "Avec Le Singe du Numérique, l'idée est de rendre les sujets numériques plus accessibles : cybersécurité, outils, usages… avec une approche simple et concrète."
+    },
+    {
+      "title": "Relier métier et engagement",
+      "text": "C'est une manière de faire le lien entre mon métier et mon engagement : expliquer, transmettre et rendre les choses utiles pour les autres."
+    }
   ],
   "learningsEyebrow": "Apprentissages",
-  "learningsTitle": "Ce que ces expériences m’ont appris",
-  "learnings": ["Travailler en équipe dans des contextes variés","Gérer des responsabilités concrètes","Expliquer simplement des sujets parfois complexes","S’adapter à des publics très différents","Construire des projets sur la durée"],
+  "learningsTitle": "Ce que ces expériences m'ont appris",
+  "learnings": [
+    "Travailler en équipe dans des contextes variés",
+    "Gérer des responsabilités concrètes",
+    "Expliquer simplement des sujets parfois complexes",
+    "S'adapter à des publics très différents",
+    "Construire des projets sur la durée"
+  ],
   "workEyebrow": "Impact métier",
   "workTitle": "Le lien avec mon travail",
   "workParagraphs": [
-    "Cet engagement influence directement ma manière de travailler. La pédagogie, l’écoute, la clarté et le sens du collectif sont au cœur de mon quotidien IT.",
+    "Cet engagement influence directement ma manière de travailler. La pédagogie, l'écoute, la clarté et le sens du collectif sont au cœur de mon quotidien IT.",
     "Que ce soit dans le support, la cybersécurité ou la documentation, je retrouve les mêmes logiques : rendre les choses compréhensibles et utiles.",
     "Ces expériences ne sont pas à côté de mon parcours professionnel. Elles en font partie."
   ]

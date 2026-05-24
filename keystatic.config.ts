@@ -149,11 +149,19 @@ export default config({
         heroLead: fields.text({ label: 'Texte hero', multiline: true }),
         timelineEyebrow: fields.text({ label: 'Eyebrow timeline' }),
         timelineTitle: fields.text({ label: 'Titre timeline' }),
+        stats: fields.array(
+          fields.object({
+            value: fields.text({ label: 'Valeur' }),
+            label: fields.text({ label: 'Label' }),
+          }),
+          { label: 'Stats' }
+        ),
         timeline: fields.array(
           fields.object({
             period: fields.text({ label: 'Période' }),
             title: fields.text({ label: 'Titre' }),
             text: fields.text({ label: 'Texte', multiline: true }),
+            active: fields.checkbox({ label: 'Actif', defaultValue: false }),
             details: fields.array(fields.text({ label: 'Détail' }), { label: 'Détails' }),
           }),
           { label: 'Timeline' }
@@ -161,6 +169,8 @@ export default config({
         spotlightEyebrow: fields.text({ label: 'Eyebrow focus' }),
         spotlightTitle: fields.text({ label: 'Titre focus' }),
         spotlightIntro: fields.text({ label: 'Intro focus', multiline: true }),
+        spotlightUrl: fields.text({ label: 'URL focus' }),
+        spotlightCta: fields.text({ label: 'Texte CTA focus' }),
         spotlightCards: fields.array(
           fields.object({
             title: fields.text({ label: 'Titre carte' }),
@@ -274,6 +284,7 @@ export default config({
             }),
             url: fields.text({ label: 'URL projet' }),
             extensionUrl: fields.text({ label: 'URL extension' }),
+            screenshot: fields.text({ label: 'Chemin screenshot (ex: /images/projects/mon-projet.jpg)' }),
             context: fields.text({ label: 'Contexte', multiline: true }),
             technique: fields.array(fields.text({ label: 'Point technique' }), { label: 'Technique' }),
             impact: fields.array(fields.text({ label: 'Point impact' }), { label: 'Impact' }),

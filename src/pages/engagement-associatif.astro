@@ -2,87 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import engagementData from '../data/engagement.json';
 
-const timeline = [
-  {
-    period: '2000 → 2005',
-    title: 'Sapeur-pompier volontaire – SDIS du Rhône',
-    text: 'Première expérience forte d\'engagement. Intervenir, aider, gérer l\'urgence et travailler en équipe.'
-  },
-  {
-    period: '2007 → 2009',
-    title: 'Équipier secouriste – Croix-Rouge, Lyon',
-    text: 'Poste de secours, plan d\'urgence, initiation aux premiers secours grand public et pédiatrique, chauffeur VL.'
-  },
-  {
-    period: '2010 → 2014',
-    title: 'Président – Espace Animation Pause Jeux (0-6 ans)',
-    text: 'Gestion d\'une structure associative, animation et encadrement d\'équipe.',
-    details: [
-      'Refonte du site web.',
-      'Création de l\'image de marque.',
-      'Employeur bénévole d\'une salariée.',
-      'Suivi administratif avec la mairie de St Priest et la CAF du Rhône.',
-      'Mise en place du prêt de jeux et de la prestation de service.'
-    ]
-  },
-  {
-    period: '2014',
-    title: 'Animateur / conception – Biennale d\'art contemporain de Lyon',
-    text: 'Création de contenu pédagogique pour enfants dans un contexte culturel.'
-  },
-  {
-    period: '2020 → 2021',
-    title: 'Président fondateur – Au Chouette Bar, Fleurieux-sur-l\'Arbresle',
-    text: 'Création d\'un bar associatif avec une salariée.',
-    details: [
-      'Formation permis d\'exploitation Licence IV.',
-      'Gestion opérationnelle : caisse, service, conflits.',
-      'Création de l\'image de marque : site web, logo, polo, menu, flyers.'
-    ]
-  },
-  {
-    period: '2021 → 2022',
-    title: 'Conseiller municipal – Fleurieux-sur-l\'Arbresle',
-    text: 'Engagement local, travail en commission (sécurité, communication, médiathèque).'
-  },
-  {
-    period: '2022 → 2023',
-    title: 'Trésorier adjoint – Sou des écoles, Fleurieux-sur-l\'Arbresle',
-    text: 'Gestion financière et participation à la vie associative locale.'
-  },
-  {
-    period: '2023 → aujourd\'hui',
-    title: 'Trésorier adjoint – RVAz (Radio / Web TV)',
-    text: 'Évolution d\'une radio vers une Web TV, structuration et participation active.',
-    active: true,
-    details: ['Photographe.', 'Monteur vidéo (DaVinci Resolve).', 'Cadreur.', 'Webmaster (refonte du site en cours).']
-  },
-  {
-    period: '2025 → aujourd\'hui',
-    title: 'Parrain – EDEN School, Villeurbanne',
-    text: 'Accompagnement d\'un jeune développeur, transmission et mentorat.',
-    active: true
-  },
-  {
-    period: '2026 → aujourd\'hui',
-    title: 'Président fondateur – Le Singe du Numérique',
-    text: 'Association pour la démocratisation et l\'inclusion numérique, co-fondée avec mon fils.',
-    active: true,
-    details: [
-      'Sensibilisation aux usages numériques et à la cybersécurité.',
-      'Accompagnement des associations locales dans leur transformation numérique.',
-      'Formations vivantes et pédagogiques, orientées usages réels.'
-    ]
-  }
-];
-
-const stats = [
-  { value: '25 ans', label: 'De bénévolat' },
-  { value: '10', label: 'Structures différentes' },
-  { value: '2', label: 'Associations fondées' }
-];
-
+const { stats, timeline, spotlightEyebrow, spotlightTitle, spotlightIntro, spotlightUrl, spotlightCta, workEyebrow, workTitle, workParagraphs } = engagementData;
 ---
 
 <BaseLayout
@@ -127,7 +49,7 @@ const stats = [
             </div>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
-            {item.details && (
+            {item.details && item.details.length > 0 && (
               <ul class="timeline__details" aria-label={`Détails de ${item.title}`}>
                 {item.details.map((detail) => (
                   <li>{detail}</li>
@@ -141,41 +63,34 @@ const stats = [
 
     <section class="section spotlight" aria-labelledby="spotlight-title">
       <div class="spotlight__top">
-        <p class="eyebrow">Focus actuel</p>
-        <h2 id="spotlight-title">Aujourd'hui : Le Singe du Numérique</h2>
+        <p class="eyebrow">{spotlightEyebrow}</p>
+        <h2 id="spotlight-title">{spotlightTitle}</h2>
       </div>
 
       <div class="spotlight__body">
-        <p class="spotlight__mission">
-          Rendre le numérique compréhensible et accessible à tous — particuliers, bénévoles, petites associations.
-          Co-fondée avec mon fils, l'association agit concrètement sur le terrain : formations, sensibilisation, accompagnement.
-        </p>
-        <p class="spotlight__link-wrap">
-          <a href="https://lesingedunumerique.fr/" target="_blank" rel="noopener noreferrer" class="spotlight__cta">
-            Voir l'association →
-          </a>
-        </p>
+        <p class="spotlight__mission">{spotlightIntro}</p>
+        {spotlightUrl && (
+          <p class="spotlight__link-wrap">
+            <a href={spotlightUrl} target="_blank" rel="noopener noreferrer" class="spotlight__cta">
+              {spotlightCta}
+            </a>
+          </p>
+        )}
       </div>
     </section>
 
     <section class="section" aria-labelledby="work-link-title">
       <div class="section-head">
-        <p class="eyebrow">Impact métier</p>
-        <h2 id="work-link-title">Le lien avec mon travail</h2>
+        <p class="eyebrow">{workEyebrow}</p>
+        <h2 id="work-link-title">{workTitle}</h2>
       </div>
 
       <div class="work-link">
-        <p>
-          Cet engagement influence directement ma manière de travailler. La pédagogie, l'écoute,
-          la clarté et le sens du collectif sont au cœur de mon quotidien IT.
-        </p>
-        <p>
-          Que ce soit dans le support, la cybersécurité ou la documentation, je retrouve les mêmes logiques :
-          rendre les choses compréhensibles et utiles.
-        </p>
-        <p class="work-link__conclusion">
-          Ces expériences ne sont pas à côté de mon parcours professionnel. Elles en font partie.
-        </p>
+        {workParagraphs.map((para, i) => (
+          i === workParagraphs.length - 1
+            ? <p class="work-link__conclusion">{para}</p>
+            : <p>{para}</p>
+        ))}
       </div>
     </section>
   </main>
