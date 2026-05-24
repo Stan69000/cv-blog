@@ -1,10 +1,11 @@
 ---
-title: "Brouillon interne"
-description: "Brouillon technique pour initialiser la collection blog."
+title: Brouillon interne
+description: Brouillon technique pour initialiser la collection blog.
 pubDate: 2026-04-17
-draft: true
+type: book
 tags: ["draft"]
-type: "book"
+featured: false
+draft: true
 ---
 
 Ce brouillon est volontairement non publié.
