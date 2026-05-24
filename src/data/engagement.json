@@ -3,9 +3,18 @@
   "heroTitle": "Un fil rouge : être utile, transmettre et construire avec les autres.",
   "heroLead": "Mon engagement associatif ne s'est pas construit d'un coup. Il s'inscrit dans le temps, à travers différentes expériences, contextes et rôles. Ce qui ne change pas, c'est l'envie d'aider, de partager et de participer à des projets collectifs.",
   "stats": [
-    { "value": "25 ans", "label": "De bénévolat" },
-    { "value": "10", "label": "Structures différentes" },
-    { "value": "2", "label": "Associations fondées" }
+    {
+      "value": "25 ans",
+      "label": "De bénévolat"
+    },
+    {
+      "value": "10",
+      "label": "Structures différentes"
+    },
+    {
+      "value": "2",
+      "label": "Associations fondées"
+    }
   ],
   "timelineEyebrow": "Parcours",
   "timelineTitle": "Un parcours dans le temps",
@@ -105,6 +114,13 @@
   "spotlightIntro": "Rendre le numérique compréhensible et accessible à tous — particuliers, bénévoles, petites associations. Co-fondée avec mon fils, l'association agit concrètement sur le terrain : formations, sensibilisation, accompagnement.",
   "spotlightUrl": "https://lesingedunumerique.fr/",
   "spotlightCta": "Voir l'association →",
+  "workEyebrow": "Impact métier",
+  "workTitle": "Le lien avec mon travail",
+  "workParagraphs": [
+    "Cet engagement influence directement ma manière de travailler. La pédagogie, l'écoute, la clarté et le sens du collectif sont au cœur de mon quotidien IT.",
+    "Que ce soit dans le support, la cybersécurité ou la documentation, je retrouve les mêmes logiques : rendre les choses compréhensibles et utiles.",
+    "Ces expériences ne sont pas à côté de mon parcours professionnel. Elles en font partie."
+  ],
   "spotlightCards": [
     {
       "title": "Rendre le numérique plus accessible",
@@ -123,12 +139,5 @@
     "Expliquer simplement des sujets parfois complexes",
     "S'adapter à des publics très différents",
     "Construire des projets sur la durée"
-  ],
-  "workEyebrow": "Impact métier",
-  "workTitle": "Le lien avec mon travail",
-  "workParagraphs": [
-    "Cet engagement influence directement ma manière de travailler. La pédagogie, l'écoute, la clarté et le sens du collectif sont au cœur de mon quotidien IT.",
-    "Que ce soit dans le support, la cybersécurité ou la documentation, je retrouve les mêmes logiques : rendre les choses compréhensibles et utiles.",
-    "Ces expériences ne sont pas à côté de mon parcours professionnel. Elles en font partie."
   ]
 }
