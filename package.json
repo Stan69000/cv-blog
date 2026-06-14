@@ -16,7 +16,7 @@
     "@astrojs/sitemap": "^3.7.2",
     "@keystatic/astro": "^5.0.6",
     "@keystatic/core": "^0.5.50",
-    "astro": "^5.18.1",
+    "astro": "^5.18.2",
     "graphql": "^16.13.2",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"

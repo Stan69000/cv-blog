@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-06-14
+
+### Modifié
+- `astro` : mise à jour 5.18.1 → 5.18.2 (patch sécurité — XSS `define:vars` GHSA-j687-52p2-xcff, non exploitable dans ce projet faute d'usage du feature)
+
 ## 2026-05-24
 
 ### Ajouté

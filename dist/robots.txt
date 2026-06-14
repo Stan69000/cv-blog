@@ -4,4 +4,4 @@ Allow: /
 Disallow: /keystatic/
 Disallow: /admin/
 
-Sitemap: /sitemap.xml
+Sitemap: https://stan-bouchet.com/sitemap-index.xml
