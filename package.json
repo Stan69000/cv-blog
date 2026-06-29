@@ -18,7 +18,7 @@
     "@keystatic/core": "^0.5.50",
     "astro": "^7.0.3",
     "graphql": "^16.13.2",
-    "react": "^19.2.5",
+    "react": "^19.2.7",
     "react-dom": "^19.2.5"
   },
   "devDependencies": {
