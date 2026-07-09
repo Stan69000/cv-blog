@@ -11,6 +11,12 @@ updates:
         patterns:
           - "astro"
           - "@astrojs/*"
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
       security-patches:
         applies-to: security-updates
         patterns:
