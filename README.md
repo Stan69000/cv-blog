@@ -35,6 +35,11 @@ Voir [DEPLOYMENT.md](./DEPLOYMENT.md) pour la configuration complète (secrets F
 
 Tout push sur `main` déclenche automatiquement le déploiement O2Switch via GitHub Actions.
 
+## Publication du blog
+
+Le réglage **Général → Publier le blog** dans Keystatic contrôle toute la section Blog.
+Lorsqu'il est désactivé, les liens, les pages et les entrées du sitemap sont retirés du site public au prochain déploiement. Les articles restent conservés dans Keystatic et réapparaissent à l'identique lorsque le réglage est réactivé.
+
 ## Sitemap
 
 Généré automatiquement par `@astrojs/sitemap` à chaque build.

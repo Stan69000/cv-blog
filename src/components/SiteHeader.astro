@@ -9,7 +9,7 @@ const navItems = [
   { href: '/parcours', label: 'Parcours' },
   { href: '/projets', label: 'Projets' },
   { href: '/engagement-associatif', label: 'Engagement' },
-  { href: '/blog', label: 'Blog' },
+  ...(siteConfig.blogPublished ? [{ href: '/blog', label: 'Blog' }] : []),
   { href: '/contact', label: 'Contact' },
 ].map(item => ({
   href: item.href,

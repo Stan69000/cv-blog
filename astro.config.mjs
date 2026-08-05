@@ -3,15 +3,22 @@ import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 import netlify from '@astrojs/netlify';
 import sitemap from '@astrojs/sitemap';
+import { readFileSync } from 'node:fs';
 
 const isO2SwitchBuild = process.env.DEPLOY_TARGET === 'o2switch';
 const siteUrl = process.env.SITE_URL || 'https://stan-bouchet.com';
+const siteConfig = JSON.parse(readFileSync(new URL('./src/data/site.json', import.meta.url), 'utf8'));
+const sitemapConfig = {
+  filter: (page) => siteConfig.blogPublished || !new URL(page).pathname.startsWith('/blog')
+};
 
 export default defineConfig({
   site: siteUrl,
   output: isO2SwitchBuild ? 'static' : 'server',
   adapter: isO2SwitchBuild ? undefined : netlify(),
-  integrations: isO2SwitchBuild ? [react(), sitemap()] : [react(), keystatic(), sitemap()],
+  integrations: isO2SwitchBuild
+    ? [react(), sitemap(sitemapConfig)]
+    : [react(), keystatic(), sitemap(sitemapConfig)],
   vite: {
     build: {
       // Keystatic bundles a heavy admin UI by design; raise warning threshold to avoid noisy false positives.

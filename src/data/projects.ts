@@ -6,6 +6,7 @@ export type ProjectStatus = 'ongoing' | 'completed';
 export type FeaturedProject = {
   type: string;
   name: string;
+  draft: boolean;
   startedAt: string;
   endedAt?: string;
   startPrecision?: DatePrecision;
@@ -23,16 +24,18 @@ export type FeaturedProject = {
 export const getProjectScreenshot = (project: FeaturedProject): string | undefined =>
   project.screenshot || undefined;
 
-export const featuredProjects: FeaturedProject[] = projetsData.projects.map((p) => ({
-  ...p,
-  url: p.url ?? null,
-  extensionUrl: p.extensionUrl || undefined,
-  screenshot: p.screenshot || undefined,
-  endedAt: (p as { endedAt?: string }).endedAt || undefined,
-  startPrecision: (p.startPrecision as DatePrecision) ?? 'month',
-  endPrecision: ((p as { endPrecision?: string }).endPrecision as DatePrecision) ?? undefined,
-  status: p.status as ProjectStatus,
-}));
+export const featuredProjects: FeaturedProject[] = projetsData.projects
+  .filter((p) => p.draft !== true)
+  .map((p) => ({
+    ...p,
+    url: p.url ?? null,
+    extensionUrl: p.extensionUrl || undefined,
+    screenshot: p.screenshot || undefined,
+    endedAt: (p as { endedAt?: string }).endedAt || undefined,
+    startPrecision: (p.startPrecision as DatePrecision) ?? 'month',
+    endPrecision: ((p as { endPrecision?: string }).endPrecision as DatePrecision) ?? undefined,
+    status: p.status as ProjectStatus,
+  }));
 
 export const featuredProjectsOrdered: FeaturedProject[] = [
   ...featuredProjects.filter((p) => p.status === 'ongoing'),

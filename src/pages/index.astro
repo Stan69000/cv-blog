@@ -40,9 +40,19 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
             <span class="compass-label__sub">associatif</span>
           </a>
 
-          <a href="/blog" class="compass-label compass-label--o">
-            <span class="compass-label__main">Blog</span>
-          </a>
+          {siteConfig.blogPublished ? (
+            <a href="/blog" class="compass-label compass-label--o">
+              <span class="compass-label__main">Blog</span>
+            </a>
+          ) : (
+            <div
+              class="compass-label compass-label--o compass-label--disabled"
+              aria-label="Blog, à venir"
+            >
+              <span class="compass-label__main">Blog</span>
+              <span class="compass-label__sub">À venir</span>
+            </div>
+          )}
 
           <div class="compass-rose-wrapper">
             <CompassRose size={360} ariaLabel="Rose des vents — navigation du site" />
@@ -70,7 +80,7 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
 
     const angles: Record<string, number> = { n: 0, e: 90, s: 180, o: 270 };
 
-    document.querySelectorAll<HTMLAnchorElement>('.compass-label').forEach((label) => {
+    document.querySelectorAll<HTMLAnchorElement>('a.compass-label').forEach((label) => {
       const dir = [...label.classList]
         .find((c) => c.startsWith('compass-label--'))
         ?.replace('compass-label--', '');
@@ -166,6 +176,16 @@ const bio = homeConfig.bio || 'Ce site rassemble plusieurs facettes de mon parco
   .compass-label:hover {
     opacity: 0.6;
     transform: scale(1.04);
+  }
+
+  .compass-label--disabled {
+    cursor: default;
+    opacity: 0.55;
+  }
+
+  .compass-label--disabled:hover {
+    opacity: 0.55;
+    transform: none;
   }
 
   .compass-label--n {

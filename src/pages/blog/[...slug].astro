@@ -3,10 +3,13 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
+import siteConfig from '../../data/site.json';
 
 export const prerender = true;
 
 export async function getStaticPaths() {
+  if (!siteConfig.blogPublished) return [];
+
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   return posts.map((post) => ({
     params: { slug: post.id.replace(/\.md$/, '') },

@@ -7,12 +7,13 @@
     {
       "type": "App macOS",
       "name": "Quizeo",
+      "draft": false,
       "startedAt": "2026-05-01",
       "startPrecision": "month",
       "status": "ongoing",
       "url": null,
       "extensionUrl": "",
-      "screenshot": "",
+      "screenshot": "/images/projects/quizeo.jpg",
       "context": "Les applications de quiz musicaux ou cinéma sont souvent limitées, peu personnalisables ou dépendantes de plateformes externes. De l'autre côté, écouter de la musique hors ligne ou organiser facilement des blind tests entre amis demande souvent de jongler entre plusieurs outils différents.",
       "technique": [
         "L'application est développée comme une vraie application desktop avec Tauri et Rust afin de rester légère, rapide et peu gourmande en ressources.",
@@ -32,6 +33,7 @@
     {
       "type": "App macOS",
       "name": "Atelier du Photographe",
+      "draft": false,
       "startedAt": "2026-01-01",
       "startPrecision": "year",
       "status": "completed",
@@ -58,6 +60,7 @@
     {
       "type": "Création web",
       "name": "Le Singe du Numérique",
+      "draft": false,
       "startedAt": "2026-04-01",
       "startPrecision": "month",
       "status": "ongoing",
@@ -82,6 +85,7 @@
     {
       "type": "Refonte web",
       "name": "Natur' Au Féminin",
+      "draft": false,
       "startedAt": "2026-02-01",
       "startPrecision": "month",
       "status": "completed",
@@ -107,6 +111,7 @@
     {
       "type": "Création web",
       "name": "stan-bouchet.eu",
+      "draft": false,
       "startedAt": "2026-04-01",
       "startPrecision": "month",
       "status": "ongoing",
@@ -132,6 +137,7 @@
     {
       "type": "Création web",
       "name": "stan-bouchet.com",
+      "draft": false,
       "startedAt": "2026-04-01",
       "startPrecision": "month",
       "status": "ongoing",
@@ -157,6 +163,7 @@
     {
       "type": "Open source",
       "name": "astro-a11y",
+      "draft": false,
       "startedAt": "2026-04-01",
       "startPrecision": "month",
       "status": "ongoing",
@@ -181,6 +188,7 @@
     {
       "type": "Open source",
       "name": "RGAA Audit",
+      "draft": false,
       "startedAt": "2026-04-01",
       "startPrecision": "month",
       "status": "ongoing",
@@ -207,6 +215,7 @@
     {
       "type": "Déploiement IT",
       "name": "Mise en place de Google Workspace (RVAz)",
+      "draft": false,
       "startedAt": "2025-01-01",
       "endedAt": "2025-12-01",
       "startPrecision": "year",

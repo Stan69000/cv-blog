@@ -65,6 +65,11 @@ export default config({
         author: fields.text({ label: 'Auteur' }),
         email: fields.text({ label: 'Email' }),
         url: fields.text({ label: 'URL du site' }),
+        blogPublished: fields.checkbox({
+          label: 'Publier le blog',
+          description: 'Affiche le blog sur le site public et rend ses pages accessibles.',
+          defaultValue: false,
+        }),
       },
     }),
     
@@ -92,7 +97,6 @@ export default config({
         showParcours: fields.checkbox({ label: 'Afficher Parcours', defaultValue: true }),
         showProjets: fields.checkbox({ label: 'Afficher Projets', defaultValue: true }),
         showEngagement: fields.checkbox({ label: 'Afficher Engagement', defaultValue: true }),
-        showBlog: fields.checkbox({ label: 'Afficher Blog', defaultValue: true }),
       },
     }),
     
@@ -256,6 +260,11 @@ export default config({
           fields.object({
             type: fields.text({ label: 'Type' }),
             name: fields.text({ label: 'Nom' }),
+            draft: fields.checkbox({
+              label: 'Brouillon',
+              description: 'Un projet en brouillon reste visible dans l’admin mais pas sur le site public.',
+              defaultValue: true,
+            }),
             startedAt: fields.text({ label: 'Date début (YYYY-MM-DD)' }),
             endedAt: fields.text({ label: 'Date fin (YYYY-MM-DD)' }),
             startPrecision: fields.select({
