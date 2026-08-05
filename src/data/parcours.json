@@ -62,7 +62,7 @@
   ],
   "experiences": [
     {
-      "role": "Information Technology Officer",
+      "role": "Information Technology Officer (Reponsable Informatique)",
       "company": "Indy",
       "contract": "CDI",
       "start": {
@@ -71,11 +71,20 @@
       },
       "location": "Lyon, Auvergne-Rhône-Alpes, France",
       "mode": "Hybride",
-      "summary": "Fonction créée sur mesure après une évolution interne depuis le helpdesk. Responsable IT autonome, avec un périmètre transverse en forte croissance.",
+      "summary": "Premier collaborateur IT recruté chez Indy en 2022, j'ai grandi en même temps que l'entreprise en passant d'un poste de Technicien Help Desk à celui d'IT Officer (Responsable Informatique), une fonction créée pour accompagner sa croissance.\n \nAujourd'hui, je pilote de manière autonome les opérations IT pour plus de 300 collaborateurs et contribue à la structuration de l'IT au travers de sujets tels que la sécurité, l'automatisation, les outils SaaS, les projets transverses et l'amélioration continue.",
       "highlights": [
-        "Gestion autonome d’un parc de plus de 300 collaborateurs.",
-        "Développement de la fonction IT au rythme de la croissance de l’entreprise.",
-        "Structuration durable du support, des outils et des standards de service."
+        "Pilotage des opérations IT pour ~300 collaborateurs. ",
+        "Élaboration et suivi du budget IT. ",
+        "Gestion des achats, des fournisseurs et du parc informatique. ",
+        "Administration de Google Workspace, Slack, Notion, FleetDM et 1Password. ",
+        "Contribution aux sujets de sécurité, de conformité et de gouvernance IT (ISO 27001). ",
+        "Conception d'automatisations et de workflows. ",
+        "Développement d'un cockpit IT sur mesure (Next.js & TypeScript) pour piloter budgets, parc informatique.",
+        "Suivi des collaborateurs, licences, automatisations et activités opérationnelles, avec l'appui de l'IA. ",
+        "Conception d'intégrations avec différents outils de l'écosystème IT",
+        "Contribution aux sujets liés aux bureaux, à la sécurité des locaux et à l'expérience collaborateur. ",
+        "Pilotage de projets transverses tel que le bilan Carbone",
+        "Trésorier du CSE & Sauveteur Secouriste du Travail (SST)"
       ]
     },
     {
