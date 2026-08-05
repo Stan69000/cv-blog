@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { featuredProjectsOrdered, formatProjectDate, getProjectScreenshot } from '../data/projects';
+import { featuredProjectsOrdered, formatProjectDate, getProjectImages } from '../data/projects';
 
 const typeIcons: Record<string, string> = {
   'App macOS': '🖥',
@@ -46,35 +46,63 @@ const typeIcons: Record<string, string> = {
       <p class="filter-count" aria-live="polite" aria-atomic="true"></p>
       <div class="project-grid" id="project-grid">
         {featuredProjectsOrdered.map((project) => {
-          const screenshot = getProjectScreenshot(project);
+          const images = getProjectImages(project);
           return (
           <article
             class="project-card"
             data-type={project.type}
           >
-            {project.url ? (
-              <a href={project.url} target="_blank" rel="noopener noreferrer" class="project-thumb" tabindex="-1" aria-hidden="true">
-                {screenshot ? (
-                  <img src={screenshot} alt="" loading="lazy" decoding="async" />
-                ) : (
-                  <span class="project-thumb__placeholder">
-                    <span class="placeholder-icon" aria-hidden="true">{typeIcons[project.type] ?? '📁'}</span>
-                    <span class="placeholder-label">{project.type}</span>
-                  </span>
-                )}
-              </a>
-            ) : (
-              <div class="project-thumb" aria-hidden="true">
-                {screenshot ? (
-                  <img src={screenshot} alt="" loading="lazy" decoding="async" />
-                ) : (
-                  <span class="project-thumb__placeholder">
-                    <span class="placeholder-icon" aria-hidden="true">{typeIcons[project.type] ?? '📁'}</span>
-                    <span class="placeholder-label">{project.type}</span>
-                  </span>
-                )}
-              </div>
-            )}
+            <div
+              class="project-thumb project-gallery"
+              data-project-gallery={images.length > 1 ? '' : undefined}
+              data-interval={project.slideshowInterval * 1000}
+            >
+              {images.length > 0 ? (
+                <>
+                  {images.map((image, imageIndex) => (
+                    project.url ? (
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-slide"
+                        hidden={imageIndex !== 0}
+                        tabindex="-1"
+                        aria-hidden="true"
+                      >
+                        <img src={image} alt="" loading="lazy" decoding="async" />
+                      </a>
+                    ) : (
+                      <span class="project-slide" hidden={imageIndex !== 0} aria-hidden="true">
+                        <img src={image} alt="" loading="lazy" decoding="async" />
+                      </span>
+                    )
+                  ))}
+                  {images.length > 1 && (
+                    <>
+                      <button class="gallery-control gallery-control--prev" type="button" data-gallery-prev aria-label={`Image précédente de ${project.name}`}>‹</button>
+                      <button class="gallery-control gallery-control--next" type="button" data-gallery-next aria-label={`Image suivante de ${project.name}`}>›</button>
+                      <div class="gallery-dots" aria-label={`Choisir une image de ${project.name}`}>
+                        {images.map((_, imageIndex) => (
+                          <button
+                            type="button"
+                            class:list={['gallery-dot', { 'is-active': imageIndex === 0 }]}
+                            data-gallery-dot={imageIndex}
+                            aria-label={`Afficher l’image ${imageIndex + 1} sur ${images.length}`}
+                            aria-current={imageIndex === 0 ? 'true' : undefined}
+                          ></button>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </>
+              ) : (
+                <span class="project-thumb__placeholder" aria-hidden="true">
+                  <span class="placeholder-icon">{typeIcons[project.type] ?? '📁'}</span>
+                  <span class="placeholder-label">{project.type}</span>
+                </span>
+              )}
+            </div>
             <header class="project-head">
               <p class="project-type">{project.type}</p>
               <time class="project-date" datetime={project.startedAt}>{formatProjectDate(project)}</time>
@@ -175,6 +203,68 @@ const typeIcons: Record<string, string> = {
   });
 
   updateCount(cards.length, cards.length);
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLElement>('[data-project-gallery]').forEach((gallery) => {
+    const slides = Array.from(gallery.querySelectorAll<HTMLElement>('.project-slide'));
+    const dots = Array.from(gallery.querySelectorAll<HTMLButtonElement>('[data-gallery-dot]'));
+    const previous = gallery.querySelector<HTMLButtonElement>('[data-gallery-prev]');
+    const next = gallery.querySelector<HTMLButtonElement>('[data-gallery-next]');
+    const interval = Number(gallery.dataset.interval) || 5000;
+    let active = 0;
+    let timer: number | undefined;
+
+    const show = (index: number) => {
+      active = (index + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => {
+        slide.hidden = slideIndex !== active;
+      });
+      dots.forEach((dot, dotIndex) => {
+        const isActive = dotIndex === active;
+        dot.classList.toggle('is-active', isActive);
+        if (isActive) dot.setAttribute('aria-current', 'true');
+        else dot.removeAttribute('aria-current');
+      });
+    };
+
+    const stop = () => {
+      if (timer !== undefined) window.clearInterval(timer);
+      timer = undefined;
+    };
+
+    const start = () => {
+      stop();
+      if (!reduceMotion && slides.length > 1) {
+        timer = window.setInterval(() => show(active + 1), interval);
+      }
+    };
+
+    previous?.addEventListener('click', () => {
+      show(active - 1);
+      start();
+    });
+    next?.addEventListener('click', () => {
+      show(active + 1);
+      start();
+    });
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        show(index);
+        start();
+      });
+    });
+
+    gallery.addEventListener('mouseenter', stop);
+    gallery.addEventListener('mouseleave', start);
+    gallery.addEventListener('focusin', stop);
+    gallery.addEventListener('focusout', (event) => {
+      if (!gallery.contains((event as FocusEvent).relatedTarget as Node | null)) start();
+    });
+
+    show(0);
+    start();
+  });
 </script>
 
 <style>
@@ -289,17 +379,87 @@ const typeIcons: Record<string, string> = {
     transition: transform var(--transition);
   }
 
-  a.project-thumb {
+  .project-slide {
+    position: absolute;
+    inset: 0;
     display: block;
+  }
+
+  .project-slide[hidden] {
+    display: none;
+  }
+
+  a.project-slide {
     cursor: pointer;
   }
 
-  a.project-thumb:hover img {
+  a.project-slide:hover img {
     transform: scale(1.04);
   }
 
   .project-card:hover .project-thumb img {
     transform: scale(1.02);
+  }
+
+  .gallery-control {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid color-mix(in srgb, white 45%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, #111827 72%, transparent);
+    color: white;
+    font: inherit;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: background var(--transition), transform var(--transition);
+  }
+
+  .gallery-control:hover,
+  .gallery-control:focus-visible {
+    background: color-mix(in srgb, var(--accent) 82%, #111827);
+  }
+
+  .gallery-control--prev {
+    left: 0.65rem;
+  }
+
+  .gallery-control--next {
+    right: 0.65rem;
+  }
+
+  .gallery-dots {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: 0.6rem;
+    display: flex;
+    gap: 0.35rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, #111827 62%, transparent);
+    transform: translateX(-50%);
+  }
+
+  .gallery-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    padding: 0;
+    border: 1px solid color-mix(in srgb, white 70%, transparent);
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .gallery-dot.is-active {
+    background: white;
   }
 
   .project-thumb__placeholder {

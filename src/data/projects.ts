@@ -19,18 +19,31 @@ export type FeaturedProject = {
   impact: string[];
   tags: string[];
   screenshot?: string;
+  images: string[];
+  slideshowInterval: number;
 };
 
-export const getProjectScreenshot = (project: FeaturedProject): string | undefined =>
-  project.screenshot || undefined;
+type StoredProject = Omit<FeaturedProject, 'images' | 'slideshowInterval'> & {
+  images?: string[];
+  slideshowInterval?: number;
+};
 
-export const featuredProjects: FeaturedProject[] = projetsData.projects
+export const getProjectImages = (project: FeaturedProject): string[] =>
+  project.images.length > 0
+    ? project.images
+    : project.screenshot
+      ? [project.screenshot]
+      : [];
+
+export const featuredProjects: FeaturedProject[] = (projetsData.projects as StoredProject[])
   .filter((p) => p.draft !== true)
   .map((p) => ({
     ...p,
     url: p.url ?? null,
     extensionUrl: p.extensionUrl || undefined,
     screenshot: p.screenshot || undefined,
+    images: Array.isArray(p.images) ? p.images.slice(0, 5) : p.screenshot ? [p.screenshot] : [],
+    slideshowInterval: Math.min(15, Math.max(2, p.slideshowInterval ?? 5)),
     endedAt: (p as { endedAt?: string }).endedAt || undefined,
     startPrecision: (p.startPrecision as DatePrecision) ?? 'month',
     endPrecision: ((p as { endPrecision?: string }).endPrecision as DatePrecision) ?? undefined,
