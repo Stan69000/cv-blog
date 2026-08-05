@@ -7,13 +7,12 @@
     {
       "type": "App macOS",
       "name": "Quizeo",
-      "draft": false,
       "startedAt": "2026-05-01",
       "startPrecision": "month",
       "status": "ongoing",
       "url": null,
       "extensionUrl": "",
-      "screenshot": "/images/projects/quizeo.jpg",
+      "screenshot": "",
       "context": "Les applications de quiz musicaux ou cinéma sont souvent limitées, peu personnalisables ou dépendantes de plateformes externes. De l'autre côté, écouter de la musique hors ligne ou organiser facilement des blind tests entre amis demande souvent de jongler entre plusieurs outils différents.",
       "technique": [
         "L'application est développée comme une vraie application desktop avec Tauri et Rust afin de rester légère, rapide et peu gourmande en ressources.",
@@ -28,12 +27,18 @@
         "Le projet permet de créer facilement des parties adaptées à différents niveaux et styles de jeu : blind tests, QCM, chrono, multijoueur ou reconnaissance d'artistes et de titres.",
         "L'objectif est de proposer une expérience plus fluide, plus fun et plus personnalisable pour jouer seul ou à plusieurs."
       ],
-      "tags": ["Tauri", "Rust", "React", "TypeScript", "Desktop app"]
+      "tags": [
+        "Tauri",
+        "Rust",
+        "React",
+        "TypeScript",
+        "Desktop app"
+      ],
+      "draft": false
     },
     {
       "type": "App macOS",
       "name": "Atelier du Photographe",
-      "draft": false,
       "startedAt": "2026-01-01",
       "startPrecision": "year",
       "status": "completed",
@@ -55,12 +60,18 @@
         "L'application permet de parcourir rapidement ses images, les classer avec le clavier et les envoyer directement dans les bons dossiers selon son propre workflow.",
         "L'objectif est de simplifier les manipulations répétitives et de rendre l'organisation photo plus fluide au quotidien."
       ],
-      "tags": ["SwiftUI", "macOS", "MVVM", "EXIF", "Photo workflow"]
+      "tags": [
+        "SwiftUI",
+        "macOS",
+        "MVVM",
+        "EXIF",
+        "Photo workflow"
+      ],
+      "draft": false
     },
     {
       "type": "Création web",
       "name": "Le Singe du Numérique",
-      "draft": false,
       "startedAt": "2026-04-01",
       "startPrecision": "month",
       "status": "ongoing",
@@ -80,12 +91,16 @@
         "Le projet rend le numérique plus accessible, plus humain et plus compréhensible grâce à des contenus clairs, des ressources pédagogiques et un accompagnement concret.",
         "L'objectif n'est pas seulement d'expliquer la technologie, mais de redonner confiance face au numérique."
       ],
-      "tags": ["Astro", "TypeScript", "Contenu éditorial"]
+      "tags": [
+        "Astro",
+        "TypeScript",
+        "Contenu éditorial"
+      ],
+      "draft": false
     },
     {
       "type": "Refonte web",
       "name": "Natur' Au Féminin",
-      "draft": false,
       "startedAt": "2026-02-01",
       "startPrecision": "month",
       "status": "completed",
@@ -106,12 +121,16 @@
         "L'objectif est d'aider les visiteurs à mieux comprendre les contenus, les accompagnements proposés et à naviguer plus facilement entre les différentes sections du site.",
         "Le projet privilégie une approche plus apaisée et plus lisible afin de recentrer l'expérience sur les contenus et les besoins des visiteurs."
       ],
-      "tags": ["Refonte", "UX", "UI"]
+      "tags": [
+        "Refonte",
+        "UX",
+        "UI"
+      ],
+      "draft": false
     },
     {
       "type": "Création web",
       "name": "stan-bouchet.eu",
-      "draft": false,
       "startedAt": "2026-04-01",
       "startPrecision": "month",
       "status": "ongoing",
@@ -132,12 +151,16 @@
         "Le projet permet de publier, organiser et faire évoluer les contenus librement, avec une expérience pensée autour de la photographie plutôt qu'autour des contraintes des plateformes classiques.",
         "L'objectif est de créer un espace plus calme, plus cohérent et plus fidèle à ma pratique photo."
       ],
-      "tags": ["Galerie", "Admin sur mesure", "Design minimal"]
+      "tags": [
+        "Galerie",
+        "Admin sur mesure",
+        "Design minimal"
+      ],
+      "draft": false
     },
     {
       "type": "Création web",
       "name": "stan-bouchet.com",
-      "draft": false,
       "startedAt": "2026-04-01",
       "startPrecision": "month",
       "status": "ongoing",
@@ -158,12 +181,16 @@
         "Le site cherche à proposer une lecture plus humaine et plus claire de mon univers, avec une organisation pensée pour permettre aux visiteurs de naviguer facilement entre les différents sujets sans se perdre.",
         "L'objectif est de construire un espace évolutif capable d'accueillir de nouveaux projets et contenus au fil du temps sans perdre en simplicité."
       ],
-      "tags": ["Hub personnel", "Astro", "Design system léger"]
+      "tags": [
+        "Hub personnel",
+        "Astro",
+        "Design system léger"
+      ],
+      "draft": false
     },
     {
       "type": "Open source",
       "name": "astro-a11y",
-      "draft": false,
       "startedAt": "2026-04-01",
       "startPrecision": "month",
       "status": "ongoing",
@@ -183,12 +210,17 @@
         "Astro-a11y cherche à rendre les contrôles d'accessibilité plus simples, plus rapides et plus intégrés au développement quotidien.",
         "Le projet aide les équipes à identifier automatiquement les problèmes les plus courants et à comprendre concrètement comment les corriger, sans attendre un audit complet en fin de projet."
       ],
-      "tags": ["Accessibilité", "Astro", "Playwright", "Open source"]
+      "tags": [
+        "Accessibilité",
+        "Astro",
+        "Playwright",
+        "Open source"
+      ],
+      "draft": false
     },
     {
       "type": "Open source",
       "name": "RGAA Audit",
-      "draft": false,
       "startedAt": "2026-04-01",
       "startPrecision": "month",
       "status": "ongoing",
@@ -210,12 +242,16 @@
         "Le projet aide à lancer rapidement des vérifications, suivre les critères importants et structurer les contrôles sans devoir naviguer dans des interfaces complexes.",
         "L'objectif est de faciliter le passage à l'action et de rendre les audits plus fluides au quotidien."
       ],
-      "tags": ["Accessibilité", "RGAA", "Extension Chrome"]
+      "tags": [
+        "Accessibilité",
+        "RGAA",
+        "Extension Chrome"
+      ],
+      "draft": false
     },
     {
       "type": "Déploiement IT",
       "name": "Mise en place de Google Workspace (RVAz)",
-      "draft": false,
       "startedAt": "2025-01-01",
       "endedAt": "2025-12-01",
       "startPrecision": "year",
@@ -239,7 +275,27 @@
         "L'objectif est de faciliter le travail collectif, centraliser les ressources importantes et permettre aux membres de collaborer plus sereinement au quotidien.",
         "Le déploiement cherche aussi à accompagner l'adoption des outils afin qu'ils restent accessibles et faciles à utiliser pour tous les profils."
       ],
-      "tags": ["Google Workspace", "Gouvernance", "Conduite du changement"]
+      "tags": [
+        "Google Workspace",
+        "Gouvernance",
+        "Conduite du changement"
+      ],
+      "draft": false
+    },
+    {
+      "type": "",
+      "name": "",
+      "draft": true,
+      "startedAt": "",
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": null,
+      "extensionUrl": "",
+      "screenshot": "",
+      "context": "",
+      "technique": [],
+      "impact": [],
+      "tags": []
     }
   ]
 }
