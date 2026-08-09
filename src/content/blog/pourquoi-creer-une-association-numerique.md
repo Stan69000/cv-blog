@@ -13,6 +13,8 @@ draft: false
 
 Pour plusieurs raisons !
 
+## Une passion pour le numérique et l’engagement
+
 D’abord, parce que le numérique, chez moi, c’est une passion. Je suis tombé dedans il y a déjà plus de 35 ans. Je n’avais même pas 10 ans et j’ai commencé avec un mammouth qui tournait sous… MS-DOS.
 
 Ah, ce fameux format c:… Je me souviens encore du « oups ». Et du « bah, démerde-toi maintenant » qui venait juste après.
@@ -47,7 +49,7 @@ Bien sûr, mon rôle de conseiller municipal ne se serait pas résumé à créer
 
 Avec un autre avantage : un site web ne s’arrête pas aux limites d’une commune. On peut agir localement tout en partageant beaucoup plus largement.
 
-Un projet construit à deux… puis en famille
+## Un projet construit à deux… puis en famille
 
 Le projet, je ne l’ai pas simplement présenté à mon fils Mikaël en lui disant : « Voilà ce que j’ai décidé de faire. »
 
@@ -77,7 +79,7 @@ Et plus récemment, celle de créer des livres et des histoires destinés notamm
 
 Une idée en amène une autre…
 
-Une vraie aventure familiale
+## Une vraie aventure familiale
 
 Sur le papier, dans les statuts de l’association, Mikaël est le seul membre de la famille engagé avec moi.
 
@@ -95,7 +97,7 @@ Mais au final, chacun apporte quelque chose au projet.
 
 Et c’est probablement une des choses que j’apprécie le plus dans cette aventure : construire quelque chose ensemble, en famille, même si chacun y contribue différemment.
 
-L’associatif, ce n’est pas « juste du bénévolat »
+## L’associatif, ce n’est pas « juste du bénévolat »
 
 Plus largement, créer ou rejoindre une association, c’est se mettre au service d’un projet collectif, partager ses passions, rencontrer des gens et apprendre énormément de nouvelles choses.
 
