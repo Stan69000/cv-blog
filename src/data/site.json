@@ -1,4 +1,7 @@
 {
-  "title": "Mon site",
+  "title": "Stan Bouchet",
+  "description": "Site CV et blog de Stan Bouchet : support IT terrain, documentation, automatisation utile et culture du service.",
+  "author": "Stan Bouchet",
+  "url": "https://stan-bouchet.com",
   "blogPublished": true
 }
