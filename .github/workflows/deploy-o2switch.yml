@@ -27,8 +27,6 @@ jobs:
         run: rm -rf dist
 
       - name: Build static website
-        env:
-          PUBLIC_ADMIN_URL: ${{ vars.PUBLIC_ADMIN_URL }}
         run: npm run build:o2switch
 
       - name: Delete legacy sitemap.xml from server

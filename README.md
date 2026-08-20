@@ -1,24 +1,17 @@
 # stan-bouchet.com
 
-CV et blog personnel de Stan Bouchet — construit avec [Astro](https://astro.build) et [Keystatic](https://keystatic.com).
+CV et blog personnel de Stan Bouchet — construit avec [Astro](https://astro.build).
 
 ## Stack
 
-- **Astro 5** — framework statique/hybride
-- **Keystatic** — CMS headless (admin sur Netlify, build statique sur O2Switch)
+- **Astro 7** — framework statique
 - **React** — composants interactifs
 - **TypeScript**
 
 ## Architecture de déploiement
 
-Deux environnements distincts :
-
-| Environnement | URL | Usage |
-|---|---|---|
-| O2Switch (static) | https://stan-bouchet.com | Site public |
-| Netlify (SSR) | https://stan-bouchet.eu | Admin Keystatic |
-
-Le build O2Switch (`DEPLOY_TARGET=o2switch`) génère un site entièrement statique déployé via FTP. Le build Netlify expose l'interface d'administration Keystatic en mode SSR.
+Le site est généré entièrement en statique puis déployé sur O2Switch via FTP.
+L'administration des contenus est centralisée sur [admin.stan-bouchet.fr](https://admin.stan-bouchet.fr/dashboard), qui synchronise ses modifications dans ce dépôt.
 
 ## Développement local
 
@@ -27,18 +20,16 @@ npm install
 npm run dev
 ```
 
-L'admin Keystatic est accessible à `http://localhost:4321/keystatic`.
-
 ## Déploiement
 
-Voir [DEPLOYMENT.md](./DEPLOYMENT.md) pour la configuration complète (secrets FTP, variables Netlify, etc.).
+Voir [DEPLOYMENT.md](./DEPLOYMENT.md) pour la configuration complète des secrets FTP.
 
 Tout push sur `main` déclenche automatiquement le déploiement O2Switch via GitHub Actions.
 
 ## Publication du blog
 
-Le réglage **Général → Publier le blog** dans Keystatic contrôle toute la section Blog.
-Lorsqu'il est désactivé, les liens, les pages et les entrées du sitemap sont retirés du site public au prochain déploiement. Les articles restent conservés dans Keystatic et réapparaissent à l'identique lorsque le réglage est réactivé.
+Le réglage **Général → Publier le blog** dans l'administration centrale contrôle toute la section Blog.
+Lorsqu'il est désactivé, les liens, les pages et les entrées du sitemap sont retirés du site public au prochain déploiement. Les articles restent conservés dans le dépôt et réapparaissent à l'identique lorsque le réglage est réactivé.
 
 ## Sitemap
 
