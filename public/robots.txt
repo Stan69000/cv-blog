@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
 
-Disallow: /keystatic/
-Disallow: /admin/
-
 Sitemap: https://stan-bouchet.com/sitemap-index.xml
