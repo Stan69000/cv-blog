@@ -31,7 +31,7 @@ const pageTitle = propTitle || seoConfig.defaultTitle || siteConfig.title;
 const pageDescription = propDescription || seoConfig.defaultDescription || siteConfig.description;
 const pageOgImage = propOgImage || seoConfig.ogImage || '/images/og-default.jpg';
 const canonical = new URL(Astro.url.pathname, siteUrl).toString();
-const sitemapUrl = new URL('/sitemap.xml', siteUrl).toString();
+const sitemapUrl = new URL('/sitemap-index.xml', siteUrl).toString();
 const robots = seoConfig.noIndex || propNoIndex ? 'noindex,nofollow' : 'index,follow';
 const pageOgImageUrl = pageOgImage.startsWith('http')
   ? pageOgImage
