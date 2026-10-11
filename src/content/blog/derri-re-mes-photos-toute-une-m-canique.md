@@ -5,10 +5,10 @@ description: >-
   une intégration entre iPhone, télévision, site web et kDrive, avec API,
   renommage automatique et signature personnalisable.
 pubDate: '2026-10-11'
-type: book
+type: floppy
 tags: []
-featured: false
-draft: true
+featured: true
+draft: false
 ---
 
 Une lumière, une ambiance, un détail qui attire le regard. La photographie commence souvent comme ça : avec l’envie de garder quelque chose d’un instant.
