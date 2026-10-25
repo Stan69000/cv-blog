@@ -56,12 +56,15 @@
       "url": null,
       "repoUrl": "",
       "extensionUrl": "",
-      "screenshot": "",
-      "images": [],
+      "screenshot": "/images/projects/cortex-accueil.jpg",
+      "images": [
+        "/images/projects/cortex-accueil.jpg",
+        "/images/projects/cortex-phishing.jpg"
+      ],
       "pitch": "Une plateforme de veille complète : elle lit des centaines de sources, les regroupe par sujet avec l'IA et sert le résultat à une équipe, à un site public ou à un assistant IA.",
       "role": "Conception produit, architecture, développement full-stack et exploitation sur VPS.",
       "results": [
-        "Ingestion RSS, newsletters, podcasts, YouTube, Reddit, GitHub, CVE et fact-checks, sans doublon",
+        "Plus de 90 000 articles collectés et dédupliqués depuis avril 2026 : RSS, newsletters, podcasts, YouTube, Reddit, GitHub, CVE",
         "Multi-équipes avec 5 rôles, double authentification TOTP et passkeys, journal d'audit",
         "Serveur MCP de plus de 60 outils, utilisable depuis Claude, Cursor ou tout client MCP",
         "Coûts IA suivis par fournisseur et par modèle, budget plafonné à 20 € par mois"
