@@ -11,27 +11,27 @@
   "impactTitle": "Impact en un coup d’œil",
   "quickStats": [
     {
-      "value": "21+",
-      "label": "ans d'expérience opérationnelle"
+      "value": "{{ans:2005-04}}",
+      "label": "d'expérience opérationnelle"
     },
     {
-      "value": "300+",
-      "label": "collaborateurs gérés chez Indy"
+      "value": "Depuis 2022",
+      "label": "dans l'IT interne, d'abord au support puis au pilotage"
     },
     {
-      "value": "Plusieurs centaines",
-      "label": "d’ordinateurs configurés depuis mes débuts chez Indy"
+      "value": "1er",
+      "label": "informaticien recruté, sur une fonction créée ensuite"
     },
     {
-      "value": "1/mois",
-      "label": "session outils + sécurité animée"
+      "value": "Chaque mois",
+      "label": "une session outils et sécurité animée en interne"
     }
   ],
   "scopeTitle": "Ce que je pilote aujourd’hui",
   "currentScope": [
     {
       "title": "Pilotage IT autonome",
-      "text": "Gestion complète du parc, des accès, des outils et du support pour plus de 300 collaborateurs."
+      "text": "Gestion complète du parc, des accès, des outils et du support pour l'ensemble des collaborateurs."
     },
     {
       "title": "Structuration & qualité",
@@ -62,7 +62,7 @@
   ],
   "experiences": [
     {
-      "role": "Information Technology Officer (Reponsable Informatique)",
+      "role": "Information Technology Officer (Responsable informatique)",
       "company": "Indy",
       "contract": "CDI",
       "start": {
@@ -71,18 +71,18 @@
       },
       "location": "Lyon, Auvergne-Rhône-Alpes, France",
       "mode": "Hybride",
-      "summary": "Premier collaborateur IT recruté chez Indy en 2022, j'ai grandi en même temps que l'entreprise en passant d'un poste de Technicien Help Desk à celui d'IT Officer (Responsable Informatique), une fonction créée pour accompagner sa croissance.\n \nAujourd'hui, je pilote de manière autonome les opérations IT pour plus de 300 collaborateurs et contribue à la structuration de l'IT au travers de sujets tels que la sécurité, l'automatisation, les outils SaaS, les projets transverses et l'amélioration continue.",
+      "summary": "Premier collaborateur IT recruté chez Indy en 2022, j'ai grandi en même temps que l'entreprise en passant d'un poste de Technicien Help Desk à celui d'IT Officer (Responsable Informatique), une fonction créée pour accompagner sa croissance.\n \nAujourd'hui, je pilote de manière autonome les opérations IT et contribue à la structuration de l'IT au travers de sujets tels que la sécurité, l'automatisation, les outils SaaS, les projets transverses et l'amélioration continue.",
       "highlights": [
-        "Pilotage des opérations IT pour ~300 collaborateurs. ",
-        "Élaboration et suivi du budget IT. ",
-        "Gestion des achats, des fournisseurs et du parc informatique. ",
-        "Administration de Google Workspace, Slack, Notion, FleetDM et 1Password. ",
-        "Contribution aux sujets de sécurité, de conformité et de gouvernance IT (ISO 27001). ",
-        "Conception d'automatisations et de workflows. ",
-        "Développement d'un cockpit IT sur mesure (Next.js & TypeScript) pour piloter budgets, parc informatique.",
-        "Suivi des collaborateurs, licences, automatisations et activités opérationnelles, avec l'appui de l'IA. ",
+        "Pilotage des opérations IT.",
+        "Élaboration et suivi du budget IT.",
+        "Gestion des achats, des fournisseurs et du parc informatique.",
+        "Administration de Google Workspace, Slack, Notion, FleetDM et 1Password.",
+        "Contribution aux sujets de sécurité, de conformité et de gouvernance IT (ISO 27001).",
+        "Conception d'automatisations et de workflows.",
+        "Conception d'un cockpit IT sur mesure (Next.js, développé avec l'IA) pour piloter budgets et parc informatique.",
+        "Suivi des collaborateurs, licences, automatisations et activités opérationnelles, avec l'appui de l'IA.",
         "Conception d'intégrations avec différents outils de l'écosystème IT",
-        "Contribution aux sujets liés aux bureaux, à la sécurité des locaux et à l'expérience collaborateur. ",
+        "Contribution aux sujets liés aux bureaux, à la sécurité des locaux et à l'expérience collaborateur.",
         "Pilotage de projets transverses tel que le bilan Carbone",
         "Trésorier du CSE & Sauveteur Secouriste du Travail (SST)"
       ]
