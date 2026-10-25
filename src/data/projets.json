@@ -126,8 +126,10 @@
       "url": null,
       "repoUrl": "",
       "extensionUrl": "",
-      "screenshot": "",
-      "images": [],
+      "screenshot": "/images/projects/studio-stan.jpg",
+      "images": [
+        "/images/projects/studio-stan.jpg"
+      ],
       "pitch": "Mon back-office maison : une seule interface pour éditer, publier et déployer mes quatre sites, des photos aux articles relus par IA.",
       "role": "Conception, développement et hébergement sur VPS.",
       "results": [
