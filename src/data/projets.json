@@ -285,10 +285,10 @@
       "images": [
         "/images/projects/stan-bouchet-eu.jpg"
       ],
-      "pitch": "Ma galerie photo : 1 468 images en 18 séries, à parcourir au hasard, sur une carte ou au fil des instants du quotidien.",
+      "pitch": "Ma galerie photo : plus de 1 000 images rangées en séries, à parcourir au hasard, sur une carte ou au fil des instants du quotidien.",
       "role": "Photographe, design et développement de la galerie et de son administration.",
       "results": [
-        "1 468 photos publiées en 18 séries, avec une page de statistiques publique",
+        "Plus de 1 000 photos publiées, avec une page de statistiques publique",
         "Plusieurs façons d'explorer : carte, recherche, Instants du quotidien, visite guidée en 12 images",
         "Installable comme une application sur téléphone et ordinateur (PWA)",
         "Séries, tags et couvertures gérés depuis une admin sur mesure"
