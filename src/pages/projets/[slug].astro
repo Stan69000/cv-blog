@@ -33,8 +33,6 @@ const [cover, ...gallery] = project.images;
         <span>{project.type}</span>
         <span aria-hidden="true">·</span>
         <time datetime={project.startedAt}>{formatProjectDate(project)}</time>
-        <span aria-hidden="true">·</span>
-        <span>{project.status === 'ongoing' ? 'En cours' : 'Terminé'}</span>
       </p>
       <h1>{project.name}</h1>
       <p class="project-lead">{project.pitch}</p>
