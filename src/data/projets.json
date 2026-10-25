@@ -115,6 +115,38 @@
       "story": "L'actu tech et cyber arrive de partout, et la plupart des gens n'ont ni le temps ni l'envie de tout lire. Le Signal Clair fait ce tri à leur place : les articles qui racontent la même histoire sont regroupés, résumés, et seuls les sujets qui comptent remontent.\n\nLe site est sorti en octobre 2026. Il s'appuie sur Cortex, la plateforme de veille que je développe depuis avril 2026 : ingestion, regroupement par IA, détection des arnaques et suivi des failles viennent de là.\n\nLe projet est bénévole et porté par l'association Le Singe du Numérique. Les résumés sont générés automatiquement, sans relecture humaine, et le site le dit clairement."
     },
     {
+      "slug": "studio-stan",
+      "type": "Plateforme web",
+      "name": "Studio Stan",
+      "draft": false,
+      "featured": true,
+      "startedAt": "2026-05-01",
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": null,
+      "repoUrl": "",
+      "extensionUrl": "",
+      "screenshot": "",
+      "images": [],
+      "pitch": "Mon back-office maison : une seule interface pour éditer, publier et déployer mes quatre sites, des photos aux articles relus par IA.",
+      "role": "Conception, développement et hébergement sur VPS.",
+      "results": [
+        "4 sites pilotés au même endroit : galerie photo, association, site d'une naturopathe et ce site",
+        "Connexion par passkey ou TOTP, sessions révocables côté serveur, journal d'audit",
+        "Workflow éditorial de l'association : statuts, vérification de la charte, relecture par Claude, publication automatique",
+        "Médiathèque partagée, sauvegarde quotidienne et déploiement Git sans quitter l'interface"
+      ],
+      "tags": [
+        "Next.js",
+        "TypeScript",
+        "SQLite",
+        "WebAuthn",
+        "Docker",
+        "Claude API"
+      ],
+      "story": "Avec plusieurs sites statiques à faire vivre, je jonglais entre des CMS différents, Notion, des fichiers Markdown et des commandes de déploiement. Studio Stan remplace tout ça par une seule interface.\n\nChaque site y a son espace : photos, séries et tags pour la galerie, pages et tarifs pour le site de Natur' Au Féminin, articles et réglages pour ce site. Les modifications sont écrites directement dans le dépôt Git du site concerné, puis déployées.\n\nPour Le Singe du Numérique, l'admin porte tout le circuit éditorial : un article passe de brouillon à publié en suivant des statuts, une pré-vérification de la charte, puis une relecture par Claude qui propose une version corrigée, un score, une description et des tags.\n\nL'accès est protégé par passkey ou code TOTP, avec un journal d'audit et une sauvegarde automatique chaque nuit. L'application tourne en Docker derrière Caddy, sur un VPS que j'administre."
+    },
+    {
       "slug": "rgaa-audit",
       "type": "Open source",
       "name": "RGAA Audit",
@@ -299,7 +331,7 @@
         "Node.js",
         "Photographie"
       ],
-      "story": "Les plateformes photo imposent leurs règles : compression, algorithmes, publicité. Je voulais un endroit à moi, où les images passent avant l'interface.\n\nLa galerie a beaucoup grandi depuis la première version : un accueil qui tire une photo au hasard, des séries, des Instants publiés au fil des jours, une carte, une recherche, une visite guidée pour une première découverte et une page qui donne les chiffres de la galerie. Elle s'installe comme une application, sans rien stocker hors ligne.\n\nCôté coulisses, tout se publie depuis l'administration centralisée qui gère aussi mes autres sites."
+      "story": "Les plateformes photo imposent leurs règles : compression, algorithmes, publicité. Je voulais un endroit à moi, où les images passent avant l'interface.\n\nLa galerie a beaucoup grandi depuis la première version : un accueil qui tire une photo au hasard, des séries, des Instants publiés au fil des jours, une carte, une recherche, une visite guidée pour une première découverte et une page qui donne les chiffres de la galerie. Elle s'installe comme une application, sans rien stocker hors ligne.\n\nCôté coulisses, tout se publie depuis Studio Stan, l'administration centralisée qui gère aussi mes autres sites."
     },
     {
       "slug": "natur-au-feminin",
@@ -321,7 +353,7 @@
       "role": "Refonte UX/UI et développement Astro.",
       "results": [
         "Arborescence réorganisée autour des accompagnements proposés",
-        "Pages, tarifs et actualités gérés depuis l'admin centralisée",
+        "Pages, tarifs et actualités gérés depuis Studio Stan, mon admin centralisée",
         "Mise en page repensée pour la lecture sur mobile"
       ],
       "tags": [
@@ -382,7 +414,7 @@
       "pitch": "Ce site : parcours, projets, engagement et blog réunis au même endroit.",
       "role": "Design et développement.",
       "results": [
-        "Contenus pilotés depuis une admin Next.js qui gère aussi trois autres sites",
+        "Contenus pilotés depuis Studio Stan, mon admin qui gère aussi trois autres sites",
         "Thème clair et sombre, navigation au clavier soignée"
       ],
       "tags": [
