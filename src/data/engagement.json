@@ -4,7 +4,7 @@
   "heroLead": "Mon engagement associatif ne s'est pas construit d'un coup. Il s'inscrit dans le temps, à travers différentes expériences, contextes et rôles. Ce qui ne change pas, c'est l'envie d'aider, de partager et de participer à des projets collectifs.",
   "stats": [
     {
-      "value": "{{ans:1994}}",
+      "value": "{{ans:1990}}",
       "label": "De bénévolat"
     },
     {
@@ -20,10 +20,10 @@
   "timelineTitle": "Un parcours dans le temps",
   "timeline": [
     {
-      "period": "Dès 1994",
+      "period": "Dès 1990",
       "title": "Louveteau puis Pionnier – Scouts de France",
       "url": "https://sgdf.fr/",
-      "text": "Premiers pas dans l'engagement, à 12 ans : vie en groupe, autonomie et sens du service.",
+      "text": "Premiers pas dans l'engagement, dès l'enfance : vie en groupe, autonomie et sens du service.",
       "active": false,
       "details": []
     },
