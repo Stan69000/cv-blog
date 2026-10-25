@@ -75,14 +75,14 @@ const tags = variant === 'compact' ? project.tags.slice(0, 4) : project.tags;
           Voir le projet<span class="visually-hidden"> {project.name} (nouvel onglet)</span>
         </a>
       )}
+      {project.extensionUrl && (
+        <a href={project.extensionUrl} target="_blank" rel="noopener noreferrer" class="project-link project-link--external">
+          Extension Chrome<span class="visually-hidden"> {project.name} (nouvel onglet)</span>
+        </a>
+      )}
       {project.repoUrl && (
         <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" class="project-link project-link--external">
           Code source<span class="visually-hidden"> de {project.name} (nouvel onglet)</span>
-        </a>
-      )}
-      {project.extensionUrl && (
-        <a href={project.extensionUrl} target="_blank" rel="noopener noreferrer" class="project-link project-link--external">
-          Extension<span class="visually-hidden"> {project.name} (nouvel onglet)</span>
         </a>
       )}
     </p>

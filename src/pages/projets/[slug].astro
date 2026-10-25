@@ -46,14 +46,14 @@ const [cover, ...gallery] = project.images;
               Voir le projet ↗<span class="visually-hidden"> (nouvel onglet)</span>
             </a>
           )}
+          {project.extensionUrl && (
+            <a class="btn" href={project.extensionUrl} target="_blank" rel="noopener noreferrer">
+              Extension Chrome ↗<span class="visually-hidden"> (nouvel onglet)</span>
+            </a>
+          )}
           {project.repoUrl && (
             <a class="btn" href={project.repoUrl} target="_blank" rel="noopener noreferrer">
               Code source ↗<span class="visually-hidden"> (nouvel onglet)</span>
-            </a>
-          )}
-          {project.extensionUrl && (
-            <a class="btn" href={project.extensionUrl} target="_blank" rel="noopener noreferrer">
-              Extension ↗<span class="visually-hidden"> (nouvel onglet)</span>
             </a>
           )}
         </p>
