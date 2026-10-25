@@ -1,7 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { projectsOrdered } from '../data/projects';
-import cvData from '../data/cv.json';
+import rawCvData from '../data/cv.json';
+import { fillDurations } from '../data/durations';
+
+const cvData = fillDurations(rawCvData);
 
 const today = new Date();
 

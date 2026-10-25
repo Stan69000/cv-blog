@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "CV — Stan Bouchet · IT Officer",
-    "description": "Curriculum vitae de Stan Bouchet : IT Officer, concepteur d'outils web assistés par l'IA, 21 ans d'expérience opérationnelle.",
+    "description": "Curriculum vitae de Stan Bouchet : IT Officer, concepteur d'outils web assistés par l'IA, {{ans:2005-04}} d'expérience opérationnelle.",
     "subtitle": "IT Officer",
     "location": "Lyon, France",
     "linkedinUrl": "https://www.linkedin.com/in/stanislas-bouchet/",
@@ -11,7 +11,7 @@
     "website": "stan-bouchet.com"
   },
   "summary": [
-    "IT Officer autonome et orienté amélioration continue, j'accompagne depuis 4 ans la structuration et l'évolution des environnements IT dans un contexte startup en forte croissance.",
+    "IT Officer autonome et orienté amélioration continue, j'accompagne depuis {{ans:2022-07}} la structuration et l'évolution des environnements IT dans un contexte startup en forte croissance.",
     "Chez Indy, je pilote l'IT interne pour plus de 300 collaborateurs : support, parc multi-OS, Google Workspace, Slack, Notion, cybersécurité, onboarding/offboarding, gestion des achats et automatisations. J'interviens également sur la gouvernance des usages, l'accompagnement des équipes sur les outils IA et l'optimisation des processus afin de rendre l'IT plus fluide, fiable et accessible.",
     "Passionné par la transmission et la culture numérique, j'anime une fois par mois des formations vivantes et pédagogiques autour de la cybersécurité, avec une approche concrète, vulgarisée et orientée usages réels. Cette volonté de rendre le numérique plus accessible a également donné naissance à l'association Le Singe du Numérique, dédiée à la sensibilisation et à l'inclusion numérique.",
     "Je collabore étroitement avec les équipes Finance sur le suivi budgétaire, les licences et les arbitrages liés aux outils et équipements IT.",

@@ -1,4 +1,5 @@
 import projetsData from './projets.json';
+import { fillDurations } from './durations';
 
 export type DatePrecision = 'month' | 'year';
 export type ProjectStatus = 'ongoing' | 'completed';
@@ -75,7 +76,7 @@ type StoredData = {
   projects?: StoredProject[];
 };
 
-const data = projetsData as StoredData;
+const data = fillDurations(projetsData as StoredData);
 
 export const slugify = (value: string) =>
   value

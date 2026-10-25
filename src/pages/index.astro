@@ -4,8 +4,11 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import CompassRose from '../components/CompassRose.astro';
 import siteConfig from '../data/site.json';
-import homeConfig from '../data/home.json';
+import rawHomeConfig from '../data/home.json';
+import { fillDurations } from '../data/durations';
 import seoConfig from '../data/seo.json';
+
+const homeConfig = fillDurations(rawHomeConfig);
 
 const pageTitle = seoConfig?.defaultTitle || `${siteConfig.title} | Parcours, projets, engagement et blog`;
 const pageDescription = seoConfig?.defaultDescription || siteConfig.description;

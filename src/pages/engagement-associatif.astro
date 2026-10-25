@@ -2,7 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import engagementData from '../data/engagement.json';
+import rawEngagementData from '../data/engagement.json';
+import { fillDurations } from '../data/durations';
+
+const engagementData = fillDurations(rawEngagementData);
 
 const { stats, timeline, spotlightEyebrow, spotlightTitle, spotlightIntro, spotlightUrl, spotlightCta, workEyebrow, workTitle, workParagraphs } = engagementData;
 ---

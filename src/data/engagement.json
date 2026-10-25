@@ -4,7 +4,7 @@
   "heroLead": "Mon engagement associatif ne s'est pas construit d'un coup. Il s'inscrit dans le temps, à travers différentes expériences, contextes et rôles. Ce qui ne change pas, c'est l'envie d'aider, de partager et de participer à des projets collectifs.",
   "stats": [
     {
-      "value": "25 ans",
+      "value": "{{ans:2000}}",
       "label": "De bénévolat"
     },
     {
