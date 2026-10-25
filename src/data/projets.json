@@ -254,19 +254,20 @@
       "images": [
         "/images/projects/le-singe-du-numerique.jpg"
       ],
-      "pitch": "Le site de l'association que j'ai fondée pour rendre le numérique moins intimidant.",
-      "role": "Fondateur de l'association, conception et développement du site.",
+      "pitch": "Le site de l'association que j'ai fondée : comprendre le numérique sans jargon, gratuitement, quel que soit son niveau.",
+      "role": "Fondateur de l'association, conception, contenus et développement du site.",
       "results": [
-        "Ressources pédagogiques sur la cybersécurité et les démarches en ligne",
-        "Site Astro léger, pensé pour les petites connexions et les appareils modestes",
-        "Articles publiés depuis mon interface d'administration centralisée"
+        "Le lexique d'Octet : 80 mots du quotidien expliqués avec le bon réflexe",
+        "24 articles et guides classés par niveau, une BD par semaine transcrite en texte",
+        "Alertes arnaques mises à jour en continu, jeux et conte illustré à lire en famille"
       ],
       "tags": [
         "Astro",
         "Accessibilité",
+        "Pédagogie",
         "Éditorial"
       ],
-      "story": ""
+      "story": "Beaucoup de gens décrochent face au numérique, non par manque d'intérêt mais parce que tout est expliqué dans un jargon qui n'est pas le leur. J'ai créé Le Singe du Numérique pour répondre à ça, avec une règle simple : tout est gratuit et pensé pour tous les niveaux.\n\nLe site rassemble plusieurs portes d'entrée selon les envies : un lexique où chaque mot part d'une situation du quotidien, des guides pas à pas, une BD hebdomadaire avec Octet, la mascotte de l'association, des alertes sur les arnaques du moment et des jeux pour apprendre à repérer les pièges.\n\nChaque planche de BD est transcrite en texte, et le site est pensé pour rester léger et lisible sur des appareils modestes."
     },
     {
       "slug": "stan-bouchet-eu",
@@ -284,19 +285,21 @@
       "images": [
         "/images/projects/stan-bouchet-eu.jpg"
       ],
-      "pitch": "Ma galerie photo : pas d'algorithme, pas de compression agressive, et une admin taillée pour mon workflow.",
-      "role": "Design, développement de la galerie et de l'administration.",
+      "pitch": "Ma galerie photo : 1 468 images en 18 séries, à parcourir au hasard, sur une carte ou au fil des instants du quotidien.",
+      "role": "Photographe, design et développement de la galerie et de son administration.",
       "results": [
-        "Séries, tags et couvertures gérés depuis une admin sur mesure",
-        "Publication déclenchée par Git, sans plateforme tierce",
-        "Photos diffusées sous licence Creative Commons BY-NC-ND"
+        "1 468 photos publiées en 18 séries, avec une page de statistiques publique",
+        "Plusieurs façons d'explorer : carte, recherche, Instants du quotidien, visite guidée en 12 images",
+        "Installable comme une application sur téléphone et ordinateur (PWA)",
+        "Séries, tags et couvertures gérés depuis une admin sur mesure"
       ],
       "tags": [
         "Astro",
+        "PWA",
         "Node.js",
         "Photographie"
       ],
-      "story": ""
+      "story": "Les plateformes photo imposent leurs règles : compression, algorithmes, publicité. Je voulais un endroit à moi, où les images passent avant l'interface.\n\nLa galerie a beaucoup grandi depuis la première version : un accueil qui tire une photo au hasard, des séries, des Instants publiés au fil des jours, une carte, une recherche, une visite guidée pour une première découverte et une page qui donne les chiffres de la galerie. Elle s'installe comme une application, sans rien stocker hors ligne.\n\nCôté coulisses, tout se publie depuis l'administration centralisée qui gère aussi mes autres sites."
     },
     {
       "slug": "natur-au-feminin",
