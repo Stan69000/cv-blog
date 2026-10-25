@@ -21,7 +21,6 @@ const tags = variant === 'compact' ? project.tags.slice(0, 4) : project.tags;
     ) : (
       <span class="project-thumb__placeholder" aria-hidden="true">{project.name}</span>
     )}
-    {project.status === 'ongoing' && <span class="project-status">En cours</span>}
   </div>
 
   <div class="project-body">
@@ -154,30 +153,6 @@ const tags = variant === 'compact' ? project.tags.slice(0, 4) : project.tags;
     font-family: var(--font-heading);
     font-size: 1.6rem;
     color: color-mix(in srgb, var(--text) 55%, transparent);
-  }
-
-  .project-status {
-    position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 999px;
-    background: color-mix(in srgb, #111827 78%, transparent);
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-  }
-
-  .project-status::before {
-    content: '';
-    display: inline-block;
-    width: 0.45rem;
-    height: 0.45rem;
-    margin-right: 0.4rem;
-    border-radius: 50%;
-    background: #34d399;
-    vertical-align: 0.05em;
   }
 
   .project-body {
