@@ -465,8 +465,10 @@
       "url": null,
       "repoUrl": "",
       "extensionUrl": "",
-      "screenshot": "",
-      "images": [],
+      "screenshot": "/images/projects/tablee.jpg",
+      "images": [
+        "/images/projects/tablee.jpg"
+      ],
       "slug": "tablee",
       "type": "Application PWA",
       "name": "Tablée",
@@ -496,8 +498,10 @@
       "url": null,
       "repoUrl": "",
       "extensionUrl": "",
-      "screenshot": "",
-      "images": [],
+      "screenshot": "/images/projects/royaume-de-victoria.jpg",
+      "images": [
+        "/images/projects/royaume-de-victoria.jpg"
+      ],
       "slug": "royaume-de-victoria",
       "type": "Application PWA",
       "name": "Le Royaume de Victoria",
@@ -526,8 +530,10 @@
       "url": null,
       "repoUrl": "",
       "extensionUrl": "",
-      "screenshot": "",
-      "images": [],
+      "screenshot": "/images/projects/loisir-famille.jpg",
+      "images": [
+        "/images/projects/loisir-famille.jpg"
+      ],
       "slug": "loisir-famille",
       "type": "Application PWA",
       "name": "Loisir Famille",
@@ -535,10 +541,10 @@
       "pitch": "Une app familiale pour trouver des sorties, les planifier et garder le souvenir de ce qu'on a aimé.",
       "role": "Conception et développement (usage familial privé).",
       "results": [
+        "« Quoi faire ce week-end ? » : trois idées selon la météo, le budget et les envies",
         "Recherche de sorties via Google Places : parcs, musées, restaurants, randonnées",
-        "Agenda avec budget et durée estimée pour chaque activité",
-        "Journal de sortie : photos, notes et avis de chaque membre de la famille",
-        "Statistiques de budget et d'activités par catégorie"
+        "Planification avec budget, carte, wishlist et favoris",
+        "Carnets de voyage et d'observation : photos, notes et avis de chaque membre"
       ],
       "tags": [
         "Next.js",
