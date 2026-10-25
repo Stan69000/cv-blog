@@ -8,7 +8,7 @@
       "label": "De bénévolat"
     },
     {
-      "value": "10",
+      "value": "11",
       "label": "Structures différentes"
     },
     {
@@ -87,7 +87,7 @@
         "Photographe.",
         "Monteur vidéo (DaVinci Resolve).",
         "Cadreur.",
-        "Webmaster (refonte du site en cours)."
+        "Webmaster : conception du nouveau site rvaz.fr."
       ]
     },
     {
@@ -106,6 +106,16 @@
         "Sensibilisation aux usages numériques et à la cybersécurité.",
         "Accompagnement des associations locales dans leur transformation numérique.",
         "Formations vivantes et pédagogiques, orientées usages réels."
+      ]
+    },
+    {
+      "period": "2026 → aujourd'hui",
+      "title": "Membre du conseil d'administration – Une Rose Un Espoir, secteur Rhône Nord",
+      "text": "Une association née en 2018 qui vend des roses chaque printemps pour financer des soins d'accompagnement aux adolescents et jeunes adultes soignés pour un cancer à l'hôpital Lyon Sud.",
+      "active": true,
+      "details": [
+        "Au conseil d'administration depuis octobre 2026.",
+        "Fonds reversés au dispositif AJA du service d'onco-hématologie de Lyon Sud, avec le Comité du Rhône de la Ligue contre le cancer."
       ]
     }
   ],
