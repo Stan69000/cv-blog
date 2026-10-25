@@ -1,7 +1,7 @@
 {
   "heroEyebrow": "Projets",
   "heroTitle": "Je construis des outils qui simplifient le numérique.",
-  "heroLead": "Pour une équipe de 300 personnes, pour des associations, et parfois juste pour moi. Tout ce qui suit tourne aujourd'hui, en ligne ou sur mon Mac.",
+  "heroLead": "Pour une équipe de 300 personnes, pour des associations, et parfois juste pour moi. Je conçois, je fais les choix techniques et je teste ; le code, je l'écris avec Claude et ChatGPT. Tout ce qui suit tourne aujourd'hui, en ligne ou sur mon Mac.",
   "stats": [
     {
       "value": "21 ans",
@@ -62,7 +62,7 @@
         "/images/projects/cortex-phishing.jpg"
       ],
       "pitch": "Une plateforme de veille complète : elle lit des centaines de sources, les regroupe par sujet avec l'IA et sert le résultat à une équipe, à un site public ou à un assistant IA.",
-      "role": "Conception produit, architecture, développement full-stack et exploitation sur VPS.",
+      "role": "Idée, conception produit et architecture. Développement piloté avec Claude et ChatGPT, mise en production et exploitation sur mon VPS.",
       "results": [
         "Plus de 90 000 articles collectés et dédupliqués depuis avril 2026 : RSS, newsletters, podcasts, YouTube, Reddit, GitHub, CVE",
         "Multi-équipes avec 5 rôles, double authentification TOTP et passkeys, journal d'audit",
@@ -98,7 +98,7 @@
         "/images/projects/le-signal-clair.jpg"
       ],
       "pitch": "La vitrine publique de Cortex : chaque jour, l'essentiel de l'actu tech et cyber en français, trié parmi 325 sources.",
-      "role": "Design et développement du site public, sur le moteur de Cortex.",
+      "role": "Conception et design du site public, pilotage du développement et mise en ligne, sur le moteur de Cortex.",
       "results": [
         "Près de 7 000 sujets triés et archivés depuis mai 2026",
         "Failles activement exploitées et arnaques signalées remontées en page d'accueil",
@@ -112,7 +112,7 @@
         "IA",
         "Docker"
       ],
-      "story": "L'actu tech et cyber arrive de partout, et la plupart des gens n'ont ni le temps ni l'envie de tout lire. Le Signal Clair fait ce tri à leur place : les articles qui racontent la même histoire sont regroupés, résumés, et seuls les sujets qui comptent remontent.\n\nLe site est sorti en octobre 2026. Il s'appuie sur Cortex, la plateforme de veille que je développe depuis avril 2026 : ingestion, regroupement par IA, détection des arnaques et suivi des failles viennent de là.\n\nLe projet est bénévole et porté par l'association Le Singe du Numérique. Les résumés sont générés automatiquement, sans relecture humaine, et le site le dit clairement."
+      "story": "L'actu tech et cyber arrive de partout, et la plupart des gens n'ont ni le temps ni l'envie de tout lire. Le Signal Clair fait ce tri à leur place : les articles qui racontent la même histoire sont regroupés, résumés, et seuls les sujets qui comptent remontent.\n\nLe site est sorti en octobre 2026. Il s'appuie sur Cortex, la plateforme de veille que je construis depuis avril 2026 : ingestion, regroupement par IA, détection des arnaques et suivi des failles viennent de là.\n\nLe projet est bénévole et porté par l'association Le Singe du Numérique. Les résumés sont générés automatiquement, sans relecture humaine, et le site le dit clairement."
     },
     {
       "slug": "studio-stan",
@@ -131,7 +131,7 @@
         "/images/projects/studio-stan.jpg"
       ],
       "pitch": "Mon back-office maison : une seule interface pour éditer, publier et déployer quatre de mes sites, des photos aux articles relus par IA.",
-      "role": "Conception, développement et hébergement sur VPS.",
+      "role": "Conception et choix techniques, développement piloté avec l'IA, hébergement sur mon VPS.",
       "results": [
         "Quatre sites pilotés au même endroit : galerie photo, association, site d'une naturopathe et ce site",
         "Connexion par passkey ou TOTP, sessions révocables côté serveur, journal d'audit",
@@ -165,7 +165,7 @@
         "/images/projects/rgaa-audit.jpg"
       ],
       "pitch": "Un auditeur RGAA open source : une extension Chrome pour tester en direct, une CLI pour automatiser les contrôles.",
-      "role": "Conception, développement et publication sur le Chrome Web Store.",
+      "role": "Conception, pilotage du développement, tests et publication sur le Chrome Web Store.",
       "results": [
         "Extension publiée sur le Chrome Web Store, utilisable sans installation technique",
         "Critères RGAA 4.1 regroupés par thématique pour avancer pas à pas pendant un audit",
@@ -196,7 +196,7 @@
         "/images/projects/photo-triage.jpg"
       ],
       "pitch": "Trier une sortie photo au clavier, sans jongler entre les fenêtres du Finder.",
-      "role": "Conception et développement natif en SwiftUI.",
+      "role": "Conception de l'app et du workflow de tri, pilotage du développement SwiftUI, tests sur mes propres séries.",
       "results": [
         "Tri entièrement au clavier : garder, déplacer, revoir ou rejeter d'une touche",
         "Métadonnées EXIF affichées pendant le tri (boîtier, objectif, ISO, ouverture, focale)",
@@ -208,7 +208,7 @@
         "MVVM",
         "EXIF"
       ],
-      "story": "Après une sortie photo, il y a souvent plusieurs centaines d'images à trier. Les logiciels complets sont lourds pour ça, et le Finder oblige à enchaîner les glisser-déposer entre fenêtres.\n\nJ'ai donc écrit une app macOS native qui fait une seule chose : faire défiler les photos et les envoyer au bon endroit d'une touche. Les infos de prise de vue s'affichent à côté de l'image pour décider vite, et les accès fichiers passent par le système de sécurité de macOS."
+      "story": "Après une sortie photo, il y a souvent plusieurs centaines d'images à trier. Les logiciels complets sont lourds pour ça, et le Finder oblige à enchaîner les glisser-déposer entre fenêtres.\n\nJ'ai donc conçu une app macOS native qui fait une seule chose : faire défiler les photos et les envoyer au bon endroit d'une touche. Les infos de prise de vue s'affichent à côté de l'image pour décider vite, et les accès fichiers passent par le système de sécurité de macOS."
     },
     {
       "slug": "quizeo",
@@ -227,7 +227,7 @@
         "/images/projects/quizeo.jpg"
       ],
       "pitch": "Un blind test musique, cinéma et séries qui tient dans une seule app, même hors ligne.",
-      "role": "Conception et développement (Tauri, Rust, React).",
+      "role": "Conception du jeu et pilotage du développement (Tauri, Rust, React).",
       "results": [
         "Modes blind test, QCM, chrono et multijoueur",
         "Musiques téléchargées en local pour jouer sans connexion",
@@ -258,7 +258,7 @@
         "/images/projects/astro-a11y.jpg"
       ],
       "pitch": "Un scanner d'accessibilité pour les sites Astro, qui explique quoi corriger au lieu d'empiler les erreurs.",
-      "role": "Auteur et mainteneur.",
+      "role": "Conception, pilotage du développement et maintenance.",
       "results": [
         "Analyse des pages rendues avec Playwright et axe-core",
         "Rapports au choix : terminal, HTML, JSON ou Markdown",
@@ -289,7 +289,7 @@
         "/images/projects/le-singe-du-numerique.jpg"
       ],
       "pitch": "Le site de l'association que j'ai fondée : comprendre le numérique sans jargon, gratuitement, quel que soit son niveau.",
-      "role": "Fondateur de l'association, conception, contenus et développement du site.",
+      "role": "Fondateur de l'association, responsable des contenus et de la conception du site.",
       "results": [
         "Le lexique d'Octet : des dizaines de mots du quotidien expliqués avec le bon réflexe",
         "Des guides pas à pas classés par niveau, et une BD par semaine transcrite en texte",
@@ -320,7 +320,7 @@
         "/images/projects/stan-bouchet-eu.jpg"
       ],
       "pitch": "Ma galerie photo : plus de 1 000 images rangées en séries, à parcourir au hasard, sur une carte ou au fil des instants du quotidien.",
-      "role": "Photographe, design et développement de la galerie et de son administration.",
+      "role": "Photographe. Conception de la galerie et de son administration, pilotage du développement.",
       "results": [
         "Plus de 1 000 photos publiées, avec une page de statistiques publique",
         "Plusieurs façons d'explorer : carte, recherche, Instants du quotidien, visite guidée en 12 images",
@@ -352,7 +352,7 @@
       "name": "RVAz, la Radio du Val d'Azergues",
       "startedAt": "2026-06-01",
       "pitch": "Le site de la web TV associative du Val d'Azergues : reportages, agenda, partenaires et un espace membres pour la trentaine de bénévoles.",
-      "role": "Bénévole à RVAz : conception, développement et hébergement du site.",
+      "role": "Bénévole à RVAz : conception, pilotage du développement et hébergement du site.",
       "results": [
         "Pages composées de blocs activables depuis l'administration, sans toucher au code",
         "Espace membres : documents internes, formations, idées de sujets, demandes d'adhésion",
@@ -384,7 +384,7 @@
         "/images/projects/natur-au-feminin.jpg"
       ],
       "pitch": "Refonte du site d'une naturopathe installée depuis 2016 : moins de pages, un parcours plus direct.",
-      "role": "Refonte UX/UI et développement Astro.",
+      "role": "Refonte UX/UI, pilotage du développement Astro et mise en ligne.",
       "results": [
         "Arborescence réorganisée autour des accompagnements proposés",
         "Pages, tarifs et actualités gérés depuis Studio Stan, mon admin centralisée",
@@ -446,7 +446,7 @@
         "/images/projects/stan-bouchet-com.jpg"
       ],
       "pitch": "Ce site : parcours, projets, engagement et blog réunis au même endroit.",
-      "role": "Design et développement.",
+      "role": "Conception, design et pilotage du développement.",
       "results": [
         "Contenus pilotés depuis Studio Stan, mon admin qui gère aussi trois autres sites",
         "Thème clair et sombre, navigation au clavier soignée"
@@ -474,7 +474,7 @@
       "name": "Tablée",
       "startedAt": "2026-06-01",
       "pitch": "Menu de la semaine, liste de courses, prix et péremptions : les repas de la famille gérés au même endroit.",
-      "role": "Conception et développement (usage familial privé).",
+      "role": "Conception et pilotage du développement (usage familial privé).",
       "results": [
         "Tickets de caisse et recettes importés depuis une photo, grâce à Claude",
         "Menu de la semaine généré selon qui est là, les régimes, le budget et ce qui va périmer",
@@ -507,7 +507,7 @@
       "name": "Le Royaume de Victoria",
       "startedAt": "2026-07-01",
       "pitch": "Une app de révision du CE2 vers le CM1, sur tablette, hors ligne, sans compte et sans publicité.",
-      "role": "Conception pédagogique et développement.",
+      "role": "Conception pédagogique, choix des sources officielles, pilotage du développement et des tests.",
       "results": [
         "Contenus adossés aux programmes officiels en vigueur (BO 2024 et 2026)",
         "Exercices générés avec leur réponse calculée : aucune réponse saisie à la main",
@@ -539,7 +539,7 @@
       "name": "Loisir Famille",
       "startedAt": "2026-06-01",
       "pitch": "Une app familiale pour trouver des sorties, les planifier et garder le souvenir de ce qu'on a aimé.",
-      "role": "Conception et développement (usage familial privé).",
+      "role": "Conception et pilotage du développement (usage familial privé).",
       "results": [
         "« Quoi faire ce week-end ? » : trois idées selon la météo, le budget et les envies",
         "Recherche de sorties via Google Places : parcs, musées, restaurants, randonnées",
