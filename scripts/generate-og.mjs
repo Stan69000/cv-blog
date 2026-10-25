@@ -17,14 +17,14 @@ const pages = [
   {
     slug: 'parcours',
     eyebrow: 'Parcours',
-    title: '20+ ans d\'expérience\nen IT terrain et développement web.',
+    title: 'Du terrain\nau pilotage IT.',
     tags: ['Support IT', 'Automatisation', 'Formation']
   },
   {
     slug: 'projets',
     eyebrow: 'Projets',
-    title: 'Applications, sites web\net open source.',
-    tags: ['Astro', 'SwiftUI', 'Accessibilité']
+    title: 'Des outils utiles,\nen ligne et au quotidien.',
+    tags: ['Plateformes web', 'IA', 'Accessibilité']
   },
   {
     slug: 'engagement',
@@ -154,11 +154,16 @@ const template = ({ eyebrow, title, tags }) => `<!DOCTYPE html>
 </body>
 </html>`;
 
-const browser = await chromium.launch();
+// `node scripts/generate-og.mjs projets parcours` ne regénère que ces pages.
+// PLAYWRIGHT_CHANNEL=chrome utilise le Chrome installé au lieu du navigateur Playwright.
+const only = process.argv.slice(2);
+const selected = only.length ? pages.filter((item) => only.includes(item.slug)) : pages;
+
+const browser = await chromium.launch(process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {});
 const page = await browser.newPage();
 await page.setViewportSize({ width: 1200, height: 630 });
 
-for (const item of pages) {
+for (const item of selected) {
   const html = template(item);
   await page.setContent(html, { waitUntil: 'networkidle' });
   await page.waitForTimeout(300);

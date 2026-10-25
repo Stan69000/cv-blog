@@ -1,301 +1,576 @@
 {
   "heroEyebrow": "Projets",
-  "heroTitle": "Construire des choses utiles, dans différents contextes.",
-  "heroLead": "J'aime construire des outils, contenus et expériences qui réduisent la friction et rendent le numérique plus clair, plus fluide et plus accessible.",
-  "sectionTitle": "Mes projets",
+  "heroTitle": "Je construis des outils qui simplifient le numérique.",
+  "heroLead": "Pour une entreprise, pour des associations, et parfois juste pour moi. Je conçois, je fais les choix techniques et je teste ; le code, je l'écris avec Claude et ChatGPT. Ce ne sont pas des maquettes : chaque projet ci-dessous est en ligne ou utilisé au quotidien.",
+  "stats": [
+    {
+      "value": "Depuis 2022",
+      "label": "dans l'IT d'une scale-up, après 17 ans dans d'autres métiers de terrain"
+    },
+    {
+      "value": "300+",
+      "label": "sources lues chaque jour par Cortex, ma plateforme de veille"
+    },
+    {
+      "value": "2",
+      "label": "outils d'accessibilité publiés en open source"
+    }
+  ],
+  "featuredTitle": "À la une",
+  "sectionTitle": "Les autres projets",
+  "work": {
+    "title": "En entreprise",
+    "lead": "Mon métier, c'est l'IT interne d'une scale-up lyonnaise : faire en sorte que les outils, les postes et les accès suivent la croissance, sans freiner les équipes.",
+    "stats": [],
+    "highlights": [
+      "Structuration du support et de la documentation",
+      "Automatisation des arrivées et des départs",
+      "Accompagnement des équipes, y compris sur les usages de l'IA"
+    ],
+    "linkLabel": "Voir le CV complet",
+    "linkUrl": "/cv"
+  },
   "projects": [
     {
-      "type": "App macOS",
-      "name": "Quizeo",
+      "slug": "cortex",
+      "type": "Plateforme web",
+      "name": "Cortex",
+      "draft": false,
+      "featured": true,
+      "startedAt": "2026-04-01",
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": null,
+      "repoUrl": "",
+      "extensionUrl": "",
+      "screenshot": "/images/projects/cortex-accueil.jpg",
+      "images": [
+        "/images/projects/cortex-accueil.jpg",
+        "/images/projects/cortex-phishing.jpg"
+      ],
+      "pitch": "Une plateforme de veille complète : elle lit des centaines de sources, les regroupe par sujet avec l'IA et sert le résultat à une équipe, à un site public ou à un assistant IA.",
+      "role": "Idée, conception produit et architecture. Développement piloté avec Claude et ChatGPT, mise en production et exploitation sur mon VPS.",
+      "results": [
+        "Plus de 90 000 articles collectés et dédupliqués depuis avril 2026 : RSS, newsletters, podcasts, YouTube, Reddit, GitHub, CVE",
+        "Multi-équipes avec 5 rôles, double authentification TOTP et passkeys, journal d'audit",
+        "Serveur MCP de plus de 60 outils, utilisable depuis Claude, Cursor ou tout client MCP",
+        "Coûts IA suivis par fournisseur et par modèle, budget plafonné à 20 € par mois"
+      ],
+      "tags": [
+        "TypeScript",
+        "Next.js",
+        "Fastify",
+        "BullMQ",
+        "PostgreSQL",
+        "Redis",
+        "MCP",
+        "Docker"
+      ],
+      "story": "Je faisais ma veille tech et cyber à la main, entre flux RSS, newsletters et avis de sécurité. Cortex est né pour automatiser ça, et il est devenu un vrai produit : une plateforme multi-équipes, avec son administration, son API et ses modules métier.\n\nChaque source passe par le même pipeline : récupération, déduplication par empreinte, vectorisation, regroupement des articles qui parlent du même sujet, puis résumé et score de signal par IA. Autour de ce cœur se greffent des modules spécialisés : analyse des messages de phishing (en-têtes SPF/DKIM/DMARC, réputation des liens, OCR des pièces jointes), suivi des CVE (NVD, CISA KEV, EPSS) et rapprochement avec les fact-checks.\n\nCôté produit : invitations et rôles, liens de démo en lecture seule, digest quotidien personnalisé par membre, tableau de bord système, suivi des coûts IA avec projection mensuelle. Un serveur MCP authentifié en OAuth permet d'interroger et de piloter la plateforme depuis un assistant IA.\n\nLe Signal Clair en est la déclinaison publique : le même moteur, ouvert à tous, gratuitement."
+    },
+    {
+      "slug": "le-signal-clair",
+      "type": "Plateforme web",
+      "name": "Le Signal Clair",
+      "draft": false,
+      "featured": true,
+      "startedAt": "2026-10-01",
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": "https://lesignalclair.fr/",
+      "repoUrl": "",
+      "extensionUrl": "",
+      "screenshot": "/images/projects/le-signal-clair.jpg",
+      "images": [
+        "/images/projects/le-signal-clair.jpg"
+      ],
+      "pitch": "La vitrine publique de Cortex : chaque jour, l'essentiel de l'actu tech et cyber en français, trié parmi plus de 300 sources.",
+      "role": "Conception et design du site public, pilotage du développement et mise en ligne, sur le moteur de Cortex.",
+      "results": [
+        "Des milliers de sujets triés et archivés depuis mai 2026",
+        "Failles activement exploitées et arnaques signalées remontées en page d'accueil",
+        "Gratuit et sans publicité, porté par l'association Le Singe du Numérique"
+      ],
+      "tags": [
+        "Next.js",
+        "Fastify",
+        "BullMQ",
+        "PostgreSQL",
+        "IA",
+        "Docker"
+      ],
+      "story": "L'actu tech et cyber arrive de partout, et la plupart des gens n'ont ni le temps ni l'envie de tout lire. Le Signal Clair fait ce tri à leur place : les articles qui racontent la même histoire sont regroupés, résumés, et seuls les sujets qui comptent remontent.\n\nLe site est sorti en octobre 2026. Il s'appuie sur Cortex, la plateforme de veille que je construis depuis avril 2026 : ingestion, regroupement par IA, détection des arnaques et suivi des failles viennent de là.\n\nLe projet est bénévole et porté par l'association Le Singe du Numérique. Les résumés sont générés automatiquement, sans relecture humaine, et le site le dit clairement."
+    },
+    {
+      "slug": "studio-stan",
+      "type": "Plateforme web",
+      "name": "Studio Stan",
+      "draft": false,
+      "featured": true,
       "startedAt": "2026-05-01",
       "startPrecision": "month",
       "status": "ongoing",
       "url": null,
+      "repoUrl": "",
       "extensionUrl": "",
-      "screenshot": "",
-      "context": "Les applications de quiz musicaux ou cinéma sont souvent limitées, peu personnalisables ou dépendantes de plateformes externes. De l'autre côté, écouter de la musique hors ligne ou organiser facilement des blind tests entre amis demande souvent de jongler entre plusieurs outils différents.",
-      "technique": [
-        "L'application est développée comme une vraie application desktop avec Tauri et Rust afin de rester légère, rapide et peu gourmande en ressources.",
-        "L'interface est construite avec React et TypeScript pour offrir une expérience moderne et fluide.",
-        "Le projet s'appuie également sur plusieurs outils et APIs externes pour enrichir les contenus : téléchargement audio, récupération de métadonnées musicales, informations Wikipédia ou données liées aux artistes et œuvres.",
-        "L'architecture est pensée pour permettre l'ajout progressif de nouveaux modes de jeu, fonctionnalités multijoueur et enrichissements autour de la musique et du cinéma."
+      "screenshot": "/images/projects/studio-stan.jpg",
+      "images": [
+        "/images/projects/studio-stan.jpg"
       ],
-      "impact": [
-        "Quand l'expérience est fragmentée, les soirées, animations ou sessions de jeu deviennent rapidement moins fluides : préparation compliquée, gestion manuelle des musiques, interfaces peu adaptées, manque de personnalisation des parties.",
-        "Les utilisateurs veulent surtout une expérience simple, rapide et amusante, sans devoir passer du temps à configurer des outils complexes.",
-        "Quizeo cherche à réunir dans une seule application le téléchargement de musique hors ligne et l'organisation de quiz interactifs autour de la musique, du cinéma et des séries.",
-        "Le projet permet de créer facilement des parties adaptées à différents niveaux et styles de jeu : blind tests, QCM, chrono, multijoueur ou reconnaissance d'artistes et de titres.",
-        "L'objectif est de proposer une expérience plus fluide, plus fun et plus personnalisable pour jouer seul ou à plusieurs."
+      "pitch": "Mon back-office maison : une seule interface pour éditer, publier et déployer quatre de mes sites, des photos aux articles relus par IA.",
+      "role": "Conception et choix techniques, développement piloté avec l'IA, hébergement sur mon VPS.",
+      "results": [
+        "Quatre sites pilotés au même endroit : galerie photo, association, site d'une naturopathe et ce site",
+        "Connexion par passkey ou TOTP, sessions révocables côté serveur, journal d'audit",
+        "Workflow éditorial de l'association : statuts, vérification de la charte, relecture par Claude, publication automatique",
+        "Médiathèque partagée, sauvegarde quotidienne et déploiement Git sans quitter l'interface"
       ],
       "tags": [
-        "Tauri",
-        "Rust",
-        "React",
+        "Next.js",
         "TypeScript",
-        "Desktop app"
+        "SQLite",
+        "WebAuthn",
+        "Docker",
+        "Claude API"
       ],
-      "draft": false
+      "story": "Avec plusieurs sites statiques à faire vivre, je jonglais entre des CMS différents, Notion, des fichiers Markdown et des commandes de déploiement. Studio Stan remplace tout ça par une seule interface.\n\nChaque site y a son espace : photos, séries et tags pour la galerie, pages et tarifs pour le site de Natur' Au Féminin, articles et réglages pour ce site. Les modifications sont écrites directement dans le dépôt Git du site concerné, puis déployées.\n\nPour Le Singe du Numérique, l'admin porte tout le circuit éditorial : un article passe de brouillon à publié en suivant des statuts, une pré-vérification de la charte, puis une relecture par Claude qui propose une version corrigée, un score, une description et des tags.\n\nL'accès est protégé par passkey ou code TOTP, avec un journal d'audit et une sauvegarde automatique chaque nuit. L'application tourne en Docker derrière Caddy, sur un VPS que j'administre."
     },
     {
+      "slug": "rgaa-audit",
+      "type": "Open source",
+      "name": "RGAA Audit",
+      "draft": false,
+      "featured": true,
+      "startedAt": "2026-04-01",
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": "https://stan69000.github.io/rgaa-audit/",
+      "repoUrl": "https://github.com/Stan69000/rgaa-audit",
+      "extensionUrl": "https://chromewebstore.google.com/detail/rgaa-audit/aiaiblaemmjcfeeobpjagdajbgbcabai",
+      "screenshot": "/images/projects/rgaa-audit.jpg",
+      "images": [
+        "/images/projects/rgaa-audit.jpg"
+      ],
+      "pitch": "Un auditeur RGAA open source : une extension Chrome pour tester en direct, une CLI pour automatiser les contrôles.",
+      "role": "Conception, pilotage du développement, tests et publication sur le Chrome Web Store.",
+      "results": [
+        "Extension publiée sur le Chrome Web Store, utilisable sans installation technique",
+        "Critères RGAA 4.1 regroupés par thématique pour avancer pas à pas pendant un audit",
+        "CLI Playwright pour lancer les vérifications automatiques depuis le terminal"
+      ],
+      "tags": [
+        "Accessibilité",
+        "RGAA 4.1",
+        "Extension Chrome",
+        "Playwright"
+      ],
+      "story": "Un audit RGAA, c'est une centaine de critères, un référentiel touffu et des outils souvent pensés pour des experts. Résultat : beaucoup d'équipes repoussent l'audit à la toute fin du projet, quand corriger coûte le plus cher.\n\nRGAA Audit prend le problème par les deux bouts. L'extension Chrome guide l'audit manuel critère par critère, directement sur la page testée. La CLI, basée sur Playwright, automatise les contrôles qui peuvent l'être.\n\nLe code est ouvert pour que d'autres puissent l'adapter à leurs besoins et suivre les évolutions du référentiel."
+    },
+    {
+      "slug": "atelier-du-photographe",
       "type": "App macOS",
       "name": "Atelier du Photographe",
+      "draft": false,
+      "featured": false,
       "startedAt": "2026-01-01",
       "startPrecision": "year",
       "status": "completed",
       "url": null,
+      "repoUrl": "",
       "extensionUrl": "",
       "screenshot": "/images/projects/photo-triage.jpg",
-      "context": "Le tri de photos devient rapidement long et répétitif, surtout après une sortie photo avec plusieurs centaines d'images. Les outils existants sont souvent soit trop complexes, soit mal adaptés à des workflows simples et rapides. Beaucoup de photographes finissent par jongler entre plusieurs fenêtres du Finder avec énormément de glisser-déposer.",
-      "technique": [
-        "L'application est développée nativement pour macOS avec SwiftUI afin de proposer une interface fluide et bien intégrée à l'écosystème Apple.",
-        "Le tri peut être entièrement piloté au clavier grâce à des raccourcis rapides pour copier, déplacer, réviser ou rejeter les photos.",
-        "L'application récupère également automatiquement certaines métadonnées des images (appareil photo, objectif, ISO, ouverture, focale…) afin d'apporter plus de contexte pendant le tri.",
-        "L'architecture du projet est pensée pour rester évolutive, avec une gestion sécurisée des accès fichiers et plusieurs modes d'organisation adaptés aux différents workflows photo."
+      "images": [
+        "/images/projects/photo-triage.jpg"
       ],
-      "impact": [
-        "Quand le tri devient pénible, cela ralentit toute la chaîne : sélection, retouches, publication ou archivage.",
-        "Avec le temps, cela peut aussi décourager de traiter certaines séries photo ou faire perdre beaucoup de temps sur des tâches qui devraient rester fluides et naturelles.",
-        "Un bon outil de tri permet de rester concentré sur les images plutôt que sur l'organisation des fichiers.",
-        "Atelier du Photographe cherche à rendre le tri photo plus rapide, plus confortable et plus visuel.",
-        "L'application permet de parcourir rapidement ses images, les classer avec le clavier et les envoyer directement dans les bons dossiers selon son propre workflow.",
-        "L'objectif est de simplifier les manipulations répétitives et de rendre l'organisation photo plus fluide au quotidien."
+      "pitch": "Trier une sortie photo au clavier, sans jongler entre les fenêtres du Finder.",
+      "role": "Conception de l'app et du workflow de tri, pilotage du développement SwiftUI, tests sur mes propres séries.",
+      "results": [
+        "Tri entièrement au clavier : garder, déplacer, revoir ou rejeter d'une touche",
+        "Métadonnées EXIF affichées pendant le tri (boîtier, objectif, ISO, ouverture, focale)",
+        "Dossiers de destination configurables selon son propre workflow"
       ],
       "tags": [
         "SwiftUI",
         "macOS",
         "MVVM",
-        "EXIF",
-        "Photo workflow"
+        "EXIF"
       ],
-      "draft": false
+      "story": "Après une sortie photo, il y a souvent plusieurs centaines d'images à trier. Les logiciels complets sont lourds pour ça, et le Finder oblige à enchaîner les glisser-déposer entre fenêtres.\n\nJ'ai donc conçu une app macOS native qui fait une seule chose : faire défiler les photos et les envoyer au bon endroit d'une touche. Les infos de prise de vue s'affichent à côté de l'image pour décider vite, et les accès fichiers passent par le système de sécurité de macOS."
     },
     {
-      "type": "Création web",
-      "name": "Le Singe du Numérique",
-      "startedAt": "2026-04-01",
+      "slug": "quizeo",
+      "type": "App macOS",
+      "name": "Quizeo",
+      "draft": false,
+      "featured": false,
+      "startedAt": "2026-05-01",
       "startPrecision": "month",
       "status": "ongoing",
-      "url": "https://lesingedunumerique.fr/",
+      "url": null,
+      "repoUrl": "https://github.com/Stan69000/Quizeo",
       "extensionUrl": "",
-      "screenshot": "/images/projects/le-singe-du-numerique.jpg",
-      "context": "Le numérique prend une place énorme dans la vie quotidienne, mais beaucoup de personnes se sentent perdues face aux outils, aux démarches en ligne ou aux risques sur Internet. Les explications sont souvent trop techniques, les ressources dispersées, et les associations locales manquent parfois de temps, de compétences ou de moyens pour gérer correctement leur présence et leurs outils numériques.",
-      "technique": [
-        "Le site a été conçu pour privilégier la clarté, l'accessibilité et la simplicité de navigation.",
-        "L'architecture repose sur Astro afin de proposer un site rapide, léger et facile à consulter, y compris sur des connexions ou appareils plus modestes.",
-        "Les contenus sont organisés pour rester simples à maintenir et à faire évoluer dans le temps.",
-        "Une attention particulière est portée à la lisibilité, à la hiérarchie visuelle et à l'accessibilité numérique afin de rendre les ressources compréhensibles par le plus grand nombre."
+      "screenshot": "/images/projects/quizeo.jpg",
+      "images": [
+        "/images/projects/quizeo.jpg"
       ],
-      "impact": [
-        "Quand le numérique devient trop compliqué, certaines personnes décrochent complètement : difficulté à accéder à des services essentiels, peur de faire une erreur, isolement numérique, dépendance à d'autres personnes pour des démarches simples.",
-        "Pour les associations, cette complexité peut freiner la communication, l'organisation interne et la capacité à aider efficacement leurs publics.",
-        "Le projet rend le numérique plus accessible, plus humain et plus compréhensible grâce à des contenus clairs, des ressources pédagogiques et un accompagnement concret.",
-        "L'objectif n'est pas seulement d'expliquer la technologie, mais de redonner confiance face au numérique."
+      "pitch": "Un blind test musique, cinéma et séries qui tient dans une seule app, même hors ligne.",
+      "role": "Conception du jeu et pilotage du développement (Tauri, Rust, React).",
+      "results": [
+        "Modes blind test, QCM, chrono et multijoueur",
+        "Musiques téléchargées en local pour jouer sans connexion",
+        "Fiches artistes et œuvres enrichies via Wikipédia et des API musicales"
       ],
       "tags": [
-        "Astro",
-        "TypeScript",
-        "Contenu éditorial"
+        "Tauri",
+        "Rust",
+        "React",
+        "TypeScript"
       ],
-      "draft": false
+      "story": "Organiser un blind test entre amis, c'est souvent une playlist bricolée, un téléphone qui sonne au mauvais moment et quelqu'un qui compte les points sur un coin de table.\n\nQuizeo réunit tout dans une app de bureau légère : choix du thème, téléchargement des extraits, déroulé de la partie et scores. Le projet est en cours, avec de nouveaux modes de jeu au fil des versions."
     },
     {
-      "type": "Refonte web",
-      "name": "Natur' Au Féminin",
-      "startedAt": "2026-02-01",
-      "startPrecision": "month",
-      "status": "completed",
-      "url": "https://naturaufeminin.fr/",
-      "extensionUrl": "",
-      "screenshot": "/images/projects/natur-au-feminin.jpg",
-      "context": "Avec le temps, certains sites accumulent beaucoup de contenus, de pages et d'informations, ce qui peut rendre la navigation plus confuse pour les visiteurs. Même avec un contenu de qualité, il devient parfois difficile de comprendre rapidement l'activité, les accompagnements proposés ou les informations importantes.",
-      "technique": [
-        "Le travail de refonte repose principalement sur une réorganisation de l'arborescence et du parcours utilisateur afin de réduire les points de friction dans la navigation.",
-        "L'interface a été allégée pour améliorer la hiérarchie visuelle et faciliter la lecture sur l'ensemble des pages.",
-        "Une attention particulière a également été portée au responsive design afin de conserver une expérience cohérente aussi bien sur mobile que sur ordinateur.",
-        "L'ensemble du site est pensé pour rester simple à faire évoluer et à maintenir dans le temps."
-      ],
-      "impact": [
-        "Quand un site manque de clarté, les visiteurs peuvent se sentir perdus, ne pas trouver facilement les informations recherchées ou abandonner leur navigation trop tôt.",
-        "Sur des sujets liés au bien-être et à l'accompagnement, une expérience trop chargée ou peu lisible peut aussi créer de la distance alors que le site devrait au contraire rassurer et guider naturellement.",
-        "La refonte de Natur' Au Féminin cherche à rendre le site plus fluide, plus clair et plus agréable à parcourir, tout en conservant son identité et son univers d'origine.",
-        "L'objectif est d'aider les visiteurs à mieux comprendre les contenus, les accompagnements proposés et à naviguer plus facilement entre les différentes sections du site.",
-        "Le projet privilégie une approche plus apaisée et plus lisible afin de recentrer l'expérience sur les contenus et les besoins des visiteurs."
-      ],
-      "tags": [
-        "Refonte",
-        "UX",
-        "UI"
-      ],
-      "draft": false
-    },
-    {
-      "type": "Création web",
-      "name": "stan-bouchet.eu",
-      "startedAt": "2026-04-01",
-      "startPrecision": "month",
-      "status": "ongoing",
-      "url": "https://stan-bouchet.eu/",
-      "extensionUrl": "",
-      "screenshot": "/images/projects/stan-bouchet-eu.jpg",
-      "context": "La plupart des plateformes photo imposent leurs propres règles : interfaces chargées, compression des images, publicités, algorithmes ou organisation peu adaptée aux vrais besoins des photographes. Avec le temps, publier ses photos peut devenir plus frustrant que créatif.",
-      "technique": [
-        "Le site repose sur une architecture moderne orientée performance et simplicité.",
-        "La galerie est construite avec Astro afin de proposer des pages rapides et légères, même avec beaucoup de photos.",
-        "L'administration est développée sur mesure en Node.js pour correspondre exactement à mes besoins de publication et d'organisation.",
-        "L'ensemble est pensé pour rester facilement maintenable, évolutif et indépendant des plateformes propriétaires, tout en gardant une expérience fluide sur ordinateur comme sur mobile."
-      ],
-      "impact": [
-        "Quand l'outil prend plus de place que les images elles-mêmes, l'expérience perd en simplicité et en personnalité.",
-        "Les photos sont noyées dans des interfaces complexes ou standardisées, et il devient difficile de construire un espace qui reflète réellement son regard, son style et sa manière de travailler.",
-        "stan-bouchet.eu cherche à proposer une galerie photo simple, personnelle et centrée sur l'essentiel : les images.",
-        "Le projet permet de publier, organiser et faire évoluer les contenus librement, avec une expérience pensée autour de la photographie plutôt qu'autour des contraintes des plateformes classiques.",
-        "L'objectif est de créer un espace plus calme, plus cohérent et plus fidèle à ma pratique photo."
-      ],
-      "tags": [
-        "Galerie",
-        "Admin sur mesure",
-        "Design minimal"
-      ],
-      "draft": false
-    },
-    {
-      "type": "Création web",
-      "name": "stan-bouchet.com",
-      "startedAt": "2026-04-01",
-      "startPrecision": "month",
-      "status": "ongoing",
-      "url": "https://stan-bouchet.com/",
-      "extensionUrl": "",
-      "screenshot": "/images/projects/stan-bouchet-com.jpg",
-      "context": "Quand on travaille sur beaucoup de sujets différents, les informations finissent souvent dispersées : projets, expériences, engagements, contenus ou réalisations sont répartis entre plusieurs plateformes et deviennent difficiles à suivre. Les sites personnels ressemblent aussi souvent à de simples CV techniques, sans réellement montrer la vision, les valeurs ou les projets derrière le parcours.",
-      "technique": [
-        "Le site repose sur une architecture modulaire pensée pour évoluer facilement avec le temps.",
-        "Les différentes sections utilisent des composants réutilisables afin de garder une cohérence visuelle et simplifier l'ajout de nouveaux contenus ou nouvelles pages.",
-        "L'organisation par univers permet de structurer progressivement le site sans devoir revoir toute la navigation à chaque évolution.",
-        "L'ensemble privilégie une maintenance simple, de bonnes performances et une expérience fluide sur ordinateur comme sur mobile."
-      ],
-      "impact": [
-        "Quand tout est dispersé ou présenté de manière trop technique, il devient compliqué pour les visiteurs de comprendre rapidement qui l'on est, ce que l'on construit et ce qui relie les différents projets entre eux.",
-        "Cela peut rendre le parcours moins lisible et faire perdre la cohérence globale de l'ensemble.",
-        "stan-bouchet.com sert de point central pour regrouper mon parcours, mes projets, mes engagements associatifs et mes contenus dans un seul espace cohérent.",
-        "Le site cherche à proposer une lecture plus humaine et plus claire de mon univers, avec une organisation pensée pour permettre aux visiteurs de naviguer facilement entre les différents sujets sans se perdre.",
-        "L'objectif est de construire un espace évolutif capable d'accueillir de nouveaux projets et contenus au fil du temps sans perdre en simplicité."
-      ],
-      "tags": [
-        "Hub personnel",
-        "Astro",
-        "Design system léger"
-      ],
-      "draft": false
-    },
-    {
+      "slug": "astro-a11y",
       "type": "Open source",
       "name": "astro-a11y",
+      "draft": false,
+      "featured": false,
       "startedAt": "2026-04-01",
       "startPrecision": "month",
       "status": "ongoing",
       "url": "https://stan69000.github.io/astro-a11y",
+      "repoUrl": "https://github.com/Stan69000/astro-a11y",
       "extensionUrl": "",
       "screenshot": "/images/projects/astro-a11y.jpg",
-      "context": "L'accessibilité numérique est souvent traitée trop tard dans les projets web, parfois juste avant une mise en ligne ou un audit. Résultat : les problèmes deviennent plus compliqués, plus coûteux et plus longs à corriger. De nombreux outils existants produisent aussi des rapports très techniques, difficiles à comprendre pour les équipes.",
-      "technique": [
-        "Le toolkit s'intègre directement dans les projets Astro afin d'automatiser les vérifications d'accessibilité pendant le développement ou lors de la génération du site.",
-        "Les analyses s'appuient sur Playwright et axe pour scanner les pages rendues automatiquement et produire des rapports exploitables dans plusieurs formats : terminal, HTML, JSON ou Markdown.",
-        "L'outil enrichit aussi les résultats avec des recommandations plus lisibles et orientées action afin d'aider les développeurs à corriger plus rapidement les problèmes détectés."
+      "images": [
+        "/images/projects/astro-a11y.jpg"
       ],
-      "impact": [
-        "Un site peu accessible peut empêcher certaines personnes de naviguer correctement : lecteurs d'écran, navigation clavier, contrastes insuffisants ou contenus difficiles à comprendre.",
-        "Au-delà de l'aspect réglementaire, cela crée surtout une exclusion numérique invisible pour une partie des utilisateurs.",
-        "Quand les problèmes sont détectés tôt et expliqués clairement, ils sont beaucoup plus simples à corriger.",
-        "Astro-a11y cherche à rendre les contrôles d'accessibilité plus simples, plus rapides et plus intégrés au développement quotidien.",
-        "Le projet aide les équipes à identifier automatiquement les problèmes les plus courants et à comprendre concrètement comment les corriger, sans attendre un audit complet en fin de projet."
+      "pitch": "Un scanner d'accessibilité pour les sites Astro, qui explique quoi corriger au lieu d'empiler les erreurs.",
+      "role": "Conception, pilotage du développement et maintenance.",
+      "results": [
+        "Analyse des pages rendues avec Playwright et axe-core",
+        "Rapports au choix : terminal, HTML, JSON ou Markdown",
+        "Recommandations rattachées aux critères RGAA et WCAG"
       ],
       "tags": [
         "Accessibilité",
         "Astro",
         "Playwright",
-        "Open source"
+        "axe-core"
       ],
-      "draft": false
+      "story": "Les problèmes d'accessibilité sont beaucoup plus simples à corriger quand on les voit pendant le développement plutôt qu'à l'audit final.\n\nastro-a11y s'intègre au build d'un site Astro, scanne chaque page générée et produit un rapport lisible, avec pour chaque problème une explication et une piste de correction."
     },
     {
-      "type": "Open source",
-      "name": "RGAA Audit",
+      "slug": "le-singe-du-numerique",
+      "type": "Création web",
+      "name": "Le Singe du Numérique",
+      "draft": false,
+      "featured": false,
       "startedAt": "2026-04-01",
       "startPrecision": "month",
       "status": "ongoing",
-      "url": "https://stan69000.github.io/rgaa-audit/",
-      "extensionUrl": "https://chromewebstore.google.com/detail/rgaa-audit/aiaiblaemmjcfeeobpjagdajbgbcabai?authuser=2&hl=fr",
-      "screenshot": "/images/projects/rgaa-audit.jpg",
-      "context": "Les audits d'accessibilité RGAA peuvent rapidement devenir complexes, longs et difficiles à prendre en main, surtout pour les équipes qui débutent sur le sujet. Les outils existants sont souvent très techniques, chargés ou peu adaptés à une utilisation concrète au quotidien.",
-      "technique": [
-        "L'outil repose sur une interface légère pensée pour aller directement à l'essentiel pendant les audits.",
-        "Les critères RGAA sont organisés de manière claire afin d'accélérer les vérifications et faciliter le suivi des points à corriger.",
-        "Une extension Chrome permet également de lancer rapidement certaines vérifications directement depuis le navigateur pendant les phases de test.",
-        "Le projet est développé en open source afin de pouvoir évoluer facilement avec les besoins des équipes et les évolutions des référentiels d'accessibilité."
+      "url": "https://lesingedunumerique.fr/",
+      "repoUrl": "https://github.com/Stan69000/lesingedunumerique",
+      "extensionUrl": "",
+      "screenshot": "/images/projects/le-singe-du-numerique.jpg",
+      "images": [
+        "/images/projects/le-singe-du-numerique.jpg"
       ],
-      "impact": [
-        "Quand l'accessibilité paraît trop compliquée, beaucoup de projets repoussent les audits ou les réalisent trop tard.",
-        "Cela peut entraîner des sites moins accessibles pour les utilisateurs concernés, mais aussi ralentir les équipes qui ont du mal à prioriser et comprendre les vérifications à effectuer.",
-        "Simplifier les audits permet de rendre l'accessibilité plus concrète et plus facile à intégrer dans les projets web.",
-        "RGAA Audit cherche à rendre les audits d'accessibilité plus simples, plus opérationnels et plus accessibles aux équipes terrain.",
-        "Le projet aide à lancer rapidement des vérifications, suivre les critères importants et structurer les contrôles sans devoir naviguer dans des interfaces complexes.",
-        "L'objectif est de faciliter le passage à l'action et de rendre les audits plus fluides au quotidien."
+      "pitch": "Le site de l'association que j'ai fondée : comprendre le numérique sans jargon, gratuitement, quel que soit son niveau.",
+      "role": "Fondateur de l'association, responsable des contenus et de la conception du site.",
+      "results": [
+        "Le lexique d'Octet : des dizaines de mots du quotidien expliqués avec le bon réflexe",
+        "Des guides pas à pas classés par niveau, et une BD par semaine transcrite en texte",
+        "Alertes arnaques mises à jour en continu, jeux et conte illustré à lire en famille"
       ],
       "tags": [
+        "Astro",
         "Accessibilité",
-        "RGAA",
-        "Extension Chrome"
+        "Pédagogie",
+        "Éditorial"
       ],
-      "draft": false
+      "story": "Beaucoup de gens décrochent face au numérique, non par manque d'intérêt mais parce que tout est expliqué dans un jargon qui n'est pas le leur. J'ai créé Le Singe du Numérique pour répondre à ça, avec une règle simple : tout est gratuit et pensé pour tous les niveaux.\n\nLe site rassemble plusieurs portes d'entrée selon les envies : un lexique où chaque mot part d'une situation du quotidien, des guides pas à pas, une BD hebdomadaire avec Octet, la mascotte de l'association, des alertes sur les arnaques du moment et des jeux pour apprendre à repérer les pièges.\n\nChaque planche de BD est transcrite en texte, et le site est pensé pour rester léger et lisible sur des appareils modestes."
     },
     {
+      "slug": "stan-bouchet-eu",
+      "type": "Création web",
+      "name": "stan-bouchet.eu",
+      "draft": false,
+      "featured": false,
+      "startedAt": "2026-04-01",
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": "https://stan-bouchet.eu/",
+      "repoUrl": "https://github.com/Stan69000/portfolio-photo",
+      "extensionUrl": "",
+      "screenshot": "/images/projects/stan-bouchet-eu.jpg",
+      "images": [
+        "/images/projects/stan-bouchet-eu.jpg"
+      ],
+      "pitch": "Ma galerie photo : plus de 1 000 images rangées en séries, à parcourir au hasard, sur une carte ou au fil des instants du quotidien.",
+      "role": "Photographe. Conception de la galerie et de son administration, pilotage du développement.",
+      "results": [
+        "Plus de 1 000 photos publiées, avec une page de statistiques publique",
+        "Plusieurs façons d'explorer : carte, recherche, Instants du quotidien, visite guidée en 12 images",
+        "Installable comme une application sur téléphone et ordinateur (PWA)",
+        "Séries, tags et couvertures gérés depuis une admin sur mesure"
+      ],
+      "tags": [
+        "Astro",
+        "PWA",
+        "Node.js",
+        "Photographie"
+      ],
+      "story": "Les plateformes photo imposent leurs règles : compression, algorithmes, publicité. Je voulais un endroit à moi, où les images passent avant l'interface.\n\nLa galerie a beaucoup grandi depuis la première version : un accueil qui tire une photo au hasard, des séries, des Instants publiés au fil des jours, une carte, une recherche, une visite guidée pour une première découverte et une page qui donne les chiffres de la galerie. Elle s'installe comme une application, sans rien stocker hors ligne.\n\nCôté coulisses, tout se publie depuis Studio Stan, l'administration centralisée qui gère aussi mes autres sites."
+    },
+    {
+      "draft": false,
+      "featured": false,
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": "https://rvaz.fr/",
+      "repoUrl": "",
+      "extensionUrl": "",
+      "screenshot": "/images/projects/rvaz.jpg",
+      "images": [
+        "/images/projects/rvaz.jpg"
+      ],
+      "slug": "rvaz",
+      "type": "Création web",
+      "name": "RVAz, la Radio du Val d'Azergues",
+      "startedAt": "2026-06-01",
+      "pitch": "Le site de la web TV associative du Val d'Azergues : reportages, agenda, partenaires et un espace membres pour la trentaine de bénévoles.",
+      "role": "Bénévole à RVAz : conception, pilotage du développement et hébergement du site.",
+      "results": [
+        "Pages composées de blocs activables depuis l'administration, sans toucher au code",
+        "Espace membres : documents internes, formations, idées de sujets, demandes d'adhésion",
+        "Cinq rôles, du superadmin à l'annonceur qui gère ses propres campagnes",
+        "Mesure d'audience anonyme hébergée par l'association, sans cookie de suivi"
+      ],
+      "tags": [
+        "Next.js",
+        "Payload CMS",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "story": "RVAz est une web TV locale et associative : une trentaine de bénévoles filment et racontent l'actualité de la vallée d'Azergues. Il lui fallait un site à la hauteur, que l'équipe puisse faire vivre sans dépendre d'une seule personne.\n\nLe site repose sur Next.js et Payload CMS. Chaque page est un assemblage de blocs (reportages, vidéos, agenda, partenaires, équipe) que les bénévoles activent et réordonnent depuis l'administration. Le thème lui-même se règle sans toucher au code.\n\nDerrière la partie publique, un espace membres centralise la vie de l'association : documents internes, formations, idées de sujets, programme et demandes d'adhésion. La mesure d'audience est anonyme et hébergée par l'association. Ce projet prolonge la mise en place de Google Workspace que j'avais menée pour RVAz."
+    },
+    {
+      "slug": "natur-au-feminin",
+      "type": "Refonte web",
+      "name": "Natur' Au Féminin",
+      "draft": false,
+      "featured": false,
+      "startedAt": "2026-02-01",
+      "startPrecision": "month",
+      "status": "completed",
+      "url": "https://naturaufeminin.fr/",
+      "repoUrl": "https://github.com/Stan69000/natureaufeminin",
+      "extensionUrl": "",
+      "screenshot": "/images/projects/natur-au-feminin.jpg",
+      "images": [
+        "/images/projects/natur-au-feminin.jpg"
+      ],
+      "pitch": "Refonte du site d'une naturopathe installée depuis 2016 : moins de pages, un parcours plus direct.",
+      "role": "Refonte UX/UI, pilotage du développement Astro et mise en ligne.",
+      "results": [
+        "Arborescence réorganisée autour des accompagnements proposés",
+        "Pages, tarifs et actualités gérés depuis Studio Stan, mon admin centralisée",
+        "Mise en page repensée pour la lecture sur mobile"
+      ],
+      "tags": [
+        "Refonte",
+        "UX",
+        "Astro"
+      ],
+      "story": ""
+    },
+    {
+      "slug": "google-workspace-rvaz",
       "type": "Déploiement IT",
-      "name": "Mise en place de Google Workspace (RVAz)",
+      "name": "Google Workspace pour RVAz",
+      "draft": false,
+      "featured": false,
       "startedAt": "2025-01-01",
-      "endedAt": "2025-12-01",
       "startPrecision": "year",
+      "endedAt": "2025-12-01",
       "endPrecision": "year",
       "status": "completed",
       "url": null,
+      "repoUrl": "",
       "extensionUrl": "",
       "screenshot": "/images/projects/google-workspace-rvaz.jpg",
-      "context": "Quand une association grandit, les échanges et les documents finissent souvent dispersés entre plusieurs outils, comptes personnels ou espaces mal organisés. Cela peut rapidement créer de la confusion : fichiers introuvables, accès partagés de manière informelle, perte d'informations ou difficultés à collaborer efficacement.",
-      "technique": [
-        "Le projet repose sur la mise en place de Google Workspace avec une organisation structurée des comptes, des groupes et des espaces partagés.",
-        "Les accès et permissions ont été pensés pour simplifier la collaboration tout en gardant une gestion claire des droits.",
-        "Un travail d'accompagnement et de définition des usages a également été réalisé afin de faciliter la prise en main et limiter les problèmes d'organisation à long terme.",
-        "L'ensemble est conçu pour offrir une base simple, évolutive et adaptée au fonctionnement quotidien d'une association."
+      "images": [
+        "/images/projects/google-workspace-rvaz.jpg"
       ],
-      "impact": [
-        "Une organisation numérique mal structurée peut ralentir le fonctionnement quotidien et compliquer le travail des bénévoles ou des équipes.",
-        "Avec le temps, cela augmente aussi les risques de perte de données, d'erreurs de partage ou de dépendance à une seule personne qui centralise tout.",
-        "Mettre en place des outils clairs et partagés permet de rendre l'organisation plus fluide et plus durable.",
-        "Le projet vise à fournir un cadre numérique plus simple, plus organisé et plus fiable pour les activités de l'association RVAz.",
-        "L'objectif est de faciliter le travail collectif, centraliser les ressources importantes et permettre aux membres de collaborer plus sereinement au quotidien.",
-        "Le déploiement cherche aussi à accompagner l'adoption des outils afin qu'ils restent accessibles et faciles à utiliser pour tous les profils."
+      "pitch": "Faire passer une radio associative des comptes personnels à un Google Workspace organisé.",
+      "role": "Déploiement, gouvernance des accès et accompagnement des bénévoles.",
+      "results": [
+        "Comptes, groupes et Drive partagés structurés par équipe",
+        "Droits d'accès définis par rôle plutôt qu'au cas par cas",
+        "Prise en main accompagnée pour des bénévoles de tous profils"
       ],
       "tags": [
         "Google Workspace",
         "Gouvernance",
         "Conduite du changement"
       ],
-      "draft": false
+      "story": ""
     },
     {
-      "type": "",
-      "name": "",
-      "draft": true,
-      "startedAt": "",
+      "slug": "stan-bouchet-com",
+      "type": "Création web",
+      "name": "stan-bouchet.com",
+      "draft": false,
+      "featured": false,
+      "startedAt": "2026-04-01",
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": "https://stan-bouchet.com/",
+      "repoUrl": "https://github.com/Stan69000/cv-blog",
+      "extensionUrl": "",
+      "screenshot": "/images/projects/stan-bouchet-com.jpg",
+      "images": [
+        "/images/projects/stan-bouchet-com.jpg"
+      ],
+      "pitch": "Ce site : parcours, projets, engagement et blog réunis au même endroit.",
+      "role": "Conception, design et pilotage du développement.",
+      "results": [
+        "Contenus pilotés depuis Studio Stan, mon admin qui gère aussi trois autres sites",
+        "Thème clair et sombre, navigation au clavier soignée"
+      ],
+      "tags": [
+        "Astro",
+        "Design system"
+      ],
+      "story": ""
+    },
+    {
+      "draft": false,
+      "featured": false,
       "startPrecision": "month",
       "status": "ongoing",
       "url": null,
+      "repoUrl": "",
       "extensionUrl": "",
-      "screenshot": "",
-      "context": "",
-      "technique": [],
-      "impact": [],
-      "tags": []
+      "screenshot": "/images/projects/tablee.jpg",
+      "images": [
+        "/images/projects/tablee.jpg"
+      ],
+      "slug": "tablee",
+      "type": "Application PWA",
+      "name": "Tablée",
+      "startedAt": "2026-06-01",
+      "pitch": "Menu de la semaine, liste de courses, prix et péremptions : les repas de la famille gérés au même endroit.",
+      "role": "Conception et pilotage du développement (usage familial privé).",
+      "results": [
+        "Tickets de caisse et recettes importés depuis une photo, grâce à Claude",
+        "Menu de la semaine généré selon qui est là, les régimes, le budget et ce qui va périmer",
+        "Historique des prix pour savoir où acheter quoi au meilleur tarif",
+        "Données nutritionnelles CIQUAL et Open Food Facts, rappels avant péremption"
+      ],
+      "tags": [
+        "Next.js",
+        "Prisma",
+        "PostgreSQL",
+        "Claude API",
+        "PWA"
+      ],
+      "story": "Gérer les repas en famille, c'est une suite de petites frictions : qui est là ce soir, ce qu'il reste au frigo, ce qu'on rachète, combien on a dépensé, si le yaourt passe encore. Les apps de recettes sont trop généralistes, les tableurs trop rigides.\n\nTablée réunit tout dans une PWA pensée pour le téléphone : menu de la semaine, liste de courses rangée par magasin et par rayon, suivi des prix et des tickets, stock et péremptions, sorties au restaurant.\n\nClaude intervient à deux endroits précis : lire les tickets de caisse et importer une recette depuis un texte ou une photo. Le reste, génération des menus comme calcul des courses, repose sur des règles déterministes nourries par les vraies habitudes de la famille."
+    },
+    {
+      "draft": false,
+      "featured": false,
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": null,
+      "repoUrl": "",
+      "extensionUrl": "",
+      "screenshot": "/images/projects/royaume-de-victoria.jpg",
+      "images": [
+        "/images/projects/royaume-de-victoria.jpg"
+      ],
+      "slug": "royaume-de-victoria",
+      "type": "Application PWA",
+      "name": "Le Royaume de Victoria",
+      "startedAt": "2026-07-01",
+      "pitch": "Une app de révision du CE2 vers le CM1, sur tablette, hors ligne, sans compte et sans publicité.",
+      "role": "Conception pédagogique, choix des sources officielles, pilotage du développement et des tests.",
+      "results": [
+        "Contenus adossés aux programmes officiels en vigueur (BO 2024 et 2026)",
+        "Exercices générés avec leur réponse calculée : aucune réponse saisie à la main",
+        "Plus de 8 000 exercices contrôlés automatiquement avant chaque mise à jour",
+        "Explications adaptées à chaque type d'erreur et trois indices gradués"
+      ],
+      "tags": [
+        "PWA",
+        "TypeScript",
+        "Pédagogie",
+        "Tests"
+      ],
+      "story": "L'exigence de départ était simple : ne jamais faire réviser une notion fausse. Or les programmes de maths, de français et d'histoire-géographie ont changé entre 2024 et 2026, et la plupart des fiches en circulation sont périmées.\n\nLes seules sources sont donc les textes officiels. Chaque exercice est rattaché à une compétence du programme, et produit par un générateur qui calcule lui-même la bonne réponse. Une suite de tests passe en revue des milliers d'exercices avant chaque mise à jour.\n\nCôté pédagogie, on ne dit jamais seulement « faux » : chaque erreur prévisible déclenche son explication, et le dernier indice permet toujours de réussir. Pas de vies, pas de score qui baisse, pas de chronomètre imposé."
+    },
+    {
+      "draft": false,
+      "featured": false,
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": null,
+      "repoUrl": "",
+      "extensionUrl": "",
+      "screenshot": "/images/projects/loisir-famille.jpg",
+      "images": [
+        "/images/projects/loisir-famille.jpg"
+      ],
+      "slug": "loisir-famille",
+      "type": "Application PWA",
+      "name": "Loisir Famille",
+      "startedAt": "2026-06-01",
+      "pitch": "Une app familiale pour trouver des sorties, les planifier et garder le souvenir de ce qu'on a aimé.",
+      "role": "Conception et pilotage du développement (usage familial privé).",
+      "results": [
+        "« Quoi faire ce week-end ? » : trois idées selon la météo, le budget et les envies",
+        "Recherche de sorties via Google Places : parcs, musées, restaurants, randonnées",
+        "Planification avec budget, carte, wishlist et favoris",
+        "Carnets de voyage et d'observation : photos, notes et avis de chaque membre"
+      ],
+      "tags": [
+        "Next.js",
+        "Prisma",
+        "PostgreSQL",
+        "PWA"
+      ],
+      "story": ""
+    },
+    {
+      "slug": "bar-radar",
+      "type": "Application web",
+      "name": "Bar Radar",
+      "draft": false,
+      "featured": false,
+      "startedAt": "2026-07-01",
+      "startPrecision": "month",
+      "status": "completed",
+      "url": null,
+      "repoUrl": "",
+      "extensionUrl": "",
+      "screenshot": "/images/projects/bar-radar.jpg",
+      "images": [
+        "/images/projects/bar-radar.jpg"
+      ],
+      "pitch": "Un petit outil fait pour un ami commercial : repérer les bars et restaurants qui ouvrent ou changent de mains, à partir des données publiques de l'INSEE.",
+      "role": "Projet pour un ami : conception, choix des critères de scoring et pilotage du développement.",
+      "results": [
+        "Ouvertures récentes et à venir détectées, parfois avant l'ouverture au public",
+        "Score de potentiel : reprise, embauche, multi-sites, forme juridique",
+        "Export CSV prêt à importer dans son CRM"
+      ],
+      "tags": [
+        "API Sirene",
+        "JavaScript",
+        "Données publiques",
+        "Prospection"
+      ],
+      "story": "Un ami qui vend des boissons aux cafés et restaurants cherchait un moyen simple de savoir qui ouvre ou qui reprend un établissement près de chez lui : c'est le moment où un patron choisit ses fournisseurs.\n\nBar Radar interroge le registre Sirene de l'INSEE, filtre par activité et par zone, puis donne un score à chaque établissement. Une reprise, un établissement qui déclare du personnel ou qui appartient à un groupe passent en tête, et ceux déjà exportés ne reviennent pas.\n\nPetit projet, mais une vraie leçon de vérification des données : une première API publique ignorait en silence les filtres de date, et la restauration rapide noyait les résultats. Passer à l'API Sirene officielle et affiner les codes d'activité a réglé les deux."
     }
   ]
 }

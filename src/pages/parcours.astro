@@ -2,7 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import parcoursData from '../data/parcours.json';
+import rawParcoursData from '../data/parcours.json';
+import { fillDurations } from '../data/durations';
+
+const parcoursData = fillDurations(rawParcoursData);
 
 const indyStartDate = new Date(parcoursData.indyStart.year, parcoursData.indyStart.month - 1, 1);
 const today = new Date();

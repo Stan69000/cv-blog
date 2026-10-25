@@ -1,7 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { featuredProjectsOrdered } from '../data/projects';
-import cvData from '../data/cv.json';
+import { projectsOrdered } from '../data/projects';
+import rawCvData from '../data/cv.json';
+import { fillDurations } from '../data/durations';
+
+const cvData = fillDurations(rawCvData);
 
 const today = new Date();
 
@@ -32,8 +35,8 @@ const experiences = cvData.experiences.map(xp => {
   };
 });
 
-const selectedProjects = featuredProjectsOrdered
-  .filter(p => p.status === 'ongoing')
+const selectedProjects = projectsOrdered
+  .filter(p => p.featured || p.status === 'ongoing')
   .slice(0, 4);
 
 const updatedAt = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(today);
@@ -126,7 +129,7 @@ const updatedAt = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numer
                 }
                 <span class="cv-project__type">{p.type}</span>
               </h3>
-              <p class="cv-project__context">{p.context}</p>
+              <p class="cv-project__context">{p.pitch}</p>
               {p.tags.length > 0 && (
                 <p class="cv-project__tags">{p.tags.join(' · ')}</p>
               )}

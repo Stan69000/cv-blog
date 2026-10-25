@@ -5,6 +5,9 @@ on:
     branches:
       - main
   workflow_dispatch:
+  # Rebuild mensuel : recalcule les durées ({{ans:…}}) même sans changement de contenu
+  schedule:
+    - cron: '0 5 1 * *'
 
 jobs:
   deploy:
