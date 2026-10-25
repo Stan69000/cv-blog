@@ -336,6 +336,38 @@
       "story": "Les plateformes photo imposent leurs règles : compression, algorithmes, publicité. Je voulais un endroit à moi, où les images passent avant l'interface.\n\nLa galerie a beaucoup grandi depuis la première version : un accueil qui tire une photo au hasard, des séries, des Instants publiés au fil des jours, une carte, une recherche, une visite guidée pour une première découverte et une page qui donne les chiffres de la galerie. Elle s'installe comme une application, sans rien stocker hors ligne.\n\nCôté coulisses, tout se publie depuis Studio Stan, l'administration centralisée qui gère aussi mes autres sites."
     },
     {
+      "draft": false,
+      "featured": false,
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": "https://rvaz.fr/",
+      "repoUrl": "",
+      "extensionUrl": "",
+      "screenshot": "/images/projects/rvaz.jpg",
+      "images": [
+        "/images/projects/rvaz.jpg"
+      ],
+      "slug": "rvaz",
+      "type": "Création web",
+      "name": "RVAz, la Radio du Val d'Azergues",
+      "startedAt": "2026-06-01",
+      "pitch": "Le site de la web TV associative du Val d'Azergues : reportages, agenda, partenaires et un espace membres pour la trentaine de bénévoles.",
+      "role": "Bénévole à RVAz : conception, développement et hébergement du site.",
+      "results": [
+        "Pages composées de blocs activables depuis l'administration, sans toucher au code",
+        "Espace membres : documents internes, formations, idées de sujets, demandes d'adhésion",
+        "Cinq rôles, du superadmin à l'annonceur qui gère ses propres campagnes",
+        "Mesure d'audience anonyme hébergée par l'association, sans cookie de suivi"
+      ],
+      "tags": [
+        "Next.js",
+        "Payload CMS",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "story": "RVAz est une web TV locale et associative : une trentaine de bénévoles filment et racontent l'actualité de la vallée d'Azergues. Il lui fallait un site à la hauteur, que l'équipe puisse faire vivre sans dépendre d'une seule personne.\n\nLe site repose sur Next.js et Payload CMS. Chaque page est un assemblage de blocs (reportages, vidéos, agenda, partenaires, équipe) que les bénévoles activent et réordonnent depuis l'administration. Le thème lui-même se règle sans toucher au code.\n\nDerrière la partie publique, un espace membres centralise la vie de l'association : documents internes, formations, idées de sujets, programme et demandes d'adhésion. La mesure d'audience est anonyme et hébergée par l'association. Ce projet prolonge la mise en place de Google Workspace que j'avais menée pour RVAz."
+    },
+    {
       "slug": "natur-au-feminin",
       "type": "Refonte web",
       "name": "Natur' Au Féminin",
@@ -422,6 +454,97 @@
       "tags": [
         "Astro",
         "Design system"
+      ],
+      "story": ""
+    },
+    {
+      "draft": false,
+      "featured": false,
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": null,
+      "repoUrl": "",
+      "extensionUrl": "",
+      "screenshot": "",
+      "images": [],
+      "slug": "tablee",
+      "type": "Application PWA",
+      "name": "Tablée",
+      "startedAt": "2026-06-01",
+      "pitch": "Menu de la semaine, liste de courses, prix et péremptions : les repas de la famille gérés au même endroit.",
+      "role": "Conception et développement (usage familial privé).",
+      "results": [
+        "Tickets de caisse et recettes importés depuis une photo, grâce à Claude",
+        "Menu de la semaine généré selon qui est là, les régimes, le budget et ce qui va périmer",
+        "Historique des prix pour savoir où acheter quoi au meilleur tarif",
+        "Données nutritionnelles CIQUAL et Open Food Facts, rappels avant péremption"
+      ],
+      "tags": [
+        "Next.js",
+        "Prisma",
+        "PostgreSQL",
+        "Claude API",
+        "PWA"
+      ],
+      "story": "Gérer les repas en famille, c'est une suite de petites frictions : qui est là ce soir, ce qu'il reste au frigo, ce qu'on rachète, combien on a dépensé, si le yaourt passe encore. Les apps de recettes sont trop généralistes, les tableurs trop rigides.\n\nTablée réunit tout dans une PWA pensée pour le téléphone : menu de la semaine, liste de courses rangée par magasin et par rayon, suivi des prix et des tickets, stock et péremptions, sorties au restaurant.\n\nClaude intervient à deux endroits précis : lire les tickets de caisse et importer une recette depuis un texte ou une photo. Le reste, génération des menus comme calcul des courses, repose sur des règles déterministes nourries par les vraies habitudes de la famille."
+    },
+    {
+      "draft": false,
+      "featured": false,
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": null,
+      "repoUrl": "",
+      "extensionUrl": "",
+      "screenshot": "",
+      "images": [],
+      "slug": "royaume-de-victoria",
+      "type": "Application PWA",
+      "name": "Le Royaume de Victoria",
+      "startedAt": "2026-07-01",
+      "pitch": "Une app de révision du CE2 vers le CM1, sur tablette, hors ligne, sans compte et sans publicité.",
+      "role": "Conception pédagogique et développement.",
+      "results": [
+        "Contenus adossés aux programmes officiels en vigueur (BO 2024 et 2026)",
+        "Exercices générés avec leur réponse calculée : aucune réponse saisie à la main",
+        "Plus de 8 000 exercices contrôlés automatiquement avant chaque mise à jour",
+        "Explications adaptées à chaque type d'erreur et trois indices gradués"
+      ],
+      "tags": [
+        "PWA",
+        "TypeScript",
+        "Pédagogie",
+        "Tests"
+      ],
+      "story": "L'exigence de départ était simple : ne jamais faire réviser une notion fausse. Or les programmes de maths, de français et d'histoire-géographie ont changé entre 2024 et 2026, et la plupart des fiches en circulation sont périmées.\n\nLes seules sources sont donc les textes officiels. Chaque exercice est rattaché à une compétence du programme, et produit par un générateur qui calcule lui-même la bonne réponse. Une suite de tests passe en revue des milliers d'exercices avant chaque mise à jour.\n\nCôté pédagogie, on ne dit jamais seulement « faux » : chaque erreur prévisible déclenche son explication, et le dernier indice permet toujours de réussir. Pas de vies, pas de score qui baisse, pas de chronomètre imposé."
+    },
+    {
+      "draft": false,
+      "featured": false,
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": null,
+      "repoUrl": "",
+      "extensionUrl": "",
+      "screenshot": "",
+      "images": [],
+      "slug": "loisir-famille",
+      "type": "Application PWA",
+      "name": "Loisir Famille",
+      "startedAt": "2026-06-01",
+      "pitch": "Une app familiale pour trouver des sorties, les planifier et garder le souvenir de ce qu'on a aimé.",
+      "role": "Conception et développement (usage familial privé).",
+      "results": [
+        "Recherche de sorties via Google Places : parcs, musées, restaurants, randonnées",
+        "Agenda avec budget et durée estimée pour chaque activité",
+        "Journal de sortie : photos, notes et avis de chaque membre de la famille",
+        "Statistiques de budget et d'activités par catégorie"
+      ],
+      "tags": [
+        "Next.js",
+        "Prisma",
+        "PostgreSQL",
+        "PWA"
       ],
       "story": ""
     }
