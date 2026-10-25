@@ -1,14 +1,14 @@
 {
   "heroEyebrow": "Projets",
   "heroTitle": "Je construis des outils qui simplifient le numérique.",
-  "heroLead": "Pour une équipe de 300 personnes, pour des associations, et parfois juste pour moi. Je conçois, je fais les choix techniques et je teste ; le code, je l'écris avec Claude et ChatGPT. Tout ce qui suit tourne aujourd'hui, en ligne ou sur mon Mac.",
+  "heroLead": "Pour une entreprise, pour des associations, et parfois juste pour moi. Je conçois, je fais les choix techniques et je teste ; le code, je l'écris avec Claude et ChatGPT. Tout ce qui suit tourne aujourd'hui, en ligne ou sur mon Mac.",
   "stats": [
     {
       "value": "21 ans",
-      "label": "d'expérience terrain, dont 4 à construire l'IT d'une scale-up"
+      "label": "d'expérience terrain, dont plusieurs à construire l'IT d'une scale-up"
     },
     {
-      "value": "325",
+      "value": "300+",
       "label": "sources lues chaque jour par Cortex, ma plateforme de veille"
     },
     {
@@ -20,25 +20,12 @@
   "sectionTitle": "Les autres projets",
   "work": {
     "title": "En entreprise",
-    "lead": "Mon métier, c'est l'IT interne. Je suis arrivé chez Indy en 2022 comme premier informaticien, et j'y pilote aujourd'hui l'IT d'une scale-up de plus de 300 personnes.",
-    "stats": [
-      {
-        "value": "400+",
-        "label": "postes configurés (macOS, Windows, Linux)"
-      },
-      {
-        "value": "300+",
-        "label": "collaborateurs accompagnés au quotidien"
-      },
-      {
-        "value": "1 / mois",
-        "label": "formation cybersécurité animée en interne"
-      }
-    ],
+    "lead": "Mon métier, c'est l'IT interne d'une scale-up lyonnaise : faire en sorte que les outils, les postes et les accès suivent la croissance, sans freiner les équipes.",
+    "stats": [],
     "highlights": [
-      "Support structuré de zéro : SLA, documentation, procédures",
-      "Onboarding, offboarding et achats IT automatisés",
-      "Gouvernance des outils (Google Workspace, Slack, Notion, 1Password) et accompagnement aux usages de l'IA"
+      "Structuration du support et de la documentation",
+      "Automatisation des arrivées et des départs",
+      "Accompagnement des équipes, y compris sur les usages de l'IA"
     ],
     "linkLabel": "Voir le CV complet",
     "linkUrl": "/cv"
@@ -97,10 +84,10 @@
       "images": [
         "/images/projects/le-signal-clair.jpg"
       ],
-      "pitch": "La vitrine publique de Cortex : chaque jour, l'essentiel de l'actu tech et cyber en français, trié parmi 325 sources.",
+      "pitch": "La vitrine publique de Cortex : chaque jour, l'essentiel de l'actu tech et cyber en français, trié parmi plus de 300 sources.",
       "role": "Conception et design du site public, pilotage du développement et mise en ligne, sur le moteur de Cortex.",
       "results": [
-        "Près de 7 000 sujets triés et archivés depuis mai 2026",
+        "Des milliers de sujets triés et archivés depuis mai 2026",
         "Failles activement exploitées et arnaques signalées remontées en page d'accueil",
         "Gratuit et sans publicité, porté par l'association Le Singe du Numérique"
       ],

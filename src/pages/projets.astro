@@ -58,7 +58,7 @@ const others = [
     )}
 
     {work && (
-      <section class="section work" aria-labelledby="work-title">
+      <section class:list={['section', 'work', { 'work--compact': work.stats.length === 0 }]} aria-labelledby="work-title">
         <div class="work-intro">
           <h2 id="work-title">{work.title}</h2>
           <p>{work.lead}</p>
@@ -242,6 +242,14 @@ const others = [
     border-radius: var(--radius);
     background:
       linear-gradient(135deg, color-mix(in srgb, var(--accent) 9%, var(--surface)), var(--surface));
+  }
+
+  .work--compact {
+    grid-template-columns: 1fr;
+  }
+
+  .work--compact .work-intro p {
+    max-width: 62ch;
   }
 
   .work-intro h2 {
