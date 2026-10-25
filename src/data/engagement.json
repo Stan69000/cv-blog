@@ -8,7 +8,7 @@
       "label": "De bénévolat"
     },
     {
-      "value": "11",
+      "value": "12",
       "label": "Structures différentes"
     },
     {
@@ -19,6 +19,14 @@
   "timelineEyebrow": "Parcours",
   "timelineTitle": "Un parcours dans le temps",
   "timeline": [
+    {
+      "period": "Dès 1994",
+      "title": "Scout – Scouts de France",
+      "url": "https://sgdf.fr/",
+      "text": "Premiers pas dans l'engagement, à 12 ans : vie en groupe, autonomie et sens du service.",
+      "active": false,
+      "details": []
+    },
     {
       "period": "2000 → 2005",
       "title": "Sapeur-pompier volontaire – SDIS du Rhône",
