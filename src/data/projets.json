@@ -557,13 +557,12 @@
       "images": [
         "/images/projects/bar-radar.jpg"
       ],
-      "pitch": "Un outil de prospection qui repère les bars et restaurants qui ouvrent ou changent de mains, à partir des données publiques de l'INSEE.",
-      "role": "Conception, choix des critères de scoring et pilotage du développement.",
+      "pitch": "Un petit outil fait pour un ami commercial : repérer les bars et restaurants qui ouvrent ou changent de mains, à partir des données publiques de l'INSEE.",
+      "role": "Projet pour un ami : conception, choix des critères de scoring et pilotage du développement.",
       "results": [
         "Ouvertures récentes et à venir détectées, parfois avant l'ouverture au public",
-        "Score de potentiel commercial : reprise, embauche, multi-sites, forme juridique",
-        "Export CSV prêt à importer dans le CRM de l'équipe commerciale",
-        "Clé d'API gardée côté serveur, outil réservé à un usage privé"
+        "Score de potentiel : reprise, embauche, multi-sites, forme juridique",
+        "Export CSV prêt à importer dans son CRM"
       ],
       "tags": [
         "API Sirene",
@@ -571,7 +570,7 @@
         "Données publiques",
         "Prospection"
       ],
-      "story": "Pour un commercial dans la distribution de boissons, le meilleur prospect est un bar qui va ouvrir, ou qui vient de changer de propriétaire : c'est le moment où il choisit ses fournisseurs. Encore faut-il le savoir avant les concurrents.\n\nBar Radar interroge chaque jour le registre Sirene de l'INSEE, filtre les établissements par activité et par zone, puis leur attribue un score. Une reprise, un établissement qui déclare du personnel ou qui appartient à un groupe passent en tête. Les prospects déjà exportés sont mémorisés pour ne pas être proposés deux fois.\n\nLe projet m'a surtout appris à vérifier les données : une première API publique ignorait en silence les filtres de date, et la restauration rapide polluait les résultats. Le passage à l'API Sirene officielle et un tri plus fin des codes d'activité ont réglé les deux."
+      "story": "Un ami qui vend des boissons aux cafés et restaurants cherchait un moyen simple de savoir qui ouvre ou qui reprend un établissement près de chez lui : c'est le moment où un patron choisit ses fournisseurs.\n\nBar Radar interroge le registre Sirene de l'INSEE, filtre par activité et par zone, puis donne un score à chaque établissement. Une reprise, un établissement qui déclare du personnel ou qui appartient à un groupe passent en tête, et ceux déjà exportés ne reviennent pas.\n\nPetit projet, mais une vraie leçon de vérification des données : une première API publique ignorait en silence les filtres de date, et la restauration rapide noyait les résultats. Passer à l'API Sirene officielle et affiner les codes d'activité a réglé les deux."
     }
   ]
 }
