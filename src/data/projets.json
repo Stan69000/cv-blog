@@ -3,9 +3,18 @@
   "heroTitle": "Je construis des outils qui simplifient le numérique.",
   "heroLead": "Pour une équipe de 300 personnes, pour des associations, et parfois juste pour moi. Tout ce qui suit tourne aujourd'hui, en ligne ou sur mon Mac.",
   "stats": [
-    { "value": "21 ans", "label": "d'expérience terrain, dont 4 à construire l'IT d'une scale-up" },
-    { "value": "325", "label": "sources lues chaque jour par Le Signal Clair" },
-    { "value": "2", "label": "outils d'accessibilité publiés en open source" }
+    {
+      "value": "21 ans",
+      "label": "d'expérience terrain, dont 4 à construire l'IT d'une scale-up"
+    },
+    {
+      "value": "325",
+      "label": "sources lues chaque jour par Cortex, ma plateforme de veille"
+    },
+    {
+      "value": "2",
+      "label": "outils d'accessibilité publiés en open source"
+    }
   ],
   "featuredTitle": "À la une",
   "sectionTitle": "Les autres projets",
@@ -13,9 +22,18 @@
     "title": "En entreprise",
     "lead": "Mon métier, c'est l'IT interne. Je suis arrivé chez Indy en 2022 comme premier informaticien, et j'y pilote aujourd'hui l'IT d'une scale-up de plus de 300 personnes.",
     "stats": [
-      { "value": "400+", "label": "postes configurés (macOS, Windows, Linux)" },
-      { "value": "300+", "label": "collaborateurs accompagnés au quotidien" },
-      { "value": "1 / mois", "label": "formation cybersécurité animée en interne" }
+      {
+        "value": "400+",
+        "label": "postes configurés (macOS, Windows, Linux)"
+      },
+      {
+        "value": "300+",
+        "label": "collaborateurs accompagnés au quotidien"
+      },
+      {
+        "value": "1 / mois",
+        "label": "formation cybersécurité animée en interne"
+      }
     ],
     "highlights": [
       "Support structuré de zéro : SLA, documentation, procédures",
@@ -26,6 +44,40 @@
     "linkUrl": "/cv"
   },
   "projects": [
+    {
+      "slug": "cortex",
+      "type": "Plateforme web",
+      "name": "Cortex",
+      "draft": false,
+      "featured": true,
+      "startedAt": "2026-04-01",
+      "startPrecision": "month",
+      "status": "ongoing",
+      "url": null,
+      "repoUrl": "",
+      "extensionUrl": "",
+      "screenshot": "",
+      "images": [],
+      "pitch": "Une plateforme de veille complète : elle lit des centaines de sources, les regroupe par sujet avec l'IA et sert le résultat à une équipe, à un site public ou à un assistant IA.",
+      "role": "Conception produit, architecture, développement full-stack et exploitation sur VPS.",
+      "results": [
+        "Ingestion RSS, newsletters, podcasts, YouTube, Reddit, GitHub, CVE et fact-checks, sans doublon",
+        "Multi-équipes avec 5 rôles, double authentification TOTP et passkeys, journal d'audit",
+        "Serveur MCP de plus de 60 outils, utilisable depuis Claude, Cursor ou tout client MCP",
+        "Coûts IA suivis par fournisseur et par modèle, budget plafonné à 20 € par mois"
+      ],
+      "tags": [
+        "TypeScript",
+        "Next.js",
+        "Fastify",
+        "BullMQ",
+        "PostgreSQL",
+        "Redis",
+        "MCP",
+        "Docker"
+      ],
+      "story": "Je faisais ma veille tech et cyber à la main, entre flux RSS, newsletters et avis de sécurité. Cortex est né pour automatiser ça, et il est devenu un vrai produit : une plateforme multi-équipes, avec son administration, son API et ses modules métier.\n\nChaque source passe par le même pipeline : récupération, déduplication par empreinte, vectorisation, regroupement des articles qui parlent du même sujet, puis résumé et score de signal par IA. Autour de ce cœur se greffent des modules spécialisés : analyse des messages de phishing (en-têtes SPF/DKIM/DMARC, réputation des liens, OCR des pièces jointes), suivi des CVE avec NVD, CISA KEV et EPSS, rapprochement avec les fact-checks, surveillance de l'e-réputation.\n\nCôté produit : invitations et rôles, liens de démo en lecture seule, digest quotidien personnalisé par membre, tableau de bord système, suivi des coûts IA avec projection mensuelle. Un serveur MCP authentifié en OAuth permet d'interroger et de piloter la plateforme depuis un assistant IA.\n\nLe Signal Clair en est la déclinaison publique : le même moteur, ouvert à tous, gratuitement."
+    },
     {
       "slug": "le-signal-clair",
       "type": "Plateforme web",
@@ -39,16 +91,25 @@
       "repoUrl": "",
       "extensionUrl": "",
       "screenshot": "/images/projects/le-signal-clair.jpg",
-      "images": ["/images/projects/le-signal-clair.jpg"],
-      "pitch": "Un site qui lit chaque jour 325 sources tech et cyber, regroupe ce qui parle du même sujet et n'en garde que l'essentiel.",
-      "role": "Seul aux commandes : produit, architecture, développement, hébergement et budget IA.",
-      "results": [
-        "325 sources suivies, près de 7 000 sujets triés et archivés par Cortex depuis mai 2026",
-        "Failles activement exploitées et arnaques signalées remontées en page d'accueil",
-        "API publique et serveur MCP de 19 outils pour brancher d'autres assistants IA"
+      "images": [
+        "/images/projects/le-signal-clair.jpg"
       ],
-      "tags": ["Next.js", "Fastify", "BullMQ", "PostgreSQL", "IA", "Docker"],
-      "story": "L'actu tech et cyber arrive de partout : flux RSS, newsletters, Reddit, avis de sécurité, podcasts. Je voulais un seul endroit qui lise tout ça à ma place, regroupe les articles qui racontent la même histoire et dise clairement ce qui mérite d'être lu.\n\nLe site public est sorti en octobre 2026, mais il repose sur Cortex, la plateforme de veille que je développe depuis avril 2026 : ingestion multi-sources, résumés et regroupement par IA, détection des messages d'arnaque, suivi des CVE (NVD, CISA KEV, EPSS), administration avec double authentification et passkeys, suivi des coûts IA par modèle.\n\nLe tout tourne sur un VPS que j'administre moi-même, avec un budget IA plafonné à une vingtaine d'euros par mois. Le site est porté par l'association Le Singe du Numérique et reste gratuit, sans publicité."
+      "pitch": "La vitrine publique de Cortex : chaque jour, l'essentiel de l'actu tech et cyber en français, trié parmi 325 sources.",
+      "role": "Design et développement du site public, sur le moteur de Cortex.",
+      "results": [
+        "Près de 7 000 sujets triés et archivés depuis mai 2026",
+        "Failles activement exploitées et arnaques signalées remontées en page d'accueil",
+        "Gratuit et sans publicité, porté par l'association Le Singe du Numérique"
+      ],
+      "tags": [
+        "Next.js",
+        "Fastify",
+        "BullMQ",
+        "PostgreSQL",
+        "IA",
+        "Docker"
+      ],
+      "story": "L'actu tech et cyber arrive de partout, et la plupart des gens n'ont ni le temps ni l'envie de tout lire. Le Signal Clair fait ce tri à leur place : les articles qui racontent la même histoire sont regroupés, résumés, et seuls les sujets qui comptent remontent.\n\nLe site est sorti en octobre 2026. Il s'appuie sur Cortex, la plateforme de veille que je développe depuis avril 2026 : ingestion, regroupement par IA, détection des arnaques et suivi des failles viennent de là.\n\nLe projet est bénévole et porté par l'association Le Singe du Numérique. Les résumés sont générés automatiquement, sans relecture humaine, et le site le dit clairement."
     },
     {
       "slug": "rgaa-audit",
@@ -63,7 +124,9 @@
       "repoUrl": "https://github.com/Stan69000/rgaa-audit",
       "extensionUrl": "https://chromewebstore.google.com/detail/rgaa-audit/aiaiblaemmjcfeeobpjagdajbgbcabai",
       "screenshot": "/images/projects/rgaa-audit.jpg",
-      "images": ["/images/projects/rgaa-audit.jpg"],
+      "images": [
+        "/images/projects/rgaa-audit.jpg"
+      ],
       "pitch": "Un auditeur RGAA open source : une extension Chrome pour tester en direct, une CLI pour automatiser les contrôles.",
       "role": "Conception, développement et publication sur le Chrome Web Store.",
       "results": [
@@ -71,7 +134,12 @@
         "Critères RGAA 4.1 regroupés par thématique pour avancer pas à pas pendant un audit",
         "CLI Playwright pour lancer les vérifications automatiques depuis le terminal"
       ],
-      "tags": ["Accessibilité", "RGAA 4.1", "Extension Chrome", "Playwright"],
+      "tags": [
+        "Accessibilité",
+        "RGAA 4.1",
+        "Extension Chrome",
+        "Playwright"
+      ],
       "story": "Un audit RGAA, c'est une centaine de critères, un référentiel touffu et des outils souvent pensés pour des experts. Résultat : beaucoup d'équipes repoussent l'audit à la toute fin du projet, quand corriger coûte le plus cher.\n\nRGAA Audit prend le problème par les deux bouts. L'extension Chrome guide l'audit manuel critère par critère, directement sur la page testée. La CLI, basée sur Playwright, automatise les contrôles qui peuvent l'être.\n\nLe code est ouvert pour que d'autres puissent l'adapter à leurs besoins et suivre les évolutions du référentiel."
     },
     {
@@ -79,7 +147,7 @@
       "type": "App macOS",
       "name": "Atelier du Photographe",
       "draft": false,
-      "featured": true,
+      "featured": false,
       "startedAt": "2026-01-01",
       "startPrecision": "year",
       "status": "completed",
@@ -87,7 +155,9 @@
       "repoUrl": "",
       "extensionUrl": "",
       "screenshot": "/images/projects/photo-triage.jpg",
-      "images": ["/images/projects/photo-triage.jpg"],
+      "images": [
+        "/images/projects/photo-triage.jpg"
+      ],
       "pitch": "Trier une sortie photo au clavier, sans jongler entre les fenêtres du Finder.",
       "role": "Conception et développement natif en SwiftUI.",
       "results": [
@@ -95,7 +165,12 @@
         "Métadonnées EXIF affichées pendant le tri (boîtier, objectif, ISO, ouverture, focale)",
         "Dossiers de destination configurables selon son propre workflow"
       ],
-      "tags": ["SwiftUI", "macOS", "MVVM", "EXIF"],
+      "tags": [
+        "SwiftUI",
+        "macOS",
+        "MVVM",
+        "EXIF"
+      ],
       "story": "Après une sortie photo, il y a souvent plusieurs centaines d'images à trier. Les logiciels complets sont lourds pour ça, et le Finder oblige à enchaîner les glisser-déposer entre fenêtres.\n\nJ'ai donc écrit une app macOS native qui fait une seule chose : faire défiler les photos et les envoyer au bon endroit d'une touche. Les infos de prise de vue s'affichent à côté de l'image pour décider vite, et les accès fichiers passent par le système de sécurité de macOS."
     },
     {
@@ -111,7 +186,9 @@
       "repoUrl": "https://github.com/Stan69000/Quizeo",
       "extensionUrl": "",
       "screenshot": "/images/projects/quizeo.jpg",
-      "images": ["/images/projects/quizeo.jpg"],
+      "images": [
+        "/images/projects/quizeo.jpg"
+      ],
       "pitch": "Un blind test musique, cinéma et séries qui tient dans une seule app, même hors ligne.",
       "role": "Conception et développement (Tauri, Rust, React).",
       "results": [
@@ -119,7 +196,12 @@
         "Musiques téléchargées en local pour jouer sans connexion",
         "Fiches artistes et œuvres enrichies via Wikipédia et des API musicales"
       ],
-      "tags": ["Tauri", "Rust", "React", "TypeScript"],
+      "tags": [
+        "Tauri",
+        "Rust",
+        "React",
+        "TypeScript"
+      ],
       "story": "Organiser un blind test entre amis, c'est souvent une playlist bricolée, un téléphone qui sonne au mauvais moment et quelqu'un qui compte les points sur un coin de table.\n\nQuizeo réunit tout dans une app de bureau légère : choix du thème, téléchargement des extraits, déroulé de la partie et scores. Le projet est en cours, avec de nouveaux modes de jeu au fil des versions."
     },
     {
@@ -135,7 +217,9 @@
       "repoUrl": "https://github.com/Stan69000/astro-a11y",
       "extensionUrl": "",
       "screenshot": "/images/projects/astro-a11y.jpg",
-      "images": ["/images/projects/astro-a11y.jpg"],
+      "images": [
+        "/images/projects/astro-a11y.jpg"
+      ],
       "pitch": "Un scanner d'accessibilité pour les sites Astro, qui explique quoi corriger au lieu d'empiler les erreurs.",
       "role": "Auteur et mainteneur.",
       "results": [
@@ -143,7 +227,12 @@
         "Rapports au choix : terminal, HTML, JSON ou Markdown",
         "Recommandations rattachées aux critères RGAA et WCAG"
       ],
-      "tags": ["Accessibilité", "Astro", "Playwright", "axe-core"],
+      "tags": [
+        "Accessibilité",
+        "Astro",
+        "Playwright",
+        "axe-core"
+      ],
       "story": "Les problèmes d'accessibilité sont beaucoup plus simples à corriger quand on les voit pendant le développement plutôt qu'à l'audit final.\n\nastro-a11y s'intègre au build d'un site Astro, scanne chaque page générée et produit un rapport lisible, avec pour chaque problème une explication et une piste de correction."
     },
     {
@@ -159,7 +248,9 @@
       "repoUrl": "",
       "extensionUrl": "",
       "screenshot": "/images/projects/le-singe-du-numerique.jpg",
-      "images": ["/images/projects/le-singe-du-numerique.jpg"],
+      "images": [
+        "/images/projects/le-singe-du-numerique.jpg"
+      ],
       "pitch": "Le site de l'association que j'ai fondée pour rendre le numérique moins intimidant.",
       "role": "Fondateur de l'association, conception et développement du site.",
       "results": [
@@ -167,7 +258,11 @@
         "Site Astro léger, pensé pour les petites connexions et les appareils modestes",
         "Articles publiés depuis mon interface d'administration centralisée"
       ],
-      "tags": ["Astro", "Accessibilité", "Éditorial"],
+      "tags": [
+        "Astro",
+        "Accessibilité",
+        "Éditorial"
+      ],
       "story": ""
     },
     {
@@ -183,7 +278,9 @@
       "repoUrl": "https://github.com/Stan69000/portfolio-photo",
       "extensionUrl": "",
       "screenshot": "/images/projects/stan-bouchet-eu.jpg",
-      "images": ["/images/projects/stan-bouchet-eu.jpg"],
+      "images": [
+        "/images/projects/stan-bouchet-eu.jpg"
+      ],
       "pitch": "Ma galerie photo : pas d'algorithme, pas de compression agressive, et une admin taillée pour mon workflow.",
       "role": "Design, développement de la galerie et de l'administration.",
       "results": [
@@ -191,7 +288,11 @@
         "Publication déclenchée par Git, sans plateforme tierce",
         "Photos diffusées sous licence Creative Commons BY-NC-ND"
       ],
-      "tags": ["Astro", "Node.js", "Photographie"],
+      "tags": [
+        "Astro",
+        "Node.js",
+        "Photographie"
+      ],
       "story": ""
     },
     {
@@ -207,7 +308,9 @@
       "repoUrl": "",
       "extensionUrl": "",
       "screenshot": "/images/projects/natur-au-feminin.jpg",
-      "images": ["/images/projects/natur-au-feminin.jpg"],
+      "images": [
+        "/images/projects/natur-au-feminin.jpg"
+      ],
       "pitch": "Refonte du site d'une naturopathe installée depuis 2016 : moins de pages, un parcours plus direct.",
       "role": "Refonte UX/UI et développement Astro.",
       "results": [
@@ -215,7 +318,11 @@
         "Pages, tarifs et actualités gérés depuis l'admin centralisée",
         "Mise en page repensée pour la lecture sur mobile"
       ],
-      "tags": ["Refonte", "UX", "Astro"],
+      "tags": [
+        "Refonte",
+        "UX",
+        "Astro"
+      ],
       "story": ""
     },
     {
@@ -233,7 +340,9 @@
       "repoUrl": "",
       "extensionUrl": "",
       "screenshot": "/images/projects/google-workspace-rvaz.jpg",
-      "images": ["/images/projects/google-workspace-rvaz.jpg"],
+      "images": [
+        "/images/projects/google-workspace-rvaz.jpg"
+      ],
       "pitch": "Faire passer une radio associative des comptes personnels à un Google Workspace organisé.",
       "role": "Déploiement, gouvernance des accès et accompagnement des bénévoles.",
       "results": [
@@ -241,7 +350,11 @@
         "Droits d'accès définis par rôle plutôt qu'au cas par cas",
         "Prise en main accompagnée pour des bénévoles de tous profils"
       ],
-      "tags": ["Google Workspace", "Gouvernance", "Conduite du changement"],
+      "tags": [
+        "Google Workspace",
+        "Gouvernance",
+        "Conduite du changement"
+      ],
       "story": ""
     },
     {
@@ -257,14 +370,19 @@
       "repoUrl": "https://github.com/Stan69000/cv-blog",
       "extensionUrl": "",
       "screenshot": "/images/projects/stan-bouchet-com.jpg",
-      "images": ["/images/projects/stan-bouchet-com.jpg"],
+      "images": [
+        "/images/projects/stan-bouchet-com.jpg"
+      ],
       "pitch": "Ce site : parcours, projets, engagement et blog réunis au même endroit.",
       "role": "Design et développement.",
       "results": [
         "Contenus pilotés depuis une admin Next.js qui gère aussi trois autres sites",
         "Thème clair et sombre, navigation au clavier soignée"
       ],
-      "tags": ["Astro", "Design system"],
+      "tags": [
+        "Astro",
+        "Design system"
+      ],
       "story": ""
     }
   ]
