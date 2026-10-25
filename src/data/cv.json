@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "CV — Stan Bouchet · IT Officer",
-    "description": "Curriculum vitae de Stan Bouchet : IT Officer, développeur web, 21 ans d'expérience opérationnelle.",
+    "description": "Curriculum vitae de Stan Bouchet : IT Officer, concepteur d'outils web assistés par l'IA, 21 ans d'expérience opérationnelle.",
     "subtitle": "IT Officer",
     "location": "Lyon, France",
     "linkedinUrl": "https://www.linkedin.com/in/stanislas-bouchet/",
@@ -102,8 +102,8 @@
       "items": ["Google Workspace (Admin)", "Slack", "Notion", "1Password", "Microsoft 365", "IA générative"]
     },
     {
-      "category": "Développement web",
-      "items": ["Astro", "TypeScript", "HTML / CSS", "SwiftUI (macOS)", "Git", "Accessibilité RGAA / WCAG"]
+      "category": "Conception web assistée par IA",
+      "items": ["Pilotage de Claude et ChatGPT", "Astro", "TypeScript", "HTML / CSS", "SwiftUI (macOS)", "Git", "Accessibilité RGAA / WCAG"]
     },
     {
       "category": "Organisation & Process",
