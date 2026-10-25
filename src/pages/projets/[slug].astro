@@ -1,0 +1,331 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import { formatProjectDate, hasDetailPage, projectsOrdered, type Project } from '../../data/projects';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const withDetail = projectsOrdered.filter(hasDetailPage);
+  return withDetail.map((project, index) => ({
+    params: { slug: project.slug },
+    props: { project, next: withDetail[(index + 1) % withDetail.length] },
+  }));
+}
+
+const { project, next } = Astro.props as { project: Project; next: Project };
+const [cover, ...gallery] = project.images;
+---
+
+<BaseLayout
+  title={`${project.name} | Projets | Stan Bouchet`}
+  description={project.pitch}
+  ogImage={cover}
+>
+  <SiteHeader />
+
+  <main id="main-content" class="container section project-page">
+    <p class="project-back"><a href="/projets/">← Tous les projets</a></p>
+
+    <header class="project-header">
+      <p class="project-meta">
+        <span>{project.type}</span>
+        <span aria-hidden="true">·</span>
+        <time datetime={project.startedAt}>{formatProjectDate(project)}</time>
+        <span aria-hidden="true">·</span>
+        <span>{project.status === 'ongoing' ? 'En cours' : 'Terminé'}</span>
+      </p>
+      <h1>{project.name}</h1>
+      <p class="project-lead">{project.pitch}</p>
+
+      {(project.url || project.repoUrl || project.extensionUrl) && (
+        <p class="project-actions">
+          {project.url && (
+            <a class="btn btn--primary" href={project.url} target="_blank" rel="noopener noreferrer">
+              Voir le projet ↗<span class="visually-hidden"> (nouvel onglet)</span>
+            </a>
+          )}
+          {project.repoUrl && (
+            <a class="btn" href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+              Code source ↗<span class="visually-hidden"> (nouvel onglet)</span>
+            </a>
+          )}
+          {project.extensionUrl && (
+            <a class="btn" href={project.extensionUrl} target="_blank" rel="noopener noreferrer">
+              Extension ↗<span class="visually-hidden"> (nouvel onglet)</span>
+            </a>
+          )}
+        </p>
+      )}
+    </header>
+
+    {cover && <img class="project-cover" src={cover} alt={`Capture d’écran de ${project.name}`} loading="eager" />}
+
+    <div class="project-content">
+      <div class="project-story">
+        <h2>L’histoire</h2>
+        {project.story.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+
+      <aside class="project-facts" aria-label="En bref">
+        {project.results.length > 0 && (
+          <section>
+            <h2>Résultats</h2>
+            <ul class="project-results">
+              {project.results.map((line) => <li>{line}</li>)}
+            </ul>
+          </section>
+        )}
+        {project.role && (
+          <section>
+            <h2>Mon rôle</h2>
+            <p>{project.role}</p>
+          </section>
+        )}
+        {project.tags.length > 0 && (
+          <section>
+            <h2>Technologies</h2>
+            <ul class="project-tags">
+              {project.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+          </section>
+        )}
+      </aside>
+    </div>
+
+    {gallery.length > 0 && (
+      <section class="project-gallery" aria-label="Autres captures">
+        {gallery.map((image, index) => (
+          <img src={image} alt={`Capture ${index + 2} de ${project.name}`} loading="lazy" decoding="async" />
+        ))}
+      </section>
+    )}
+
+    {next && next.slug !== project.slug && (
+      <nav class="project-next" aria-label="Projet suivant">
+        <span>Projet suivant</span>
+        <a href={`/projets/${next.slug}/`}>{next.name} →</a>
+      </nav>
+    )}
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .project-page {
+    max-width: 68rem;
+  }
+
+  .project-back a {
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .project-header {
+    margin: 1rem 0 2rem;
+  }
+
+  .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0 0 0.6rem;
+    color: var(--muted);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .project-header h1 {
+    margin: 0 0 0.75rem;
+  }
+
+  .project-lead {
+    max-width: 60ch;
+    margin: 0;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    line-height: 1.5;
+  }
+
+  .project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1.5rem 0 0;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.6rem 1.15rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color var(--transition), background var(--transition);
+  }
+
+  .btn:hover {
+    border-color: var(--accent);
+  }
+
+  .btn--primary {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  .project-cover {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .project-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .project-story h2,
+  .project-facts h2 {
+    margin: 0 0 0.75rem;
+  }
+
+  .project-story p {
+    max-width: var(--measure);
+    margin: 0 0 1rem;
+    line-height: 1.7;
+  }
+
+  .project-facts {
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  .project-facts h2 {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .project-facts p {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .project-results {
+    display: grid;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .project-results li {
+    position: relative;
+    padding-left: 1.6rem;
+    line-height: 1.45;
+  }
+
+  .project-results li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0.05rem;
+    display: grid;
+    place-items: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    color: var(--accent);
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .project-tags li {
+    padding: 0.25rem 0.6rem;
+    border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  .project-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .project-gallery img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  .project-next {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+  }
+
+  .project-next span {
+    color: var(--muted);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .project-next a {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 860px) {
+    .project-content {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
