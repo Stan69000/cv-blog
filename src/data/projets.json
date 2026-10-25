@@ -32,7 +32,7 @@
       "name": "Le Signal Clair",
       "draft": false,
       "featured": true,
-      "startedAt": "2026-04-01",
+      "startedAt": "2026-10-01",
       "startPrecision": "month",
       "status": "ongoing",
       "url": "https://lesignalclair.fr/",
@@ -43,12 +43,12 @@
       "pitch": "Un site qui lit chaque jour 325 sources tech et cyber, regroupe ce qui parle du même sujet et n'en garde que l'essentiel.",
       "role": "Seul aux commandes : produit, architecture, développement, hébergement et budget IA.",
       "results": [
-        "325 sources suivies et près de 7 000 sujets triés et archivés depuis mai 2026",
+        "325 sources suivies, près de 7 000 sujets triés et archivés par Cortex depuis mai 2026",
         "Failles activement exploitées et arnaques signalées remontées en page d'accueil",
         "API publique et serveur MCP de 19 outils pour brancher d'autres assistants IA"
       ],
       "tags": ["Next.js", "Fastify", "BullMQ", "PostgreSQL", "IA", "Docker"],
-      "story": "L'actu tech et cyber arrive de partout : flux RSS, newsletters, Reddit, avis de sécurité, podcasts. Je voulais un seul endroit qui lise tout ça à ma place, regroupe les articles qui racontent la même histoire et dise clairement ce qui mérite d'être lu.\n\nDerrière le site public, il y a une vraie plateforme : ingestion multi-sources, résumés et regroupement par IA, détection des messages d'arnaque, suivi des CVE (NVD, CISA KEV, EPSS), administration avec double authentification et passkeys, suivi des coûts IA par modèle.\n\nLe tout tourne sur un VPS que j'administre moi-même, avec un budget IA plafonné à une vingtaine d'euros par mois. Le site est porté par l'association Le Singe du Numérique et reste gratuit, sans publicité."
+      "story": "L'actu tech et cyber arrive de partout : flux RSS, newsletters, Reddit, avis de sécurité, podcasts. Je voulais un seul endroit qui lise tout ça à ma place, regroupe les articles qui racontent la même histoire et dise clairement ce qui mérite d'être lu.\n\nLe site public est sorti en octobre 2026, mais il repose sur Cortex, la plateforme de veille que je développe depuis avril 2026 : ingestion multi-sources, résumés et regroupement par IA, détection des messages d'arnaque, suivi des CVE (NVD, CISA KEV, EPSS), administration avec double authentification et passkeys, suivi des coûts IA par modèle.\n\nLe tout tourne sur un VPS que j'administre moi-même, avec un budget IA plafonné à une vingtaine d'euros par mois. Le site est porté par l'association Le Singe du Numérique et reste gratuit, sans publicité."
     },
     {
       "slug": "rgaa-audit",
