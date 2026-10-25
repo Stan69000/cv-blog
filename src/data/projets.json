@@ -130,10 +130,10 @@
       "images": [
         "/images/projects/studio-stan.jpg"
       ],
-      "pitch": "Mon back-office maison : une seule interface pour éditer, publier et déployer mes quatre sites, des photos aux articles relus par IA.",
+      "pitch": "Mon back-office maison : une seule interface pour éditer, publier et déployer quatre de mes sites, des photos aux articles relus par IA.",
       "role": "Conception, développement et hébergement sur VPS.",
       "results": [
-        "4 sites pilotés au même endroit : galerie photo, association, site d'une naturopathe et ce site",
+        "Quatre sites pilotés au même endroit : galerie photo, association, site d'une naturopathe et ce site",
         "Connexion par passkey ou TOTP, sessions révocables côté serveur, journal d'audit",
         "Workflow éditorial de l'association : statuts, vérification de la charte, relecture par Claude, publication automatique",
         "Médiathèque partagée, sauvegarde quotidienne et déploiement Git sans quitter l'interface"
