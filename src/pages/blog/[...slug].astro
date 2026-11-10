@@ -36,7 +36,7 @@ const modifiedTime = post.data.updatedDate ? post.data.updatedDate.toISOString()
   <SiteHeader />
   <main id="main-content" class="container section article-page">
     <div class="article-shell">
-      <p class="article-back"><a href="/blog">← Tous les articles</a></p>
+      <p class="article-back"><a href="/blog/">← Tous les articles</a></p>
       <header class="article-header">
         <p class="article-meta">Publié le {fmt.format(post.data.pubDate)}</p>
         <h1>{post.data.title}</h1>
@@ -60,7 +60,7 @@ const modifiedTime = post.data.updatedDate ? post.data.updatedDate.toISOString()
       </article>
 
       <footer class="article-footer">
-        <a href="/blog">← Retour au blog</a>
+        <a href="/blog/">← Retour au blog</a>
       </footer>
     </div>
   </main>
