@@ -6,11 +6,11 @@ const currentPath = Astro.url.pathname;
 
 const navItems = [
   { href: '/', label: 'Accueil' },
-  { href: '/parcours', label: 'Parcours' },
-  { href: '/projets', label: 'Projets' },
-  { href: '/engagement-associatif', label: 'Engagement' },
-  ...(siteConfig.blogPublished ? [{ href: '/blog', label: 'Blog' }] : []),
-  { href: '/contact', label: 'Contact' },
+  { href: '/parcours/', label: 'Parcours' },
+  { href: '/projets/', label: 'Projets' },
+  { href: '/engagement-associatif/', label: 'Engagement' },
+  ...(siteConfig.blogPublished ? [{ href: '/blog/', label: 'Blog' }] : []),
+  { href: '/contact/', label: 'Contact' },
 ].map(item => ({
   href: item.href,
   label: item.label,
@@ -47,7 +47,7 @@ const navItems = [
     </nav>
 
     <div class="header-actions">
-      <a href="/cv" class="cv-link" aria-label="Voir mon CV">CV</a>
+      <a href="/cv/" class="cv-link" aria-label="Voir mon CV">CV</a>
       <ThemeToggle />
       <button
         id="mobile-menu-toggle"
