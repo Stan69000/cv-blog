@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-20
+
+### Ajouté
+- Mesure d'audience sur toutes les pages : visiteurs, pages vues, provenance et appareils, lisibles depuis l'administration.
+- Sans cookie, sans donnée personnelle et sans service tiers : un visiteur est reconnu une journée au plus par une empreinte anonyme renouvelée chaque nuit, et les empreintes de la veille sont supprimées.
+- Pour ne pas compter ses propres visites : clé `cvblog-no-stats` dans le stockage local du navigateur.
+
 ## 2026-06-14
 
 ### Modifié

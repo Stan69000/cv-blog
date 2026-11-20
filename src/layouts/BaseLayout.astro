@@ -3,6 +3,7 @@ import '../styles/global.css';
 import siteConfig from '../data/site.json';
 import seoConfig from '../data/seo.json';
 import socialConfig from '../data/social.json';
+import AudienceBeacon from '../components/AudienceBeacon.astro';
 
 interface Props {
   title?: string;
@@ -142,6 +143,7 @@ const personLd = {
         updateVisibility();
       });
     </script>
+    <AudienceBeacon />
   </body>
 </html>
 
